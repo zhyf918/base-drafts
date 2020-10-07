@@ -13,8 +13,26 @@ low-latency connection establishment.  This document describes a mapping of HTTP
 semantics over QUIC.  This document also identifies HTTP/2 features that are
 subsumed by QUIC, and describes how HTTP/2 extensions can be ported to HTTP/3. 
     " name="description">
-<meta content="xml2rfc 2.47.0" name="generator">
+<meta content="xml2rfc 3.2.1" name="generator">
 <meta content="draft-ietf-quic-http-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.2.1
+    Python 3.8.2
+    appdirs 1.4.4
+    ConfigArgParse 1.2.3
+    google-i18n-address 2.4.0
+    html5lib 1.1
+    intervaltree 3.0.2
+    Jinja2 2.11.2
+    kitchen 1.2.6
+    lxml 4.5.0
+    pycountry 19.8.18
+    pyflakes 2.1.1
+    PyYAML 5.3.1
+    requests 2.22.0
+    setuptools 45.2.0
+    six 1.14.0
+-->
 <link href="draft-ietf-quic-http.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
@@ -803,11 +821,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">HTTP/3</td>
-<td class="right">September 2020</td>
+<td class="right">October 2020</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Bishop</td>
-<td class="center">Expires 11 March 2021</td>
+<td class="center">Expires 10 April 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -820,12 +838,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-quic-http-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-09-07" class="published">7 September 2020</time>
+<time datetime="2020-10-07" class="published">7 October 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-03-11">11 March 2021</time></dd>
+<dd class="expires"><time datetime="2021-04-10">10 April 2021</time></dd>
 <dt class="label-authors">Author:</dt>
 <dd class="authors">
 <div class="author">
@@ -875,7 +893,7 @@ code and issues list for this draft can be found at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 11 March 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 10 April 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -903,8 +921,8 @@ code and issues list for this draft can be found at
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="compact toc ulEmpty">
+<li class="compact toc ulEmpty" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.1.2.1">
@@ -915,7 +933,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-http-3-protocol-overview" class="xref">HTTP/3 Protocol Overview</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1">
@@ -926,7 +944,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-connection-setup-and-manage" class="xref">Connection Setup and Management</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
@@ -951,7 +969,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-http-request-lifecycle" class="xref">HTTP Request Lifecycle</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
@@ -979,7 +997,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-connection-closure" class="xref">Connection Closure</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.5.2.1">
@@ -996,7 +1014,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-stream-mapping-and-usage" class="xref">Stream Mapping and Usage</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.6.2.1">
@@ -1018,7 +1036,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-http-framing-layer" class="xref">HTTP Framing Layer</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.1">
@@ -1055,7 +1073,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-error-handling" class="xref">Error Handling</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
@@ -1063,10 +1081,10 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-extensions-to-http-3" class="xref">Extensions to HTTP/3</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.10">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-10" class="xref">10</a>. <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.10.2.1">
@@ -1112,7 +1130,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.11">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.11">
             <p id="section-toc.1-1.11.1"><a href="#section-11" class="xref">11</a>. <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.11.2.1">
@@ -1137,7 +1155,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.12">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.12">
             <p id="section-toc.1-1.12.1"><a href="#section-12" class="xref">12</a>. <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.1">
@@ -1148,7 +1166,7 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.13">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.13">
             <p id="section-toc.1-1.13.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-considerations-for-transiti" class="xref">Considerations for Transitioning from HTTP/2</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.13.2.1">
@@ -1164,10 +1182,13 @@ code and issues list for this draft can be found at
                     <p id="section-toc.1-1.13.2.2.2.2.1"><a href="#section-a.2.2" class="xref">A.2.2</a>.  <a href="#name-field-compression-differenc" class="xref">Field Compression Differences</a><a href="#section-toc.1-1.13.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="toc ulEmpty compact" id="section-toc.1-1.13.2.2.2.3">
-                    <p id="section-toc.1-1.13.2.2.2.3.1"><a href="#section-a.2.3" class="xref">A.2.3</a>.  <a href="#name-guidance-for-new-frame-type" class="xref">Guidance for New Frame Type Definitions</a><a href="#section-toc.1-1.13.2.2.2.3.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.3.1"><a href="#section-a.2.3" class="xref">A.2.3</a>.  <a href="#name-flow-control-differences" class="xref">Flow Control Differences</a><a href="#section-toc.1-1.13.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
                   <li class="toc ulEmpty compact" id="section-toc.1-1.13.2.2.2.4">
-                    <p id="section-toc.1-1.13.2.2.2.4.1"><a href="#section-a.2.4" class="xref">A.2.4</a>.  <a href="#name-mapping-between-http-2-and-" class="xref">Mapping Between HTTP/2 and HTTP/3 Frame Types</a><a href="#section-toc.1-1.13.2.2.2.4.1" class="pilcrow">¶</a></p>
+                    <p id="section-toc.1-1.13.2.2.2.4.1"><a href="#section-a.2.4" class="xref">A.2.4</a>.  <a href="#name-guidance-for-new-frame-type" class="xref">Guidance for New Frame Type Definitions</a><a href="#section-toc.1-1.13.2.2.2.4.1" class="pilcrow">¶</a></p>
+</li>
+                  <li class="toc ulEmpty compact" id="section-toc.1-1.13.2.2.2.5">
+                    <p id="section-toc.1-1.13.2.2.2.5.1"><a href="#section-a.2.5" class="xref">A.2.5</a>.  <a href="#name-mapping-between-http-2-and-" class="xref">Mapping Between HTTP/2 and HTTP/3 Frame Types</a><a href="#section-toc.1-1.13.2.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
@@ -1184,105 +1205,111 @@ code and issues list for this draft can be found at
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.14">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.14">
             <p id="section-toc.1-1.14.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-change-log" class="xref">Change Log</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
 <ul class="toc ulEmpty compact">
 <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.1">
-                <p id="section-toc.1-1.14.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-since-draft-ietf-quic-http-" class="xref">Since draft-ietf-quic-http-28</a><a href="#section-toc.1-1.14.2.1.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-since-draft-ietf-quic-http-" class="xref">Since draft-ietf-quic-http-30</a><a href="#section-toc.1-1.14.2.1.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.2">
-                <p id="section-toc.1-1.14.2.2.1"><a href="#section-b.2" class="xref">B.2</a>.  <a href="#name-since-draft-ietf-quic-http-2" class="xref">Since draft-ietf-quic-http-27</a><a href="#section-toc.1-1.14.2.2.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.2.1"><a href="#section-b.2" class="xref">B.2</a>.  <a href="#name-since-draft-ietf-quic-http-2" class="xref">Since draft-ietf-quic-http-29</a><a href="#section-toc.1-1.14.2.2.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.3">
-                <p id="section-toc.1-1.14.2.3.1"><a href="#section-b.3" class="xref">B.3</a>.  <a href="#name-since-draft-ietf-quic-http-26" class="xref">Since draft-ietf-quic-http-26</a><a href="#section-toc.1-1.14.2.3.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.3.1"><a href="#section-b.3" class="xref">B.3</a>.  <a href="#name-since-draft-ietf-quic-http-28" class="xref">Since draft-ietf-quic-http-28</a><a href="#section-toc.1-1.14.2.3.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.4">
-                <p id="section-toc.1-1.14.2.4.1"><a href="#section-b.4" class="xref">B.4</a>.  <a href="#name-since-draft-ietf-quic-http-25" class="xref">Since draft-ietf-quic-http-25</a><a href="#section-toc.1-1.14.2.4.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.4.1"><a href="#section-b.4" class="xref">B.4</a>.  <a href="#name-since-draft-ietf-quic-http-27" class="xref">Since draft-ietf-quic-http-27</a><a href="#section-toc.1-1.14.2.4.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.5">
-                <p id="section-toc.1-1.14.2.5.1"><a href="#section-b.5" class="xref">B.5</a>.  <a href="#name-since-draft-ietf-quic-http-24" class="xref">Since draft-ietf-quic-http-24</a><a href="#section-toc.1-1.14.2.5.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.5.1"><a href="#section-b.5" class="xref">B.5</a>.  <a href="#name-since-draft-ietf-quic-http-26" class="xref">Since draft-ietf-quic-http-26</a><a href="#section-toc.1-1.14.2.5.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.6">
-                <p id="section-toc.1-1.14.2.6.1"><a href="#section-b.6" class="xref">B.6</a>.  <a href="#name-since-draft-ietf-quic-http-23" class="xref">Since draft-ietf-quic-http-23</a><a href="#section-toc.1-1.14.2.6.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.6.1"><a href="#section-b.6" class="xref">B.6</a>.  <a href="#name-since-draft-ietf-quic-http-25" class="xref">Since draft-ietf-quic-http-25</a><a href="#section-toc.1-1.14.2.6.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.7">
-                <p id="section-toc.1-1.14.2.7.1"><a href="#section-b.7" class="xref">B.7</a>.  <a href="#name-since-draft-ietf-quic-http-22" class="xref">Since draft-ietf-quic-http-22</a><a href="#section-toc.1-1.14.2.7.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.7.1"><a href="#section-b.7" class="xref">B.7</a>.  <a href="#name-since-draft-ietf-quic-http-24" class="xref">Since draft-ietf-quic-http-24</a><a href="#section-toc.1-1.14.2.7.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.8">
-                <p id="section-toc.1-1.14.2.8.1"><a href="#section-b.8" class="xref">B.8</a>.  <a href="#name-since-draft-ietf-quic-http-21" class="xref">Since draft-ietf-quic-http-21</a><a href="#section-toc.1-1.14.2.8.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.8.1"><a href="#section-b.8" class="xref">B.8</a>.  <a href="#name-since-draft-ietf-quic-http-23" class="xref">Since draft-ietf-quic-http-23</a><a href="#section-toc.1-1.14.2.8.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.9">
-                <p id="section-toc.1-1.14.2.9.1"><a href="#section-b.9" class="xref">B.9</a>.  <a href="#name-since-draft-ietf-quic-http-20" class="xref">Since draft-ietf-quic-http-20</a><a href="#section-toc.1-1.14.2.9.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.9.1"><a href="#section-b.9" class="xref">B.9</a>.  <a href="#name-since-draft-ietf-quic-http-22" class="xref">Since draft-ietf-quic-http-22</a><a href="#section-toc.1-1.14.2.9.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.10">
-                <p id="section-toc.1-1.14.2.10.1"><a href="#section-b.10" class="xref">B.10</a>. <a href="#name-since-draft-ietf-quic-http-1" class="xref">Since draft-ietf-quic-http-19</a><a href="#section-toc.1-1.14.2.10.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.10.1"><a href="#section-b.10" class="xref">B.10</a>. <a href="#name-since-draft-ietf-quic-http-21" class="xref">Since draft-ietf-quic-http-21</a><a href="#section-toc.1-1.14.2.10.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.11">
-                <p id="section-toc.1-1.14.2.11.1"><a href="#section-b.11" class="xref">B.11</a>. <a href="#name-since-draft-ietf-quic-http-18" class="xref">Since draft-ietf-quic-http-18</a><a href="#section-toc.1-1.14.2.11.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.11.1"><a href="#section-b.11" class="xref">B.11</a>. <a href="#name-since-draft-ietf-quic-http-20" class="xref">Since draft-ietf-quic-http-20</a><a href="#section-toc.1-1.14.2.11.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.12">
-                <p id="section-toc.1-1.14.2.12.1"><a href="#section-b.12" class="xref">B.12</a>. <a href="#name-since-draft-ietf-quic-http-17" class="xref">Since draft-ietf-quic-http-17</a><a href="#section-toc.1-1.14.2.12.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.12.1"><a href="#section-b.12" class="xref">B.12</a>. <a href="#name-since-draft-ietf-quic-http-1" class="xref">Since draft-ietf-quic-http-19</a><a href="#section-toc.1-1.14.2.12.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.13">
-                <p id="section-toc.1-1.14.2.13.1"><a href="#section-b.13" class="xref">B.13</a>. <a href="#name-since-draft-ietf-quic-http-16" class="xref">Since draft-ietf-quic-http-16</a><a href="#section-toc.1-1.14.2.13.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.13.1"><a href="#section-b.13" class="xref">B.13</a>. <a href="#name-since-draft-ietf-quic-http-18" class="xref">Since draft-ietf-quic-http-18</a><a href="#section-toc.1-1.14.2.13.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.14">
-                <p id="section-toc.1-1.14.2.14.1"><a href="#section-b.14" class="xref">B.14</a>. <a href="#name-since-draft-ietf-quic-http-15" class="xref">Since draft-ietf-quic-http-15</a><a href="#section-toc.1-1.14.2.14.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.14.1"><a href="#section-b.14" class="xref">B.14</a>. <a href="#name-since-draft-ietf-quic-http-17" class="xref">Since draft-ietf-quic-http-17</a><a href="#section-toc.1-1.14.2.14.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.15">
-                <p id="section-toc.1-1.14.2.15.1"><a href="#section-b.15" class="xref">B.15</a>. <a href="#name-since-draft-ietf-quic-http-14" class="xref">Since draft-ietf-quic-http-14</a><a href="#section-toc.1-1.14.2.15.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.15.1"><a href="#section-b.15" class="xref">B.15</a>. <a href="#name-since-draft-ietf-quic-http-16" class="xref">Since draft-ietf-quic-http-16</a><a href="#section-toc.1-1.14.2.15.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.16">
-                <p id="section-toc.1-1.14.2.16.1"><a href="#section-b.16" class="xref">B.16</a>. <a href="#name-since-draft-ietf-quic-http-13" class="xref">Since draft-ietf-quic-http-13</a><a href="#section-toc.1-1.14.2.16.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.16.1"><a href="#section-b.16" class="xref">B.16</a>. <a href="#name-since-draft-ietf-quic-http-15" class="xref">Since draft-ietf-quic-http-15</a><a href="#section-toc.1-1.14.2.16.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.17">
-                <p id="section-toc.1-1.14.2.17.1"><a href="#section-b.17" class="xref">B.17</a>. <a href="#name-since-draft-ietf-quic-http-12" class="xref">Since draft-ietf-quic-http-12</a><a href="#section-toc.1-1.14.2.17.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.17.1"><a href="#section-b.17" class="xref">B.17</a>. <a href="#name-since-draft-ietf-quic-http-14" class="xref">Since draft-ietf-quic-http-14</a><a href="#section-toc.1-1.14.2.17.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.18">
-                <p id="section-toc.1-1.14.2.18.1"><a href="#section-b.18" class="xref">B.18</a>. <a href="#name-since-draft-ietf-quic-http-11" class="xref">Since draft-ietf-quic-http-11</a><a href="#section-toc.1-1.14.2.18.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.18.1"><a href="#section-b.18" class="xref">B.18</a>. <a href="#name-since-draft-ietf-quic-http-13" class="xref">Since draft-ietf-quic-http-13</a><a href="#section-toc.1-1.14.2.18.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.19">
-                <p id="section-toc.1-1.14.2.19.1"><a href="#section-b.19" class="xref">B.19</a>. <a href="#name-since-draft-ietf-quic-http-10" class="xref">Since draft-ietf-quic-http-10</a><a href="#section-toc.1-1.14.2.19.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.19.1"><a href="#section-b.19" class="xref">B.19</a>. <a href="#name-since-draft-ietf-quic-http-12" class="xref">Since draft-ietf-quic-http-12</a><a href="#section-toc.1-1.14.2.19.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.20">
-                <p id="section-toc.1-1.14.2.20.1"><a href="#section-b.20" class="xref">B.20</a>. <a href="#name-since-draft-ietf-quic-http-0" class="xref">Since draft-ietf-quic-http-09</a><a href="#section-toc.1-1.14.2.20.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.20.1"><a href="#section-b.20" class="xref">B.20</a>. <a href="#name-since-draft-ietf-quic-http-11" class="xref">Since draft-ietf-quic-http-11</a><a href="#section-toc.1-1.14.2.20.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.21">
-                <p id="section-toc.1-1.14.2.21.1"><a href="#section-b.21" class="xref">B.21</a>. <a href="#name-since-draft-ietf-quic-http-08" class="xref">Since draft-ietf-quic-http-08</a><a href="#section-toc.1-1.14.2.21.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.21.1"><a href="#section-b.21" class="xref">B.21</a>. <a href="#name-since-draft-ietf-quic-http-10" class="xref">Since draft-ietf-quic-http-10</a><a href="#section-toc.1-1.14.2.21.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.22">
-                <p id="section-toc.1-1.14.2.22.1"><a href="#section-b.22" class="xref">B.22</a>. <a href="#name-since-draft-ietf-quic-http-07" class="xref">Since draft-ietf-quic-http-07</a><a href="#section-toc.1-1.14.2.22.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.22.1"><a href="#section-b.22" class="xref">B.22</a>. <a href="#name-since-draft-ietf-quic-http-0" class="xref">Since draft-ietf-quic-http-09</a><a href="#section-toc.1-1.14.2.22.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.23">
-                <p id="section-toc.1-1.14.2.23.1"><a href="#section-b.23" class="xref">B.23</a>. <a href="#name-since-draft-ietf-quic-http-06" class="xref">Since draft-ietf-quic-http-06</a><a href="#section-toc.1-1.14.2.23.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.23.1"><a href="#section-b.23" class="xref">B.23</a>. <a href="#name-since-draft-ietf-quic-http-08" class="xref">Since draft-ietf-quic-http-08</a><a href="#section-toc.1-1.14.2.23.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.24">
-                <p id="section-toc.1-1.14.2.24.1"><a href="#section-b.24" class="xref">B.24</a>. <a href="#name-since-draft-ietf-quic-http-05" class="xref">Since draft-ietf-quic-http-05</a><a href="#section-toc.1-1.14.2.24.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.24.1"><a href="#section-b.24" class="xref">B.24</a>. <a href="#name-since-draft-ietf-quic-http-07" class="xref">Since draft-ietf-quic-http-07</a><a href="#section-toc.1-1.14.2.24.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.25">
-                <p id="section-toc.1-1.14.2.25.1"><a href="#section-b.25" class="xref">B.25</a>. <a href="#name-since-draft-ietf-quic-http-04" class="xref">Since draft-ietf-quic-http-04</a><a href="#section-toc.1-1.14.2.25.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.25.1"><a href="#section-b.25" class="xref">B.25</a>. <a href="#name-since-draft-ietf-quic-http-06" class="xref">Since draft-ietf-quic-http-06</a><a href="#section-toc.1-1.14.2.25.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.26">
-                <p id="section-toc.1-1.14.2.26.1"><a href="#section-b.26" class="xref">B.26</a>. <a href="#name-since-draft-ietf-quic-http-03" class="xref">Since draft-ietf-quic-http-03</a><a href="#section-toc.1-1.14.2.26.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.26.1"><a href="#section-b.26" class="xref">B.26</a>. <a href="#name-since-draft-ietf-quic-http-05" class="xref">Since draft-ietf-quic-http-05</a><a href="#section-toc.1-1.14.2.26.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.27">
-                <p id="section-toc.1-1.14.2.27.1"><a href="#section-b.27" class="xref">B.27</a>. <a href="#name-since-draft-ietf-quic-http-02" class="xref">Since draft-ietf-quic-http-02</a><a href="#section-toc.1-1.14.2.27.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.27.1"><a href="#section-b.27" class="xref">B.27</a>. <a href="#name-since-draft-ietf-quic-http-04" class="xref">Since draft-ietf-quic-http-04</a><a href="#section-toc.1-1.14.2.27.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.28">
-                <p id="section-toc.1-1.14.2.28.1"><a href="#section-b.28" class="xref">B.28</a>. <a href="#name-since-draft-ietf-quic-http-01" class="xref">Since draft-ietf-quic-http-01</a><a href="#section-toc.1-1.14.2.28.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.28.1"><a href="#section-b.28" class="xref">B.28</a>. <a href="#name-since-draft-ietf-quic-http-03" class="xref">Since draft-ietf-quic-http-03</a><a href="#section-toc.1-1.14.2.28.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.29">
-                <p id="section-toc.1-1.14.2.29.1"><a href="#section-b.29" class="xref">B.29</a>. <a href="#name-since-draft-ietf-quic-http-00" class="xref">Since draft-ietf-quic-http-00</a><a href="#section-toc.1-1.14.2.29.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.29.1"><a href="#section-b.29" class="xref">B.29</a>. <a href="#name-since-draft-ietf-quic-http-02" class="xref">Since draft-ietf-quic-http-02</a><a href="#section-toc.1-1.14.2.29.1" class="pilcrow">¶</a></p>
 </li>
               <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.30">
-                <p id="section-toc.1-1.14.2.30.1"><a href="#section-b.30" class="xref">B.30</a>. <a href="#name-since-draft-shade-quic-http" class="xref">Since draft-shade-quic-http2-mapping-00</a><a href="#section-toc.1-1.14.2.30.1" class="pilcrow">¶</a></p>
+                <p id="section-toc.1-1.14.2.30.1"><a href="#section-b.30" class="xref">B.30</a>. <a href="#name-since-draft-ietf-quic-http-01" class="xref">Since draft-ietf-quic-http-01</a><a href="#section-toc.1-1.14.2.30.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.31">
+                <p id="section-toc.1-1.14.2.31.1"><a href="#section-b.31" class="xref">B.31</a>. <a href="#name-since-draft-ietf-quic-http-00" class="xref">Since draft-ietf-quic-http-00</a><a href="#section-toc.1-1.14.2.31.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="toc ulEmpty compact" id="section-toc.1-1.14.2.32">
+                <p id="section-toc.1-1.14.2.32.1"><a href="#section-b.32" class="xref">B.32</a>. <a href="#name-since-draft-shade-quic-http" class="xref">Since draft-shade-quic-http2-mapping-00</a><a href="#section-toc.1-1.14.2.32.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.15">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.15">
             <p id="section-toc.1-1.15.1"><a href="#section-appendix.c" class="xref"></a><a href="#name-acknowledgements" class="xref">Acknowledgements</a><a href="#section-toc.1-1.15.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.16">
+          <li class="compact toc ulEmpty" id="section-toc.1-1.16">
             <p id="section-toc.1-1.16.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-authors-address" class="xref">Author's Address</a><a href="#section-toc.1-1.16.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
@@ -1431,35 +1458,35 @@ appear in all capitals, as shown here.<a href="#section-2.2-1" class="pilcrow">�
 <p id="section-2.2-3">The following terms are used:<a href="#section-2.2-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-2.2-4">
           <dt id="section-2.2-4.1">abort:</dt>
-          <dd id="section-2.2-4.2">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.2">
   An abrupt termination of a connection or stream, possibly due to an error
 condition.<a href="#section-2.2-4.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.3">client:</dt>
-          <dd id="section-2.2-4.4">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.4">
   The endpoint that initiates an HTTP/3 connection.  Clients send HTTP requests
 and receive HTTP responses.<a href="#section-2.2-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.5">connection:</dt>
-          <dd id="section-2.2-4.6">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.6">
   A transport-layer connection between two endpoints, using QUIC as the
 transport protocol.<a href="#section-2.2-4.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.7">connection error:</dt>
-          <dd id="section-2.2-4.8">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.8">
   An error that affects the entire HTTP/3 connection.<a href="#section-2.2-4.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.9">endpoint:</dt>
-          <dd id="section-2.2-4.10">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.10">
   Either the client or server of the connection.<a href="#section-2.2-4.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.11">frame:</dt>
-          <dd id="section-2.2-4.12">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.12">
   The smallest unit of communication on a stream in HTTP/3, consisting of a
 header and a variable-length sequence of bytes structured according to the
 frame type.
@@ -1472,34 +1499,34 @@ frames."  References without this preface refer to frames defined in
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.13">peer:</dt>
-          <dd id="section-2.2-4.14">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.14">
   An endpoint.  When discussing a particular endpoint, "peer" refers to the
 endpoint that is remote to the primary subject of discussion.<a href="#section-2.2-4.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.15">receiver:</dt>
-          <dd id="section-2.2-4.16">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.16">
   An endpoint that is receiving frames.<a href="#section-2.2-4.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.17">sender:</dt>
-          <dd id="section-2.2-4.18">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.18">
   An endpoint that is transmitting frames.<a href="#section-2.2-4.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.19">server:</dt>
-          <dd id="section-2.2-4.20">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.20">
   The endpoint that accepts an HTTP/3 connection.  Servers receive HTTP requests
 and send HTTP responses.<a href="#section-2.2-4.20" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.21">stream:</dt>
-          <dd id="section-2.2-4.22">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.22">
   A bidirectional or unidirectional bytestream provided by the QUIC transport.<a href="#section-2.2-4.22" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-2.2-4.23">stream error:</dt>
-          <dd id="section-2.2-4.24">
+          <dd style="margin-left: 1.5em" id="section-2.2-4.24">
   An error on the individual HTTP/3 stream.<a href="#section-2.2-4.24" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -1710,7 +1737,7 @@ response following a final HTTP response MUST be treated as malformed
 (<a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#section-4.1-3" class="pilcrow">¶</a></p>
 <p id="section-4.1-4">An HTTP message (request or response) consists of:<a href="#section-4.1-4" class="pilcrow">¶</a></p>
 <ol start="1" type="1" class="normal type-1" id="section-4.1-5">
-          <li id="section-4.1-5.1">the header field section, sent as a single HEADERS frame (see
+<li id="section-4.1-5.1">the header field section, sent as a single HEADERS frame (see
 <a href="#frame-headers" class="xref">Section 7.2.2</a>),<a href="#section-4.1-5.1" class="pilcrow">¶</a>
 </li>
           <li id="section-4.1-5.2">optionally, the payload body, if present, sent as a series of DATA frames
@@ -1822,30 +1849,31 @@ as malformed (<a href="#malformed" class="xref">Section 4.1.3</a>).<a href="#sec
 <p id="section-4.1.1.1-5">The following pseudo-header fields are defined for requests:<a href="#section-4.1.1.1-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-4.1.1.1-6">
               <dt id="section-4.1.1.1-6.1">":method":</dt>
-              <dd id="section-4.1.1.1-6.2">
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.2">
   Contains the HTTP method (Section 8 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>)<a href="#section-4.1.1.1-6.2" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.3">":scheme":</dt>
-              <dd id="section-4.1.1.1-6.4">
-  Contains the scheme portion of the target URI (Section 3.1 of <span>[<a href="#RFC3986" class="xref">RFC3986</a>]</span>)<a href="#section-4.1.1.1-6.4" class="pilcrow">¶</a>
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.4">
+  Contains the scheme portion of the target URI (Section 3.1 of
+  <span>[<a href="#URI" class="xref">URI</a>]</span>)<a href="#section-4.1.1.1-6.4" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.5"></dt>
-              <dd id="section-4.1.1.1-6.6">":scheme" is not restricted to "http" and "https" schemed URIs.  A proxy or
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.6">":scheme" is not restricted to "http" and "https" schemed URIs.  A proxy or
 gateway can translate requests for non-HTTP schemes, enabling the use of
 HTTP to interact with non-HTTP services.<a href="#section-4.1.1.1-6.6" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.7">":authority":</dt>
-              <dd id="section-4.1.1.1-6.8">
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.8">
   Contains the authority portion of the target URI (Section 3.2 of
-<span>[<a href="#RFC3986" class="xref">RFC3986</a>]</span>). The authority MUST NOT include the deprecated "userinfo"
+<span>[<a href="#URI" class="xref">URI</a>]</span>). The authority MUST NOT include the deprecated "userinfo"
 subcomponent for "http" or "https" schemed URIs.<a href="#section-4.1.1.1-6.8" class="pilcrow">¶</a>
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.9"></dt>
-              <dd id="section-4.1.1.1-6.10">To ensure that the HTTP/1.1 request line can be reproduced accurately, this
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.10">To ensure that the HTTP/1.1 request line can be reproduced accurately, this
 pseudo-header field MUST be omitted when translating from an HTTP/1.1
 request that has a request target in origin or asterisk form; see Section
 3.2 of <span>[<a href="#HTTP11" class="xref">HTTP11</a>]</span>.  Clients that generate HTTP/3 requests directly SHOULD
@@ -1856,7 +1884,7 @@ field if one is not present in a request by copying the value of the
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.11">":path":</dt>
-              <dd id="section-4.1.1.1-6.12">
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.12">
   Contains the path and query parts of the target URI (the "path-absolute"
 production and optionally a '?' character followed by the "query"
 production; see Sections 3.3 and 3.4 of <span>[<a href="#URI" class="xref">URI</a>]</span>.  A request in
@@ -1864,7 +1892,7 @@ asterisk form includes the value '*' for the ":path" pseudo-header field.<a href
 </dd>
               <dd class="break"></dd>
 <dt id="section-4.1.1.1-6.13"></dt>
-              <dd id="section-4.1.1.1-6.14">This pseudo-header field MUST NOT be empty for "http" or "https" URIs;
+              <dd style="margin-left: 1.5em" id="section-4.1.1.1-6.14">This pseudo-header field MUST NOT be empty for "http" or "https" URIs;
 "http" or "https" URIs that do not contain a path component MUST include a
 value of '/'.  The exception to this rule is an OPTIONS request for an
 "http" or "https" URI that does not include a path component; these MUST
@@ -1907,7 +1935,7 @@ blocking.  See that document for additional details.<a href="#section-4.1.1.2-1"
 MAY be split into separate field lines, each with one or more cookie-pairs,
 before compression. If a decompressed field section contains multiple cookie
 field lines, these MUST be concatenated into a single octet string using the
-two-octet delimiter of 0x3B, 0x20 (the ASCII string "; ") before being passed
+two-octet delimiter of 0x3b, 0x20 (the ASCII string "; ") before being passed
 into a context other than HTTP/2 or HTTP/3, such as an HTTP/1.1 connection, or a
 generic HTTP server application.<a href="#section-4.1.1.2-2" class="pilcrow">¶</a></p>
 </section>
@@ -2077,9 +2105,9 @@ with the RST bit set.<a href="#section-4.2-10" class="pilcrow">¶</a></p>
         <h3 id="name-http-upgrade">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-http-upgrade" class="section-name selfRef">HTTP Upgrade</a>
         </h3>
-<p id="section-4.3-1">HTTP/3 does not support the HTTP Upgrade mechanism (Section 9.9 of <span>[<a href="#HTTP11" class="xref">HTTP11</a>]</span>)
-or 101 (Switching Protocols) informational status code (Section 10.2.2 of
-<span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">HTTP/3 does not support the HTTP Upgrade mechanism (Section 6.7 of
+{{!SEMANTICS}) or 101 (Switching Protocols) informational status code (Section
+10.2.2 of <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>).<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="server-push">
@@ -2133,7 +2161,7 @@ which the server is authoritative; see <a href="#connection-reuse" class="xref">
 <p id="section-4.4-10">Clients SHOULD send a CANCEL_PUSH frame upon receipt of a PUSH_PROMISE frame
 carrying a request that is not cacheable, is not known to be safe, that
 indicates the presence of a request body, or for which it does not consider the
-server authoritative.<a href="#section-4.4-10" class="pilcrow">¶</a></p>
+server authoritative.  Any corresponding responses MUST NOT be used or cached.<a href="#section-4.4-10" class="pilcrow">¶</a></p>
 <p id="section-4.4-11">Each pushed response is associated with one or more client requests.  The push
 is associated with the request stream on which the PUSH_PROMISE frame was
 received.  The same server push can be associated with additional client
@@ -2621,18 +2649,18 @@ HTTP/3 Frame Format {
 <p id="section-7.1-3">A frame includes the following fields:<a href="#section-7.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.1-4">
           <dt id="section-7.1-4.1">Type:</dt>
-          <dd id="section-7.1-4.2">
+          <dd style="margin-left: 1.5em" id="section-7.1-4.2">
   A variable-length integer that identifies the frame type.<a href="#section-7.1-4.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.1-4.3">Length:</dt>
-          <dd id="section-7.1-4.4">
+          <dd style="margin-left: 1.5em" id="section-7.1-4.4">
   A variable-length integer that describes the length in bytes of
 the Frame Payload.<a href="#section-7.1-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-7.1-4.5">Frame Payload:</dt>
-          <dd id="section-7.1-4.6">
+          <dd style="margin-left: 1.5em" id="section-7.1-4.6">
   A payload, the semantics of which are determined by the Type field.<a href="#section-7.1-4.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -2825,7 +2853,7 @@ not understand.<a href="#section-7.2.4-9" class="pilcrow">¶</a></p>
 <p id="section-7.2.4.1-1">The following settings are defined in HTTP/3:<a href="#section-7.2.4.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.2.4.1-2">
               <dt id="section-7.2.4.1-2.1">SETTINGS_MAX_FIELD_SECTION_SIZE (0x6):</dt>
-              <dd id="section-7.2.4.1-2.2">
+              <dd style="margin-left: 1.5em" id="section-7.2.4.1-2.2">
   The default value is unlimited.  See <a href="#header-formatting" class="xref">Section 4.1.1</a> for usage.<a href="#section-7.2.4.1-2.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
@@ -2924,14 +2952,14 @@ PUSH_PROMISE Frame {
 <p id="section-7.2.5-3">The payload consists of:<a href="#section-7.2.5-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.2.5-4">
             <dt id="section-7.2.5-4.1">Push ID:</dt>
-            <dd id="section-7.2.5-4.2">
+            <dd style="margin-left: 1.5em" id="section-7.2.5-4.2">
   A variable-length integer that identifies the server push operation.  A Push
 ID is used in push stream headers (<a href="#server-push" class="xref">Section 4.4</a>) and CANCEL_PUSH frames
 (<a href="#frame-cancel-push" class="xref">Section 7.2.3</a>).<a href="#section-7.2.5-4.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-7.2.5-4.3">Encoded Field Section:</dt>
-            <dd id="section-7.2.5-4.4">
+            <dd style="margin-left: 1.5em" id="section-7.2.5-4.4">
   QPACK-encoded request header fields for the promised response.  See <span>[<a href="#QPACK" class="xref">QPACK</a>]</span>
 for more details.<a href="#section-7.2.5-4.4" class="pilcrow">¶</a>
 </dd>
@@ -3006,7 +3034,7 @@ connection error (<a href="#errors" class="xref">Section 8</a>) of type H3_FRAME
           <h4 id="name-max_push_id">
 <a href="#section-7.2.7" class="section-number selfRef">7.2.7. </a><a href="#name-max_push_id" class="section-name selfRef">MAX_PUSH_ID</a>
           </h4>
-<p id="section-7.2.7-1">The MAX_PUSH_ID frame (type=0xD) is used by clients to control the number of
+<p id="section-7.2.7-1">The MAX_PUSH_ID frame (type=0xd) is used by clients to control the number of
 server pushes that the server can initiate.  This sets the maximum value for a
 Push ID that the server can use in PUSH_PROMISE and CANCEL_PUSH frames.
 Consequently, this also limits the number of push streams that the server can
@@ -3025,7 +3053,7 @@ sending MAX_PUSH_ID frames as the server fulfills or cancels server pushes.<a hr
             <div class="artwork art-text alignLeft art-drawing" id="section-7.2.7-5.1">
 <pre>
 MAX_PUSH_ID Frame {
-  Type (i) = 0xD,
+  Type (i) = 0xd,
   Length (i),
   Push ID (i),
 }
@@ -3095,89 +3123,89 @@ the cause of a connection or stream error.<a href="#section-8-4" class="pilcrow"
 aborting reading of streams, or immediately closing connections.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-8.1-2">
           <dt id="section-8.1-2.1">H3_NO_ERROR (0x100):</dt>
-          <dd id="section-8.1-2.2">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.2">
   No error.  This is used when the connection or stream needs to be closed, but
 there is no error to signal.<a href="#section-8.1-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.3">H3_GENERAL_PROTOCOL_ERROR (0x101):</dt>
-          <dd id="section-8.1-2.4">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.4">
   Peer violated protocol requirements in a way that does not match a more
 specific error code, or endpoint declines to use the more specific error code.<a href="#section-8.1-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.5">H3_INTERNAL_ERROR (0x102):</dt>
-          <dd id="section-8.1-2.6">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.6">
   An internal error has occurred in the HTTP stack.<a href="#section-8.1-2.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.7">H3_STREAM_CREATION_ERROR (0x103):</dt>
-          <dd id="section-8.1-2.8">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.8">
   The endpoint detected that its peer created a stream that it will not accept.<a href="#section-8.1-2.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.9">H3_CLOSED_CRITICAL_STREAM (0x104):</dt>
-          <dd id="section-8.1-2.10">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.10">
   A stream required by the connection was closed or reset.<a href="#section-8.1-2.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.11">H3_FRAME_UNEXPECTED (0x105):</dt>
-          <dd id="section-8.1-2.12">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.12">
   A frame was received that was not permitted in the current state or on the
 current stream.<a href="#section-8.1-2.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.13">H3_FRAME_ERROR (0x106):</dt>
-          <dd id="section-8.1-2.14">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.14">
   A frame that fails to satisfy layout requirements or with an invalid size
 was received.<a href="#section-8.1-2.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.15">H3_EXCESSIVE_LOAD (0x107):</dt>
-          <dd id="section-8.1-2.16">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.16">
   The endpoint detected that its peer is exhibiting a behavior that might be
 generating excessive load.<a href="#section-8.1-2.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.17">H3_ID_ERROR (0x108):</dt>
-          <dd id="section-8.1-2.18">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.18">
   A Stream ID or Push ID was used incorrectly, such as exceeding a limit,
 reducing a limit, or being reused.<a href="#section-8.1-2.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.19">H3_SETTINGS_ERROR (0x109):</dt>
-          <dd id="section-8.1-2.20">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.20">
   An endpoint detected an error in the payload of a SETTINGS frame.<a href="#section-8.1-2.20" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.21">H3_MISSING_SETTINGS (0x10A):</dt>
-          <dd id="section-8.1-2.22">
+<dt id="section-8.1-2.21">H3_MISSING_SETTINGS (0x10a):</dt>
+          <dd style="margin-left: 1.5em" id="section-8.1-2.22">
   No SETTINGS frame was received at the beginning of the control stream.<a href="#section-8.1-2.22" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.23">H3_REQUEST_REJECTED (0x10B):</dt>
-          <dd id="section-8.1-2.24">
+<dt id="section-8.1-2.23">H3_REQUEST_REJECTED (0x10b):</dt>
+          <dd style="margin-left: 1.5em" id="section-8.1-2.24">
   A server rejected a request without performing any application processing.<a href="#section-8.1-2.24" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.25">H3_REQUEST_CANCELLED (0x10C):</dt>
-          <dd id="section-8.1-2.26">
+<dt id="section-8.1-2.25">H3_REQUEST_CANCELLED (0x10c):</dt>
+          <dd style="margin-left: 1.5em" id="section-8.1-2.26">
   The request or its response (including pushed response) is cancelled.<a href="#section-8.1-2.26" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.27">H3_REQUEST_INCOMPLETE (0x10D):</dt>
-          <dd id="section-8.1-2.28">
+<dt id="section-8.1-2.27">H3_REQUEST_INCOMPLETE (0x10d):</dt>
+          <dd style="margin-left: 1.5em" id="section-8.1-2.28">
   The client's stream terminated without containing a fully-formed request.<a href="#section-8.1-2.28" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
-<dt id="section-8.1-2.29">H3_CONNECT_ERROR (0x10F):</dt>
-          <dd id="section-8.1-2.30">
+<dt id="section-8.1-2.29">H3_CONNECT_ERROR (0x10f):</dt>
+          <dd style="margin-left: 1.5em" id="section-8.1-2.30">
   The connection established in response to a CONNECT request was reset or
 abnormally closed.<a href="#section-8.1-2.30" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-8.1-2.31">H3_VERSION_FALLBACK (0x110):</dt>
-          <dd id="section-8.1-2.32">
+          <dd style="margin-left: 1.5em" id="section-8.1-2.32">
   The requested operation cannot be served over HTTP/3.  The peer should
 retry over HTTP/1.1.<a href="#section-8.1-2.32" class="pilcrow">¶</a>
 </dd>
@@ -3296,8 +3324,8 @@ that tenants are not able to push representations of resources that they do not
 have authority over.  Failure to enforce this would allow a tenant to provide a
 representation that would be served out of cache, overriding the actual
 representation that the authoritative tenant provides.<a href="#section-10.4-3" class="pilcrow">¶</a></p>
-<p id="section-10.4-4">Pushed responses for which an origin server is not authoritative (see
-<a href="#connection-reuse" class="xref">Section 3.4</a>) MUST NOT be used or cached.<a href="#section-10.4-4" class="pilcrow">¶</a></p>
+<p id="section-10.4-4">Clients are required to reject pushed responses for which an origin server is
+not authoritative; see <a href="#server-push" class="xref">Section 4.4</a>.<a href="#section-10.4-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="denial-of-service-considerations">
@@ -3497,17 +3525,17 @@ Protocol IDs" registry established in <span>[<a href="#RFC7301" class="xref">RFC
 <p id="section-11.1-2">The "h3" string identifies HTTP/3:<a href="#section-11.1-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-11.1-3">
           <dt id="section-11.1-3.1">Protocol:</dt>
-          <dd id="section-11.1-3.2">
+          <dd style="margin-left: 1.5em" id="section-11.1-3.2">
   HTTP/3<a href="#section-11.1-3.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-11.1-3.3">Identification Sequence:</dt>
-          <dd id="section-11.1-3.4">
+          <dd style="margin-left: 1.5em" id="section-11.1-3.4">
   0x68 0x33 ("h3")<a href="#section-11.1-3.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-11.1-3.5">Specification:</dt>
-          <dd id="section-11.1-3.6">
+          <dd style="margin-left: 1.5em" id="section-11.1-3.6">
   This document<a href="#section-11.1-3.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -3546,7 +3574,7 @@ operation.<a href="#section-11.2.1-2" class="pilcrow">¶</a></p>
 registrations in this registry MUST include the following field:<a href="#section-11.2.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-11.2.1-4">
             <dt id="section-11.2.1-4.1">Frame Type:</dt>
-            <dd id="section-11.2.1-4.2">
+            <dd style="margin-left: 1.5em" id="section-11.2.1-4.2">
   A name or label for the frame type.<a href="#section-11.2.1-4.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -3632,7 +3660,7 @@ its semantics, including any parts of the frame that are conditionally present.<
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">MAX_PUSH_ID</td>
-                <td class="text-center" rowspan="1" colspan="1">0xD</td>
+                <td class="text-center" rowspan="1" colspan="1">0xd</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#frame-max-push-id" class="xref">Section 7.2.7</a>
 </td>
@@ -3665,12 +3693,12 @@ assigning the corresponding value to an unrelated operation.<a href="#section-11
 registrations in this registry MUST include the following fields:<a href="#section-11.2.2-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-11.2.2-4">
             <dt id="section-11.2.2-4.1">Setting Name:</dt>
-            <dd id="section-11.2.2-4.2">
+            <dd style="margin-left: 1.5em" id="section-11.2.2-4.2">
   A symbolic name for the setting.  Specifying a setting name is optional.<a href="#section-11.2.2-4.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-11.2.2-4.3">Default:</dt>
-            <dd id="section-11.2.2-4.4">
+            <dd style="margin-left: 1.5em" id="section-11.2.2-4.4">
   The value of the setting unless otherwise indicated. A default SHOULD be the
 most restrictive possible value.<a href="#section-11.2.2-4.4" class="pilcrow">¶</a>
 </dd>
@@ -3728,8 +3756,8 @@ most restrictive possible value.<a href="#section-11.2.2-4.4" class="pilcrow">¶
           </table>
 </div>
 <p id="section-11.2.2-7">Additionally, each code of the format <code>0x1f * N + 0x21</code> for non-negative integer
-values of N (that is, 0x21, 0x40, ..., through 0x3FFFFFFFFFFFFFFE) MUST
-NOT be assigned by IANA.<a href="#section-11.2.2-7" class="pilcrow">¶</a></p>
+values of N (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe) MUST NOT be
+assigned by IANA.<a href="#section-11.2.2-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-error-codes">
@@ -3753,12 +3781,12 @@ includes two additional fields.  Permanent registrations in this registry MUST
 include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-11.2.3-4">
             <dt id="section-11.2.3-4.1">Name:</dt>
-            <dd id="section-11.2.3-4.2">
+            <dd style="margin-left: 1.5em" id="section-11.2.3-4.2">
   A name for the error code.<a href="#section-11.2.3-4.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-11.2.3-4.3">Description:</dt>
-            <dd id="section-11.2.3-4.4">
+            <dd style="margin-left: 1.5em" id="section-11.2.3-4.4">
   A brief description of the error code semantics.<a href="#section-11.2.3-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
@@ -3861,7 +3889,7 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">H3_MISSING_SETTINGS</td>
-                <td class="text-left" rowspan="1" colspan="1">0x010A</td>
+                <td class="text-left" rowspan="1" colspan="1">0x010a</td>
                 <td class="text-left" rowspan="1" colspan="1">No SETTINGS frame received</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#http-error-codes" class="xref">Section 8.1</a>
@@ -3869,7 +3897,7 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">H3_REQUEST_REJECTED</td>
-                <td class="text-left" rowspan="1" colspan="1">0x010B</td>
+                <td class="text-left" rowspan="1" colspan="1">0x010b</td>
                 <td class="text-left" rowspan="1" colspan="1">Request not processed</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#http-error-codes" class="xref">Section 8.1</a>
@@ -3877,7 +3905,7 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">H3_REQUEST_CANCELLED</td>
-                <td class="text-left" rowspan="1" colspan="1">0x010C</td>
+                <td class="text-left" rowspan="1" colspan="1">0x010c</td>
                 <td class="text-left" rowspan="1" colspan="1">Data no longer needed</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#http-error-codes" class="xref">Section 8.1</a>
@@ -3885,7 +3913,7 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">H3_REQUEST_INCOMPLETE</td>
-                <td class="text-left" rowspan="1" colspan="1">0x010D</td>
+                <td class="text-left" rowspan="1" colspan="1">0x010d</td>
                 <td class="text-left" rowspan="1" colspan="1">Stream terminated early</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#http-error-codes" class="xref">Section 8.1</a>
@@ -3893,7 +3921,7 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
               </tr>
               <tr>
                 <td class="text-left" rowspan="1" colspan="1">H3_CONNECT_ERROR</td>
-                <td class="text-left" rowspan="1" colspan="1">0x010F</td>
+                <td class="text-left" rowspan="1" colspan="1">0x010f</td>
                 <td class="text-left" rowspan="1" colspan="1">TCP reset or error on CONNECT request</td>
                 <td class="text-left" rowspan="1" colspan="1">
                   <a href="#http-error-codes" class="xref">Section 8.1</a>
@@ -3911,8 +3939,8 @@ include the following field:<a href="#section-11.2.3-3" class="pilcrow">¶</a></
           </table>
 </div>
 <p id="section-11.2.3-7">Additionally, each code of the format <code>0x1f * N + 0x21</code> for non-negative integer
-values of N (that is, 0x21, 0x40, ..., through 0x3FFFFFFFFFFFFFFE) MUST
-NOT be assigned by IANA.<a href="#section-11.2.3-7" class="pilcrow">¶</a></p>
+values of N (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe) MUST NOT be
+assigned by IANA.<a href="#section-11.2.3-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="iana-stream-types">
@@ -3931,12 +3959,12 @@ assigned using Standards Action or IESG Approval as defined in Section 4.9 and
 registrations in this registry MUST include the following fields:<a href="#section-11.2.4-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-11.2.4-3">
             <dt id="section-11.2.4-3.1">Stream Type:</dt>
-            <dd id="section-11.2.4-3.2">
+            <dd style="margin-left: 1.5em" id="section-11.2.4-3.2">
   A name or label for the stream type.<a href="#section-11.2.4-3.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
 <dt id="section-11.2.4-3.3">Sender:</dt>
-            <dd id="section-11.2.4-3.4">
+            <dd style="margin-left: 1.5em" id="section-11.2.4-3.4">
   Which endpoint on a connection may initiate a stream of this type. Values are
 "Client", "Server", or "Both".<a href="#section-11.2.4-3.4" class="pilcrow">¶</a>
 </dd>
@@ -3975,8 +4003,8 @@ stream type, including the layout and semantics of the stream contents.<a href="
             </tbody>
           </table>
 <p id="section-11.2.4-7">Additionally, each code of the format <code>0x1f * N + 0x21</code> for non-negative integer
-values of N (that is, 0x21, 0x40, ..., through 0x3FFFFFFFFFFFFFFE) MUST
-NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
+values of N (that is, 0x21, 0x40, ..., through 0x3ffffffffffffffe) MUST NOT be
+assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -3998,7 +4026,7 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="CACHING">[CACHING]</dt>
         <dd>
-<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cache-11</span>, <time datetime="2020-08-27" class="refDate">27 August 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-cache-11.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-cache-11.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Caching"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-cache-12</span>, <time datetime="2020-10-02" class="refDate">2 October 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-cache-12.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-cache-12.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="HTTP-REPLAY">[HTTP-REPLAY]</dt>
         <dd>
@@ -4006,11 +4034,11 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="QPACK">[QPACK]</dt>
         <dd>
-<span class="refAuthor">Krasic, C.</span><span class="refAuthor">, Bishop, M.</span><span class="refAuthor">, and A. Frindell, Ed.</span>, <span class="refTitle">"QPACK: Header Compression for HTTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qpack-latest</span>, <time datetime="2020-09-07" class="refDate">7 September 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-qpack-latest">https://tools.ietf.org/html/draft-ietf-quic-qpack-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Krasic, C.</span><span class="refAuthor">, Bishop, M.</span><span class="refAuthor">, and A. Frindell, Ed.</span>, <span class="refTitle">"QPACK: Header Compression for HTTP over QUIC"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-qpack-latest</span>, <time datetime="2020-10-07" class="refDate">7 October 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-qpack-latest">https://tools.ietf.org/html/draft-ietf-quic-qpack-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</dt>
         <dd>
-<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-09-07" class="refDate">7 September 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-10-07" class="refDate">7 October 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC0793">[RFC0793]</dt>
         <dd>
@@ -4019,10 +4047,6 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
 <span class="refAuthor">Bradner, S.</span>, <span class="refTitle">"Key words for use in RFCs to Indicate Requirement Levels"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 2119</span>, <span class="seriesInfo">DOI 10.17487/RFC2119</span>, <time datetime="1997-03" class="refDate">March 1997</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2119">https://www.rfc-editor.org/info/rfc2119</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="RFC3986">[RFC3986]</dt>
-        <dd>
-<span class="refAuthor">Berners-Lee, T.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, and L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3986">https://www.rfc-editor.org/info/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC6066">[RFC6066]</dt>
         <dd>
@@ -4053,8 +4077,12 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <span class="refAuthor">Leiba, B.</span>, <span class="refTitle">"Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words"</span>, <span class="seriesInfo">BCP 14</span>, <span class="seriesInfo">RFC 8174</span>, <span class="seriesInfo">DOI 10.17487/RFC8174</span>, <time datetime="2017-05" class="refDate">May 2017</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8174">https://www.rfc-editor.org/info/rfc8174</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="SEMANTICS">[SEMANTICS]</dt>
+        <dd>
+<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-12</span>, <time datetime="2020-10-02" class="refDate">2 October 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-12.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-12.txt</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="URI">[URI]</dt>
       <dd>
-<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-11</span>, <time datetime="2020-08-27" class="refDate">27 August 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-11.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-11.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Berners-Lee, T.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, and L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3986">https://www.rfc-editor.org/info/rfc3986</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4073,7 +4101,7 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <dd class="break"></dd>
 <dt id="HTTP11">[HTTP11]</dt>
         <dd>
-<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP/1.1 Messaging"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-messaging-11</span>, <time datetime="2020-08-27" class="refDate">27 August 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-messaging-11.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-messaging-11.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP/1.1 Messaging"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-messaging-12</span>, <time datetime="2020-10-02" class="refDate">2 October 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-messaging-12.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-messaging-12.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="HTTP2">[HTTP2]</dt>
         <dd>
@@ -4088,12 +4116,8 @@ NOT be assigned by IANA.<a href="#section-11.2.4-7" class="pilcrow">¶</a></p>
 <span class="refAuthor">Cheng, Y.</span><span class="refAuthor">, Chu, J.</span><span class="refAuthor">, Radhakrishnan, S.</span><span class="refAuthor">, and A. Jain</span>, <span class="refTitle">"TCP Fast Open"</span>, <span class="seriesInfo">RFC 7413</span>, <span class="seriesInfo">DOI 10.17487/RFC7413</span>, <time datetime="2014-12" class="refDate">December 2014</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7413">https://www.rfc-editor.org/info/rfc7413</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="TLS13">[TLS13]</dt>
-        <dd>
-<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8446">https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
-<dd class="break"></dd>
-<dt id="URI">[URI]</dt>
       <dd>
-<span class="refAuthor">Berners-Lee, T.</span><span class="refAuthor">, Fielding, R.</span><span class="refAuthor">, and L. Masinter</span>, <span class="refTitle">"Uniform Resource Identifier (URI): Generic Syntax"</span>, <span class="seriesInfo">STD 66</span>, <span class="seriesInfo">RFC 3986</span>, <span class="seriesInfo">DOI 10.17487/RFC3986</span>, <time datetime="2005-01" class="refDate">January 2005</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc3986">https://www.rfc-editor.org/info/rfc3986</a>&gt;</span>. </dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8446">https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -4193,99 +4217,111 @@ given time without modifying it.<a href="#section-a.2.2-2" class="pilcrow">¶</a
 <p id="section-a.2.2-3"><span>[<a href="#QPACK" class="xref">QPACK</a>]</span> provides additional details.<a href="#section-a.2.2-3" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="guidance-for-new-frame-type-definitions">
+<div id="flow-control-differences">
 <section id="section-a.2.3">
-          <h3 id="name-guidance-for-new-frame-type">
-<a href="#section-a.2.3" class="section-number selfRef">A.2.3. </a><a href="#name-guidance-for-new-frame-type" class="section-name selfRef">Guidance for New Frame Type Definitions</a>
+          <h3 id="name-flow-control-differences">
+<a href="#section-a.2.3" class="section-number selfRef">A.2.3. </a><a href="#name-flow-control-differences" class="section-name selfRef">Flow Control Differences</a>
           </h3>
-<p id="section-a.2.3-1">Frame type definitions in HTTP/3 often use the QUIC variable-length integer
+<p id="section-a.2.3-1">HTTP/2 specifies a stream flow control mechanism. Although all HTTP/2 frames are
+delivered on streams, only the DATA frame payload is subject to flow control.
+QUIC provides flow control for stream data and all HTTP/3 frame types defined in
+this document are sent on streams. Therefore, all frame headers and payload are
+subject to flow control.<a href="#section-a.2.3-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="guidance-for-new-frame-type-definitions">
+<section id="section-a.2.4">
+          <h3 id="name-guidance-for-new-frame-type">
+<a href="#section-a.2.4" class="section-number selfRef">A.2.4. </a><a href="#name-guidance-for-new-frame-type" class="section-name selfRef">Guidance for New Frame Type Definitions</a>
+          </h3>
+<p id="section-a.2.4-1">Frame type definitions in HTTP/3 often use the QUIC variable-length integer
 encoding.  In particular, Stream IDs use this encoding, which allows for a
 larger range of possible values than the encoding used in HTTP/2.  Some frames
 in HTTP/3 use an identifier rather than a Stream ID (e.g., Push
 IDs). Redefinition of the encoding of extension frame types might be necessary
-if the encoding includes a Stream ID.<a href="#section-a.2.3-1" class="pilcrow">¶</a></p>
-<p id="section-a.2.3-2">Because the Flags field is not present in generic HTTP/3 frames, those frames
+if the encoding includes a Stream ID.<a href="#section-a.2.4-1" class="pilcrow">¶</a></p>
+<p id="section-a.2.4-2">Because the Flags field is not present in generic HTTP/3 frames, those frames
 that depend on the presence of flags need to allocate space for flags as part
-of their frame payload.<a href="#section-a.2.3-2" class="pilcrow">¶</a></p>
-<p id="section-a.2.3-3">Other than these issues, frame type HTTP/2 extensions are typically portable to
+of their frame payload.<a href="#section-a.2.4-2" class="pilcrow">¶</a></p>
+<p id="section-a.2.4-3">Other than these issues, frame type HTTP/2 extensions are typically portable to
 QUIC simply by replacing Stream 0 in HTTP/2 with a control stream in HTTP/3.
 HTTP/3 extensions will not assume ordering, but would not be harmed by ordering,
-and would be portable to HTTP/2 in the same manner.<a href="#section-a.2.3-3" class="pilcrow">¶</a></p>
+and would be portable to HTTP/2 in the same manner.<a href="#section-a.2.4-3" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="mapping-between-http2-and-http3-frame-types">
-<section id="section-a.2.4">
+<section id="section-a.2.5">
           <h3 id="name-mapping-between-http-2-and-">
-<a href="#section-a.2.4" class="section-number selfRef">A.2.4. </a><a href="#name-mapping-between-http-2-and-" class="section-name selfRef">Mapping Between HTTP/2 and HTTP/3 Frame Types</a>
+<a href="#section-a.2.5" class="section-number selfRef">A.2.5. </a><a href="#name-mapping-between-http-2-and-" class="section-name selfRef">Mapping Between HTTP/2 and HTTP/3 Frame Types</a>
           </h3>
-<span class="break"></span><dl class="dlParallel" id="section-a.2.4-1">
-            <dt id="section-a.2.4-1.1">DATA (0x0):</dt>
-            <dd id="section-a.2.4-1.2">
-  Padding is not defined in HTTP/3 frames.  See <a href="#frame-data" class="xref">Section 7.2.1</a>.<a href="#section-a.2.4-1.2" class="pilcrow">¶</a>
+<span class="break"></span><dl class="dlParallel" id="section-a.2.5-1">
+            <dt id="section-a.2.5-1.1">DATA (0x0):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.2">
+  Padding is not defined in HTTP/3 frames.  See <a href="#frame-data" class="xref">Section 7.2.1</a>.<a href="#section-a.2.5-1.2" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.3">HEADERS (0x1):</dt>
-            <dd id="section-a.2.4-1.4">
+<dt id="section-a.2.5-1.3">HEADERS (0x1):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.4">
   The PRIORITY region of HEADERS is not defined in HTTP/3 frames. Padding is not
-defined in HTTP/3 frames.  See <a href="#frame-headers" class="xref">Section 7.2.2</a>.<a href="#section-a.2.4-1.4" class="pilcrow">¶</a>
+defined in HTTP/3 frames.  See <a href="#frame-headers" class="xref">Section 7.2.2</a>.<a href="#section-a.2.5-1.4" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.5">PRIORITY (0x2):</dt>
-            <dd id="section-a.2.4-1.6">
+<dt id="section-a.2.5-1.5">PRIORITY (0x2):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.6">
   As described in <a href="#h2-diff-priority" class="xref">Appendix A.2.1</a>, HTTP/3 does not provide a means of
-signaling priority.<a href="#section-a.2.4-1.6" class="pilcrow">¶</a>
+signaling priority.<a href="#section-a.2.5-1.6" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.7">RST_STREAM (0x3):</dt>
-            <dd id="section-a.2.4-1.8">
+<dt id="section-a.2.5-1.7">RST_STREAM (0x3):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.8">
   RST_STREAM frames do not exist in HTTP/3, since QUIC provides stream lifecycle
 management.  The same code point is used for the CANCEL_PUSH frame
-(<a href="#frame-cancel-push" class="xref">Section 7.2.3</a>).<a href="#section-a.2.4-1.8" class="pilcrow">¶</a>
+(<a href="#frame-cancel-push" class="xref">Section 7.2.3</a>).<a href="#section-a.2.5-1.8" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.9">SETTINGS (0x4):</dt>
-            <dd id="section-a.2.4-1.10">
+<dt id="section-a.2.5-1.9">SETTINGS (0x4):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.10">
   SETTINGS frames are sent only at the beginning of the connection.  See
-<a href="#frame-settings" class="xref">Section 7.2.4</a> and <a href="#h2-settings" class="xref">Appendix A.3</a>.<a href="#section-a.2.4-1.10" class="pilcrow">¶</a>
+<a href="#frame-settings" class="xref">Section 7.2.4</a> and <a href="#h2-settings" class="xref">Appendix A.3</a>.<a href="#section-a.2.5-1.10" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.11">PUSH_PROMISE (0x5):</dt>
-            <dd id="section-a.2.4-1.12">
+<dt id="section-a.2.5-1.11">PUSH_PROMISE (0x5):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.12">
   The PUSH_PROMISE frame does not reference a stream; instead the push stream
 references the PUSH_PROMISE frame using a Push ID.  See
-<a href="#frame-push-promise" class="xref">Section 7.2.5</a>.<a href="#section-a.2.4-1.12" class="pilcrow">¶</a>
+<a href="#frame-push-promise" class="xref">Section 7.2.5</a>.<a href="#section-a.2.5-1.12" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.13">PING (0x6):</dt>
-            <dd id="section-a.2.4-1.14">
+<dt id="section-a.2.5-1.13">PING (0x6):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.14">
   PING frames do not exist in HTTP/3, as QUIC provides equivalent
-functionality.<a href="#section-a.2.4-1.14" class="pilcrow">¶</a>
+functionality.<a href="#section-a.2.5-1.14" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.15">GOAWAY (0x7):</dt>
-            <dd id="section-a.2.4-1.16">
+<dt id="section-a.2.5-1.15">GOAWAY (0x7):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.16">
   GOAWAY does not contain an error code.  In the client to server direction,
 it carries a Push ID instead of a server initiated stream ID.
-See <a href="#frame-goaway" class="xref">Section 7.2.6</a>.<a href="#section-a.2.4-1.16" class="pilcrow">¶</a>
+See <a href="#frame-goaway" class="xref">Section 7.2.6</a>.<a href="#section-a.2.5-1.16" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.17">WINDOW_UPDATE (0x8):</dt>
-            <dd id="section-a.2.4-1.18">
-  WINDOW_UPDATE frames do not exist in HTTP/3, since QUIC provides flow control.<a href="#section-a.2.4-1.18" class="pilcrow">¶</a>
+<dt id="section-a.2.5-1.17">WINDOW_UPDATE (0x8):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.18">
+  WINDOW_UPDATE frames do not exist in HTTP/3, since QUIC provides flow control.<a href="#section-a.2.5-1.18" class="pilcrow">¶</a>
 </dd>
             <dd class="break"></dd>
-<dt id="section-a.2.4-1.19">CONTINUATION (0x9):</dt>
-            <dd id="section-a.2.4-1.20">
+<dt id="section-a.2.5-1.19">CONTINUATION (0x9):</dt>
+            <dd style="margin-left: 1.5em" id="section-a.2.5-1.20">
   CONTINUATION frames do not exist in HTTP/3; instead, larger
-HEADERS/PUSH_PROMISE frames than HTTP/2 are permitted.<a href="#section-a.2.4-1.20" class="pilcrow">¶</a>
+HEADERS/PUSH_PROMISE frames than HTTP/2 are permitted.<a href="#section-a.2.5-1.20" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 </dl>
-<p id="section-a.2.4-2">Frame types defined by extensions to HTTP/2 need to be separately registered for
+<p id="section-a.2.5-2">Frame types defined by extensions to HTTP/2 need to be separately registered for
 HTTP/3 if still applicable.  The IDs of frames defined in <span>[<a href="#HTTP2" class="xref">HTTP2</a>]</span> have been
 reserved for simplicity.  Note that the frame type space in HTTP/3 is
 substantially larger (62 bits versus 8 bits), so many HTTP/3 frame types have no
-equivalent HTTP/2 code points.  See <a href="#iana-frames" class="xref">Section 11.2.1</a>.<a href="#section-a.2.4-2" class="pilcrow">¶</a></p>
+equivalent HTTP/2 code points.  See <a href="#iana-frames" class="xref">Section 11.2.1</a>.<a href="#section-a.2.5-2" class="pilcrow">¶</a></p>
 </section>
 </div>
 </section>
@@ -4306,12 +4342,12 @@ settings are reserved, and their receipt is an error.  See
 <p id="section-a.3-3">Below is a listing of how each HTTP/2 SETTINGS parameter is mapped:<a href="#section-a.3-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-a.3-4">
           <dt id="section-a.3-4.1">SETTINGS_HEADER_TABLE_SIZE:</dt>
-          <dd id="section-a.3-4.2">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.2">
   See <span>[<a href="#QPACK" class="xref">QPACK</a>]</span>.<a href="#section-a.3-4.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.3-4.3">SETTINGS_ENABLE_PUSH:</dt>
-          <dd id="section-a.3-4.4">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.4">
   This is removed in favor of the MAX_PUSH_ID frame, which provides a more
 granular control over server push.  Specifying a setting with the identifier
 0x2 (corresponding to the SETTINGS_ENABLE_PUSH parameter) in the HTTP/3
@@ -4319,7 +4355,7 @@ SETTINGS frame is an error.<a href="#section-a.3-4.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.3-4.5">SETTINGS_MAX_CONCURRENT_STREAMS:</dt>
-          <dd id="section-a.3-4.6">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.6">
   QUIC controls the largest open Stream ID as part of its flow control logic.
 Specifying a setting with the identifier 0x3 (corresponding to the
 SETTINGS_MAX_CONCURRENT_STREAMS parameter) in the HTTP/3 SETTINGS frame is an
@@ -4327,7 +4363,7 @@ error.<a href="#section-a.3-4.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.3-4.7">SETTINGS_INITIAL_WINDOW_SIZE:</dt>
-          <dd id="section-a.3-4.8">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.8">
   QUIC requires both stream and connection flow control window sizes to be
 specified in the initial transport handshake.  Specifying a setting with the
 identifier 0x4 (corresponding to the SETTINGS_INITIAL_WINDOW_SIZE parameter)
@@ -4335,14 +4371,14 @@ in the HTTP/3 SETTINGS frame is an error.<a href="#section-a.3-4.8" class="pilcr
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.3-4.9">SETTINGS_MAX_FRAME_SIZE:</dt>
-          <dd id="section-a.3-4.10">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.10">
   This setting has no equivalent in HTTP/3.  Specifying a setting with the
 identifier 0x5 (corresponding to the SETTINGS_MAX_FRAME_SIZE parameter) in the
 HTTP/3 SETTINGS frame is an error.<a href="#section-a.3-4.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.3-4.11">SETTINGS_MAX_HEADER_LIST_SIZE:</dt>
-          <dd id="section-a.3-4.12">
+          <dd style="margin-left: 1.5em" id="section-a.3-4.12">
   This setting identifier has been renamed SETTINGS_MAX_FIELD_SECTION_SIZE.<a href="#section-a.3-4.12" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -4375,77 +4411,77 @@ codes are not directly portable between versions.<a href="#section-a.4-1" class=
 the HTTP/3 error codes as follows:<a href="#section-a.4-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-a.4-3">
           <dt id="section-a.4-3.1">NO_ERROR (0x0):</dt>
-          <dd id="section-a.4-3.2">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.2">
   H3_NO_ERROR in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.3">PROTOCOL_ERROR (0x1):</dt>
-          <dd id="section-a.4-3.4">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.4">
   This is mapped to H3_GENERAL_PROTOCOL_ERROR except in cases where more
 specific error codes have been defined. Such cases include H3_FRAME_UNEXPECTED
 and H3_CLOSED_CRITICAL_STREAM defined in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.5">INTERNAL_ERROR (0x2):</dt>
-          <dd id="section-a.4-3.6">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.6">
   H3_INTERNAL_ERROR in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.7">FLOW_CONTROL_ERROR (0x3):</dt>
-          <dd id="section-a.4-3.8">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.8">
   Not applicable, since QUIC handles flow control.<a href="#section-a.4-3.8" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.9">SETTINGS_TIMEOUT (0x4):</dt>
-          <dd id="section-a.4-3.10">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.10">
   Not applicable, since no acknowledgement of SETTINGS is defined.<a href="#section-a.4-3.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.11">STREAM_CLOSED (0x5):</dt>
-          <dd id="section-a.4-3.12">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.12">
   Not applicable, since QUIC handles stream management.<a href="#section-a.4-3.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.13">FRAME_SIZE_ERROR (0x6):</dt>
-          <dd id="section-a.4-3.14">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.14">
   H3_FRAME_ERROR error code defined in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.15">REFUSED_STREAM (0x7):</dt>
-          <dd id="section-a.4-3.16">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.16">
   H3_REQUEST_REJECTED (in <a href="#http-error-codes" class="xref">Section 8.1</a>) is used to indicate that a
 request was not processed. Otherwise, not applicable because QUIC handles
 stream management.<a href="#section-a.4-3.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.17">CANCEL (0x8):</dt>
-          <dd id="section-a.4-3.18">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.18">
   H3_REQUEST_CANCELLED in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.19">COMPRESSION_ERROR (0x9):</dt>
-          <dd id="section-a.4-3.20">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.20">
   Multiple error codes are defined in <span>[<a href="#QPACK" class="xref">QPACK</a>]</span>.<a href="#section-a.4-3.20" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.21">CONNECT_ERROR (0xa):</dt>
-          <dd id="section-a.4-3.22">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.22">
   H3_CONNECT_ERROR in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.22" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.23">ENHANCE_YOUR_CALM (0xb):</dt>
-          <dd id="section-a.4-3.24">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.24">
   H3_EXCESSIVE_LOAD in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.24" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.25">INADEQUATE_SECURITY (0xc):</dt>
-          <dd id="section-a.4-3.26">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.26">
   Not applicable, since QUIC is assumed to provide sufficient security on all
 connections.<a href="#section-a.4-3.26" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-a.4-3.27">HTTP_1_1_REQUIRED (0xd):</dt>
-          <dd id="section-a.4-3.28">
+          <dd style="margin-left: 1.5em" id="section-a.4-3.28">
   H3_VERSION_FALLBACK in <a href="#http-error-codes" class="xref">Section 8.1</a>.<a href="#section-a.4-3.28" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -4497,200 +4533,223 @@ what might be a temporary or intermittent error.<a href="#section-a.4.1-4" class
 final version of this document.<a href="#section-appendix.b-1.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<div id="since-draft-ietf-quic-http-28">
+<div id="since-draft-ietf-quic-http-30">
 <section id="section-b.1">
         <h2 id="name-since-draft-ietf-quic-http-">
-<a href="#section-b.1" class="section-number selfRef">B.1. </a><a href="#name-since-draft-ietf-quic-http-" class="section-name selfRef">Since draft-ietf-quic-http-28</a>
+<a href="#section-b.1" class="section-number selfRef">B.1. </a><a href="#name-since-draft-ietf-quic-http-" class="section-name selfRef">Since draft-ietf-quic-http-30</a>
+        </h2>
+<p id="section-b.1-1">Editorial changes only.<a href="#section-b.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="since-draft-ietf-quic-http-29">
+<section id="section-b.2">
+        <h2 id="name-since-draft-ietf-quic-http-2">
+<a href="#section-b.2" class="section-number selfRef">B.2. </a><a href="#name-since-draft-ietf-quic-http-2" class="section-name selfRef">Since draft-ietf-quic-http-29</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.1-1.1">CANCEL_PUSH is recommended even when the stream is reset (#3698, #3700)<a href="#section-b.1-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.2-1.1">Require a connection error if a reserved frame type that corresponds to a
+frame in HTTP/2 is received (#3991, #3993)<a href="#section-b.2-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.1-1.2">Use H3_ID_ERROR when GOAWAY contains a larger identifier (#3631, #3634)<a href="#section-b.1-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.2-1.2">Require a connection error if a reserved setting that corresponds to a
+setting in HTTP/2 is received (#3954, #3955)<a href="#section-b.2-1.2" class="pilcrow">¶</a>
+</li>
+        </ul>
+</section>
+</div>
+<div id="since-draft-ietf-quic-http-28">
+<section id="section-b.3">
+        <h2 id="name-since-draft-ietf-quic-http-28">
+<a href="#section-b.3" class="section-number selfRef">B.3. </a><a href="#name-since-draft-ietf-quic-http-28" class="section-name selfRef">Since draft-ietf-quic-http-28</a>
+        </h2>
+<ul class="normal">
+<li class="normal" id="section-b.3-1.1">CANCEL_PUSH is recommended even when the stream is reset (#3698, #3700)<a href="#section-b.3-1.1" class="pilcrow">¶</a>
+</li>
+          <li class="normal" id="section-b.3-1.2">Use H3_ID_ERROR when GOAWAY contains a larger identifier (#3631, #3634)<a href="#section-b.3-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-27">
-<section id="section-b.2">
-        <h2 id="name-since-draft-ietf-quic-http-2">
-<a href="#section-b.2" class="section-number selfRef">B.2. </a><a href="#name-since-draft-ietf-quic-http-2" class="section-name selfRef">Since draft-ietf-quic-http-27</a>
+<section id="section-b.4">
+        <h2 id="name-since-draft-ietf-quic-http-27">
+<a href="#section-b.4" class="section-number selfRef">B.4. </a><a href="#name-since-draft-ietf-quic-http-27" class="section-name selfRef">Since draft-ietf-quic-http-27</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.2-1.1">Updated text to refer to latest HTTP revisions<a href="#section-b.2-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.4-1.1">Updated text to refer to latest HTTP revisions<a href="#section-b.4-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.2-1.2">Use the HTTP definition of authority for establishing and coalescing
-connections (#253, #2223, #3558)<a href="#section-b.2-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.4-1.2">Use the HTTP definition of authority for establishing and coalescing
+connections (#253, #2223, #3558)<a href="#section-b.4-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.2-1.3">Define use of GOAWAY from both endpoints (#2632, #3129)<a href="#section-b.2-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.4-1.3">Define use of GOAWAY from both endpoints (#2632, #3129)<a href="#section-b.4-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.2-1.4">Require either :authority or Host if the URI scheme has a mandatory
-authority component (#3408, #3475)<a href="#section-b.2-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.4-1.4">Require either :authority or Host if the URI scheme has a mandatory
+authority component (#3408, #3475)<a href="#section-b.4-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-26">
-<section id="section-b.3">
+<section id="section-b.5">
         <h2 id="name-since-draft-ietf-quic-http-26">
-<a href="#section-b.3" class="section-number selfRef">B.3. </a><a href="#name-since-draft-ietf-quic-http-26" class="section-name selfRef">Since draft-ietf-quic-http-26</a>
+<a href="#section-b.5" class="section-number selfRef">B.5. </a><a href="#name-since-draft-ietf-quic-http-26" class="section-name selfRef">Since draft-ietf-quic-http-26</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.3-1.1">No changes<a href="#section-b.3-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.5-1.1">No changes<a href="#section-b.5-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-25">
-<section id="section-b.4">
+<section id="section-b.6">
         <h2 id="name-since-draft-ietf-quic-http-25">
-<a href="#section-b.4" class="section-number selfRef">B.4. </a><a href="#name-since-draft-ietf-quic-http-25" class="section-name selfRef">Since draft-ietf-quic-http-25</a>
+<a href="#section-b.6" class="section-number selfRef">B.6. </a><a href="#name-since-draft-ietf-quic-http-25" class="section-name selfRef">Since draft-ietf-quic-http-25</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.4-1.1">Require QUICv1 for HTTP/3 (#3117, #3323)<a href="#section-b.4-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.6-1.1">Require QUICv1 for HTTP/3 (#3117, #3323)<a href="#section-b.6-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.4-1.2">Remove DUPLICATE_PUSH and allow duplicate PUSH_PROMISE (#3275, #3309)<a href="#section-b.4-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.6-1.2">Remove DUPLICATE_PUSH and allow duplicate PUSH_PROMISE (#3275, #3309)<a href="#section-b.6-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.4-1.3">Clarify the definition of "malformed" (#3352, #3345)<a href="#section-b.4-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.6-1.3">Clarify the definition of "malformed" (#3352, #3345)<a href="#section-b.6-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-24">
-<section id="section-b.5">
+<section id="section-b.7">
         <h2 id="name-since-draft-ietf-quic-http-24">
-<a href="#section-b.5" class="section-number selfRef">B.5. </a><a href="#name-since-draft-ietf-quic-http-24" class="section-name selfRef">Since draft-ietf-quic-http-24</a>
+<a href="#section-b.7" class="section-number selfRef">B.7. </a><a href="#name-since-draft-ietf-quic-http-24" class="section-name selfRef">Since draft-ietf-quic-http-24</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.5-1.1">Removed H3_EARLY_RESPONSE error code; H3_NO_ERROR is recommended instead
-(#3130,#3208)<a href="#section-b.5-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.7-1.1">Removed H3_EARLY_RESPONSE error code; H3_NO_ERROR is recommended instead
+(#3130,#3208)<a href="#section-b.7-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.5-1.2">Unknown error codes are equivalent to H3_NO_ERROR (#3276,#3331)<a href="#section-b.5-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.7-1.2">Unknown error codes are equivalent to H3_NO_ERROR (#3276,#3331)<a href="#section-b.7-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.5-1.3">Some error codes are reserved for greasing (#3325,#3360)<a href="#section-b.5-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.7-1.3">Some error codes are reserved for greasing (#3325,#3360)<a href="#section-b.7-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-23">
-<section id="section-b.6">
+<section id="section-b.8">
         <h2 id="name-since-draft-ietf-quic-http-23">
-<a href="#section-b.6" class="section-number selfRef">B.6. </a><a href="#name-since-draft-ietf-quic-http-23" class="section-name selfRef">Since draft-ietf-quic-http-23</a>
+<a href="#section-b.8" class="section-number selfRef">B.8. </a><a href="#name-since-draft-ietf-quic-http-23" class="section-name selfRef">Since draft-ietf-quic-http-23</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.6-1.1">Removed <code>quic</code> Alt-Svc parameter (#3061,#3118)<a href="#section-b.6-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.8-1.1">Removed <code>quic</code> Alt-Svc parameter (#3061,#3118)<a href="#section-b.8-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.6-1.2">Clients need not persist unknown settings for use in 0-RTT (#3110,#3113)<a href="#section-b.6-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.8-1.2">Clients need not persist unknown settings for use in 0-RTT (#3110,#3113)<a href="#section-b.8-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.6-1.3">Clarify error cases around CANCEL_PUSH (#2819,#3083)<a href="#section-b.6-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.8-1.3">Clarify error cases around CANCEL_PUSH (#2819,#3083)<a href="#section-b.8-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-22">
-<section id="section-b.7">
+<section id="section-b.9">
         <h2 id="name-since-draft-ietf-quic-http-22">
-<a href="#section-b.7" class="section-number selfRef">B.7. </a><a href="#name-since-draft-ietf-quic-http-22" class="section-name selfRef">Since draft-ietf-quic-http-22</a>
+<a href="#section-b.9" class="section-number selfRef">B.9. </a><a href="#name-since-draft-ietf-quic-http-22" class="section-name selfRef">Since draft-ietf-quic-http-22</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.7-1.1">Removed priority signaling (#2922,#2924)<a href="#section-b.7-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.9-1.1">Removed priority signaling (#2922,#2924)<a href="#section-b.9-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.2">
-            <p id="section-b.7-1.2.1">Further changes to error codes (#2662,#2551):<a href="#section-b.7-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-b.9-1.2">
+            <p id="section-b.9-1.2.1">Further changes to error codes (#2662,#2551):<a href="#section-b.9-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.7-1.2.2.1">Error codes renumbered<a href="#section-b.7-1.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.9-1.2.2.1">Error codes renumbered<a href="#section-b.9-1.2.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.7-1.2.2.2">HTTP_MALFORMED_FRAME replaced by HTTP_FRAME_ERROR, HTTP_ID_ERROR, and others<a href="#section-b.7-1.2.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.9-1.2.2.2">HTTP_MALFORMED_FRAME replaced by HTTP_FRAME_ERROR, HTTP_ID_ERROR, and others<a href="#section-b.9-1.2.2.2" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-b.7-1.3">Clarify how unknown frame types interact with required frame sequence
-(#2867,#2858)<a href="#section-b.7-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.3">Clarify how unknown frame types interact with required frame sequence
+(#2867,#2858)<a href="#section-b.9-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.4">Describe interactions with the transport in terms of defined interface terms
-(#2857,#2805)<a href="#section-b.7-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.4">Describe interactions with the transport in terms of defined interface terms
+(#2857,#2805)<a href="#section-b.9-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.5">Require the use of the <code>http-opportunistic</code> resource (RFC 8164) when scheme is
-<code>http</code> (#2439,#2973)<a href="#section-b.7-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.5">Require the use of the <code>http-opportunistic</code> resource (RFC 8164) when scheme is
+<code>http</code> (#2439,#2973)<a href="#section-b.9-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.6">Settings identifiers cannot be duplicated (#2979)<a href="#section-b.7-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.6">Settings identifiers cannot be duplicated (#2979)<a href="#section-b.9-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.7">
-            <p id="section-b.7-1.7.1">Changes to SETTINGS frames in 0-RTT (#2972,#2790,#2945):<a href="#section-b.7-1.7.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-b.9-1.7">
+            <p id="section-b.9-1.7.1">Changes to SETTINGS frames in 0-RTT (#2972,#2790,#2945):<a href="#section-b.9-1.7.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.7-1.7.2.1">Servers must send all settings with non-default values in their SETTINGS
-frame, even when resuming<a href="#section-b.7-1.7.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.9-1.7.2.1">Servers must send all settings with non-default values in their SETTINGS
+frame, even when resuming<a href="#section-b.9-1.7.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.7-1.7.2.2">If a client doesn't have settings associated with a 0-RTT ticket, it uses
-the defaults<a href="#section-b.7-1.7.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.9-1.7.2.2">If a client doesn't have settings associated with a 0-RTT ticket, it uses
+the defaults<a href="#section-b.9-1.7.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.7-1.7.2.3">Servers can't accept early data if they cannot recover the settings the
-client will have remembered<a href="#section-b.7-1.7.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.9-1.7.2.3">Servers can't accept early data if they cannot recover the settings the
+client will have remembered<a href="#section-b.9-1.7.2.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-b.7-1.8">Clarify that Upgrade and the 101 status code are prohibited (#2898,#2889)<a href="#section-b.7-1.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.8">Clarify that Upgrade and the 101 status code are prohibited (#2898,#2889)<a href="#section-b.9-1.8" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.9">Clarify that frame types reserved for greasing can occur on any stream, but
+          <li class="normal" id="section-b.9-1.9">Clarify that frame types reserved for greasing can occur on any stream, but
 frame types reserved due to HTTP/2 correspondence are prohibited
-(#2997,#2692,#2693)<a href="#section-b.7-1.9" class="pilcrow">¶</a>
+(#2997,#2692,#2693)<a href="#section-b.9-1.9" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.7-1.10">Unknown error codes cannot be treated as errors (#2998,#2816)<a href="#section-b.7-1.10" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.9-1.10">Unknown error codes cannot be treated as errors (#2998,#2816)<a href="#section-b.9-1.10" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-21">
-<section id="section-b.8">
+<section id="section-b.10">
         <h2 id="name-since-draft-ietf-quic-http-21">
-<a href="#section-b.8" class="section-number selfRef">B.8. </a><a href="#name-since-draft-ietf-quic-http-21" class="section-name selfRef">Since draft-ietf-quic-http-21</a>
+<a href="#section-b.10" class="section-number selfRef">B.10. </a><a href="#name-since-draft-ietf-quic-http-21" class="section-name selfRef">Since draft-ietf-quic-http-21</a>
         </h2>
-<p id="section-b.8-1">No changes<a href="#section-b.8-1" class="pilcrow">¶</a></p>
+<p id="section-b.10-1">No changes<a href="#section-b.10-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-20">
-<section id="section-b.9">
+<section id="section-b.11">
         <h2 id="name-since-draft-ietf-quic-http-20">
-<a href="#section-b.9" class="section-number selfRef">B.9. </a><a href="#name-since-draft-ietf-quic-http-20" class="section-name selfRef">Since draft-ietf-quic-http-20</a>
+<a href="#section-b.11" class="section-number selfRef">B.11. </a><a href="#name-since-draft-ietf-quic-http-20" class="section-name selfRef">Since draft-ietf-quic-http-20</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.9-1.1">Prohibit closing the control stream (#2509, #2666)<a href="#section-b.9-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.11-1.1">Prohibit closing the control stream (#2509, #2666)<a href="#section-b.11-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.2">Change default priority to use an orphan node (#2502, #2690)<a href="#section-b.9-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.2">Change default priority to use an orphan node (#2502, #2690)<a href="#section-b.11-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.3">Exclusive priorities are restored (#2754, #2781)<a href="#section-b.9-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.3">Exclusive priorities are restored (#2754, #2781)<a href="#section-b.11-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.4">Restrict use of frames when using CONNECT (#2229, #2702)<a href="#section-b.9-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.4">Restrict use of frames when using CONNECT (#2229, #2702)<a href="#section-b.11-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.5">Close and maybe reset streams if a connection error occurs for CONNECT (#2228,
-#2703)<a href="#section-b.9-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.5">Close and maybe reset streams if a connection error occurs for CONNECT (#2228,
+#2703)<a href="#section-b.11-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.6">Encourage provision of sufficient unidirectional streams for QPACK (#2100,
-#2529, #2762)<a href="#section-b.9-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.6">Encourage provision of sufficient unidirectional streams for QPACK (#2100,
+#2529, #2762)<a href="#section-b.11-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.7">Allow extensions to use server-initiated bidirectional streams (#2711, #2773)<a href="#section-b.9-1.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.7">Allow extensions to use server-initiated bidirectional streams (#2711, #2773)<a href="#section-b.11-1.7" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.8">Clarify use of maximum header list size setting (#2516, #2774)<a href="#section-b.9-1.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.11-1.8">Clarify use of maximum header list size setting (#2516, #2774)<a href="#section-b.11-1.8" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.9-1.9">
-            <p id="section-b.9-1.9.1">Extensive changes to error codes and conditions of their sending<a href="#section-b.9-1.9.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-b.11-1.9">
+            <p id="section-b.11-1.9.1">Extensive changes to error codes and conditions of their sending<a href="#section-b.11-1.9.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.9-1.9.2.1">Require connection errors for more error conditions (#2511, #2510)<a href="#section-b.9-1.9.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.11-1.9.2.1">Require connection errors for more error conditions (#2511, #2510)<a href="#section-b.11-1.9.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.2">Updated the error codes for illegal GOAWAY frames (#2714, #2707)<a href="#section-b.9-1.9.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.2">Updated the error codes for illegal GOAWAY frames (#2714, #2707)<a href="#section-b.11-1.9.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.3">Specified error code for HEADERS on control stream (#2708)<a href="#section-b.9-1.9.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.3">Specified error code for HEADERS on control stream (#2708)<a href="#section-b.11-1.9.2.3" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.4">Specified error code for servers receiving PUSH_PROMISE (#2709)<a href="#section-b.9-1.9.2.4" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.4">Specified error code for servers receiving PUSH_PROMISE (#2709)<a href="#section-b.11-1.9.2.4" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.5">Specified error code for receiving DATA before HEADERS (#2715)<a href="#section-b.9-1.9.2.5" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.5">Specified error code for receiving DATA before HEADERS (#2715)<a href="#section-b.11-1.9.2.5" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.6">Describe malformed messages and their handling (#2410, #2764)<a href="#section-b.9-1.9.2.6" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.6">Describe malformed messages and their handling (#2410, #2764)<a href="#section-b.11-1.9.2.6" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.7">Remove HTTP_PUSH_ALREADY_IN_CACHE error (#2812, #2813)<a href="#section-b.9-1.9.2.7" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.7">Remove HTTP_PUSH_ALREADY_IN_CACHE error (#2812, #2813)<a href="#section-b.11-1.9.2.7" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.8">Refactor Push ID related errors (#2818, #2820)<a href="#section-b.9-1.9.2.8" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.8">Refactor Push ID related errors (#2818, #2820)<a href="#section-b.11-1.9.2.8" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.9-1.9.2.9">Rationalize HTTP/3 stream creation errors (#2821, #2822)<a href="#section-b.9-1.9.2.9" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.11-1.9.2.9">Rationalize HTTP/3 stream creation errors (#2821, #2822)<a href="#section-b.11-1.9.2.9" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
@@ -4698,371 +4757,371 @@ frame types reserved due to HTTP/2 correspondence are prohibited
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-19">
-<section id="section-b.10">
+<section id="section-b.12">
         <h2 id="name-since-draft-ietf-quic-http-1">
-<a href="#section-b.10" class="section-number selfRef">B.10. </a><a href="#name-since-draft-ietf-quic-http-1" class="section-name selfRef">Since draft-ietf-quic-http-19</a>
+<a href="#section-b.12" class="section-number selfRef">B.12. </a><a href="#name-since-draft-ietf-quic-http-1" class="section-name selfRef">Since draft-ietf-quic-http-19</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.10-1.1">SETTINGS_NUM_PLACEHOLDERS is 0x9 (#2443,#2530)<a href="#section-b.10-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.12-1.1">SETTINGS_NUM_PLACEHOLDERS is 0x9 (#2443,#2530)<a href="#section-b.12-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.10-1.2">Non-zero bits in the Empty field of the PRIORITY frame MAY be treated as an
-error (#2501)<a href="#section-b.10-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.12-1.2">Non-zero bits in the Empty field of the PRIORITY frame MAY be treated as an
+error (#2501)<a href="#section-b.12-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-18">
-<section id="section-b.11">
+<section id="section-b.13">
         <h2 id="name-since-draft-ietf-quic-http-18">
-<a href="#section-b.11" class="section-number selfRef">B.11. </a><a href="#name-since-draft-ietf-quic-http-18" class="section-name selfRef">Since draft-ietf-quic-http-18</a>
+<a href="#section-b.13" class="section-number selfRef">B.13. </a><a href="#name-since-draft-ietf-quic-http-18" class="section-name selfRef">Since draft-ietf-quic-http-18</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.11-1.1">Resetting streams following a GOAWAY is recommended, but not required
-(#2256,#2457)<a href="#section-b.11-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.13-1.1">Resetting streams following a GOAWAY is recommended, but not required
+(#2256,#2457)<a href="#section-b.13-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.11-1.2">
-            <p id="section-b.11-1.2.1">Use variable-length integers throughout (#2437,#2233,#2253,#2275)<a href="#section-b.11-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-b.13-1.2">
+            <p id="section-b.13-1.2.1">Use variable-length integers throughout (#2437,#2233,#2253,#2275)<a href="#section-b.13-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.11-1.2.2.1">Variable-length frame types, stream types, and settings identifiers<a href="#section-b.11-1.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.13-1.2.2.1">Variable-length frame types, stream types, and settings identifiers<a href="#section-b.13-1.2.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.11-1.2.2.2">Renumbered stream type assignments<a href="#section-b.11-1.2.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.13-1.2.2.2">Renumbered stream type assignments<a href="#section-b.13-1.2.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.11-1.2.2.3">Modified associated reserved values<a href="#section-b.11-1.2.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.13-1.2.2.3">Modified associated reserved values<a href="#section-b.13-1.2.2.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-b.11-1.3">Frame layout switched from Length-Type-Value to Type-Length-Value
-(#2395,#2235)<a href="#section-b.11-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.13-1.3">Frame layout switched from Length-Type-Value to Type-Length-Value
+(#2395,#2235)<a href="#section-b.13-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.11-1.4">Specified error code for servers receiving DUPLICATE_PUSH (#2497)<a href="#section-b.11-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.13-1.4">Specified error code for servers receiving DUPLICATE_PUSH (#2497)<a href="#section-b.13-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.11-1.5">Use connection error for invalid PRIORITY (#2507, #2508)<a href="#section-b.11-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.13-1.5">Use connection error for invalid PRIORITY (#2507, #2508)<a href="#section-b.13-1.5" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-17">
-<section id="section-b.12">
+<section id="section-b.14">
         <h2 id="name-since-draft-ietf-quic-http-17">
-<a href="#section-b.12" class="section-number selfRef">B.12. </a><a href="#name-since-draft-ietf-quic-http-17" class="section-name selfRef">Since draft-ietf-quic-http-17</a>
+<a href="#section-b.14" class="section-number selfRef">B.14. </a><a href="#name-since-draft-ietf-quic-http-17" class="section-name selfRef">Since draft-ietf-quic-http-17</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.12-1.1">HTTP_REQUEST_REJECTED is used to indicate a request can be retried (#2106,
-#2325)<a href="#section-b.12-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.14-1.1">HTTP_REQUEST_REJECTED is used to indicate a request can be retried (#2106,
+#2325)<a href="#section-b.14-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.12-1.2">Changed error code for GOAWAY on the wrong stream (#2231, #2343)<a href="#section-b.12-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.14-1.2">Changed error code for GOAWAY on the wrong stream (#2231, #2343)<a href="#section-b.14-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-16">
-<section id="section-b.13">
+<section id="section-b.15">
         <h2 id="name-since-draft-ietf-quic-http-16">
-<a href="#section-b.13" class="section-number selfRef">B.13. </a><a href="#name-since-draft-ietf-quic-http-16" class="section-name selfRef">Since draft-ietf-quic-http-16</a>
+<a href="#section-b.15" class="section-number selfRef">B.15. </a><a href="#name-since-draft-ietf-quic-http-16" class="section-name selfRef">Since draft-ietf-quic-http-16</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.13-1.1">Rename "HTTP/QUIC" to "HTTP/3" (#1973)<a href="#section-b.13-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.15-1.1">Rename "HTTP/QUIC" to "HTTP/3" (#1973)<a href="#section-b.15-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.13-1.2">
-            <p id="section-b.13-1.2.1">Changes to PRIORITY frame (#1865, #2075)<a href="#section-b.13-1.2.1" class="pilcrow">¶</a></p>
+          <li class="normal" id="section-b.15-1.2">
+            <p id="section-b.15-1.2.1">Changes to PRIORITY frame (#1865, #2075)<a href="#section-b.15-1.2.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.13-1.2.2.1">Permitted as first frame of request streams<a href="#section-b.13-1.2.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.15-1.2.2.1">Permitted as first frame of request streams<a href="#section-b.15-1.2.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.13-1.2.2.2">Remove exclusive reprioritization<a href="#section-b.13-1.2.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.15-1.2.2.2">Remove exclusive reprioritization<a href="#section-b.15-1.2.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.13-1.2.2.3">Changes to Prioritized Element Type bits<a href="#section-b.13-1.2.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.15-1.2.2.3">Changes to Prioritized Element Type bits<a href="#section-b.15-1.2.2.3" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-b.13-1.3">Define DUPLICATE_PUSH frame to refer to another PUSH_PROMISE (#2072)<a href="#section-b.13-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.15-1.3">Define DUPLICATE_PUSH frame to refer to another PUSH_PROMISE (#2072)<a href="#section-b.15-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.13-1.4">Set defaults for settings, allow request before receiving SETTINGS (#1809,
-#1846, #2038)<a href="#section-b.13-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.15-1.4">Set defaults for settings, allow request before receiving SETTINGS (#1809,
+#1846, #2038)<a href="#section-b.15-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.13-1.5">Clarify message processing rules for streams that aren't closed (#1972, #2003)<a href="#section-b.13-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.15-1.5">Clarify message processing rules for streams that aren't closed (#1972, #2003)<a href="#section-b.15-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.13-1.6">Removed reservation of error code 0 and moved HTTP_NO_ERROR to this value
-(#1922)<a href="#section-b.13-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.15-1.6">Removed reservation of error code 0 and moved HTTP_NO_ERROR to this value
+(#1922)<a href="#section-b.15-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.13-1.7">Removed prohibition of zero-length DATA frames (#2098)<a href="#section-b.13-1.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.15-1.7">Removed prohibition of zero-length DATA frames (#2098)<a href="#section-b.15-1.7" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-15">
-<section id="section-b.14">
+<section id="section-b.16">
         <h2 id="name-since-draft-ietf-quic-http-15">
-<a href="#section-b.14" class="section-number selfRef">B.14. </a><a href="#name-since-draft-ietf-quic-http-15" class="section-name selfRef">Since draft-ietf-quic-http-15</a>
+<a href="#section-b.16" class="section-number selfRef">B.16. </a><a href="#name-since-draft-ietf-quic-http-15" class="section-name selfRef">Since draft-ietf-quic-http-15</a>
         </h2>
-<p id="section-b.14-1">Substantial editorial reorganization; no technical changes.<a href="#section-b.14-1" class="pilcrow">¶</a></p>
+<p id="section-b.16-1">Substantial editorial reorganization; no technical changes.<a href="#section-b.16-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-14">
-<section id="section-b.15">
+<section id="section-b.17">
         <h2 id="name-since-draft-ietf-quic-http-14">
-<a href="#section-b.15" class="section-number selfRef">B.15. </a><a href="#name-since-draft-ietf-quic-http-14" class="section-name selfRef">Since draft-ietf-quic-http-14</a>
+<a href="#section-b.17" class="section-number selfRef">B.17. </a><a href="#name-since-draft-ietf-quic-http-14" class="section-name selfRef">Since draft-ietf-quic-http-14</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.15-1.1">Recommend sensible values for QUIC transport parameters (#1720,#1806)<a href="#section-b.15-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.17-1.1">Recommend sensible values for QUIC transport parameters (#1720,#1806)<a href="#section-b.17-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.15-1.2">Define error for missing SETTINGS frame (#1697,#1808)<a href="#section-b.15-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.17-1.2">Define error for missing SETTINGS frame (#1697,#1808)<a href="#section-b.17-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.15-1.3">Setting values are variable-length integers (#1556,#1807) and do not have
-separate maximum values (#1820)<a href="#section-b.15-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.17-1.3">Setting values are variable-length integers (#1556,#1807) and do not have
+separate maximum values (#1820)<a href="#section-b.17-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.15-1.4">Expanded discussion of connection closure (#1599,#1717,#1712)<a href="#section-b.15-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.17-1.4">Expanded discussion of connection closure (#1599,#1717,#1712)<a href="#section-b.17-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.15-1.5">HTTP_VERSION_FALLBACK falls back to HTTP/1.1 (#1677,#1685)<a href="#section-b.15-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.17-1.5">HTTP_VERSION_FALLBACK falls back to HTTP/1.1 (#1677,#1685)<a href="#section-b.17-1.5" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-13">
-<section id="section-b.16">
+<section id="section-b.18">
         <h2 id="name-since-draft-ietf-quic-http-13">
-<a href="#section-b.16" class="section-number selfRef">B.16. </a><a href="#name-since-draft-ietf-quic-http-13" class="section-name selfRef">Since draft-ietf-quic-http-13</a>
+<a href="#section-b.18" class="section-number selfRef">B.18. </a><a href="#name-since-draft-ietf-quic-http-13" class="section-name selfRef">Since draft-ietf-quic-http-13</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.16-1.1">Reserved some frame types for grease (#1333, #1446)<a href="#section-b.16-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.18-1.1">Reserved some frame types for grease (#1333, #1446)<a href="#section-b.18-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.16-1.2">Unknown unidirectional stream types are tolerated, not errors; some reserved
-for grease (#1490, #1525)<a href="#section-b.16-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.18-1.2">Unknown unidirectional stream types are tolerated, not errors; some reserved
+for grease (#1490, #1525)<a href="#section-b.18-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.16-1.3">Require settings to be remembered for 0-RTT, prohibit reductions (#1541,
-#1641)<a href="#section-b.16-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.18-1.3">Require settings to be remembered for 0-RTT, prohibit reductions (#1541,
+#1641)<a href="#section-b.18-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.16-1.4">Specify behavior for truncated requests (#1596, #1643)<a href="#section-b.16-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.18-1.4">Specify behavior for truncated requests (#1596, #1643)<a href="#section-b.18-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-12">
-<section id="section-b.17">
+<section id="section-b.19">
         <h2 id="name-since-draft-ietf-quic-http-12">
-<a href="#section-b.17" class="section-number selfRef">B.17. </a><a href="#name-since-draft-ietf-quic-http-12" class="section-name selfRef">Since draft-ietf-quic-http-12</a>
+<a href="#section-b.19" class="section-number selfRef">B.19. </a><a href="#name-since-draft-ietf-quic-http-12" class="section-name selfRef">Since draft-ietf-quic-http-12</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.17-1.1">TLS SNI extension isn't mandatory if an alternative method is used (#1459,
-#1462, #1466)<a href="#section-b.17-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.19-1.1">TLS SNI extension isn't mandatory if an alternative method is used (#1459,
+#1462, #1466)<a href="#section-b.19-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.17-1.2">Removed flags from HTTP/3 frames (#1388, #1398)<a href="#section-b.17-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.19-1.2">Removed flags from HTTP/3 frames (#1388, #1398)<a href="#section-b.19-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.17-1.3">Reserved frame types and settings for use in preserving extensibility (#1333,
-#1446)<a href="#section-b.17-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.19-1.3">Reserved frame types and settings for use in preserving extensibility (#1333,
+#1446)<a href="#section-b.19-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.17-1.4">Added general error code (#1391, #1397)<a href="#section-b.17-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.19-1.4">Added general error code (#1391, #1397)<a href="#section-b.19-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.17-1.5">Unidirectional streams carry a type byte and are extensible (#910,#1359)<a href="#section-b.17-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.19-1.5">Unidirectional streams carry a type byte and are extensible (#910,#1359)<a href="#section-b.19-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.17-1.6">Priority mechanism now uses explicit placeholders to enable persistent
-structure in the tree (#441,#1421,#1422)<a href="#section-b.17-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.19-1.6">Priority mechanism now uses explicit placeholders to enable persistent
+structure in the tree (#441,#1421,#1422)<a href="#section-b.19-1.6" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-11">
-<section id="section-b.18">
+<section id="section-b.20">
         <h2 id="name-since-draft-ietf-quic-http-11">
-<a href="#section-b.18" class="section-number selfRef">B.18. </a><a href="#name-since-draft-ietf-quic-http-11" class="section-name selfRef">Since draft-ietf-quic-http-11</a>
+<a href="#section-b.20" class="section-number selfRef">B.20. </a><a href="#name-since-draft-ietf-quic-http-11" class="section-name selfRef">Since draft-ietf-quic-http-11</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.18-1.1">Moved QPACK table updates and acknowledgments to dedicated streams (#1121,
-#1122, #1238)<a href="#section-b.18-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.20-1.1">Moved QPACK table updates and acknowledgments to dedicated streams (#1121,
+#1122, #1238)<a href="#section-b.20-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-10">
-<section id="section-b.19">
+<section id="section-b.21">
         <h2 id="name-since-draft-ietf-quic-http-10">
-<a href="#section-b.19" class="section-number selfRef">B.19. </a><a href="#name-since-draft-ietf-quic-http-10" class="section-name selfRef">Since draft-ietf-quic-http-10</a>
+<a href="#section-b.21" class="section-number selfRef">B.21. </a><a href="#name-since-draft-ietf-quic-http-10" class="section-name selfRef">Since draft-ietf-quic-http-10</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.19-1.1">Settings need to be remembered when attempting and accepting 0-RTT (#1157,
-#1207)<a href="#section-b.19-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.21-1.1">Settings need to be remembered when attempting and accepting 0-RTT (#1157,
+#1207)<a href="#section-b.21-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-09">
-<section id="section-b.20">
+<section id="section-b.22">
         <h2 id="name-since-draft-ietf-quic-http-0">
-<a href="#section-b.20" class="section-number selfRef">B.20. </a><a href="#name-since-draft-ietf-quic-http-0" class="section-name selfRef">Since draft-ietf-quic-http-09</a>
+<a href="#section-b.22" class="section-number selfRef">B.22. </a><a href="#name-since-draft-ietf-quic-http-0" class="section-name selfRef">Since draft-ietf-quic-http-09</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.20-1.1">Selected QCRAM for header compression (#228, #1117)<a href="#section-b.20-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.22-1.1">Selected QCRAM for header compression (#228, #1117)<a href="#section-b.22-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.20-1.2">The server_name TLS extension is now mandatory (#296, #495)<a href="#section-b.20-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.22-1.2">The server_name TLS extension is now mandatory (#296, #495)<a href="#section-b.22-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.20-1.3">Specified handling of unsupported versions in Alt-Svc (#1093, #1097)<a href="#section-b.20-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.22-1.3">Specified handling of unsupported versions in Alt-Svc (#1093, #1097)<a href="#section-b.22-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-08">
-<section id="section-b.21">
+<section id="section-b.23">
         <h2 id="name-since-draft-ietf-quic-http-08">
-<a href="#section-b.21" class="section-number selfRef">B.21. </a><a href="#name-since-draft-ietf-quic-http-08" class="section-name selfRef">Since draft-ietf-quic-http-08</a>
+<a href="#section-b.23" class="section-number selfRef">B.23. </a><a href="#name-since-draft-ietf-quic-http-08" class="section-name selfRef">Since draft-ietf-quic-http-08</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.21-1.1">Clarified connection coalescing rules (#940, #1024)<a href="#section-b.21-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.23-1.1">Clarified connection coalescing rules (#940, #1024)<a href="#section-b.23-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-07">
-<section id="section-b.22">
+<section id="section-b.24">
         <h2 id="name-since-draft-ietf-quic-http-07">
-<a href="#section-b.22" class="section-number selfRef">B.22. </a><a href="#name-since-draft-ietf-quic-http-07" class="section-name selfRef">Since draft-ietf-quic-http-07</a>
+<a href="#section-b.24" class="section-number selfRef">B.24. </a><a href="#name-since-draft-ietf-quic-http-07" class="section-name selfRef">Since draft-ietf-quic-http-07</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.22-1.1">Changes for integer encodings in QUIC (#595,#905)<a href="#section-b.22-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.24-1.1">Changes for integer encodings in QUIC (#595,#905)<a href="#section-b.24-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.22-1.2">Use unidirectional streams as appropriate (#515, #240, #281, #886)<a href="#section-b.22-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.24-1.2">Use unidirectional streams as appropriate (#515, #240, #281, #886)<a href="#section-b.24-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.22-1.3">Improvement to the description of GOAWAY (#604, #898)<a href="#section-b.22-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.24-1.3">Improvement to the description of GOAWAY (#604, #898)<a href="#section-b.24-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.22-1.4">Improve description of server push usage (#947, #950, #957)<a href="#section-b.22-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.24-1.4">Improve description of server push usage (#947, #950, #957)<a href="#section-b.24-1.4" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-06">
-<section id="section-b.23">
+<section id="section-b.25">
         <h2 id="name-since-draft-ietf-quic-http-06">
-<a href="#section-b.23" class="section-number selfRef">B.23. </a><a href="#name-since-draft-ietf-quic-http-06" class="section-name selfRef">Since draft-ietf-quic-http-06</a>
+<a href="#section-b.25" class="section-number selfRef">B.25. </a><a href="#name-since-draft-ietf-quic-http-06" class="section-name selfRef">Since draft-ietf-quic-http-06</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.23-1.1">Track changes in QUIC error code usage (#485)<a href="#section-b.23-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.25-1.1">Track changes in QUIC error code usage (#485)<a href="#section-b.25-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-05">
-<section id="section-b.24">
+<section id="section-b.26">
         <h2 id="name-since-draft-ietf-quic-http-05">
-<a href="#section-b.24" class="section-number selfRef">B.24. </a><a href="#name-since-draft-ietf-quic-http-05" class="section-name selfRef">Since draft-ietf-quic-http-05</a>
+<a href="#section-b.26" class="section-number selfRef">B.26. </a><a href="#name-since-draft-ietf-quic-http-05" class="section-name selfRef">Since draft-ietf-quic-http-05</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.24-1.1">Made push ID sequential, add MAX_PUSH_ID, remove SETTINGS_ENABLE_PUSH (#709)<a href="#section-b.24-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.26-1.1">Made push ID sequential, add MAX_PUSH_ID, remove SETTINGS_ENABLE_PUSH (#709)<a href="#section-b.26-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.24-1.2">Guidance about keep-alive and QUIC PINGs (#729)<a href="#section-b.24-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.26-1.2">Guidance about keep-alive and QUIC PINGs (#729)<a href="#section-b.26-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.24-1.3">Expanded text on GOAWAY and cancellation (#757)<a href="#section-b.24-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.26-1.3">Expanded text on GOAWAY and cancellation (#757)<a href="#section-b.26-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-04">
-<section id="section-b.25">
+<section id="section-b.27">
         <h2 id="name-since-draft-ietf-quic-http-04">
-<a href="#section-b.25" class="section-number selfRef">B.25. </a><a href="#name-since-draft-ietf-quic-http-04" class="section-name selfRef">Since draft-ietf-quic-http-04</a>
+<a href="#section-b.27" class="section-number selfRef">B.27. </a><a href="#name-since-draft-ietf-quic-http-04" class="section-name selfRef">Since draft-ietf-quic-http-04</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.25-1.1">Cite RFC 5234 (#404)<a href="#section-b.25-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.27-1.1">Cite RFC 5234 (#404)<a href="#section-b.27-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.2">Return to a single stream per request (#245,#557)<a href="#section-b.25-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.2">Return to a single stream per request (#245,#557)<a href="#section-b.27-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.3">Use separate frame type and settings registries from HTTP/2 (#81)<a href="#section-b.25-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.3">Use separate frame type and settings registries from HTTP/2 (#81)<a href="#section-b.27-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.4">SETTINGS_ENABLE_PUSH instead of SETTINGS_DISABLE_PUSH (#477)<a href="#section-b.25-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.4">SETTINGS_ENABLE_PUSH instead of SETTINGS_DISABLE_PUSH (#477)<a href="#section-b.27-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.5">Restored GOAWAY (#696)<a href="#section-b.25-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.5">Restored GOAWAY (#696)<a href="#section-b.27-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.6">Identify server push using Push ID rather than a stream ID (#702,#281)<a href="#section-b.25-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.6">Identify server push using Push ID rather than a stream ID (#702,#281)<a href="#section-b.27-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.25-1.7">DATA frames cannot be empty (#700)<a href="#section-b.25-1.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.27-1.7">DATA frames cannot be empty (#700)<a href="#section-b.27-1.7" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-03">
-<section id="section-b.26">
+<section id="section-b.28">
         <h2 id="name-since-draft-ietf-quic-http-03">
-<a href="#section-b.26" class="section-number selfRef">B.26. </a><a href="#name-since-draft-ietf-quic-http-03" class="section-name selfRef">Since draft-ietf-quic-http-03</a>
+<a href="#section-b.28" class="section-number selfRef">B.28. </a><a href="#name-since-draft-ietf-quic-http-03" class="section-name selfRef">Since draft-ietf-quic-http-03</a>
         </h2>
-<p id="section-b.26-1">None.<a href="#section-b.26-1" class="pilcrow">¶</a></p>
+<p id="section-b.28-1">None.<a href="#section-b.28-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-02">
-<section id="section-b.27">
+<section id="section-b.29">
         <h2 id="name-since-draft-ietf-quic-http-02">
-<a href="#section-b.27" class="section-number selfRef">B.27. </a><a href="#name-since-draft-ietf-quic-http-02" class="section-name selfRef">Since draft-ietf-quic-http-02</a>
+<a href="#section-b.29" class="section-number selfRef">B.29. </a><a href="#name-since-draft-ietf-quic-http-02" class="section-name selfRef">Since draft-ietf-quic-http-02</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.27-1.1">Track changes in transport draft<a href="#section-b.27-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.29-1.1">Track changes in transport draft<a href="#section-b.29-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-01">
-<section id="section-b.28">
+<section id="section-b.30">
         <h2 id="name-since-draft-ietf-quic-http-01">
-<a href="#section-b.28" class="section-number selfRef">B.28. </a><a href="#name-since-draft-ietf-quic-http-01" class="section-name selfRef">Since draft-ietf-quic-http-01</a>
+<a href="#section-b.30" class="section-number selfRef">B.30. </a><a href="#name-since-draft-ietf-quic-http-01" class="section-name selfRef">Since draft-ietf-quic-http-01</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.28-1.1">
-            <p id="section-b.28-1.1.1">SETTINGS changes (#181):<a href="#section-b.28-1.1.1" class="pilcrow">¶</a></p>
+<li class="normal" id="section-b.30-1.1">
+            <p id="section-b.30-1.1.1">SETTINGS changes (#181):<a href="#section-b.30-1.1.1" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-b.28-1.1.2.1">SETTINGS can be sent only once at the start of a connection;
-no changes thereafter<a href="#section-b.28-1.1.2.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.30-1.1.2.1">SETTINGS can be sent only once at the start of a connection;
+no changes thereafter<a href="#section-b.30-1.1.2.1" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.28-1.1.2.2">SETTINGS_ACK removed<a href="#section-b.28-1.1.2.2" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.30-1.1.2.2">SETTINGS_ACK removed<a href="#section-b.30-1.1.2.2" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.28-1.1.2.3">Settings can only occur in the SETTINGS frame a single time<a href="#section-b.28-1.1.2.3" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.30-1.1.2.3">Settings can only occur in the SETTINGS frame a single time<a href="#section-b.30-1.1.2.3" class="pilcrow">¶</a>
 </li>
-              <li class="normal" id="section-b.28-1.1.2.4">Boolean format updated<a href="#section-b.28-1.1.2.4" class="pilcrow">¶</a>
+              <li class="normal" id="section-b.30-1.1.2.4">Boolean format updated<a href="#section-b.30-1.1.2.4" class="pilcrow">¶</a>
 </li>
             </ul>
 </li>
-          <li class="normal" id="section-b.28-1.2">Alt-Svc parameter changed from "v" to "quic"; format updated (#229)<a href="#section-b.28-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.30-1.2">Alt-Svc parameter changed from "v" to "quic"; format updated (#229)<a href="#section-b.30-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.28-1.3">Closing the connection control stream or any message control stream is a
-fatal error (#176)<a href="#section-b.28-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.30-1.3">Closing the connection control stream or any message control stream is a
+fatal error (#176)<a href="#section-b.30-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.28-1.4">HPACK Sequence counter can wrap (#173)<a href="#section-b.28-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.30-1.4">HPACK Sequence counter can wrap (#173)<a href="#section-b.30-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.28-1.5">0-RTT guidance added<a href="#section-b.28-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.30-1.5">0-RTT guidance added<a href="#section-b.30-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.28-1.6">Guide to differences from HTTP/2 and porting HTTP/2 extensions added
-(#127,#242)<a href="#section-b.28-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.30-1.6">Guide to differences from HTTP/2 and porting HTTP/2 extensions added
+(#127,#242)<a href="#section-b.30-1.6" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-http-00">
-<section id="section-b.29">
+<section id="section-b.31">
         <h2 id="name-since-draft-ietf-quic-http-00">
-<a href="#section-b.29" class="section-number selfRef">B.29. </a><a href="#name-since-draft-ietf-quic-http-00" class="section-name selfRef">Since draft-ietf-quic-http-00</a>
+<a href="#section-b.31" class="section-number selfRef">B.31. </a><a href="#name-since-draft-ietf-quic-http-00" class="section-name selfRef">Since draft-ietf-quic-http-00</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.29-1.1">Changed "HTTP/2-over-QUIC" to "HTTP/QUIC" throughout (#11,#29)<a href="#section-b.29-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.31-1.1">Changed "HTTP/2-over-QUIC" to "HTTP/QUIC" throughout (#11,#29)<a href="#section-b.31-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.2">Changed from using HTTP/2 framing within Stream 3 to new framing format and
-two-stream-per-request model (#71,#72,#73)<a href="#section-b.29-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.2">Changed from using HTTP/2 framing within Stream 3 to new framing format and
+two-stream-per-request model (#71,#72,#73)<a href="#section-b.31-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.3">Adopted SETTINGS format from draft-bishop-httpbis-extended-settings-01<a href="#section-b.29-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.3">Adopted SETTINGS format from draft-bishop-httpbis-extended-settings-01<a href="#section-b.31-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.4">Reworked SETTINGS_ACK to account for indeterminate inter-stream order (#75)<a href="#section-b.29-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.4">Reworked SETTINGS_ACK to account for indeterminate inter-stream order (#75)<a href="#section-b.31-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.5">Described CONNECT pseudo-method (#95)<a href="#section-b.29-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.5">Described CONNECT pseudo-method (#95)<a href="#section-b.31-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.6">Updated ALPN token and Alt-Svc guidance (#13,#87)<a href="#section-b.29-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.6">Updated ALPN token and Alt-Svc guidance (#13,#87)<a href="#section-b.31-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.29-1.7">Application-layer-defined error codes (#19,#74)<a href="#section-b.29-1.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.31-1.7">Application-layer-defined error codes (#19,#74)<a href="#section-b.31-1.7" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-shade-quic-http2-mapping-00">
-<section id="section-b.30">
+<section id="section-b.32">
         <h2 id="name-since-draft-shade-quic-http">
-<a href="#section-b.30" class="section-number selfRef">B.30. </a><a href="#name-since-draft-shade-quic-http" class="section-name selfRef">Since draft-shade-quic-http2-mapping-00</a>
+<a href="#section-b.32" class="section-number selfRef">B.32. </a><a href="#name-since-draft-shade-quic-http" class="section-name selfRef">Since draft-shade-quic-http2-mapping-00</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-b.30-1.1">Adopted as base for draft-ietf-quic-http<a href="#section-b.30-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-b.32-1.1">Adopted as base for draft-ietf-quic-http<a href="#section-b.32-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-b.30-1.2">Updated authors/editors list<a href="#section-b.30-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-b.32-1.2">Updated authors/editors list<a href="#section-b.32-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>

@@ -5,10 +5,10 @@
 QUIC                                                           C. Krasic
 Internet-Draft                                                   Netflix
 Intended status: Standards Track                               M. Bishop
-Expires: 8 March 2021                                Akamai Technologies
+Expires: 10 April 2021                               Akamai Technologies
                                                         A. Frindell, Ed.
                                                                 Facebook
-                                                        4 September 2020
+                                                          7 October 2020
 
 
                   QPACK: Header Compression for HTTP/3
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 8 March 2021.
+   This Internet-Draft will expire on 10 April 2021.
 
 
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 1]
+Krasic, et al.            Expires 10 April 2021                 [Page 1]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 Copyright Notice
@@ -104,14 +104,14 @@ Table of Contents
      4.3.  Encoder Instructions  . . . . . . . . . . . . . . . . . .  17
        4.3.1.  Set Dynamic Table Capacity  . . . . . . . . . . . . .  17
        4.3.2.  Insert With Name Reference  . . . . . . . . . . . . .  18
-       4.3.3.  Insert Without Name Reference . . . . . . . . . . . .  18
+       4.3.3.  Insert With Literal Name  . . . . . . . . . . . . . .  18
        4.3.4.  Duplicate . . . . . . . . . . . . . . . . . . . . . .  19
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 2]
+Krasic, et al.            Expires 10 April 2021                 [Page 2]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
      4.4.  Decoder Instructions  . . . . . . . . . . . . . . . . . .  19
@@ -124,7 +124,7 @@ Internet-Draft                    QPACK                   September 2020
        4.5.3.  Indexed Field Line With Post-Base Index . . . . . . .  24
        4.5.4.  Literal Field Line With Name Reference  . . . . . . .  24
        4.5.5.  Literal Field Line With Post-Base Name Reference  . .  25
-       4.5.6.  Literal Field Line Without Name Reference . . . . . .  25
+       4.5.6.  Literal Field Line With Literal Name  . . . . . . . .  25
    5.  Configuration . . . . . . . . . . . . . . . . . . . . . . . .  26
    6.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  26
    7.  Security Considerations . . . . . . . . . . . . . . . . . . .  27
@@ -143,34 +143,42 @@ Internet-Draft                    QPACK                   September 2020
      9.1.  Normative References  . . . . . . . . . . . . . . . . . .  33
      9.2.  Informative References  . . . . . . . . . . . . . . . . .  34
    Appendix A.  Static Table . . . . . . . . . . . . . . . . . . . .  34
-   Appendix B.  Sample One Pass Encoding Algorithm . . . . . . . . .  39
-   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  40
-     C.1.  Since draft-ietf-quic-qpack-15  . . . . . . . . . . . . .  40
-     C.2.  Since draft-ietf-quic-qpack-14  . . . . . . . . . . . . .  41
-     C.3.  Since draft-ietf-quic-qpack-13  . . . . . . . . . . . . .  41
-     C.4.  Since draft-ietf-quic-qpack-12  . . . . . . . . . . . . .  41
-     C.5.  Since draft-ietf-quic-qpack-11  . . . . . . . . . . . . .  41
-     C.6.  Since draft-ietf-quic-qpack-10  . . . . . . . . . . . . .  41
-     C.7.  Since draft-ietf-quic-qpack-09  . . . . . . . . . . . . .  41
-     C.8.  Since draft-ietf-quic-qpack-08  . . . . . . . . . . . . .  41
-     C.9.  Since draft-ietf-quic-qpack-06  . . . . . . . . . . . . .  41
-     C.10. Since draft-ietf-quic-qpack-05  . . . . . . . . . . . . .  41
-     C.11. Since draft-ietf-quic-qpack-04  . . . . . . . . . . . . .  42
-     C.12. Since draft-ietf-quic-qpack-03  . . . . . . . . . . . . .  42
-     C.13. Since draft-ietf-quic-qpack-02  . . . . . . . . . . . . .  42
-     C.14. Since draft-ietf-quic-qpack-01  . . . . . . . . . . . . .  42
-     C.15. Since draft-ietf-quic-qpack-00  . . . . . . . . . . . . .  42
-     C.16. Since draft-ietf-quic-qcram-00  . . . . . . . . . . . . .  43
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  43
+   Appendix B.  Encoding and Decoding Examples . . . . . . . . . . .  39
+     B.1.  Literal Field Line With Name Reference  . . . . . . . . .  39
+     B.2.  Dynamic Table . . . . . . . . . . . . . . . . . . . . . .  40
+     B.3.  Speculative Insert  . . . . . . . . . . . . . . . . . . .  41
+     B.4.  Duplicate Instruction, Stream Cancellation  . . . . . . .  42
+     B.5.  Dynamic Table Insert, Eviction  . . . . . . . . . . . . .  43
+   Appendix C.  Sample One Pass Encoding Algorithm . . . . . . . . .  44
+   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  45
+     D.1.  Since draft-ietf-quic-qpack-17  . . . . . . . . . . . . .  45
+     D.2.  Since draft-ietf-quic-qpack-16  . . . . . . . . . . . . .  45
+     D.3.  Since draft-ietf-quic-qpack-15  . . . . . . . . . . . . .  45
+     D.4.  Since draft-ietf-quic-qpack-14  . . . . . . . . . . . . .  45
+     D.5.  Since draft-ietf-quic-qpack-13  . . . . . . . . . . . . .  46
+     D.6.  Since draft-ietf-quic-qpack-12  . . . . . . . . . . . . .  46
+     D.7.  Since draft-ietf-quic-qpack-11  . . . . . . . . . . . . .  46
+     D.8.  Since draft-ietf-quic-qpack-10  . . . . . . . . . . . . .  46
+     D.9.  Since draft-ietf-quic-qpack-09  . . . . . . . . . . . . .  46
+     D.10. Since draft-ietf-quic-qpack-08  . . . . . . . . . . . . .  46
+     D.11. Since draft-ietf-quic-qpack-06  . . . . . . . . . . . . .  46
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 3]
+Krasic, et al.            Expires 10 April 2021                 [Page 3]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  44
+     D.12. Since draft-ietf-quic-qpack-05  . . . . . . . . . . . . .  46
+     D.13. Since draft-ietf-quic-qpack-04  . . . . . . . . . . . . .  46
+     D.14. Since draft-ietf-quic-qpack-03  . . . . . . . . . . . . .  47
+     D.15. Since draft-ietf-quic-qpack-02  . . . . . . . . . . . . .  47
+     D.16. Since draft-ietf-quic-qpack-01  . . . . . . . . . . . . .  47
+     D.17. Since draft-ietf-quic-qpack-00  . . . . . . . . . . . . .  47
+     D.18. Since draft-ietf-quic-qcram-00  . . . . . . . . . . . . .  48
+   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  48
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
 
 1.  Introduction
 
@@ -209,6 +217,15 @@ Internet-Draft                    QPACK                   September 2020
       section.  See Section 5 of [SEMANTICS].
 
    HTTP field value:  Data associated with a field name, composed from
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                 [Page 4]
+
+Internet-Draft                    QPACK                     October 2020
+
+
       all field line values with that field name in that section,
       concatenated together and separated with commas.
 
@@ -217,14 +234,6 @@ Internet-Draft                    QPACK                   September 2020
       lines with the same name.  It can also contain duplicate field
       lines.  An HTTP message can include both header field and trailer
       field sections.
-
-
-
-
-Krasic, et al.            Expires 8 March 2021                  [Page 4]
-
-Internet-Draft                    QPACK                   September 2020
-
 
    Representation:  An instruction that represents a field line,
       possibly by reference to the dynamic and static tables.
@@ -266,21 +275,15 @@ Internet-Draft                    QPACK                   September 2020
    of the connection and can be used by the encoder to index both header
    and trailer field lines in the encoded field sections.
 
+
+
+Krasic, et al.            Expires 10 April 2021                 [Page 5]
+
+Internet-Draft                    QPACK                     October 2020
+
+
    QPACK defines unidirectional streams for sending instructions from
    encoder to decoder and vice versa.
-
-
-
-
-
-
-
-
-
-Krasic, et al.            Expires 8 March 2021                  [Page 5]
-
-Internet-Draft                    QPACK                   September 2020
-
 
 2.1.  Encoder
 
@@ -330,12 +333,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-
-
-
-Krasic, et al.            Expires 8 March 2021                  [Page 6]
+Krasic, et al.            Expires 10 April 2021                 [Page 6]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 2.1.1.1.  Avoiding Prohibited Insertions
@@ -389,9 +389,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 7]
+Krasic, et al.            Expires 10 April 2021                 [Page 7]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    When the decoder receives an encoded field section with a Required
@@ -445,9 +445,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 8]
+Krasic, et al.            Expires 10 April 2021                 [Page 8]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 2.1.4.  Known Received Count
@@ -501,9 +501,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                  [Page 9]
+Krasic, et al.            Expires 10 April 2021                 [Page 9]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    When processing encoded field sections, the decoder expects the
@@ -557,9 +557,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 10]
+Krasic, et al.            Expires 10 April 2021                [Page 10]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 2.2.2.3.  New Table Entries
@@ -613,9 +613,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 11]
+Krasic, et al.            Expires 10 April 2021                [Page 11]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    When the decoder encounters an invalid static table index in a field
@@ -669,9 +669,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 12]
+Krasic, et al.            Expires 10 April 2021                [Page 12]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    A new entry can reference an entry in the dynamic table that will be
@@ -725,9 +725,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 13]
+Krasic, et al.            Expires 10 April 2021                [Page 13]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 3.2.5.  Relative Indexing
@@ -781,9 +781,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 14]
+Krasic, et al.            Expires 10 April 2021                [Page 14]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
         Figure 3: Example Dynamic Table Indexing - Relative Index in
@@ -837,9 +837,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 15]
+Krasic, et al.            Expires 10 April 2021                [Page 15]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    HPACK defines string literals to begin on a byte boundary.  They
@@ -893,9 +893,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 16]
+Krasic, et al.            Expires 10 April 2021                [Page 16]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 4.3.  Encoder Instructions
@@ -949,9 +949,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 17]
+Krasic, et al.            Expires 10 April 2021                [Page 17]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 4.3.2.  Insert With Name Reference
@@ -980,7 +980,7 @@ Internet-Draft                    QPACK                   September 2020
 
                 Figure 6: Insert Field Line -- Indexed Name
 
-4.3.3.  Insert Without Name Reference
+4.3.3.  Insert With Literal Name
 
    An encoder adds an entry to the dynamic table where both the field
    name and the field value are represented as string literals using an
@@ -1005,9 +1005,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 18]
+Krasic, et al.            Expires 10 April 2021                [Page 18]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 4.3.4.  Duplicate
@@ -1061,9 +1061,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 19]
+Krasic, et al.            Expires 10 April 2021                [Page 19]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    The Section Acknowledgement instruction might increase the Known
@@ -1117,9 +1117,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 20]
+Krasic, et al.            Expires 10 April 2021                [Page 20]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    Encoded field sections are carried in frames on streams defined by
@@ -1173,9 +1173,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 21]
+Krasic, et al.            Expires 10 April 2021                [Page 21]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    The decoder can reconstruct the Required Insert Count using an
@@ -1229,9 +1229,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 22]
+Krasic, et al.            Expires 10 April 2021                [Page 22]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    Base.  A sign bit of 1 indicates that the Base is less than the
@@ -1285,9 +1285,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 23]
+Krasic, et al.            Expires 10 April 2021                [Page 23]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    This representation starts with the '1' 1-bit pattern, followed by
@@ -1341,9 +1341,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 24]
+Krasic, et al.            Expires 10 April 2021                [Page 24]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    field line that it received represented as a literal field line with
@@ -1390,16 +1390,16 @@ Internet-Draft                    QPACK                   September 2020
    value is encoded as an 8-bit prefix string literal; see
    Section 4.1.2.
 
-4.5.6.  Literal Field Line Without Name Reference
+4.5.6.  Literal Field Line With Literal Name
 
-   The literal field line without name reference representation encodes
-   a field name and a field value as string literals.
+   The literal field line with literal name representation encodes a
+   field name and a field value as string literals.
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 25]
+Krasic, et al.            Expires 10 April 2021                [Page 25]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
         0   1   2   3   4   5   6   7
@@ -1413,7 +1413,7 @@ Internet-Draft                    QPACK                   September 2020
       |  Value String (Length bytes)  |
       +-------------------------------+
 
-            Figure 17: Literal Field Line Without Name Reference
+              Figure 17: Literal Field Line With Literal Name
 
    This representation begins with the '001' three-bit pattern.  The
    fourth bit is the 'N' bit as described in Section 4.5.4.  The name
@@ -1453,9 +1453,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 26]
+Krasic, et al.            Expires 10 April 2021                [Page 26]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 7.  Security Considerations
@@ -1486,7 +1486,7 @@ Internet-Draft                    QPACK                   September 2020
    observe the encoded length and infer that the guess was correct.
 
    This is possible even over the Transport Layer Security Protocol
-   (TLS, see [RFC5246]), because while TLS provides confidentiality
+   (TLS, see [TLS]), because while TLS provides confidentiality
    protection for content, it only provides a limited amount of
    protection for the length of that content.
 
@@ -1509,9 +1509,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 27]
+Krasic, et al.            Expires 10 April 2021                [Page 27]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 7.2.  Applicability to QPACK and HTTP
@@ -1565,9 +1565,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 28]
+Krasic, et al.            Expires 10 April 2021                [Page 28]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    To improve compression performance of this option, certain entries
@@ -1621,9 +1621,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 29]
+Krasic, et al.            Expires 10 April 2021                [Page 29]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    An encoder might also choose not to index values for fields that are
@@ -1677,9 +1677,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 30]
+Krasic, et al.            Expires 10 April 2021                [Page 30]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    A decoder can limit the amount of state memory used for blocked
@@ -1733,9 +1733,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 31]
+Krasic, et al.            Expires 10 April 2021                [Page 31]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
 8.  IANA Considerations
@@ -1789,9 +1789,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 32]
+Krasic, et al.            Expires 10 April 2021                [Page 32]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    +============================+=======+=============+===============+
@@ -1819,14 +1819,14 @@ Internet-Draft                    QPACK                   September 2020
 
    [HTTP3]    Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http-latest, 4 September 2020,
+              quic-http-latest, 7 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-http-latest>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 4
-              September 2020, <https://tools.ietf.org/html/draft-ietf-
+              Internet-Draft, draft-ietf-quic-transport-latest, 7
+              October 2020, <https://tools.ietf.org/html/draft-ietf-
               quic-transport-latest>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -1845,17 +1845,17 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 33]
+Krasic, et al.            Expires 10 April 2021                [Page 33]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    [SEMANTICS]
               Fielding, R., Nottingham, M., and J. Reschke, "HTTP
               Semantics", Work in Progress, Internet-Draft, draft-ietf-
-              httpbis-semantics-11, 27 August 2020,
+              httpbis-semantics-12, 2 October 2020,
               <http://www.ietf.org/internet-drafts/draft-ietf-httpbis-
-              semantics-11.txt>.
+              semantics-12.txt>.
 
 9.2.  Informative References
 
@@ -1875,11 +1875,6 @@ Internet-Draft                    QPACK                   September 2020
               RFC 2360, DOI 10.17487/RFC2360, June 1998,
               <https://www.rfc-editor.org/info/rfc2360>.
 
-   [RFC5246]  Dierks, T. and E. Rescorla, "The Transport Layer Security
-              (TLS) Protocol Version 1.2", RFC 5246,
-              DOI 10.17487/RFC5246, August 2008,
-              <https://www.rfc-editor.org/info/rfc5246>.
-
    [RFC6454]  Barth, A., "The Web Origin Concept", RFC 6454,
               DOI 10.17487/RFC6454, December 2011,
               <https://www.rfc-editor.org/info/rfc6454>.
@@ -1888,6 +1883,10 @@ Internet-Draft                    QPACK                   September 2020
               Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
               DOI 10.17487/RFC7540, May 2015,
               <https://www.rfc-editor.org/info/rfc7540>.
+
+   [TLS]      Rescorla, E., "The Transport Layer Security (TLS) Protocol
+              Version 1.3", RFC 8446, DOI 10.17487/RFC8446, August 2018,
+              <https://www.rfc-editor.org/info/rfc8446>.
 
 Appendix A.  Static Table
 
@@ -1901,9 +1900,10 @@ Appendix A.  Static Table
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 34]
+
+Krasic, et al.            Expires 10 April 2021                [Page 34]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    +=======+==================================+=======================+
@@ -1957,9 +1957,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 35]
+Krasic, et al.            Expires 10 April 2021                [Page 35]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2013,9 +2013,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 36]
+Krasic, et al.            Expires 10 April 2021                [Page 36]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    | 45    | content-type                     | application/          |
@@ -2069,9 +2069,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 37]
+Krasic, et al.            Expires 10 April 2021                [Page 37]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2125,9 +2125,9 @@ Internet-Draft                    QPACK                   September 2020
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 38]
+Krasic, et al.            Expires 10 April 2021                [Page 38]
 
-Internet-Draft                    QPACK                   September 2020
+Internet-Draft                    QPACK                     October 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2154,7 +2154,276 @@ Internet-Draft                    QPACK                   September 2020
 
                                  Table 4
 
-Appendix B.  Sample One Pass Encoding Algorithm
+Appendix B.  Encoding and Decoding Examples
+
+   The following examples represent a series of exchanges between an
+   encoder and a decoder.  The exchanges are designed to exercise most
+   QPACK instructions, and highlight potentially common patterns and
+   their impact on dynamic table state.  The encoder sends three encoded
+   field sections containing one field line each, as wells as two
+   speculative inserts that are not referenced.
+
+   The state of the encoder's dynamic table is shown, along with its
+   current size.  Each entry is shown with the Absolute Index of the
+   entry (Abs), the current number of outstanding encoded field sections
+   with references to that entry (Ref), along with the name and value.
+   Entries above the 'acknowledged' line have been acknowledged by the
+   decoder.
+
+B.1.  Literal Field Line With Name Reference
+
+   The encoder sends an encoded field section containing a literal
+   representation of a field with a static name reference.
+
+
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 39]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+   Data                | Interpretation
+                                | Encoder's Dynamic Table
+
+   Stream: 0
+   0000                | Required Insert Count = 0, Base = 0
+   510b 2f69 6e64 6578 | Literal Field Line with Name Reference
+   2e68 746d 6c        |  Static Table, Index=1
+                       |  (:path=/index.html)
+
+                                 Abs Ref Name        Value
+                                 ^-- acknowledged --^
+                                 Size=0
+
+B.2.  Dynamic Table
+
+   The encoder sets the dynamic table capacity, inserts a header with a
+   dynamic name reference, then sends a potentially blocking, encoded
+   field section referencing this new entry.  The decoder acknowledges
+   processing the encoded field section, which implicitly acknowledges
+   all dynamic table insertions up to the Required Insert Count.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 40]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+   Stream: Encoder
+   3fbd01              | Set Dynamic Table Capacity=220
+   c00f 7777 772e 6578 | Insert With Name Reference
+   616d 706c 652e 636f | Static Table, Index=0
+   6d                  |  (:authority=www.example.com)
+   c10c 2f73 616d 706c | Insert With Name Reference
+   652f 7061 7468      |  Static Table, Index=1
+                       |  (:path=/sample/path)
+
+                                 Abs Ref Name        Value
+                                 ^-- acknowledged --^
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                 Size=106
+
+   Stream: 4
+   0381                | Required Insert Count = 2, Base = 0
+   10                  | Indexed Field Line With Post-Base Index
+                       |  Absolute Index = Base(0) + Index(0) + 1 = 1
+                       |  (:authority=www.example.com)
+   11                  | Indexed Field Line With Post-Base Index
+                       |  Absolute Index = Base(0) + Index(1) + 1 = 2
+                       |  (:path=/sample/path)
+
+                                 Abs Ref Name        Value
+                                 ^-- acknowledged --^
+                                  1   1  :authority  www.example.com
+                                  2   1  :path       /sample/path
+                                 Size=106
+
+   Stream: Decoder
+   84                  | Section Acknowledgement (stream=4)
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                 ^-- acknowledged --^
+                                 Size=106
+
+B.3.  Speculative Insert
+
+   The encoder inserts a header into the dynamic table with a literal
+   name.  The decoder acknowledges receipt of the entry.  The encoder
+   does not send any encoded field sections.
+
+
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 41]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+   Stream: Encoder
+   4a63 7573 746f 6d2d | Insert With Literal Name
+   6b65 790c 6375 7374 |  (custom-key=custom-value)
+   6f6d 2d76 616c 7565 |
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                 ^-- acknowledged --^
+                                  3   0  custom-key  custom-value
+                                 Size=160
+
+   Stream: Decoder
+   01                  | Insert Count Increment (1)
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                  3   0  custom-key  custom-value
+                                 ^-- acknowledged --^
+                                 Size=160
+
+B.4.  Duplicate Instruction, Stream Cancellation
+
+   The encoder duplicates an existing entry in the dynamic table, then
+   sends an encoded field section referencing the dynamic table entries
+   including the duplicated entry.  The decoder notifies the encoder
+   that the encoded field section was not processed by sending a stream
+   cancellation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 42]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+   Stream: Encoder
+   02                  | Duplicate (Relative Index=2)
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                  3   0  custom-key  custom-value
+                                 ^-- acknowledged --^
+                                  4   0  :authority  www.example.com
+                                 Size=217
+
+   Stream: 8
+   0500                | Required Insert Count = 4, Base = 4
+   80                  | Indexed Field Line, Dynamic Table
+                       |  Absolute Index = Base(4) - Index(0) = 4
+                       |  (:authority=www.example.com)
+   c1                  | Indexed Field Line, Static Table Index = 1
+                       |  (:path=/)
+   81                  | Indexed Field Line, Dynamic Table
+                       |  Absolute Index = Base(4) - Index(1) = 3
+                       |  (custom-key=custom-value)
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                  3   1  custom-key  custom-value
+                                 ^-- acknowledged --^
+                                  4   1  :authority  www.example.com
+                                 Size=217
+
+   Stream: Decoder
+   48                  | Stream Cancellation (Stream=8)
+
+                                 Abs Ref Name        Value
+                                  1   0  :authority  www.example.com
+                                  2   0  :path       /sample/path
+                                  3   0  custom-key  custom-value
+                                 ^-- acknowledged --^
+                                  4   0  :authority  www.example.com
+                                 Size=215
+
+B.5.  Dynamic Table Insert, Eviction
+
+   The encoder inserts another header into the dynamic table, which
+   evicts the oldest entry.  The encoder does not send any encoded field
+   sections.
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 43]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+   Stream: Encoder
+   810d 6375 7374 6f6d | Insert With Name Reference
+   2d76 616c 7565 32   |  Dynamic Table, Absolute Index=2
+                       |  (custom-key=custom-value2)
+
+                                 Abs Ref Name        Value
+                                  2   0  :path       /sample/path
+                                  3   0  custom-key  custom-value
+                                 ^-- acknowledged --^
+                                  4   0  :authority  www.example.com
+                                  5   0  custom-key  custom-value2
+                                 Size=215
+
+Appendix C.  Sample One Pass Encoding Algorithm
 
    Pseudo-code for single pass encoding, excluding handling of
    duplicates, non-blocking mode, available encoder stream flow control
@@ -2178,25 +2447,27 @@ Appendix B.  Sample One Pass Encoding Algorithm
        if shouldIndex(line) and dynamicTable.canIndex(line):
          encodeInsert(encoderBuffer, staticNameIndex,
                       dynamicNameIndex, line)
-
-
-
-Krasic, et al.            Expires 8 March 2021                 [Page 39]
-
-Internet-Draft                    QPACK                   September 2020
-
-
          dynamicIndex = dynamicTable.add(line)
 
      if dynamicIndex is None:
        # Could not index it, literal
-       if nameIndex is None or isStaticName:
-         # Encodes a literal with a static name or literal name
-         encodeLiteral(streamBuffer, nameIndex, line)
+       if dynamicNameIndex is not None:
+         # Encode literal with dynamic name, possibly above base
+         encodeDynamicLiteral(streamBuffer, dynamicNameIndex,
+                              base, line)
+         requiredInsertCount = max(requiredInsertCount,
+                                   dynamicNameIndex)
        else:
-         # encode literal with dynamic name, possibly above base
-         encodeDynamicLiteral(streamBuffer, nameIndex, base, line)
-         requiredInsertCount = max(requiredInsertCount, nameIndex)
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 44]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+         # Encodes a literal with a static name or literal name
+         encodeLiteral(streamBuffer, staticNameIndex, line)
      else:
        # Dynamic index reference
        assert(dynamicIndex is not None)
@@ -2222,47 +2493,52 @@ Internet-Draft                    QPACK                   September 2020
 
    return encoderBuffer, prefixBuffer + streamBuffer
 
-Appendix C.  Change Log
+Appendix D.  Change Log
 
       *RFC Editor's Note:* Please remove this section prior to
       publication of a final version of this document.
 
-C.1.  Since draft-ietf-quic-qpack-15
+D.1.  Since draft-ietf-quic-qpack-17
+
+   Editorial changes only
+
+D.2.  Since draft-ietf-quic-qpack-16
+
+   Editorial changes only
+
+D.3.  Since draft-ietf-quic-qpack-15
 
    No changes
 
-
-
-
-
-
-
-Krasic, et al.            Expires 8 March 2021                 [Page 40]
-
-Internet-Draft                    QPACK                   September 2020
-
-
-C.2.  Since draft-ietf-quic-qpack-14
+D.4.  Since draft-ietf-quic-qpack-14
 
    Added security considerations
 
-C.3.  Since draft-ietf-quic-qpack-13
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 45]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+D.5.  Since draft-ietf-quic-qpack-13
 
    No changes
 
-C.4.  Since draft-ietf-quic-qpack-12
+D.6.  Since draft-ietf-quic-qpack-12
 
    Editorial changes only
 
-C.5.  Since draft-ietf-quic-qpack-11
+D.7.  Since draft-ietf-quic-qpack-11
 
    Editorial changes only
 
-C.6.  Since draft-ietf-quic-qpack-10
+D.8.  Since draft-ietf-quic-qpack-10
 
    Editorial changes only
 
-C.7.  Since draft-ietf-quic-qpack-09
+D.9.  Since draft-ietf-quic-qpack-09
 
    *  Decoders MUST emit Header Acknowledgements (#2939)
 
@@ -2270,19 +2546,19 @@ C.7.  Since draft-ietf-quic-qpack-09
 
    *  Added explicit defaults for new SETTINGS (#2974)
 
-C.8.  Since draft-ietf-quic-qpack-08
+D.10.  Since draft-ietf-quic-qpack-08
 
    *  Endpoints are permitted to create encoder and decoder streams even
       if they can't use them (#2100, #2529)
 
    *  Maximum values for settings removed (#2766, #2767)
 
-C.9.  Since draft-ietf-quic-qpack-06
+D.11.  Since draft-ietf-quic-qpack-06
 
    *  Clarify initial dynamic table capacity maximums (#2276, #2330,
       #2330)
 
-C.10.  Since draft-ietf-quic-qpack-05
+D.12.  Since draft-ietf-quic-qpack-05
 
    *  Introduced the terms dynamic table capacity and maximum dynamic
       table capacity.
@@ -2290,26 +2566,25 @@ C.10.  Since draft-ietf-quic-qpack-05
    *  Renamed SETTINGS_HEADER_TABLE_SIZE to
       SETTINGS_QPACK_MAX_TABLE_CAPACITY.
 
-
-
-
-Krasic, et al.            Expires 8 March 2021                 [Page 41]
-
-Internet-Draft                    QPACK                   September 2020
-
-
-C.11.  Since draft-ietf-quic-qpack-04
+D.13.  Since draft-ietf-quic-qpack-04
 
    *  Changed calculation of Delta Base Index to avoid an illegal value
       (#2002, #2005)
 
-C.12.  Since draft-ietf-quic-qpack-03
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 46]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+D.14.  Since draft-ietf-quic-qpack-03
 
    *  Change HTTP settings defaults (#2038)
 
    *  Substantial editorial reorganization
 
-C.13.  Since draft-ietf-quic-qpack-02
+D.15.  Since draft-ietf-quic-qpack-02
 
    *  Largest Reference encoded modulo MaxEntries (#1763)
 
@@ -2331,12 +2606,12 @@ C.13.  Since draft-ietf-quic-qpack-02
    *  Initial table size is the maximum permitted when table is first
       usable (#1642)
 
-C.14.  Since draft-ietf-quic-qpack-01
+D.16.  Since draft-ietf-quic-qpack-01
 
    *  Only header blocks that reference the dynamic table are
       acknowledged (#1603, #1605)
 
-C.15.  Since draft-ietf-quic-qpack-00
+D.17.  Since draft-ietf-quic-qpack-00
 
    *  Renumbered instructions for consistency (#1471, #1472)
 
@@ -2347,19 +2622,19 @@ C.15.  Since draft-ietf-quic-qpack-00
 
    *  Added an acknowledgment for unread streams (#1371, #1400)
 
-
-
-Krasic, et al.            Expires 8 March 2021                 [Page 42]
-
-Internet-Draft                    QPACK                   September 2020
-
-
    *  Removed framing from encoder stream (#1361,#1467)
 
    *  Control streams use typed unidirectional streams rather than fixed
       stream IDs (#910,#1359)
 
-C.16.  Since draft-ietf-quic-qcram-00
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 47]
+
+Internet-Draft                    QPACK                     October 2020
+
+
+D.18.  Since draft-ietf-quic-qcram-00
 
    *  Separate instruction sets for table updates and header blocks
       (#1235, #1142, #1141)
@@ -2402,17 +2677,18 @@ Acknowledgments
 
    *  Lucas Pardue
 
-
-
-
-Krasic, et al.            Expires 8 March 2021                 [Page 43]
-
-Internet-Draft                    QPACK                   September 2020
-
-
    *  Biren Roy
 
    *  Ian Swett
+
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 48]
+
+Internet-Draft                    QPACK                     October 2020
+
 
    This draft draws heavily on the text of [RFC7541].  The indirect
    input of those authors is also gratefully acknowledged.
@@ -2461,4 +2737,8 @@ Authors' Addresses
 
 
 
-Krasic, et al.            Expires 8 March 2021                 [Page 44]
+
+
+
+
+Krasic, et al.            Expires 10 April 2021                [Page 49]

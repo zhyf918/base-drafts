@@ -5,10 +5,10 @@
 QUIC                                                           C. Krasic
 Internet-Draft                                                   Netflix
 Intended status: Standards Track                               M. Bishop
-Expires: 10 April 2021                               Akamai Technologies
+Expires: 11 April 2021                               Akamai Technologies
                                                         A. Frindell, Ed.
                                                                 Facebook
-                                                          7 October 2020
+                                                          8 October 2020
 
 
                   QPACK: Header Compression for HTTP/3
@@ -47,13 +47,13 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 April 2021.
+   This Internet-Draft will expire on 11 April 2021.
 
 
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 1]
+Krasic, et al.            Expires 11 April 2021                 [Page 1]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 2]
+Krasic, et al.            Expires 11 April 2021                 [Page 2]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -165,7 +165,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 3]
+Krasic, et al.            Expires 11 April 2021                 [Page 3]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -221,7 +221,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 4]
+Krasic, et al.            Expires 11 April 2021                 [Page 4]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -277,7 +277,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 5]
+Krasic, et al.            Expires 11 April 2021                 [Page 5]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -333,7 +333,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 6]
+Krasic, et al.            Expires 11 April 2021                 [Page 6]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -389,7 +389,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 7]
+Krasic, et al.            Expires 11 April 2021                 [Page 7]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -445,7 +445,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 8]
+Krasic, et al.            Expires 11 April 2021                 [Page 8]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -501,7 +501,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                 [Page 9]
+Krasic, et al.            Expires 11 April 2021                 [Page 9]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -557,7 +557,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 10]
+Krasic, et al.            Expires 11 April 2021                [Page 10]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -613,7 +613,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 11]
+Krasic, et al.            Expires 11 April 2021                [Page 11]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -669,7 +669,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 12]
+Krasic, et al.            Expires 11 April 2021                [Page 12]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -725,7 +725,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 13]
+Krasic, et al.            Expires 11 April 2021                [Page 13]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -781,7 +781,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 14]
+Krasic, et al.            Expires 11 April 2021                [Page 14]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -837,7 +837,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 15]
+Krasic, et al.            Expires 11 April 2021                [Page 15]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -893,7 +893,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 16]
+Krasic, et al.            Expires 11 April 2021                [Page 16]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -949,7 +949,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 17]
+Krasic, et al.            Expires 11 April 2021                [Page 17]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 18]
+Krasic, et al.            Expires 11 April 2021                [Page 18]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 19]
+Krasic, et al.            Expires 11 April 2021                [Page 19]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 20]
+Krasic, et al.            Expires 11 April 2021                [Page 20]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 21]
+Krasic, et al.            Expires 11 April 2021                [Page 21]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 22]
+Krasic, et al.            Expires 11 April 2021                [Page 22]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 23]
+Krasic, et al.            Expires 11 April 2021                [Page 23]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 24]
+Krasic, et al.            Expires 11 April 2021                [Page 24]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 25]
+Krasic, et al.            Expires 11 April 2021                [Page 25]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1453,7 +1453,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 26]
+Krasic, et al.            Expires 11 April 2021                [Page 26]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1509,7 +1509,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 27]
+Krasic, et al.            Expires 11 April 2021                [Page 27]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1565,7 +1565,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 28]
+Krasic, et al.            Expires 11 April 2021                [Page 28]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 29]
+Krasic, et al.            Expires 11 April 2021                [Page 29]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 30]
+Krasic, et al.            Expires 11 April 2021                [Page 30]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1733,7 +1733,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 31]
+Krasic, et al.            Expires 11 April 2021                [Page 31]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1789,7 +1789,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 32]
+Krasic, et al.            Expires 11 April 2021                [Page 32]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1819,13 +1819,13 @@ Internet-Draft                    QPACK                     October 2020
 
    [HTTP3]    Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http-latest, 7 October 2020,
+              quic-http-latest, 8 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-http-latest>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 7
+              Internet-Draft, draft-ietf-quic-transport-latest, 8
               October 2020, <https://tools.ietf.org/html/draft-ietf-
               quic-transport-latest>.
 
@@ -1845,7 +1845,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 33]
+Krasic, et al.            Expires 11 April 2021                [Page 33]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1901,7 +1901,7 @@ Appendix A.  Static Table
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 34]
+Krasic, et al.            Expires 11 April 2021                [Page 34]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -1957,7 +1957,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 35]
+Krasic, et al.            Expires 11 April 2021                [Page 35]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2013,7 +2013,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 36]
+Krasic, et al.            Expires 11 April 2021                [Page 36]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2069,7 +2069,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 37]
+Krasic, et al.            Expires 11 April 2021                [Page 37]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2125,7 +2125,7 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 38]
+Krasic, et al.            Expires 11 April 2021                [Page 38]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2181,7 +2181,7 @@ B.1.  Literal Field Line With Name Reference
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 39]
+Krasic, et al.            Expires 11 April 2021                [Page 39]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2237,7 +2237,7 @@ B.2.  Dynamic Table
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 40]
+Krasic, et al.            Expires 11 April 2021                [Page 40]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2293,7 +2293,7 @@ B.3.  Speculative Insert
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 41]
+Krasic, et al.            Expires 11 April 2021                [Page 41]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2349,7 +2349,7 @@ B.4.  Duplicate Instruction, Stream Cancellation
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 42]
+Krasic, et al.            Expires 11 April 2021                [Page 42]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2405,7 +2405,7 @@ B.5.  Dynamic Table Insert, Eviction
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 43]
+Krasic, et al.            Expires 11 April 2021                [Page 43]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2461,7 +2461,7 @@ Appendix C.  Sample One Pass Encoding Algorithm
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 44]
+Krasic, et al.            Expires 11 April 2021                [Page 44]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2517,7 +2517,7 @@ D.4.  Since draft-ietf-quic-qpack-14
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 45]
+Krasic, et al.            Expires 11 April 2021                [Page 45]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2573,7 +2573,7 @@ D.13.  Since draft-ietf-quic-qpack-04
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 46]
+Krasic, et al.            Expires 11 April 2021                [Page 46]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2629,7 +2629,7 @@ D.17.  Since draft-ietf-quic-qpack-00
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 47]
+Krasic, et al.            Expires 11 April 2021                [Page 47]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2685,7 +2685,7 @@ Acknowledgments
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 48]
+Krasic, et al.            Expires 11 April 2021                [Page 48]
 
 Internet-Draft                    QPACK                     October 2020
 
@@ -2741,4 +2741,4 @@ Authors' Addresses
 
 
 
-Krasic, et al.            Expires 10 April 2021                [Page 49]
+Krasic, et al.            Expires 11 April 2021                [Page 49]

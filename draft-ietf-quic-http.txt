@@ -3961,7 +3961,7 @@ Acknowledgements
 
    *  Patrick McManus
 
-   *  Luca Nicco
+   *  Luca Niccolini
 
    *  奥 一穂 (Kazuho Oku)
 

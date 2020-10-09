@@ -1692,8 +1692,8 @@ Appendix A.  Loss Recovery Pseudocode
    We now describe an example implementation of the loss detection
    mechanisms described in Section 6.
 
-   The pseudocode in this section is licensed as a Code Component; see
-   the copyright notice.
+   The pseudocode segments in this section are licensed as Code
+   Components; see the copyright notice.
 
 A.1.  Tracking Sent Packets
 
@@ -2191,8 +2191,8 @@ Appendix B.  Congestion Control Pseudocode
    We now describe an example implementation of the congestion
    controller described in Section 7.
 
-   The pseudocode in this section is licensed as Code Components; see
-   the copyright notice.
+   The pseudocode segments in this section are licensed as Code
+   Components; see the copyright notice.
 
 B.1.  Constants of interest
 

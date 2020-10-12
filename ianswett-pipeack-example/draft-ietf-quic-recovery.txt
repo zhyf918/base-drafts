@@ -1575,6 +1575,11 @@ Internet-Draft             QUIC Loss Detection              October 2020
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
+   [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
+              of Explicit Congestion Notification (ECN) to IP",
+              RFC 3168, DOI 10.17487/RFC3168, September 2001,
+              <https://www.rfc-editor.org/info/rfc3168>.
+
    [RFC8085]  Eggert, L., Fairhurst, G., and G. Shepherd, "UDP Usage
               Guidelines", BCP 145, RFC 8085, DOI 10.17487/RFC8085,
               March 2017, <https://www.rfc-editor.org/info/rfc8085>.
@@ -1598,11 +1603,6 @@ Internet-Draft             QUIC Loss Detection              October 2020
               Progress, Internet-Draft, draft-ietf-tcpm-rack-11, 30
               September 2020, <http://www.ietf.org/internet-drafts/
               draft-ietf-tcpm-rack-11.txt>.
-
-   [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
-              of Explicit Congestion Notification (ECN) to IP",
-              RFC 3168, DOI 10.17487/RFC3168, September 2001,
-              <https://www.rfc-editor.org/info/rfc3168>.
 
    [RFC3465]  Allman, M., "TCP Congestion Control with Appropriate Byte
               Counting (ABC)", RFC 3465, DOI 10.17487/RFC3465, February

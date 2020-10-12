@@ -13,8 +13,26 @@
 representing HTTP fields, to be used in HTTP/3. This is a variation of HPACK
 compression that seeks to reduce head-of-line blocking. 
     " name="description">
-<meta content="xml2rfc 2.47.0" name="generator">
+<meta content="xml2rfc 3.2.1" name="generator">
 <meta content="draft-ietf-quic-qpack-latest" name="ietf.draft">
+<!-- Generator version information:
+  xml2rfc 3.2.1
+    Python 3.8.2
+    appdirs 1.4.4
+    ConfigArgParse 1.2.3
+    google-i18n-address 2.4.0
+    html5lib 1.1
+    intervaltree 3.0.2
+    Jinja2 2.11.2
+    kitchen 1.2.6
+    lxml 4.5.0
+    pycountry 19.8.18
+    pyflakes 2.1.1
+    PyYAML 5.3.1
+    requests 2.22.0
+    setuptools 45.2.0
+    six 1.14.0
+-->
 <link href="draft-ietf-quic-qpack.xml" rel="alternate" type="application/rfc+xml">
 <link href="#copyright" rel="license">
 <style type="text/css">@import url('https://martinthomson.github.io/i-d-template/fonts.css');
@@ -803,11 +821,11 @@ address div.right {
 <thead><tr>
 <td class="left">Internet-Draft</td>
 <td class="center">QPACK</td>
-<td class="right">September 2020</td>
+<td class="right">October 2020</td>
 </tr></thead>
 <tfoot><tr>
 <td class="left">Krasic, et al.</td>
-<td class="center">Expires 14 March 2021</td>
+<td class="center">Expires 15 April 2021</td>
 <td class="right">[Page]</td>
 </tr></tfoot>
 </table>
@@ -820,12 +838,12 @@ address div.right {
 <dd class="internet-draft">draft-ietf-quic-qpack-latest</dd>
 <dt class="label-published">Published:</dt>
 <dd class="published">
-<time datetime="2020-09-10" class="published">10 September 2020</time>
+<time datetime="2020-10-12" class="published">12 October 2020</time>
     </dd>
 <dt class="label-intended-status">Intended Status:</dt>
 <dd class="intended-status">Standards Track</dd>
 <dt class="label-expires">Expires:</dt>
-<dd class="expires"><time datetime="2021-03-14">14 March 2021</time></dd>
+<dd class="expires"><time datetime="2021-04-15">15 April 2021</time></dd>
 <dt class="label-authors">Authors:</dt>
 <dd class="authors">
 <div class="author">
@@ -881,7 +899,7 @@ code and issues list for this draft can be found at
         time. It is inappropriate to use Internet-Drafts as reference
         material or to cite them other than as "work in progress."<a href="#section-boilerplate.1-3" class="pilcrow">¶</a></p>
 <p id="section-boilerplate.1-4">
-        This Internet-Draft will expire on 14 March 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
+        This Internet-Draft will expire on 15 April 2021.<a href="#section-boilerplate.1-4" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="copyright">
@@ -909,282 +927,305 @@ code and issues list for this draft can be found at
         <a href="#" onclick="scroll(0,0)" class="toplink">▲</a><h2 id="name-table-of-contents">
 <a href="#name-table-of-contents" class="section-name selfRef">Table of Contents</a>
         </h2>
-<nav class="toc"><ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1">
+<nav class="toc"><ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1">
             <p id="section-toc.1-1.1.1" class="keepWithNext"><a href="#section-1" class="xref">1</a>.  <a href="#name-introduction" class="xref">Introduction</a><a href="#section-toc.1-1.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.1.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.1.2.1">
                 <p id="section-toc.1-1.1.2.1.1" class="keepWithNext"><a href="#section-1.1" class="xref">1.1</a>.  <a href="#name-conventions-and-definitions" class="xref">Conventions and Definitions</a><a href="#section-toc.1-1.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.1.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.1.2.2">
                 <p id="section-toc.1-1.1.2.2.1" class="keepWithNext"><a href="#section-1.2" class="xref">1.2</a>.  <a href="#name-notational-conventions" class="xref">Notational Conventions</a><a href="#section-toc.1-1.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.2">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.2">
             <p id="section-toc.1-1.2.1"><a href="#section-2" class="xref">2</a>.  <a href="#name-compression-process-overvie" class="xref">Compression Process Overview</a><a href="#section-toc.1-1.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1">
                 <p id="section-toc.1-1.2.2.1.1"><a href="#section-2.1" class="xref">2.1</a>.  <a href="#name-encoder" class="xref">Encoder</a><a href="#section-toc.1-1.2.2.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1.2.1">
                     <p id="section-toc.1-1.2.2.1.2.1.1"><a href="#section-2.1.1" class="xref">2.1.1</a>.  <a href="#name-limits-on-dynamic-table-ins" class="xref">Limits on Dynamic Table Insertions</a><a href="#section-toc.1-1.2.2.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1.2.2">
                     <p id="section-toc.1-1.2.2.1.2.2.1"><a href="#section-2.1.2" class="xref">2.1.2</a>.  <a href="#name-blocked-streams" class="xref">Blocked Streams</a><a href="#section-toc.1-1.2.2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1.2.3">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1.2.3">
                     <p id="section-toc.1-1.2.2.1.2.3.1"><a href="#section-2.1.3" class="xref">2.1.3</a>.  <a href="#name-avoiding-flow-control-deadl" class="xref">Avoiding Flow Control Deadlocks</a><a href="#section-toc.1-1.2.2.1.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.1.2.4">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.1.2.4">
                     <p id="section-toc.1-1.2.2.1.2.4.1"><a href="#section-2.1.4" class="xref">2.1.4</a>.  <a href="#name-known-received-count" class="xref">Known Received Count</a><a href="#section-toc.1-1.2.2.1.2.4.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.2">
                 <p id="section-toc.1-1.2.2.2.1"><a href="#section-2.2" class="xref">2.2</a>.  <a href="#name-decoder" class="xref">Decoder</a><a href="#section-toc.1-1.2.2.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.2.2.2.2.1">
                     <p id="section-toc.1-1.2.2.2.2.1.1"><a href="#section-2.2.1" class="xref">2.2.1</a>.  <a href="#name-blocked-decoding" class="xref">Blocked Decoding</a><a href="#section-toc.1-1.2.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.2.2.2">
                     <p id="section-toc.1-1.2.2.2.2.2.1"><a href="#section-2.2.2" class="xref">2.2.2</a>.  <a href="#name-state-synchronization" class="xref">State Synchronization</a><a href="#section-toc.1-1.2.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.2.2.2.2.3">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.2.2.2.2.3">
                     <p id="section-toc.1-1.2.2.2.2.3.1"><a href="#section-2.2.3" class="xref">2.2.3</a>.  <a href="#name-invalid-references" class="xref">Invalid References</a><a href="#section-toc.1-1.2.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.3">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.3">
             <p id="section-toc.1-1.3.1"><a href="#section-3" class="xref">3</a>.  <a href="#name-reference-tables" class="xref">Reference Tables</a><a href="#section-toc.1-1.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.1">
                 <p id="section-toc.1-1.3.2.1.1"><a href="#section-3.1" class="xref">3.1</a>.  <a href="#name-static-table" class="xref">Static Table</a><a href="#section-toc.1-1.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2">
                 <p id="section-toc.1-1.3.2.2.1"><a href="#section-3.2" class="xref">3.2</a>.  <a href="#name-dynamic-table" class="xref">Dynamic Table</a><a href="#section-toc.1-1.3.2.2.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.1">
                     <p id="section-toc.1-1.3.2.2.2.1.1"><a href="#section-3.2.1" class="xref">3.2.1</a>.  <a href="#name-dynamic-table-size" class="xref">Dynamic Table Size</a><a href="#section-toc.1-1.3.2.2.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.2">
                     <p id="section-toc.1-1.3.2.2.2.2.1"><a href="#section-3.2.2" class="xref">3.2.2</a>.  <a href="#name-dynamic-table-capacity-and-" class="xref">Dynamic Table Capacity and Eviction</a><a href="#section-toc.1-1.3.2.2.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.3">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.3">
                     <p id="section-toc.1-1.3.2.2.2.3.1"><a href="#section-3.2.3" class="xref">3.2.3</a>.  <a href="#name-maximum-dynamic-table-capac" class="xref">Maximum Dynamic Table Capacity</a><a href="#section-toc.1-1.3.2.2.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.4">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.4">
                     <p id="section-toc.1-1.3.2.2.2.4.1"><a href="#section-3.2.4" class="xref">3.2.4</a>.  <a href="#name-absolute-indexing" class="xref">Absolute Indexing</a><a href="#section-toc.1-1.3.2.2.2.4.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.5">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.5">
                     <p id="section-toc.1-1.3.2.2.2.5.1"><a href="#section-3.2.5" class="xref">3.2.5</a>.  <a href="#name-relative-indexing" class="xref">Relative Indexing</a><a href="#section-toc.1-1.3.2.2.2.5.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.3.2.2.2.6">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.3.2.2.2.6">
                     <p id="section-toc.1-1.3.2.2.2.6.1"><a href="#section-3.2.6" class="xref">3.2.6</a>.  <a href="#name-post-base-indexing" class="xref">Post-Base Indexing</a><a href="#section-toc.1-1.3.2.2.2.6.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.4">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.4">
             <p id="section-toc.1-1.4.1"><a href="#section-4" class="xref">4</a>.  <a href="#name-wire-format" class="xref">Wire Format</a><a href="#section-toc.1-1.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.1">
                 <p id="section-toc.1-1.4.2.1.1"><a href="#section-4.1" class="xref">4.1</a>.  <a href="#name-primitives" class="xref">Primitives</a><a href="#section-toc.1-1.4.2.1.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.1.2.1">
                     <p id="section-toc.1-1.4.2.1.2.1.1"><a href="#section-4.1.1" class="xref">4.1.1</a>.  <a href="#name-prefixed-integers" class="xref">Prefixed Integers</a><a href="#section-toc.1-1.4.2.1.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.1.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.1.2.2">
                     <p id="section-toc.1-1.4.2.1.2.2.1"><a href="#section-4.1.2" class="xref">4.1.2</a>.  <a href="#name-string-literals" class="xref">String Literals</a><a href="#section-toc.1-1.4.2.1.2.2.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.2">
                 <p id="section-toc.1-1.4.2.2.1"><a href="#section-4.2" class="xref">4.2</a>.  <a href="#name-encoder-and-decoder-streams" class="xref">Encoder and Decoder Streams</a><a href="#section-toc.1-1.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3">
                 <p id="section-toc.1-1.4.2.3.1"><a href="#section-4.3" class="xref">4.3</a>.  <a href="#name-encoder-instructions" class="xref">Encoder Instructions</a><a href="#section-toc.1-1.4.2.3.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3.2.1">
                     <p id="section-toc.1-1.4.2.3.2.1.1"><a href="#section-4.3.1" class="xref">4.3.1</a>.  <a href="#name-set-dynamic-table-capacity" class="xref">Set Dynamic Table Capacity</a><a href="#section-toc.1-1.4.2.3.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3.2.2">
                     <p id="section-toc.1-1.4.2.3.2.2.1"><a href="#section-4.3.2" class="xref">4.3.2</a>.  <a href="#name-insert-with-name-reference" class="xref">Insert With Name Reference</a><a href="#section-toc.1-1.4.2.3.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3.2.3">
-                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="xref">4.3.3</a>.  <a href="#name-insert-without-name-referen" class="xref">Insert Without Name Reference</a><a href="#section-toc.1-1.4.2.3.2.3.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3.2.3">
+                    <p id="section-toc.1-1.4.2.3.2.3.1"><a href="#section-4.3.3" class="xref">4.3.3</a>.  <a href="#name-insert-with-literal-name" class="xref">Insert With Literal Name</a><a href="#section-toc.1-1.4.2.3.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.3.2.4">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.3.2.4">
                     <p id="section-toc.1-1.4.2.3.2.4.1"><a href="#section-4.3.4" class="xref">4.3.4</a>.  <a href="#name-duplicate" class="xref">Duplicate</a><a href="#section-toc.1-1.4.2.3.2.4.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4">
                 <p id="section-toc.1-1.4.2.4.1"><a href="#section-4.4" class="xref">4.4</a>.  <a href="#name-decoder-instructions" class="xref">Decoder Instructions</a><a href="#section-toc.1-1.4.2.4.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.1">
                     <p id="section-toc.1-1.4.2.4.2.1.1"><a href="#section-4.4.1" class="xref">4.4.1</a>.  <a href="#name-section-acknowledgement" class="xref">Section Acknowledgement</a><a href="#section-toc.1-1.4.2.4.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.2">
                     <p id="section-toc.1-1.4.2.4.2.2.1"><a href="#section-4.4.2" class="xref">4.4.2</a>.  <a href="#name-stream-cancellation" class="xref">Stream Cancellation</a><a href="#section-toc.1-1.4.2.4.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.4.2.3">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.4.2.3">
                     <p id="section-toc.1-1.4.2.4.2.3.1"><a href="#section-4.4.3" class="xref">4.4.3</a>.  <a href="#name-insert-count-increment" class="xref">Insert Count Increment</a><a href="#section-toc.1-1.4.2.4.2.3.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5">
                 <p id="section-toc.1-1.4.2.5.1"><a href="#section-4.5" class="xref">4.5</a>.  <a href="#name-field-line-representations" class="xref">Field Line Representations</a><a href="#section-toc.1-1.4.2.5.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.1">
                     <p id="section-toc.1-1.4.2.5.2.1.1"><a href="#section-4.5.1" class="xref">4.5.1</a>.  <a href="#name-encoded-field-section-prefi" class="xref">Encoded Field Section Prefix</a><a href="#section-toc.1-1.4.2.5.2.1.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.2">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.2">
                     <p id="section-toc.1-1.4.2.5.2.2.1"><a href="#section-4.5.2" class="xref">4.5.2</a>.  <a href="#name-indexed-field-line" class="xref">Indexed Field Line</a><a href="#section-toc.1-1.4.2.5.2.2.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.3">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.3">
                     <p id="section-toc.1-1.4.2.5.2.3.1"><a href="#section-4.5.3" class="xref">4.5.3</a>.  <a href="#name-indexed-field-line-with-pos" class="xref">Indexed Field Line With Post-Base Index</a><a href="#section-toc.1-1.4.2.5.2.3.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.4">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.4">
                     <p id="section-toc.1-1.4.2.5.2.4.1"><a href="#section-4.5.4" class="xref">4.5.4</a>.  <a href="#name-literal-field-line-with-nam" class="xref">Literal Field Line With Name Reference</a><a href="#section-toc.1-1.4.2.5.2.4.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.5">
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.5">
                     <p id="section-toc.1-1.4.2.5.2.5.1"><a href="#section-4.5.5" class="xref">4.5.5</a>.  <a href="#name-literal-field-line-with-pos" class="xref">Literal Field Line With Post-Base Name Reference</a><a href="#section-toc.1-1.4.2.5.2.5.1" class="pilcrow">¶</a></p>
 </li>
-                  <li class="toc ulEmpty compact" id="section-toc.1-1.4.2.5.2.6">
-                    <p id="section-toc.1-1.4.2.5.2.6.1"><a href="#section-4.5.6" class="xref">4.5.6</a>.  <a href="#name-literal-field-line-without-" class="xref">Literal Field Line Without Name Reference</a><a href="#section-toc.1-1.4.2.5.2.6.1" class="pilcrow">¶</a></p>
+                  <li class="ulEmpty compact toc" id="section-toc.1-1.4.2.5.2.6">
+                    <p id="section-toc.1-1.4.2.5.2.6.1"><a href="#section-4.5.6" class="xref">4.5.6</a>.  <a href="#name-literal-field-line-with-lit" class="xref">Literal Field Line With Literal Name</a><a href="#section-toc.1-1.4.2.5.2.6.1" class="pilcrow">¶</a></p>
 </li>
                 </ul>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.5">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.5">
             <p id="section-toc.1-1.5.1"><a href="#section-5" class="xref">5</a>.  <a href="#name-configuration" class="xref">Configuration</a><a href="#section-toc.1-1.5.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.6">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.6">
             <p id="section-toc.1-1.6.1"><a href="#section-6" class="xref">6</a>.  <a href="#name-error-handling" class="xref">Error Handling</a><a href="#section-toc.1-1.6.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.7">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.7">
             <p id="section-toc.1-1.7.1"><a href="#section-7" class="xref">7</a>.  <a href="#name-security-considerations" class="xref">Security Considerations</a><a href="#section-toc.1-1.7.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.7.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.7.2.1">
                 <p id="section-toc.1-1.7.2.1.1"><a href="#section-7.1" class="xref">7.1</a>.  <a href="#name-probing-dynamic-table-state" class="xref">Probing Dynamic Table State</a><a href="#section-toc.1-1.7.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.2">
                 <p id="section-toc.1-1.7.2.2.1"><a href="#section-7.2" class="xref">7.2</a>.  <a href="#name-applicability-to-qpack-and-" class="xref">Applicability to QPACK and HTTP</a><a href="#section-toc.1-1.7.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.3">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.3">
                 <p id="section-toc.1-1.7.2.3.1"><a href="#section-7.3" class="xref">7.3</a>.  <a href="#name-mitigation" class="xref">Mitigation</a><a href="#section-toc.1-1.7.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.4">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.4">
                 <p id="section-toc.1-1.7.2.4.1"><a href="#section-7.4" class="xref">7.4</a>.  <a href="#name-never-indexed-literals" class="xref">Never-Indexed Literals</a><a href="#section-toc.1-1.7.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.5">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.5">
                 <p id="section-toc.1-1.7.2.5.1"><a href="#section-7.5" class="xref">7.5</a>.  <a href="#name-static-huffman-encoding" class="xref">Static Huffman Encoding</a><a href="#section-toc.1-1.7.2.5.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.6">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.6">
                 <p id="section-toc.1-1.7.2.6.1"><a href="#section-7.6" class="xref">7.6</a>.  <a href="#name-memory-consumption" class="xref">Memory Consumption</a><a href="#section-toc.1-1.7.2.6.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.7.2.7">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.7.2.7">
                 <p id="section-toc.1-1.7.2.7.1"><a href="#section-7.7" class="xref">7.7</a>.  <a href="#name-implementation-limits" class="xref">Implementation Limits</a><a href="#section-toc.1-1.7.2.7.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.8">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.8">
             <p id="section-toc.1-1.8.1"><a href="#section-8" class="xref">8</a>.  <a href="#name-iana-considerations" class="xref">IANA Considerations</a><a href="#section-toc.1-1.8.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.8.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.8.2.1">
                 <p id="section-toc.1-1.8.2.1.1"><a href="#section-8.1" class="xref">8.1</a>.  <a href="#name-settings-registration" class="xref">Settings Registration</a><a href="#section-toc.1-1.8.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.2">
                 <p id="section-toc.1-1.8.2.2.1"><a href="#section-8.2" class="xref">8.2</a>.  <a href="#name-stream-type-registration" class="xref">Stream Type Registration</a><a href="#section-toc.1-1.8.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.8.2.3">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.8.2.3">
                 <p id="section-toc.1-1.8.2.3.1"><a href="#section-8.3" class="xref">8.3</a>.  <a href="#name-error-code-registration" class="xref">Error Code Registration</a><a href="#section-toc.1-1.8.2.3.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.9">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.9">
             <p id="section-toc.1-1.9.1"><a href="#section-9" class="xref">9</a>.  <a href="#name-references" class="xref">References</a><a href="#section-toc.1-1.9.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.9.2.1">
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.9.2.1">
                 <p id="section-toc.1-1.9.2.1.1"><a href="#section-9.1" class="xref">9.1</a>.  <a href="#name-normative-references" class="xref">Normative References</a><a href="#section-toc.1-1.9.2.1.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.9.2.2">
+              <li class="ulEmpty compact toc" id="section-toc.1-1.9.2.2">
                 <p id="section-toc.1-1.9.2.2.1"><a href="#section-9.2" class="xref">9.2</a>.  <a href="#name-informative-references" class="xref">Informative References</a><a href="#section-toc.1-1.9.2.2.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.10">
+          <li class="ulEmpty compact toc" id="section-toc.1-1.10">
             <p id="section-toc.1-1.10.1"><a href="#section-appendix.a" class="xref">Appendix A</a>.  <a href="#name-static-table-2" class="xref">Static Table</a><a href="#section-toc.1-1.10.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.11">
-            <p id="section-toc.1-1.11.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-sample-one-pass-encoding-al" class="xref">Sample One Pass Encoding Algorithm</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.11">
+            <p id="section-toc.1-1.11.1"><a href="#section-appendix.b" class="xref">Appendix B</a>.  <a href="#name-encoding-and-decoding-examp" class="xref">Encoding and Decoding Examples</a><a href="#section-toc.1-1.11.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.11.2.1">
+                <p id="section-toc.1-1.11.2.1.1"><a href="#section-b.1" class="xref">B.1</a>.  <a href="#name-literal-field-line-with-name-" class="xref">Literal Field Line With Name Reference</a><a href="#section-toc.1-1.11.2.1.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.12">
-            <p id="section-toc.1-1.12.1"><a href="#section-appendix.c" class="xref">Appendix C</a>.  <a href="#name-change-log" class="xref">Change Log</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
-<ul class="toc ulEmpty compact">
-<li class="toc ulEmpty compact" id="section-toc.1-1.12.2.1">
-                <p id="section-toc.1-1.12.2.1.1"><a href="#section-c.1" class="xref">C.1</a>.  <a href="#name-since-draft-ietf-quic-qpack" class="xref">Since draft-ietf-quic-qpack-16</a><a href="#section-toc.1-1.12.2.1.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.11.2.2">
+                <p id="section-toc.1-1.11.2.2.1"><a href="#section-b.2" class="xref">B.2</a>.  <a href="#name-dynamic-table-2" class="xref">Dynamic Table</a><a href="#section-toc.1-1.11.2.2.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.2">
-                <p id="section-toc.1-1.12.2.2.1"><a href="#section-c.2" class="xref">C.2</a>.  <a href="#name-since-draft-ietf-quic-qpack-" class="xref">Since draft-ietf-quic-qpack-15</a><a href="#section-toc.1-1.12.2.2.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.11.2.3">
+                <p id="section-toc.1-1.11.2.3.1"><a href="#section-b.3" class="xref">B.3</a>.  <a href="#name-speculative-insert" class="xref">Speculative Insert</a><a href="#section-toc.1-1.11.2.3.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.3">
-                <p id="section-toc.1-1.12.2.3.1"><a href="#section-c.3" class="xref">C.3</a>.  <a href="#name-since-draft-ietf-quic-qpack-1" class="xref">Since draft-ietf-quic-qpack-14</a><a href="#section-toc.1-1.12.2.3.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.11.2.4">
+                <p id="section-toc.1-1.11.2.4.1"><a href="#section-b.4" class="xref">B.4</a>.  <a href="#name-duplicate-instruction-strea" class="xref">Duplicate Instruction, Stream Cancellation</a><a href="#section-toc.1-1.11.2.4.1" class="pilcrow">¶</a></p>
 </li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.4">
-                <p id="section-toc.1-1.12.2.4.1"><a href="#section-c.4" class="xref">C.4</a>.  <a href="#name-since-draft-ietf-quic-qpack-13" class="xref">Since draft-ietf-quic-qpack-13</a><a href="#section-toc.1-1.12.2.4.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.5">
-                <p id="section-toc.1-1.12.2.5.1"><a href="#section-c.5" class="xref">C.5</a>.  <a href="#name-since-draft-ietf-quic-qpack-12" class="xref">Since draft-ietf-quic-qpack-12</a><a href="#section-toc.1-1.12.2.5.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.6">
-                <p id="section-toc.1-1.12.2.6.1"><a href="#section-c.6" class="xref">C.6</a>.  <a href="#name-since-draft-ietf-quic-qpack-11" class="xref">Since draft-ietf-quic-qpack-11</a><a href="#section-toc.1-1.12.2.6.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.7">
-                <p id="section-toc.1-1.12.2.7.1"><a href="#section-c.7" class="xref">C.7</a>.  <a href="#name-since-draft-ietf-quic-qpack-10" class="xref">Since draft-ietf-quic-qpack-10</a><a href="#section-toc.1-1.12.2.7.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.8">
-                <p id="section-toc.1-1.12.2.8.1"><a href="#section-c.8" class="xref">C.8</a>.  <a href="#name-since-draft-ietf-quic-qpack-0" class="xref">Since draft-ietf-quic-qpack-09</a><a href="#section-toc.1-1.12.2.8.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.9">
-                <p id="section-toc.1-1.12.2.9.1"><a href="#section-c.9" class="xref">C.9</a>.  <a href="#name-since-draft-ietf-quic-qpack-08" class="xref">Since draft-ietf-quic-qpack-08</a><a href="#section-toc.1-1.12.2.9.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.10">
-                <p id="section-toc.1-1.12.2.10.1"><a href="#section-c.10" class="xref">C.10</a>. <a href="#name-since-draft-ietf-quic-qpack-06" class="xref">Since draft-ietf-quic-qpack-06</a><a href="#section-toc.1-1.12.2.10.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.11">
-                <p id="section-toc.1-1.12.2.11.1"><a href="#section-c.11" class="xref">C.11</a>. <a href="#name-since-draft-ietf-quic-qpack-05" class="xref">Since draft-ietf-quic-qpack-05</a><a href="#section-toc.1-1.12.2.11.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.12">
-                <p id="section-toc.1-1.12.2.12.1"><a href="#section-c.12" class="xref">C.12</a>. <a href="#name-since-draft-ietf-quic-qpack-04" class="xref">Since draft-ietf-quic-qpack-04</a><a href="#section-toc.1-1.12.2.12.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.13">
-                <p id="section-toc.1-1.12.2.13.1"><a href="#section-c.13" class="xref">C.13</a>. <a href="#name-since-draft-ietf-quic-qpack-03" class="xref">Since draft-ietf-quic-qpack-03</a><a href="#section-toc.1-1.12.2.13.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.14">
-                <p id="section-toc.1-1.12.2.14.1"><a href="#section-c.14" class="xref">C.14</a>. <a href="#name-since-draft-ietf-quic-qpack-02" class="xref">Since draft-ietf-quic-qpack-02</a><a href="#section-toc.1-1.12.2.14.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.15">
-                <p id="section-toc.1-1.12.2.15.1"><a href="#section-c.15" class="xref">C.15</a>. <a href="#name-since-draft-ietf-quic-qpack-01" class="xref">Since draft-ietf-quic-qpack-01</a><a href="#section-toc.1-1.12.2.15.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.16">
-                <p id="section-toc.1-1.12.2.16.1"><a href="#section-c.16" class="xref">C.16</a>. <a href="#name-since-draft-ietf-quic-qpack-00" class="xref">Since draft-ietf-quic-qpack-00</a><a href="#section-toc.1-1.12.2.16.1" class="pilcrow">¶</a></p>
-</li>
-              <li class="toc ulEmpty compact" id="section-toc.1-1.12.2.17">
-                <p id="section-toc.1-1.12.2.17.1"><a href="#section-c.17" class="xref">C.17</a>. <a href="#name-since-draft-ietf-quic-qcram" class="xref">Since draft-ietf-quic-qcram-00</a><a href="#section-toc.1-1.12.2.17.1" class="pilcrow">¶</a></p>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.11.2.5">
+                <p id="section-toc.1-1.11.2.5.1"><a href="#section-b.5" class="xref">B.5</a>.  <a href="#name-dynamic-table-insert-evicti" class="xref">Dynamic Table Insert, Eviction</a><a href="#section-toc.1-1.11.2.5.1" class="pilcrow">¶</a></p>
 </li>
             </ul>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.13">
-            <p id="section-toc.1-1.13.1"><a href="#section-appendix.d" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.12">
+            <p id="section-toc.1-1.12.1"><a href="#section-appendix.c" class="xref">Appendix C</a>.  <a href="#name-sample-one-pass-encoding-al" class="xref">Sample One Pass Encoding Algorithm</a><a href="#section-toc.1-1.12.1" class="pilcrow">¶</a></p>
 </li>
-          <li class="toc ulEmpty compact" id="section-toc.1-1.14">
-            <p id="section-toc.1-1.14.1"><a href="#section-appendix.e" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.13">
+            <p id="section-toc.1-1.13.1"><a href="#section-appendix.d" class="xref">Appendix D</a>.  <a href="#name-change-log" class="xref">Change Log</a><a href="#section-toc.1-1.13.1" class="pilcrow">¶</a></p>
+<ul class="ulEmpty compact toc">
+<li class="ulEmpty compact toc" id="section-toc.1-1.13.2.1">
+                <p id="section-toc.1-1.13.2.1.1"><a href="#section-d.1" class="xref">D.1</a>.  <a href="#name-since-draft-ietf-quic-qpack" class="xref">Since draft-ietf-quic-qpack-17</a><a href="#section-toc.1-1.13.2.1.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.2">
+                <p id="section-toc.1-1.13.2.2.1"><a href="#section-d.2" class="xref">D.2</a>.  <a href="#name-since-draft-ietf-quic-qpack-" class="xref">Since draft-ietf-quic-qpack-16</a><a href="#section-toc.1-1.13.2.2.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.3">
+                <p id="section-toc.1-1.13.2.3.1"><a href="#section-d.3" class="xref">D.3</a>.  <a href="#name-since-draft-ietf-quic-qpack-1" class="xref">Since draft-ietf-quic-qpack-15</a><a href="#section-toc.1-1.13.2.3.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.4">
+                <p id="section-toc.1-1.13.2.4.1"><a href="#section-d.4" class="xref">D.4</a>.  <a href="#name-since-draft-ietf-quic-qpack-14" class="xref">Since draft-ietf-quic-qpack-14</a><a href="#section-toc.1-1.13.2.4.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.5">
+                <p id="section-toc.1-1.13.2.5.1"><a href="#section-d.5" class="xref">D.5</a>.  <a href="#name-since-draft-ietf-quic-qpack-13" class="xref">Since draft-ietf-quic-qpack-13</a><a href="#section-toc.1-1.13.2.5.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.6">
+                <p id="section-toc.1-1.13.2.6.1"><a href="#section-d.6" class="xref">D.6</a>.  <a href="#name-since-draft-ietf-quic-qpack-12" class="xref">Since draft-ietf-quic-qpack-12</a><a href="#section-toc.1-1.13.2.6.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.7">
+                <p id="section-toc.1-1.13.2.7.1"><a href="#section-d.7" class="xref">D.7</a>.  <a href="#name-since-draft-ietf-quic-qpack-11" class="xref">Since draft-ietf-quic-qpack-11</a><a href="#section-toc.1-1.13.2.7.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.8">
+                <p id="section-toc.1-1.13.2.8.1"><a href="#section-d.8" class="xref">D.8</a>.  <a href="#name-since-draft-ietf-quic-qpack-10" class="xref">Since draft-ietf-quic-qpack-10</a><a href="#section-toc.1-1.13.2.8.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.9">
+                <p id="section-toc.1-1.13.2.9.1"><a href="#section-d.9" class="xref">D.9</a>.  <a href="#name-since-draft-ietf-quic-qpack-0" class="xref">Since draft-ietf-quic-qpack-09</a><a href="#section-toc.1-1.13.2.9.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.10">
+                <p id="section-toc.1-1.13.2.10.1"><a href="#section-d.10" class="xref">D.10</a>. <a href="#name-since-draft-ietf-quic-qpack-08" class="xref">Since draft-ietf-quic-qpack-08</a><a href="#section-toc.1-1.13.2.10.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.11">
+                <p id="section-toc.1-1.13.2.11.1"><a href="#section-d.11" class="xref">D.11</a>. <a href="#name-since-draft-ietf-quic-qpack-06" class="xref">Since draft-ietf-quic-qpack-06</a><a href="#section-toc.1-1.13.2.11.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.12">
+                <p id="section-toc.1-1.13.2.12.1"><a href="#section-d.12" class="xref">D.12</a>. <a href="#name-since-draft-ietf-quic-qpack-05" class="xref">Since draft-ietf-quic-qpack-05</a><a href="#section-toc.1-1.13.2.12.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.13">
+                <p id="section-toc.1-1.13.2.13.1"><a href="#section-d.13" class="xref">D.13</a>. <a href="#name-since-draft-ietf-quic-qpack-04" class="xref">Since draft-ietf-quic-qpack-04</a><a href="#section-toc.1-1.13.2.13.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.14">
+                <p id="section-toc.1-1.13.2.14.1"><a href="#section-d.14" class="xref">D.14</a>. <a href="#name-since-draft-ietf-quic-qpack-03" class="xref">Since draft-ietf-quic-qpack-03</a><a href="#section-toc.1-1.13.2.14.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.15">
+                <p id="section-toc.1-1.13.2.15.1"><a href="#section-d.15" class="xref">D.15</a>. <a href="#name-since-draft-ietf-quic-qpack-02" class="xref">Since draft-ietf-quic-qpack-02</a><a href="#section-toc.1-1.13.2.15.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.16">
+                <p id="section-toc.1-1.13.2.16.1"><a href="#section-d.16" class="xref">D.16</a>. <a href="#name-since-draft-ietf-quic-qpack-01" class="xref">Since draft-ietf-quic-qpack-01</a><a href="#section-toc.1-1.13.2.16.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.17">
+                <p id="section-toc.1-1.13.2.17.1"><a href="#section-d.17" class="xref">D.17</a>. <a href="#name-since-draft-ietf-quic-qpack-00" class="xref">Since draft-ietf-quic-qpack-00</a><a href="#section-toc.1-1.13.2.17.1" class="pilcrow">¶</a></p>
+</li>
+              <li class="ulEmpty compact toc" id="section-toc.1-1.13.2.18">
+                <p id="section-toc.1-1.13.2.18.1"><a href="#section-d.18" class="xref">D.18</a>. <a href="#name-since-draft-ietf-quic-qcram" class="xref">Since draft-ietf-quic-qcram-00</a><a href="#section-toc.1-1.13.2.18.1" class="pilcrow">¶</a></p>
+</li>
+            </ul>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.14">
+            <p id="section-toc.1-1.14.1"><a href="#section-appendix.e" class="xref"></a><a href="#name-acknowledgments" class="xref">Acknowledgments</a><a href="#section-toc.1-1.14.1" class="pilcrow">¶</a></p>
+</li>
+          <li class="ulEmpty compact toc" id="section-toc.1-1.15">
+            <p id="section-toc.1-1.15.1"><a href="#section-appendix.f" class="xref"></a><a href="#name-authors-addresses" class="xref">Authors' Addresses</a><a href="#section-toc.1-1.15.1" class="pilcrow">¶</a></p>
 </li>
         </ul>
 </nav>
@@ -1219,7 +1260,7 @@ appear in all capitals, as shown here.<a href="#section-1.1-1" class="pilcrow">�
 <p id="section-1.1-2">Definitions of terms that are used in this document:<a href="#section-1.1-2" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-1.1-3">
           <dt id="section-1.1-3.1">HTTP fields:</dt>
-          <dd id="section-1.1-3.2">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.2">
   Metadata sent as part of an HTTP message.  The term encompasses both header
 and trailer fields. Colloquially, the term "headers" has often been used to
 refer to HTTP header fields and trailer fields; this document uses "fields"
@@ -1227,20 +1268,20 @@ for generality.<a href="#section-1.1-3.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.3">HTTP field line:</dt>
-          <dd id="section-1.1-3.4">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.4">
   A name-value pair sent as part of an HTTP field section.  See Section 5 of
 <span>[<a href="#SEMANTICS" class="xref">SEMANTICS</a>]</span>.<a href="#section-1.1-3.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.5">HTTP field value:</dt>
-          <dd id="section-1.1-3.6">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.6">
   Data associated with a field name, composed from all field line values with
 that field name in that section, concatenated together and separated with
 commas.<a href="#section-1.1-3.6" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.7">Field section:</dt>
-          <dd id="section-1.1-3.8">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.8">
   An ordered collection of HTTP field lines associated with an HTTP message.  A
 field section can contain multiple field lines with the same name.  It can
 also contain duplicate field lines.  An HTTP message can include both header
@@ -1248,34 +1289,34 @@ field and trailer field sections.<a href="#section-1.1-3.8" class="pilcrow">¶</
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.9">Representation:</dt>
-          <dd id="section-1.1-3.10">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.10">
   An instruction that represents a field line, possibly by reference to the
 dynamic and static tables.<a href="#section-1.1-3.10" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.11">Encoder:</dt>
-          <dd id="section-1.1-3.12">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.12">
   An implementation that encodes field sections.<a href="#section-1.1-3.12" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.13">Decoder:</dt>
-          <dd id="section-1.1-3.14">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.14">
   An implementation that decodes encoded field sections.<a href="#section-1.1-3.14" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.15">Absolute Index:</dt>
-          <dd id="section-1.1-3.16">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.16">
   A unique index for each entry in the dynamic table.<a href="#section-1.1-3.16" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.17">Base:</dt>
-          <dd id="section-1.1-3.18">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.18">
   A reference point for relative and post-base indices.  Representations that
 reference dynamic table entries are relative to a Base.<a href="#section-1.1-3.18" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.1-3.19">Insert Count:</dt>
-          <dd id="section-1.1-3.20">
+          <dd style="margin-left: 1.5em" id="section-1.1-3.20">
   The total number of entries inserted in the dynamic table.<a href="#section-1.1-3.20" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -1292,18 +1333,18 @@ reference dynamic table entries are relative to a Base.<a href="#section-1.1-3.1
 following additional conventions:<a href="#section-1.2-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-1.2-2">
           <dt id="section-1.2-2.1">x (A)</dt>
-          <dd id="section-1.2-2.2">
+          <dd style="margin-left: 1.5em" id="section-1.2-2.2">
   Indicates that x is A bits long<a href="#section-1.2-2.2" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.2-2.3">x (A+)</dt>
-          <dd id="section-1.2-2.4">
+          <dd style="margin-left: 1.5em" id="section-1.2-2.4">
   Indicates that x uses the prefixed integer encoding defined in
 <a href="#prefixed-integers" class="xref">Section 4.1.1</a>, beginning with an A-bit prefix.<a href="#section-1.2-2.4" class="pilcrow">¶</a>
 </dd>
           <dd class="break"></dd>
 <dt id="section-1.2-2.5">x ...</dt>
-          <dd id="section-1.2-2.6">
+          <dd style="margin-left: 1.5em" id="section-1.2-2.6">
   Indicates that x is variable-length and extends to the end of the region.<a href="#section-1.2-2.6" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
@@ -1971,10 +2012,10 @@ literal; see <a href="#string-literals" class="xref">Section 4.1.2</a>.<a href="
             </figcaption></figure>
 </section>
 </div>
-<div id="insert-without-name-reference">
+<div id="insert-with-literal-name">
 <section id="section-4.3.3">
-          <h4 id="name-insert-without-name-referen">
-<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-insert-without-name-referen" class="section-name selfRef">Insert Without Name Reference</a>
+          <h4 id="name-insert-with-literal-name">
+<a href="#section-4.3.3" class="section-number selfRef">4.3.3. </a><a href="#name-insert-with-literal-name" class="section-name selfRef">Insert With Literal Name</a>
           </h4>
 <p id="section-4.3.3-1">An encoder adds an entry to the dynamic table where both the field name and the
 field value are represented as string literals using an instruction that starts
@@ -2409,14 +2450,14 @@ integer with a 3-bit prefix; see <a href="#prefixed-integers" class="xref">Secti
 encoded as an 8-bit prefix string literal; see <a href="#string-literals" class="xref">Section 4.1.2</a>.<a href="#section-4.5.5-4" class="pilcrow">¶</a></p>
 </section>
 </div>
-<div id="literal-field-line-without-name-reference">
+<div id="literal-field-line-with-literal-name">
 <section id="section-4.5.6">
-          <h4 id="name-literal-field-line-without-">
-<a href="#section-4.5.6" class="section-number selfRef">4.5.6. </a><a href="#name-literal-field-line-without-" class="section-name selfRef">Literal Field Line Without Name Reference</a>
+          <h4 id="name-literal-field-line-with-lit">
+<a href="#section-4.5.6" class="section-number selfRef">4.5.6. </a><a href="#name-literal-field-line-with-lit" class="section-name selfRef">Literal Field Line With Literal Name</a>
           </h4>
-<p id="section-4.5.6-1">The literal field line without name reference representation encodes a
+<p id="section-4.5.6-1">The literal field line with literal name representation encodes a
 field name and a field value as string literals.<a href="#section-4.5.6-1" class="pilcrow">¶</a></p>
-<span id="name-literal-field-line-without-n"></span><figure id="figure-17">
+<span id="name-literal-field-line-with-lite"></span><figure id="figure-17">
             <div class="artwork art-text alignLeft art-drawing" id="section-4.5.6-2.1">
 <pre>
      0   1   2   3   4   5   6   7
@@ -2432,7 +2473,7 @@ field name and a field value as string literals.<a href="#section-4.5.6-1" class
 </pre>
 </div>
 <figcaption><a href="#figure-17" class="selfRef">Figure 17</a>:
-<a href="#name-literal-field-line-without-n" class="selfRef">Literal Field Line Without Name Reference</a>
+<a href="#name-literal-field-line-with-lite" class="selfRef">Literal Field Line With Literal Name</a>
             </figcaption></figure>
 <p id="section-4.5.6-3">This representation begins with the '001' three-bit pattern.  The fourth bit is
 the 'N' bit as described in <a href="#literal-name-reference" class="xref">Section 4.5.4</a>.  The name follows,
@@ -2452,13 +2493,13 @@ represented as a 4-bit prefix string literal, then the value, represented as an
 <p id="section-5-1">QPACK defines two settings for the HTTP/3 SETTINGS frame:<a href="#section-5-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-5-2">
         <dt id="section-5-2.1">SETTINGS_QPACK_MAX_TABLE_CAPACITY (0x1):</dt>
-        <dd id="section-5-2.2">
+        <dd style="margin-left: 1.5em" id="section-5-2.2">
   The default value is zero.  See <a href="#header-table-dynamic" class="xref">Section 3.2</a> for usage.  This is
 the equivalent of the SETTINGS_HEADER_TABLE_SIZE from HTTP/2.<a href="#section-5-2.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-5-2.3">SETTINGS_QPACK_BLOCKED_STREAMS (0x7):</dt>
-        <dd id="section-5-2.4">
+        <dd style="margin-left: 1.5em" id="section-5-2.4">
   The default value is zero.  See <a href="#blocked-streams" class="xref">Section 2.1.2</a>.<a href="#section-5-2.4" class="pilcrow">¶</a>
 </dd>
       <dd class="break"></dd>
@@ -2474,19 +2515,19 @@ the equivalent of the SETTINGS_HEADER_TABLE_SIZE from HTTP/2.<a href="#section-5
 QPACK that prevent the stream or connection from continuing:<a href="#section-6-1" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-6-2">
         <dt id="section-6-2.1">QPACK_DECOMPRESSION_FAILED (0x200):</dt>
-        <dd id="section-6-2.2">
+        <dd style="margin-left: 1.5em" id="section-6-2.2">
   The decoder failed to interpret an encoded field section and is not able to
 continue decoding that field section.<a href="#section-6-2.2" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-6-2.3">QPACK_ENCODER_STREAM_ERROR (0x201):</dt>
-        <dd id="section-6-2.4">
+        <dd style="margin-left: 1.5em" id="section-6-2.4">
   The decoder failed to interpret an encoder instruction received on the
 encoder stream.<a href="#section-6-2.4" class="pilcrow">¶</a>
 </dd>
         <dd class="break"></dd>
 <dt id="section-6-2.5">QPACK_DECODER_STREAM_ERROR (0x202):</dt>
-        <dd id="section-6-2.6">
+        <dd style="margin-left: 1.5em" id="section-6-2.6">
   The encoder failed to interpret a decoder instruction received on the
 decoder stream.<a href="#section-6-2.6" class="pilcrow">¶</a>
 </dd>
@@ -2523,12 +2564,12 @@ do both, they can adaptively modify requests in order to confirm guesses about
 the dynamic table state. If a guess is compressed into a shorter length, the
 attacker can observe the encoded length and infer that the guess was correct.<a href="#section-7.1-2" class="pilcrow">¶</a></p>
 <p id="section-7.1-3">This is possible even over the Transport Layer Security Protocol (TLS, see
-<span>[<a href="#RFC5246" class="xref">RFC5246</a>]</span>), because while TLS provides confidentiality protection for
+<span>[<a href="#TLS" class="xref">TLS</a>]</span>), because while TLS provides confidentiality protection for
 content, it only provides a limited amount of protection for the length of that
 content.<a href="#section-7.1-3" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.1-4">
           <dt id="section-7.1-4.1">Note:</dt>
-          <dd id="section-7.1-4.2">
+          <dd style="margin-left: 1.5em" id="section-7.1-4.2">
   Padding schemes only provide limited protection against an attacker with these
 capabilities, potentially only forcing an increased number of guesses to learn
 the length associated with a given guess. Padding schemes also work directly
@@ -2601,7 +2642,7 @@ a field value to result in the field not being compared to the dynamic table
 entries in future messages, effectively preventing further guesses.<a href="#section-7.3-5" class="pilcrow">¶</a></p>
 <span class="break"></span><dl class="dlParallel" id="section-7.3-6">
           <dt id="section-7.3-6.1">Note:</dt>
-          <dd id="section-7.3-6.2">
+          <dd style="margin-left: 1.5em" id="section-7.3-6.2">
   Simply removing entries corresponding to the field from the dynamic table can
 be ineffectual if the attacker has a reliable way of causing values to be
 reinstalled. For example, a request to load an image in a web browser
@@ -2870,11 +2911,11 @@ are registered in the "HTTP/3 Error Code" registry established in <span>[<a href
 <dl class="references">
 <dt id="HTTP3">[HTTP3]</dt>
         <dd>
-<span class="refAuthor">Bishop, M., Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 3 (HTTP/3)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-http-latest</span>, <time datetime="2020-09-10" class="refDate">10 September 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-http-latest">https://tools.ietf.org/html/draft-ietf-quic-http-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Bishop, M., Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 3 (HTTP/3)"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-http-latest</span>, <time datetime="2020-10-12" class="refDate">12 October 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-http-latest">https://tools.ietf.org/html/draft-ietf-quic-http-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="QUIC-TRANSPORT">[QUIC-TRANSPORT]</dt>
         <dd>
-<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-09-10" class="refDate">10 September 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
+<span class="refAuthor">Iyengar, J., Ed.</span><span class="refAuthor"> and M. Thomson, Ed.</span>, <span class="refTitle">"QUIC: A UDP-Based Multiplexed and Secure Transport"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-quic-transport-latest</span>, <time datetime="2020-10-12" class="refDate">12 October 2020</time>, <span>&lt;<a href="https://tools.ietf.org/html/draft-ietf-quic-transport-latest">https://tools.ietf.org/html/draft-ietf-quic-transport-latest</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC2119">[RFC2119]</dt>
         <dd>
@@ -2890,7 +2931,7 @@ are registered in the "HTTP/3 Error Code" registry established in <span>[<a href
 <dd class="break"></dd>
 <dt id="SEMANTICS">[SEMANTICS]</dt>
       <dd>
-<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-11</span>, <time datetime="2020-08-27" class="refDate">27 August 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-11.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-11.txt</a>&gt;</span>. </dd>
+<span class="refAuthor">Fielding, R.</span><span class="refAuthor">, Nottingham, M.</span><span class="refAuthor">, and J. Reschke</span>, <span class="refTitle">"HTTP Semantics"</span>, <span class="refContent">Work in Progress</span>, <span class="seriesInfo">Internet-Draft, draft-ietf-httpbis-semantics-12</span>, <time datetime="2020-10-02" class="refDate">2 October 2020</time>, <span>&lt;<a href="http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-12.txt">http://www.ietf.org/internet-drafts/draft-ietf-httpbis-semantics-12.txt</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -2915,17 +2956,17 @@ are registered in the "HTTP/3 Error Code" registry established in <span>[<a href
         <dd>
 <span class="refAuthor">Scott, G.</span>, <span class="refTitle">"Guide for Internet Standards Writers"</span>, <span class="seriesInfo">BCP 22</span>, <span class="seriesInfo">RFC 2360</span>, <span class="seriesInfo">DOI 10.17487/RFC2360</span>, <time datetime="1998-06" class="refDate">June 1998</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc2360">https://www.rfc-editor.org/info/rfc2360</a>&gt;</span>. </dd>
 <dd class="break"></dd>
-<dt id="RFC5246">[RFC5246]</dt>
-        <dd>
-<span class="refAuthor">Dierks, T.</span><span class="refAuthor"> and E. Rescorla</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.2"</span>, <span class="seriesInfo">RFC 5246</span>, <span class="seriesInfo">DOI 10.17487/RFC5246</span>, <time datetime="2008-08" class="refDate">August 2008</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc5246">https://www.rfc-editor.org/info/rfc5246</a>&gt;</span>. </dd>
-<dd class="break"></dd>
 <dt id="RFC6454">[RFC6454]</dt>
         <dd>
 <span class="refAuthor">Barth, A.</span>, <span class="refTitle">"The Web Origin Concept"</span>, <span class="seriesInfo">RFC 6454</span>, <span class="seriesInfo">DOI 10.17487/RFC6454</span>, <time datetime="2011-12" class="refDate">December 2011</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc6454">https://www.rfc-editor.org/info/rfc6454</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 <dt id="RFC7540">[RFC7540]</dt>
-      <dd>
+        <dd>
 <span class="refAuthor">Belshe, M.</span><span class="refAuthor">, Peon, R.</span><span class="refAuthor">, and M. Thomson, Ed.</span>, <span class="refTitle">"Hypertext Transfer Protocol Version 2 (HTTP/2)"</span>, <span class="seriesInfo">RFC 7540</span>, <span class="seriesInfo">DOI 10.17487/RFC7540</span>, <time datetime="2015-05" class="refDate">May 2015</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc7540">https://www.rfc-editor.org/info/rfc7540</a>&gt;</span>. </dd>
+<dd class="break"></dd>
+<dt id="TLS">[TLS]</dt>
+      <dd>
+<span class="refAuthor">Rescorla, E.</span>, <span class="refTitle">"The Transport Layer Security (TLS) Protocol Version 1.3"</span>, <span class="seriesInfo">RFC 8446</span>, <span class="seriesInfo">DOI 10.17487/RFC8446</span>, <time datetime="2018-08" class="refDate">August 2018</time>, <span>&lt;<a href="https://www.rfc-editor.org/info/rfc8446">https://www.rfc-editor.org/info/rfc8446</a>&gt;</span>. </dd>
 <dd class="break"></dd>
 </dl>
 </section>
@@ -3450,14 +3491,227 @@ the smallest number of bytes.<a href="#section-appendix.a-1" class="pilcrow">¶<
       </table>
 </section>
 </div>
-<div id="sample-one-pass-encoding-algorithm">
+<div id="encoding-and-decoding-examples">
 <section id="section-appendix.b">
-      <h2 id="name-sample-one-pass-encoding-al">
-<a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-sample-one-pass-encoding-al" class="section-name selfRef">Sample One Pass Encoding Algorithm</a>
+      <h2 id="name-encoding-and-decoding-examp">
+<a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-encoding-and-decoding-examp" class="section-name selfRef">Encoding and Decoding Examples</a>
       </h2>
-<p id="section-appendix.b-1">Pseudo-code for single pass encoding, excluding handling of duplicates,
-non-blocking mode, available encoder stream flow control and reference tracking.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
-<div class="artwork art-text alignLeft" id="section-appendix.b-2">
+<p id="section-appendix.b-1">The following examples represent a series of exchanges between an encoder and a
+decoder.  The exchanges are designed to exercise most QPACK instructions, and
+highlight potentially common patterns and their impact on dynamic table state.
+The encoder sends three encoded field sections containing one field line each,
+as wells as two speculative inserts that are not referenced.<a href="#section-appendix.b-1" class="pilcrow">¶</a></p>
+<p id="section-appendix.b-2">The state of the encoder's dynamic table is shown, along with its
+current size.  Each entry is shown with the Absolute Index of the entry (Abs),
+the current number of outstanding encoded field sections with references to that
+entry (Ref), along with the name and value.  Entries above the 'acknowledged'
+line have been acknowledged by the decoder.<a href="#section-appendix.b-2" class="pilcrow">¶</a></p>
+<div id="literal-field-line-with-name-reference">
+<section id="section-b.1">
+        <h2 id="name-literal-field-line-with-name-">
+<a href="#section-b.1" class="section-number selfRef">B.1. </a><a href="#name-literal-field-line-with-name-" class="section-name selfRef">Literal Field Line With Name Reference</a>
+        </h2>
+<p id="section-b.1-1">The encoder sends an encoded field section containing a literal representation
+of a field with a static name reference.<a href="#section-b.1-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-b.1-2">
+<pre>
+Data                | Interpretation
+                             | Encoder's Dynamic Table
+
+Stream: 0
+0000                | Required Insert Count = 0, Base = 0
+510b 2f69 6e64 6578 | Literal Field Line with Name Reference
+2e68 746d 6c        |  Static Table, Index=1
+                    |  (:path=/index.html)
+
+                              Abs Ref Name        Value
+                              ^-- acknowledged --^
+                              Size=0
+</pre><a href="#section-b.1-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="dynamic-table">
+<section id="section-b.2">
+        <h2 id="name-dynamic-table-2">
+<a href="#section-b.2" class="section-number selfRef">B.2. </a><a href="#name-dynamic-table-2" class="section-name selfRef">Dynamic Table</a>
+        </h2>
+<p id="section-b.2-1">The encoder sets the dynamic table capacity, inserts a header with a dynamic
+name reference, then sends a potentially blocking, encoded field section
+referencing this new entry.  The decoder acknowledges processing the encoded
+field section, which implicitly acknowledges all dynamic table insertions up to
+the Required Insert Count.<a href="#section-b.2-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-b.2-2">
+<pre>
+Stream: Encoder
+3fbd01              | Set Dynamic Table Capacity=220
+c00f 7777 772e 6578 | Insert With Name Reference
+616d 706c 652e 636f | Static Table, Index=0
+6d                  |  (:authority=www.example.com)
+c10c 2f73 616d 706c | Insert With Name Reference
+652f 7061 7468      |  Static Table, Index=1
+                    |  (:path=/sample/path)
+
+                              Abs Ref Name        Value
+                              ^-- acknowledged --^
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                              Size=106
+
+Stream: 4
+0381                | Required Insert Count = 2, Base = 0
+10                  | Indexed Field Line With Post-Base Index
+                    |  Absolute Index = Base(0) + Index(0) + 1 = 1
+                    |  (:authority=www.example.com)
+11                  | Indexed Field Line With Post-Base Index
+                    |  Absolute Index = Base(0) + Index(1) + 1 = 2
+                    |  (:path=/sample/path)
+
+                              Abs Ref Name        Value
+                              ^-- acknowledged --^
+                               1   1  :authority  www.example.com
+                               2   1  :path       /sample/path
+                              Size=106
+
+Stream: Decoder
+84                  | Section Acknowledgement (stream=4)
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                              ^-- acknowledged --^
+                              Size=106
+</pre><a href="#section-b.2-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="speculative-insert">
+<section id="section-b.3">
+        <h2 id="name-speculative-insert">
+<a href="#section-b.3" class="section-number selfRef">B.3. </a><a href="#name-speculative-insert" class="section-name selfRef">Speculative Insert</a>
+        </h2>
+<p id="section-b.3-1">The encoder inserts a header into the dynamic table with a literal name.
+The decoder acknowledges receipt of the entry.  The encoder does not send
+any encoded field sections.<a href="#section-b.3-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-b.3-2">
+<pre>
+Stream: Encoder
+4a63 7573 746f 6d2d | Insert With Literal Name
+6b65 790c 6375 7374 |  (custom-key=custom-value)
+6f6d 2d76 616c 7565 |
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                              ^-- acknowledged --^
+                               3   0  custom-key  custom-value
+                              Size=160
+
+Stream: Decoder
+01                  | Insert Count Increment (1)
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                               3   0  custom-key  custom-value
+                              ^-- acknowledged --^
+                              Size=160
+
+</pre><a href="#section-b.3-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="duplicate-instruction-stream-cancellation">
+<section id="section-b.4">
+        <h2 id="name-duplicate-instruction-strea">
+<a href="#section-b.4" class="section-number selfRef">B.4. </a><a href="#name-duplicate-instruction-strea" class="section-name selfRef">Duplicate Instruction, Stream Cancellation</a>
+        </h2>
+<p id="section-b.4-1">The encoder duplicates an existing entry in the dynamic table, then sends an
+encoded field section referencing the dynamic table entries including the
+duplicated entry.  The decoder notifies the encoder that the encoded field
+section was not processed by sending a stream cancellation.<a href="#section-b.4-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-b.4-2">
+<pre>
+Stream: Encoder
+02                  | Duplicate (Relative Index=2)
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                               3   0  custom-key  custom-value
+                              ^-- acknowledged --^
+                               4   0  :authority  www.example.com
+                              Size=217
+
+Stream: 8
+0500                | Required Insert Count = 4, Base = 4
+80                  | Indexed Field Line, Dynamic Table
+                    |  Absolute Index = Base(4) - Index(0) = 4
+                    |  (:authority=www.example.com)
+c1                  | Indexed Field Line, Static Table Index = 1
+                    |  (:path=/)
+81                  | Indexed Field Line, Dynamic Table
+                    |  Absolute Index = Base(4) - Index(1) = 3
+                    |  (custom-key=custom-value)
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                               3   1  custom-key  custom-value
+                              ^-- acknowledged --^
+                               4   1  :authority  www.example.com
+                              Size=217
+
+Stream: Decoder
+48                  | Stream Cancellation (Stream=8)
+
+                              Abs Ref Name        Value
+                               1   0  :authority  www.example.com
+                               2   0  :path       /sample/path
+                               3   0  custom-key  custom-value
+                              ^-- acknowledged --^
+                               4   0  :authority  www.example.com
+                              Size=215
+
+</pre><a href="#section-b.4-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+<div id="dynamic-table-insert-eviction">
+<section id="section-b.5">
+        <h2 id="name-dynamic-table-insert-evicti">
+<a href="#section-b.5" class="section-number selfRef">B.5. </a><a href="#name-dynamic-table-insert-evicti" class="section-name selfRef">Dynamic Table Insert, Eviction</a>
+        </h2>
+<p id="section-b.5-1">The encoder inserts another header into the dynamic table, which evicts the
+oldest entry.  The encoder does not send any encoded field sections.<a href="#section-b.5-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-b.5-2">
+<pre>
+Stream: Encoder
+810d 6375 7374 6f6d | Insert With Name Reference
+2d76 616c 7565 32   |  Dynamic Table, Absolute Index=2
+                    |  (custom-key=custom-value2)
+
+                              Abs Ref Name        Value
+                               2   0  :path       /sample/path
+                               3   0  custom-key  custom-value
+                              ^-- acknowledged --^
+                               4   0  :authority  www.example.com
+                               5   0  custom-key  custom-value2
+                              Size=215
+</pre><a href="#section-b.5-2" class="pilcrow">¶</a>
+</div>
+</section>
+</div>
+</section>
+</div>
+<div id="sample-one-pass-encoding-algorithm">
+<section id="section-appendix.c">
+      <h2 id="name-sample-one-pass-encoding-al">
+<a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-sample-one-pass-encoding-al" class="section-name selfRef">Sample One Pass Encoding Algorithm</a>
+      </h2>
+<p id="section-appendix.c-1">Pseudo-code for single pass encoding, excluding handling of duplicates,
+non-blocking mode, available encoder stream flow control and reference tracking.<a href="#section-appendix.c-1" class="pilcrow">¶</a></p>
+<div class="artwork art-text alignLeft" id="section-appendix.c-2">
 <pre>
 base = dynamicTable.getInsertCount()
 requiredInsertCount = 0
@@ -3514,234 +3768,242 @@ else:
                   requiredInsertCount  - base - 1, 7)
 
 return encoderBuffer, prefixBuffer + streamBuffer
-</pre><a href="#section-appendix.b-2" class="pilcrow">¶</a>
+</pre><a href="#section-appendix.c-2" class="pilcrow">¶</a>
 </div>
 </section>
 </div>
 <div id="change-log">
-<section id="section-appendix.c">
+<section id="section-appendix.d">
       <h2 id="name-change-log">
-<a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
+<a href="#section-appendix.d" class="section-number selfRef">Appendix D. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="ulEmpty normal">
-<li class="ulEmpty normal" id="section-appendix.c-1.1">
+<ul class="normal ulEmpty">
+<li class="normal ulEmpty" id="section-appendix.d-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
-final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
+final version of this document.<a href="#section-appendix.d-1.1" class="pilcrow">¶</a>
 </li>
       </ul>
-<div id="since-draft-ietf-quic-qpack-16">
-<section id="section-c.1">
+<div id="since-draft-ietf-quic-qpack-17">
+<section id="section-d.1">
         <h2 id="name-since-draft-ietf-quic-qpack">
-<a href="#section-c.1" class="section-number selfRef">C.1. </a><a href="#name-since-draft-ietf-quic-qpack" class="section-name selfRef">Since draft-ietf-quic-qpack-16</a>
+<a href="#section-d.1" class="section-number selfRef">D.1. </a><a href="#name-since-draft-ietf-quic-qpack" class="section-name selfRef">Since draft-ietf-quic-qpack-17</a>
         </h2>
-<p id="section-c.1-1">Editorial changes only<a href="#section-c.1-1" class="pilcrow">¶</a></p>
+<p id="section-d.1-1">Editorial changes only<a href="#section-d.1-1" class="pilcrow">¶</a></p>
+</section>
+</div>
+<div id="since-draft-ietf-quic-qpack-16">
+<section id="section-d.2">
+        <h2 id="name-since-draft-ietf-quic-qpack-">
+<a href="#section-d.2" class="section-number selfRef">D.2. </a><a href="#name-since-draft-ietf-quic-qpack-" class="section-name selfRef">Since draft-ietf-quic-qpack-16</a>
+        </h2>
+<p id="section-d.2-1">Editorial changes only<a href="#section-d.2-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-15">
-<section id="section-c.2">
-        <h2 id="name-since-draft-ietf-quic-qpack-">
-<a href="#section-c.2" class="section-number selfRef">C.2. </a><a href="#name-since-draft-ietf-quic-qpack-" class="section-name selfRef">Since draft-ietf-quic-qpack-15</a>
+<section id="section-d.3">
+        <h2 id="name-since-draft-ietf-quic-qpack-1">
+<a href="#section-d.3" class="section-number selfRef">D.3. </a><a href="#name-since-draft-ietf-quic-qpack-1" class="section-name selfRef">Since draft-ietf-quic-qpack-15</a>
         </h2>
-<p id="section-c.2-1">No changes<a href="#section-c.2-1" class="pilcrow">¶</a></p>
+<p id="section-d.3-1">No changes<a href="#section-d.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-14">
-<section id="section-c.3">
-        <h2 id="name-since-draft-ietf-quic-qpack-1">
-<a href="#section-c.3" class="section-number selfRef">C.3. </a><a href="#name-since-draft-ietf-quic-qpack-1" class="section-name selfRef">Since draft-ietf-quic-qpack-14</a>
+<section id="section-d.4">
+        <h2 id="name-since-draft-ietf-quic-qpack-14">
+<a href="#section-d.4" class="section-number selfRef">D.4. </a><a href="#name-since-draft-ietf-quic-qpack-14" class="section-name selfRef">Since draft-ietf-quic-qpack-14</a>
         </h2>
-<p id="section-c.3-1">Added security considerations<a href="#section-c.3-1" class="pilcrow">¶</a></p>
+<p id="section-d.4-1">Added security considerations<a href="#section-d.4-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-13">
-<section id="section-c.4">
+<section id="section-d.5">
         <h2 id="name-since-draft-ietf-quic-qpack-13">
-<a href="#section-c.4" class="section-number selfRef">C.4. </a><a href="#name-since-draft-ietf-quic-qpack-13" class="section-name selfRef">Since draft-ietf-quic-qpack-13</a>
+<a href="#section-d.5" class="section-number selfRef">D.5. </a><a href="#name-since-draft-ietf-quic-qpack-13" class="section-name selfRef">Since draft-ietf-quic-qpack-13</a>
         </h2>
-<p id="section-c.4-1">No changes<a href="#section-c.4-1" class="pilcrow">¶</a></p>
+<p id="section-d.5-1">No changes<a href="#section-d.5-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-12">
-<section id="section-c.5">
+<section id="section-d.6">
         <h2 id="name-since-draft-ietf-quic-qpack-12">
-<a href="#section-c.5" class="section-number selfRef">C.5. </a><a href="#name-since-draft-ietf-quic-qpack-12" class="section-name selfRef">Since draft-ietf-quic-qpack-12</a>
+<a href="#section-d.6" class="section-number selfRef">D.6. </a><a href="#name-since-draft-ietf-quic-qpack-12" class="section-name selfRef">Since draft-ietf-quic-qpack-12</a>
         </h2>
-<p id="section-c.5-1">Editorial changes only<a href="#section-c.5-1" class="pilcrow">¶</a></p>
+<p id="section-d.6-1">Editorial changes only<a href="#section-d.6-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-11">
-<section id="section-c.6">
+<section id="section-d.7">
         <h2 id="name-since-draft-ietf-quic-qpack-11">
-<a href="#section-c.6" class="section-number selfRef">C.6. </a><a href="#name-since-draft-ietf-quic-qpack-11" class="section-name selfRef">Since draft-ietf-quic-qpack-11</a>
+<a href="#section-d.7" class="section-number selfRef">D.7. </a><a href="#name-since-draft-ietf-quic-qpack-11" class="section-name selfRef">Since draft-ietf-quic-qpack-11</a>
         </h2>
-<p id="section-c.6-1">Editorial changes only<a href="#section-c.6-1" class="pilcrow">¶</a></p>
+<p id="section-d.7-1">Editorial changes only<a href="#section-d.7-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-10">
-<section id="section-c.7">
+<section id="section-d.8">
         <h2 id="name-since-draft-ietf-quic-qpack-10">
-<a href="#section-c.7" class="section-number selfRef">C.7. </a><a href="#name-since-draft-ietf-quic-qpack-10" class="section-name selfRef">Since draft-ietf-quic-qpack-10</a>
+<a href="#section-d.8" class="section-number selfRef">D.8. </a><a href="#name-since-draft-ietf-quic-qpack-10" class="section-name selfRef">Since draft-ietf-quic-qpack-10</a>
         </h2>
-<p id="section-c.7-1">Editorial changes only<a href="#section-c.7-1" class="pilcrow">¶</a></p>
+<p id="section-d.8-1">Editorial changes only<a href="#section-d.8-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-09">
-<section id="section-c.8">
+<section id="section-d.9">
         <h2 id="name-since-draft-ietf-quic-qpack-0">
-<a href="#section-c.8" class="section-number selfRef">C.8. </a><a href="#name-since-draft-ietf-quic-qpack-0" class="section-name selfRef">Since draft-ietf-quic-qpack-09</a>
+<a href="#section-d.9" class="section-number selfRef">D.9. </a><a href="#name-since-draft-ietf-quic-qpack-0" class="section-name selfRef">Since draft-ietf-quic-qpack-09</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.8-1.1">Decoders MUST emit Header Acknowledgements (#2939)<a href="#section-c.8-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.9-1.1">Decoders MUST emit Header Acknowledgements (#2939)<a href="#section-d.9-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.8-1.2">Updated error code for multiple encoder or decoder streams (#2970)<a href="#section-c.8-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.9-1.2">Updated error code for multiple encoder or decoder streams (#2970)<a href="#section-d.9-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.8-1.3">Added explicit defaults for new SETTINGS (#2974)<a href="#section-c.8-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.9-1.3">Added explicit defaults for new SETTINGS (#2974)<a href="#section-d.9-1.3" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-08">
-<section id="section-c.9">
+<section id="section-d.10">
         <h2 id="name-since-draft-ietf-quic-qpack-08">
-<a href="#section-c.9" class="section-number selfRef">C.9. </a><a href="#name-since-draft-ietf-quic-qpack-08" class="section-name selfRef">Since draft-ietf-quic-qpack-08</a>
+<a href="#section-d.10" class="section-number selfRef">D.10. </a><a href="#name-since-draft-ietf-quic-qpack-08" class="section-name selfRef">Since draft-ietf-quic-qpack-08</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.9-1.1">Endpoints are permitted to create encoder and decoder streams even if they
-can't use them (#2100, #2529)<a href="#section-c.9-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.10-1.1">Endpoints are permitted to create encoder and decoder streams even if they
+can't use them (#2100, #2529)<a href="#section-d.10-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.9-1.2">Maximum values for settings removed (#2766, #2767)<a href="#section-c.9-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.10-1.2">Maximum values for settings removed (#2766, #2767)<a href="#section-d.10-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-06">
-<section id="section-c.10">
+<section id="section-d.11">
         <h2 id="name-since-draft-ietf-quic-qpack-06">
-<a href="#section-c.10" class="section-number selfRef">C.10. </a><a href="#name-since-draft-ietf-quic-qpack-06" class="section-name selfRef">Since draft-ietf-quic-qpack-06</a>
+<a href="#section-d.11" class="section-number selfRef">D.11. </a><a href="#name-since-draft-ietf-quic-qpack-06" class="section-name selfRef">Since draft-ietf-quic-qpack-06</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.10-1.1">Clarify initial dynamic table capacity maximums (#2276, #2330, #2330)<a href="#section-c.10-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.11-1.1">Clarify initial dynamic table capacity maximums (#2276, #2330, #2330)<a href="#section-d.11-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-05">
-<section id="section-c.11">
+<section id="section-d.12">
         <h2 id="name-since-draft-ietf-quic-qpack-05">
-<a href="#section-c.11" class="section-number selfRef">C.11. </a><a href="#name-since-draft-ietf-quic-qpack-05" class="section-name selfRef">Since draft-ietf-quic-qpack-05</a>
+<a href="#section-d.12" class="section-number selfRef">D.12. </a><a href="#name-since-draft-ietf-quic-qpack-05" class="section-name selfRef">Since draft-ietf-quic-qpack-05</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.11-1.1">Introduced the terms dynamic table capacity and maximum dynamic table
-capacity.<a href="#section-c.11-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.12-1.1">Introduced the terms dynamic table capacity and maximum dynamic table
+capacity.<a href="#section-d.12-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.11-1.2">Renamed SETTINGS_HEADER_TABLE_SIZE to SETTINGS_QPACK_MAX_TABLE_CAPACITY.<a href="#section-c.11-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.12-1.2">Renamed SETTINGS_HEADER_TABLE_SIZE to SETTINGS_QPACK_MAX_TABLE_CAPACITY.<a href="#section-d.12-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-04">
-<section id="section-c.12">
+<section id="section-d.13">
         <h2 id="name-since-draft-ietf-quic-qpack-04">
-<a href="#section-c.12" class="section-number selfRef">C.12. </a><a href="#name-since-draft-ietf-quic-qpack-04" class="section-name selfRef">Since draft-ietf-quic-qpack-04</a>
+<a href="#section-d.13" class="section-number selfRef">D.13. </a><a href="#name-since-draft-ietf-quic-qpack-04" class="section-name selfRef">Since draft-ietf-quic-qpack-04</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.12-1.1">Changed calculation of Delta Base Index to avoid an illegal value (#2002,
-#2005)<a href="#section-c.12-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.13-1.1">Changed calculation of Delta Base Index to avoid an illegal value (#2002,
+#2005)<a href="#section-d.13-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-03">
-<section id="section-c.13">
+<section id="section-d.14">
         <h2 id="name-since-draft-ietf-quic-qpack-03">
-<a href="#section-c.13" class="section-number selfRef">C.13. </a><a href="#name-since-draft-ietf-quic-qpack-03" class="section-name selfRef">Since draft-ietf-quic-qpack-03</a>
+<a href="#section-d.14" class="section-number selfRef">D.14. </a><a href="#name-since-draft-ietf-quic-qpack-03" class="section-name selfRef">Since draft-ietf-quic-qpack-03</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.13-1.1">Change HTTP settings defaults (#2038)<a href="#section-c.13-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.14-1.1">Change HTTP settings defaults (#2038)<a href="#section-d.14-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.13-1.2">Substantial editorial reorganization<a href="#section-c.13-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.14-1.2">Substantial editorial reorganization<a href="#section-d.14-1.2" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-02">
-<section id="section-c.14">
+<section id="section-d.15">
         <h2 id="name-since-draft-ietf-quic-qpack-02">
-<a href="#section-c.14" class="section-number selfRef">C.14. </a><a href="#name-since-draft-ietf-quic-qpack-02" class="section-name selfRef">Since draft-ietf-quic-qpack-02</a>
+<a href="#section-d.15" class="section-number selfRef">D.15. </a><a href="#name-since-draft-ietf-quic-qpack-02" class="section-name selfRef">Since draft-ietf-quic-qpack-02</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.14-1.1">Largest Reference encoded modulo MaxEntries (#1763)<a href="#section-c.14-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.15-1.1">Largest Reference encoded modulo MaxEntries (#1763)<a href="#section-d.15-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.2">New Static Table (#1355)<a href="#section-c.14-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.2">New Static Table (#1355)<a href="#section-d.15-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.3">Table Size Update with Insert Count=0 is a connection error (#1762)<a href="#section-c.14-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.3">Table Size Update with Insert Count=0 is a connection error (#1762)<a href="#section-d.15-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.4">Stream Cancellations are optional when SETTINGS_HEADER_TABLE_SIZE=0 (#1761)<a href="#section-c.14-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.4">Stream Cancellations are optional when SETTINGS_HEADER_TABLE_SIZE=0 (#1761)<a href="#section-d.15-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.5">Implementations must handle 62 bit integers (#1760)<a href="#section-c.14-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.5">Implementations must handle 62 bit integers (#1760)<a href="#section-d.15-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.6">Different error types for each QPACK stream, other changes to error
-handling (#1726)<a href="#section-c.14-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.6">Different error types for each QPACK stream, other changes to error
+handling (#1726)<a href="#section-d.15-1.6" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.7">Preserve header field order (#1725)<a href="#section-c.14-1.7" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.7">Preserve header field order (#1725)<a href="#section-d.15-1.7" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.14-1.8">Initial table size is the maximum permitted when table is first usable (#1642)<a href="#section-c.14-1.8" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.15-1.8">Initial table size is the maximum permitted when table is first usable (#1642)<a href="#section-d.15-1.8" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-01">
-<section id="section-c.15">
+<section id="section-d.16">
         <h2 id="name-since-draft-ietf-quic-qpack-01">
-<a href="#section-c.15" class="section-number selfRef">C.15. </a><a href="#name-since-draft-ietf-quic-qpack-01" class="section-name selfRef">Since draft-ietf-quic-qpack-01</a>
+<a href="#section-d.16" class="section-number selfRef">D.16. </a><a href="#name-since-draft-ietf-quic-qpack-01" class="section-name selfRef">Since draft-ietf-quic-qpack-01</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.15-1.1">Only header blocks that reference the dynamic table are acknowledged (#1603,
-#1605)<a href="#section-c.15-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.16-1.1">Only header blocks that reference the dynamic table are acknowledged (#1603,
+#1605)<a href="#section-d.16-1.1" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qpack-00">
-<section id="section-c.16">
+<section id="section-d.17">
         <h2 id="name-since-draft-ietf-quic-qpack-00">
-<a href="#section-c.16" class="section-number selfRef">C.16. </a><a href="#name-since-draft-ietf-quic-qpack-00" class="section-name selfRef">Since draft-ietf-quic-qpack-00</a>
+<a href="#section-d.17" class="section-number selfRef">D.17. </a><a href="#name-since-draft-ietf-quic-qpack-00" class="section-name selfRef">Since draft-ietf-quic-qpack-00</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.16-1.1">Renumbered instructions for consistency (#1471, #1472)<a href="#section-c.16-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.17-1.1">Renumbered instructions for consistency (#1471, #1472)<a href="#section-d.17-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.16-1.2">Decoder is allowed to validate largest reference (#1404, #1469)<a href="#section-c.16-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.17-1.2">Decoder is allowed to validate largest reference (#1404, #1469)<a href="#section-d.17-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.16-1.3">Header block acknowledgments also acknowledge the associated largest reference
-(#1370, #1400)<a href="#section-c.16-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.17-1.3">Header block acknowledgments also acknowledge the associated largest reference
+(#1370, #1400)<a href="#section-d.17-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.16-1.4">Added an acknowledgment for unread streams (#1371, #1400)<a href="#section-c.16-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.17-1.4">Added an acknowledgment for unread streams (#1371, #1400)<a href="#section-d.17-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.16-1.5">Removed framing from encoder stream (#1361,#1467)<a href="#section-c.16-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.17-1.5">Removed framing from encoder stream (#1361,#1467)<a href="#section-d.17-1.5" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.16-1.6">Control streams use typed unidirectional streams rather than fixed stream IDs
-(#910,#1359)<a href="#section-c.16-1.6" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.17-1.6">Control streams use typed unidirectional streams rather than fixed stream IDs
+(#910,#1359)<a href="#section-d.17-1.6" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
 </div>
 <div id="since-draft-ietf-quic-qcram-00">
-<section id="section-c.17">
+<section id="section-d.18">
         <h2 id="name-since-draft-ietf-quic-qcram">
-<a href="#section-c.17" class="section-number selfRef">C.17. </a><a href="#name-since-draft-ietf-quic-qcram" class="section-name selfRef">Since draft-ietf-quic-qcram-00</a>
+<a href="#section-d.18" class="section-number selfRef">D.18. </a><a href="#name-since-draft-ietf-quic-qcram" class="section-name selfRef">Since draft-ietf-quic-qcram-00</a>
         </h2>
 <ul class="normal">
-<li class="normal" id="section-c.17-1.1">Separate instruction sets for table updates and header blocks (#1235, #1142,
-#1141)<a href="#section-c.17-1.1" class="pilcrow">¶</a>
+<li class="normal" id="section-d.18-1.1">Separate instruction sets for table updates and header blocks (#1235, #1142,
+#1141)<a href="#section-d.18-1.1" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.17-1.2">Reworked indexing scheme (#1176, #1145, #1136, #1130, #1125, #1314)<a href="#section-c.17-1.2" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.18-1.2">Reworked indexing scheme (#1176, #1145, #1136, #1130, #1125, #1314)<a href="#section-d.18-1.2" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.17-1.3">Added mechanisms that support one-pass encoding (#1138, #1320)<a href="#section-c.17-1.3" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.18-1.3">Added mechanisms that support one-pass encoding (#1138, #1320)<a href="#section-d.18-1.3" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.17-1.4">Added a setting to control the number of blocked decoders (#238, #1140, #1143)<a href="#section-c.17-1.4" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.18-1.4">Added a setting to control the number of blocked decoders (#238, #1140, #1143)<a href="#section-d.18-1.4" class="pilcrow">¶</a>
 </li>
-          <li class="normal" id="section-c.17-1.5">Moved table updates and acknowledgments to dedicated streams (#1121, #1122,
-#1238)<a href="#section-c.17-1.5" class="pilcrow">¶</a>
+          <li class="normal" id="section-d.18-1.5">Moved table updates and acknowledgments to dedicated streams (#1121, #1122,
+#1238)<a href="#section-d.18-1.5" class="pilcrow">¶</a>
 </li>
         </ul>
 </section>
@@ -3749,46 +4011,46 @@ handling (#1726)<a href="#section-c.14-1.6" class="pilcrow">¶</a>
 </section>
 </div>
 <div id="acknowledgments">
-<section id="section-appendix.d">
+<section id="section-appendix.e">
       <h2 id="name-acknowledgments">
 <a href="#name-acknowledgments" class="section-name selfRef">Acknowledgments</a>
       </h2>
-<p id="section-appendix.d-1">The IETF QUIC Working Group received an enormous amount of support from many
-people.<a href="#section-appendix.d-1" class="pilcrow">¶</a></p>
-<p id="section-appendix.d-2">The compression design team did substantial work exploring the problem space and
+<p id="section-appendix.e-1">The IETF QUIC Working Group received an enormous amount of support from many
+people.<a href="#section-appendix.e-1" class="pilcrow">¶</a></p>
+<p id="section-appendix.e-2">The compression design team did substantial work exploring the problem space and
 influencing the initial draft.  The contributions of design team members Roberto
-Peon, Martin Thomson, and Dmitri Tikhonov are gratefully acknowledged.<a href="#section-appendix.d-2" class="pilcrow">¶</a></p>
-<p id="section-appendix.d-3">The following people also provided substantial contributions to this document:<a href="#section-appendix.d-3" class="pilcrow">¶</a></p>
+Peon, Martin Thomson, and Dmitri Tikhonov are gratefully acknowledged.<a href="#section-appendix.e-2" class="pilcrow">¶</a></p>
+<p id="section-appendix.e-3">The following people also provided substantial contributions to this document:<a href="#section-appendix.e-3" class="pilcrow">¶</a></p>
 <ul class="normal">
-<li class="normal" id="section-appendix.d-4.1">Bence Beky<a href="#section-appendix.d-4.1" class="pilcrow">¶</a>
+<li class="normal" id="section-appendix.e-4.1">Bence Beky<a href="#section-appendix.e-4.1" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.2">Alessandro Ghedini<a href="#section-appendix.d-4.2" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.2">Alessandro Ghedini<a href="#section-appendix.e-4.2" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.3">Ryan Hamilton<a href="#section-appendix.d-4.3" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.3">Ryan Hamilton<a href="#section-appendix.e-4.3" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.4">Robin Marx<a href="#section-appendix.d-4.4" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.4">Robin Marx<a href="#section-appendix.e-4.4" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.5">Patrick McManus<a href="#section-appendix.d-4.5" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.5">Patrick McManus<a href="#section-appendix.e-4.5" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.6">
-          <p id="section-appendix.d-4.6.1">        <span class="contact-name"><span class="non-ascii">奥 一穂</span> (<span class="ascii">Kazuho Oku</span>)</span><a href="#section-appendix.d-4.6.1" class="pilcrow">¶</a></p>
+        <li class="normal" id="section-appendix.e-4.6">
+          <p id="section-appendix.e-4.6.1">        <span class="contact-name"><span class="non-ascii">奥 一穂</span> (<span class="ascii">Kazuho Oku</span>)</span><a href="#section-appendix.e-4.6.1" class="pilcrow">¶</a></p>
 </li>
-        <li class="normal" id="section-appendix.d-4.7">Lucas Pardue<a href="#section-appendix.d-4.7" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.7">Lucas Pardue<a href="#section-appendix.e-4.7" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.8">Biren Roy<a href="#section-appendix.d-4.8" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.8">Biren Roy<a href="#section-appendix.e-4.8" class="pilcrow">¶</a>
 </li>
-        <li class="normal" id="section-appendix.d-4.9">Ian Swett<a href="#section-appendix.d-4.9" class="pilcrow">¶</a>
+        <li class="normal" id="section-appendix.e-4.9">Ian Swett<a href="#section-appendix.e-4.9" class="pilcrow">¶</a>
 </li>
       </ul>
-<p id="section-appendix.d-5">This draft draws heavily on the text of <span>[<a href="#RFC7541" class="xref">RFC7541</a>]</span>.  The indirect input of
-those authors is also gratefully acknowledged.<a href="#section-appendix.d-5" class="pilcrow">¶</a></p>
-<p id="section-appendix.d-6">Buck's contribution was supported by Google during his employment there.<a href="#section-appendix.d-6" class="pilcrow">¶</a></p>
-<p id="section-appendix.d-7">A portion of Mike's contribution was supported by Microsoft during his
-employment there.<a href="#section-appendix.d-7" class="pilcrow">¶</a></p>
+<p id="section-appendix.e-5">This draft draws heavily on the text of <span>[<a href="#RFC7541" class="xref">RFC7541</a>]</span>.  The indirect input of
+those authors is also gratefully acknowledged.<a href="#section-appendix.e-5" class="pilcrow">¶</a></p>
+<p id="section-appendix.e-6">Buck's contribution was supported by Google during his employment there.<a href="#section-appendix.e-6" class="pilcrow">¶</a></p>
+<p id="section-appendix.e-7">A portion of Mike's contribution was supported by Microsoft during his
+employment there.<a href="#section-appendix.e-7" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="authors-addresses">
-<section id="section-appendix.e">
+<section id="section-appendix.f">
       <h2 id="name-authors-addresses">
 <a href="#name-authors-addresses" class="section-name selfRef">Authors' Addresses</a>
       </h2>

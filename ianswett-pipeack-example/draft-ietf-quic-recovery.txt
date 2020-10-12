@@ -5,8 +5,8 @@
 QUIC                                                     J. Iyengar, Ed.
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                           I. Swett, Ed.
-Expires: 14 March 2021                                            Google
-                                                       10 September 2020
+Expires: 15 April 2021                                            Google
+                                                         12 October 2020
 
 
                QUIC Loss Detection and Congestion Control
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 March 2021.
+   This Internet-Draft will expire on 15 April 2021.
 
 Copyright Notice
 
@@ -53,9 +53,9 @@ Copyright Notice
 
 
 
-Iyengar & Swett           Expires 14 March 2021                 [Page 1]
+Iyengar & Swett           Expires 15 April 2021                 [Page 1]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
    This document is subject to BCP 78 and the IETF Trust's Legal
@@ -72,10 +72,10 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   4
    2.  Conventions and Definitions . . . . . . . . . . . . . . . . .   4
    3.  Design of the QUIC Transmission Machinery . . . . . . . . . .   5
-   4.  Relevant Differences Between QUIC and TCP . . . . . . . . . .   5
+   4.  Relevant Differences Between QUIC and TCP . . . . . . . . . .   6
      4.1.  Separate Packet Number Spaces . . . . . . . . . . . . . .   6
      4.2.  Monotonically Increasing Packet Numbers . . . . . . . . .   6
-     4.3.  Clearer Loss Epoch  . . . . . . . . . . . . . . . . . . .   6
+     4.3.  Clearer Loss Epoch  . . . . . . . . . . . . . . . . . . .   7
      4.4.  No Reneging . . . . . . . . . . . . . . . . . . . . . . .   7
      4.5.  More ACK Ranges . . . . . . . . . . . . . . . . . . . . .   7
      4.6.  Explicit Correction For Delayed Acknowledgements  . . . .   7
@@ -94,101 +94,103 @@ Table of Contents
        6.2.2.  Handshakes and New Paths  . . . . . . . . . . . . . .  16
        6.2.3.  Speeding Up Handshake Completion  . . . . . . . . . .  17
        6.2.4.  Sending Probe Packets . . . . . . . . . . . . . . . .  17
-     6.3.  Handling Retry Packets  . . . . . . . . . . . . . . . . .  18
+     6.3.  Handling Retry Packets  . . . . . . . . . . . . . . . . .  19
      6.4.  Discarding Keys and Packet State  . . . . . . . . . . . .  19
    7.  Congestion Control  . . . . . . . . . . . . . . . . . . . . .  19
      7.1.  Explicit Congestion Notification  . . . . . . . . . . . .  20
      7.2.  Initial and Minimum Congestion Window . . . . . . . . . .  20
-     7.3.  Congestion Control States . . . . . . . . . . . . . . . .  20
+     7.3.  Congestion Control States . . . . . . . . . . . . . . . .  21
        7.3.1.  Slow Start  . . . . . . . . . . . . . . . . . . . . .  21
-       7.3.2.  Recovery  . . . . . . . . . . . . . . . . . . . . . .  21
-       7.3.3.  Congestion Avoidance  . . . . . . . . . . . . . . . .  22
-     7.4.  Ignoring Loss of Undecryptable Packets  . . . . . . . . .  22
+       7.3.2.  Recovery  . . . . . . . . . . . . . . . . . . . . . .  22
+       7.3.3.  Congestion Avoidance  . . . . . . . . . . . . . . . .  23
+     7.4.  Ignoring Loss of Undecryptable Packets  . . . . . . . . .  23
      7.5.  Probe Timeout . . . . . . . . . . . . . . . . . . . . . .  23
      7.6.  Persistent Congestion . . . . . . . . . . . . . . . . . .  23
 
 
 
-Iyengar & Swett           Expires 14 March 2021                 [Page 2]
+Iyengar & Swett           Expires 15 April 2021                 [Page 2]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
        7.6.1.  Duration  . . . . . . . . . . . . . . . . . . . . . .  23
        7.6.2.  Establishing Persistent Congestion  . . . . . . . . .  24
-       7.6.3.  Example . . . . . . . . . . . . . . . . . . . . . . .  24
-     7.7.  Pacing  . . . . . . . . . . . . . . . . . . . . . . . . .  25
+       7.6.3.  Example . . . . . . . . . . . . . . . . . . . . . . .  25
+     7.7.  Pacing  . . . . . . . . . . . . . . . . . . . . . . . . .  26
      7.8.  Under-utilizing the Congestion Window . . . . . . . . . .  27
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  27
      8.1.  Congestion Signals  . . . . . . . . . . . . . . . . . . .  27
-     8.2.  Traffic Analysis  . . . . . . . . . . . . . . . . . . . .  27
-     8.3.  Misreporting ECN Markings . . . . . . . . . . . . . . . .  27
+     8.2.  Traffic Analysis  . . . . . . . . . . . . . . . . . . . .  28
+     8.3.  Misreporting ECN Markings . . . . . . . . . . . . . . . .  28
    9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  28
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  28
      10.1.  Normative References . . . . . . . . . . . . . . . . . .  28
      10.2.  Informative References . . . . . . . . . . . . . . . . .  29
-   Appendix A.  Loss Recovery Pseudocode . . . . . . . . . . . . . .  30
-     A.1.  Tracking Sent Packets . . . . . . . . . . . . . . . . . .  30
+   Appendix A.  Loss Recovery Pseudocode . . . . . . . . . . . . . .  31
+     A.1.  Tracking Sent Packets . . . . . . . . . . . . . . . . . .  31
        A.1.1.  Sent Packet Fields  . . . . . . . . . . . . . . . . .  31
      A.2.  Constants of Interest . . . . . . . . . . . . . . . . . .  31
      A.3.  Variables of interest . . . . . . . . . . . . . . . . . .  32
      A.4.  Initialization  . . . . . . . . . . . . . . . . . . . . .  33
      A.5.  On Sending a Packet . . . . . . . . . . . . . . . . . . .  33
-     A.6.  On Receiving a Datagram . . . . . . . . . . . . . . . . .  33
+     A.6.  On Receiving a Datagram . . . . . . . . . . . . . . . . .  34
      A.7.  On Receiving an Acknowledgment  . . . . . . . . . . . . .  34
-     A.8.  Setting the Loss Detection Timer  . . . . . . . . . . . .  35
-     A.9.  On Timeout  . . . . . . . . . . . . . . . . . . . . . . .  37
+     A.8.  Setting the Loss Detection Timer  . . . . . . . . . . . .  36
+     A.9.  On Timeout  . . . . . . . . . . . . . . . . . . . . . . .  38
      A.10. Detecting Lost Packets  . . . . . . . . . . . . . . . . .  38
-   Appendix B.  Congestion Control Pseudocode  . . . . . . . . . . .  39
-     B.1.  Constants of interest . . . . . . . . . . . . . . . . . .  39
+     A.11. Upon Dropping Initial or Handshake Keys . . . . . . . . .  39
+   Appendix B.  Congestion Control Pseudocode  . . . . . . . . . . .  40
+     B.1.  Constants of interest . . . . . . . . . . . . . . . . . .  40
      B.2.  Variables of interest . . . . . . . . . . . . . . . . . .  40
-     B.3.  Initialization  . . . . . . . . . . . . . . . . . . . . .  40
+     B.3.  Initialization  . . . . . . . . . . . . . . . . . . . . .  41
      B.4.  On Packet Sent  . . . . . . . . . . . . . . . . . . . . .  41
      B.5.  On Packet Acknowledgement . . . . . . . . . . . . . . . .  41
      B.6.  On New Congestion Event . . . . . . . . . . . . . . . . .  42
      B.7.  Process ECN Information . . . . . . . . . . . . . . . . .  43
      B.8.  On Packets Lost . . . . . . . . . . . . . . . . . . . . .  43
-     B.9.  Upon dropping Initial or Handshake keys . . . . . . . . .  43
+     B.9.  Removing Discarded Packets From Bytes In Flight . . . . .  43
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  44
-     C.1.  Since draft-ietf-quic-recovery-29 . . . . . . . . . . . .  44
-     C.2.  Since draft-ietf-quic-recovery-28 . . . . . . . . . . . .  44
-     C.3.  Since draft-ietf-quic-recovery-27 . . . . . . . . . . . .  44
-     C.4.  Since draft-ietf-quic-recovery-26 . . . . . . . . . . . .  45
-     C.5.  Since draft-ietf-quic-recovery-25 . . . . . . . . . . . .  45
-     C.6.  Since draft-ietf-quic-recovery-24 . . . . . . . . . . . .  45
-     C.7.  Since draft-ietf-quic-recovery-23 . . . . . . . . . . . .  45
-     C.8.  Since draft-ietf-quic-recovery-22 . . . . . . . . . . . .  46
-     C.9.  Since draft-ietf-quic-recovery-21 . . . . . . . . . . . .  46
-     C.10. Since draft-ietf-quic-recovery-20 . . . . . . . . . . . .  46
-     C.11. Since draft-ietf-quic-recovery-19 . . . . . . . . . . . .  46
-     C.12. Since draft-ietf-quic-recovery-18 . . . . . . . . . . . .  46
+     C.1.  Since draft-ietf-quic-recovery-30 . . . . . . . . . . . .  44
+     C.2.  Since draft-ietf-quic-recovery-29 . . . . . . . . . . . .  44
+     C.3.  Since draft-ietf-quic-recovery-28 . . . . . . . . . . . .  44
+     C.4.  Since draft-ietf-quic-recovery-27 . . . . . . . . . . . .  44
+     C.5.  Since draft-ietf-quic-recovery-26 . . . . . . . . . . . .  45
+     C.6.  Since draft-ietf-quic-recovery-25 . . . . . . . . . . . .  45
+     C.7.  Since draft-ietf-quic-recovery-24 . . . . . . . . . . . .  45
+     C.8.  Since draft-ietf-quic-recovery-23 . . . . . . . . . . . .  45
+     C.9.  Since draft-ietf-quic-recovery-22 . . . . . . . . . . . .  45
+     C.10. Since draft-ietf-quic-recovery-21 . . . . . . . . . . . .  46
+     C.11. Since draft-ietf-quic-recovery-20 . . . . . . . . . . . .  46
 
 
 
-Iyengar & Swett           Expires 14 March 2021                 [Page 3]
+Iyengar & Swett           Expires 15 April 2021                 [Page 3]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
-     C.13. Since draft-ietf-quic-recovery-17 . . . . . . . . . . . .  47
-     C.14. Since draft-ietf-quic-recovery-16 . . . . . . . . . . . .  47
-     C.15. Since draft-ietf-quic-recovery-14 . . . . . . . . . . . .  48
-     C.16. Since draft-ietf-quic-recovery-13 . . . . . . . . . . . .  48
-     C.17. Since draft-ietf-quic-recovery-12 . . . . . . . . . . . .  48
-     C.18. Since draft-ietf-quic-recovery-11 . . . . . . . . . . . .  49
-     C.19. Since draft-ietf-quic-recovery-10 . . . . . . . . . . . .  49
-     C.20. Since draft-ietf-quic-recovery-09 . . . . . . . . . . . .  49
-     C.21. Since draft-ietf-quic-recovery-08 . . . . . . . . . . . .  49
-     C.22. Since draft-ietf-quic-recovery-07 . . . . . . . . . . . .  49
-     C.23. Since draft-ietf-quic-recovery-06 . . . . . . . . . . . .  49
-     C.24. Since draft-ietf-quic-recovery-05 . . . . . . . . . . . .  49
-     C.25. Since draft-ietf-quic-recovery-04 . . . . . . . . . . . .  50
-     C.26. Since draft-ietf-quic-recovery-03 . . . . . . . . . . . .  50
-     C.27. Since draft-ietf-quic-recovery-02 . . . . . . . . . . . .  50
-     C.28. Since draft-ietf-quic-recovery-01 . . . . . . . . . . . .  50
-     C.29. Since draft-ietf-quic-recovery-00 . . . . . . . . . . . .  50
-     C.30. Since draft-iyengar-quic-loss-recovery-01 . . . . . . . .  50
-   Appendix D.  Contributors . . . . . . . . . . . . . . . . . . . .  51
+     C.12. Since draft-ietf-quic-recovery-19 . . . . . . . . . . . .  46
+     C.13. Since draft-ietf-quic-recovery-18 . . . . . . . . . . . .  46
+     C.14. Since draft-ietf-quic-recovery-17 . . . . . . . . . . . .  47
+     C.15. Since draft-ietf-quic-recovery-16 . . . . . . . . . . . .  47
+     C.16. Since draft-ietf-quic-recovery-14 . . . . . . . . . . . .  48
+     C.17. Since draft-ietf-quic-recovery-13 . . . . . . . . . . . .  48
+     C.18. Since draft-ietf-quic-recovery-12 . . . . . . . . . . . .  48
+     C.19. Since draft-ietf-quic-recovery-11 . . . . . . . . . . . .  48
+     C.20. Since draft-ietf-quic-recovery-10 . . . . . . . . . . . .  49
+     C.21. Since draft-ietf-quic-recovery-09 . . . . . . . . . . . .  49
+     C.22. Since draft-ietf-quic-recovery-08 . . . . . . . . . . . .  49
+     C.23. Since draft-ietf-quic-recovery-07 . . . . . . . . . . . .  49
+     C.24. Since draft-ietf-quic-recovery-06 . . . . . . . . . . . .  49
+     C.25. Since draft-ietf-quic-recovery-05 . . . . . . . . . . . .  49
+     C.26. Since draft-ietf-quic-recovery-04 . . . . . . . . . . . .  49
+     C.27. Since draft-ietf-quic-recovery-03 . . . . . . . . . . . .  49
+     C.28. Since draft-ietf-quic-recovery-02 . . . . . . . . . . . .  50
+     C.29. Since draft-ietf-quic-recovery-01 . . . . . . . . . . . .  50
+     C.30. Since draft-ietf-quic-recovery-00 . . . . . . . . . . . .  50
+     C.31. Since draft-iyengar-quic-loss-recovery-01 . . . . . . . .  50
+   Appendix D.  Contributors . . . . . . . . . . . . . . . . . . . .  50
    Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  51
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  51
 
@@ -215,16 +217,17 @@ Internet-Draft             QUIC Loss Detection            September 2020
       CONNECTION_CLOSE are considered ack-eliciting.
 
    Ack-eliciting packets:  Packets that contain ack-eliciting frames
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 4]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
       elicit an ACK from the receiver within the maximum acknowledgement
       delay and are called ack-eliciting packets.
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 4]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    In-flight:  Packets are considered in-flight when they are ack-
       eliciting or contain a PADDING frame, and they have been sent but
@@ -267,6 +270,18 @@ Internet-Draft             QUIC Loss Detection            September 2020
    *  PADDING frames cause packets to contribute toward bytes in flight
       without directly causing an acknowledgment to be sent.
 
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 5]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 4.  Relevant Differences Between QUIC and TCP
 
    Readers familiar with TCP's loss detection and congestion control
@@ -274,13 +289,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    However, protocol differences between QUIC and TCP contribute to
    algorithmic differences.  These protocol differences are briefly
    described below.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 5]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 4.1.  Separate Packet Number Spaces
 
@@ -318,6 +326,18 @@ Internet-Draft             QUIC Loss Detection            September 2020
    transmission ordering based on TCP sequence numbers - a non-trivial
    task, especially when TCP timestamps are not available.
 
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 6]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 4.3.  Clearer Loss Epoch
 
    QUIC starts a loss epoch when a packet is lost and ends one when any
@@ -328,15 +348,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    windows only once per epoch, QUIC will do it once for every round
    trip that experiences loss, while TCP may only do it once across
    multiple round trips.
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 6]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 4.4.  No Reneging
 
@@ -375,6 +386,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
    obviating the need for correcting mechanisms such as F-RTO
    ([RFC5682]).  Since QUIC does not collapse the congestion window on a
    PTO expiration, a QUIC sender is not limited from sending more in-
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 7]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    flight packets after a PTO expiration if it still has available
    congestion window.  This occurs when a sender is application-limited
    and the PTO timer expires.  This is more aggressive than TCP's RTO
@@ -385,14 +404,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    congestion, so QUIC specifies a time-based definition to ensure one
    or more packets are sent prior to a dramatic decrease in congestion
    window; see Section 7.6.
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 7]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 4.8.  The Minimum Congestion Window is Two Packets
 
@@ -430,6 +441,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    *  at least one of the newly acknowledged packets was ack-eliciting.
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 8]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    The RTT sample, latest_rtt, is generated as the time elapsed since
    the largest acknowledged packet was sent:
 
@@ -441,14 +461,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    ACK frame.  While the reported acknowledgment delay is not used by
    the RTT sample measurement, it is used to adjust the RTT sample in
    subsequent computations of smoothed_rtt and rttvar (Section 5.3).
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 8]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    To avoid generating multiple RTT samples for a single packet, an ACK
    frame SHOULD NOT be used to update RTT estimates if it does not newly
@@ -485,6 +497,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
    and limits potential underestimation due to erroneously-reported
    delays by the peer.
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                 [Page 9]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    The RTT for a network path may change over time.  If a path's actual
    RTT decreases, the min_rtt will adapt immediately on the first low
    sample.  If the path's actual RTT increases however, the min_rtt will
@@ -497,14 +518,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    a disruptive network event, and because it is possible that an
    increase in path delay resulted in persistent congestion being
    incorrectly declared.
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                 [Page 9]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    Endpoints MAY re-establish the min_rtt at other times in the
    connection, such as when traffic volume is low and an acknowledgement
@@ -540,6 +553,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
    sample for acknowledgement delay causes the sample to be less than
    the min_rtt.
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 10]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    After the handshake is confirmed, any acknowledgement delays reported
    by the peer that are greater than the peer's max_ack_delay are
    attributed to unintentional but potentially repeating delays, such as
@@ -553,14 +575,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    *  MAY ignore the acknowledgement delay for Initial packets, since
       these acknowledgements are not delayed by the peer (Section 13.2.1
       of [QUIC-TRANSPORT]);
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 10]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    *  SHOULD ignore the peer's max_ack_delay until the handshake is
       confirmed;
@@ -596,6 +610,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    On subsequent RTT samples, smoothed_rtt and rttvar evolve as follows:
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 11]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    ack_delay = decoded acknowledgement delay from ACK frame
    if (handshake confirmed):
      ack_delay = min(ack_delay, max_ack_delay)
@@ -605,18 +627,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    smoothed_rtt = 7/8 * smoothed_rtt + 1/8 * adjusted_rtt
    rttvar_sample = abs(smoothed_rtt - adjusted_rtt)
    rttvar = 3/4 * rttvar + 1/4 * rttvar_sample
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 11]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 6.  Loss Detection
 
@@ -655,6 +665,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
    and the packet and time thresholds provide some tolerance for packet
    reordering.
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 12]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    Spuriously declaring packets as lost leads to unnecessary
    retransmissions and may result in degraded performance due to the
    actions of the congestion controller upon detecting loss.
@@ -663,16 +682,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    retransmissions and loss events.  Implementations with adaptive time
    thresholds MAY choose to start with smaller initial reordering
    thresholds to minimize recovery latency.
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 12]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 6.1.1.  Packet Threshold
 
@@ -712,6 +721,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
       to reordering where the acknowledgement encountered a shorter
       path;
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 13]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    *  the latest RTT sample is higher than the smoothed RTT, perhaps due
       to a sustained increase in the actual RTT, but the smoothed RTT
       has not yet caught up.
@@ -720,15 +738,9 @@ Internet-Draft             QUIC Loss Detection            September 2020
    round-trip time multiplier, is 9/8.  The RECOMMENDED value of the
    timer granularity (kGranularity) is 1ms.
 
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 13]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
+   Note:  TCP's RACK ([RACK]) specifies a slightly larger threshold,
+      equivalent to 5/4, for a similar purpose.  Experience with QUIC
+      shows that 9/8 works well.
 
    Implementations MAY experiment with absolute thresholds, thresholds
    from previous connections, adaptive thresholds, or including RTT
@@ -765,6 +777,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    PTO = smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 14]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    The PTO period is the amount of time that a sender ought to wait for
    an acknowledgement of a sent packet.  This time period includes the
    estimated network roundtrip-time (smoothed_rtt), the variation in the
@@ -778,13 +799,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    The PTO period MUST be at least kGranularity, to avoid the timer
    expiring immediately.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 14]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    When ack-eliciting packets in multiple packet number spaces are in
    flight, the timer MUST be set to the earlier value of the Initial and
@@ -805,9 +819,9 @@ Internet-Draft             QUIC Loss Detection            September 2020
    A sender SHOULD restart its PTO timer every time an ack-eliciting
    packet is sent or acknowledged, when the handshake is confirmed
    (Section 4.1.2 of [QUIC-TLS]), or when Initial or Handshake keys are
-   discarded (Section 9 of [QUIC-TLS]).  This ensures the PTO is always
-   set based on the latest estimate of the round-trip time and for the
-   correct packet across packet number spaces.
+   discarded (Section 4.9 of [QUIC-TLS]).  This ensures the PTO is
+   always set based on the latest estimate of the round-trip time and
+   for the correct packet across packet number spaces.
 
    When a PTO timer expires, the PTO backoff MUST be increased,
    resulting in the PTO period being set to twice its current value.
@@ -820,6 +834,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
    the PTO backoff factor on receiving acknowledgements until the
    handshake is confirmed; see Section 4.1.2 of [QUIC-TLS].
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 15]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    This exponential reduction in the sender's rate is important because
    consecutive PTOs might be caused by loss of packets or
    acknowledgements due to severe congestion.  Even when there are ack-
@@ -831,16 +853,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    The total length of time over which consecutive PTOs expire is
    limited by the idle timeout.
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 15]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    The probe timer MUST NOT be set if the time threshold (Section 6.1.2)
    loss detection timer is set.  The time threshold loss detection timer
@@ -879,6 +891,13 @@ Internet-Draft             QUIC Loss Detection            September 2020
    that the server could fail to validate the client's address even if
    0-RTT is accepted.
 
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 16]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    Since the server could be blocked until more datagrams are received
    from the client, it is the client's responsibility to send packets to
    unblock the server until it is certain that the server has finished
@@ -890,13 +909,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    Handshake packet if it has Handshake keys, otherwise it MUST send an
    Initial packet in a UDP datagram with a payload of at least 1200
    bytes.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 16]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
 6.2.3.  Speeding Up Handshake Completion
 
@@ -928,6 +940,20 @@ Internet-Draft             QUIC Loss Detection            September 2020
    single lost datagram or transmit data from multiple packet number
    spaces.  All probe packets sent on a PTO MUST be ack-eliciting.
 
+
+
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 17]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    In addition to sending data in the packet number space for which the
    timer expired, the sender SHOULD send ack-eliciting packets from
    other packet number spaces with in-flight data, coalescing packets if
@@ -945,14 +971,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    alternative strategies for determining the content of probe packets,
    including sending new or retransmitted data based on the
    application's priorities.
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 17]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    It is possible the sender has no new or previously-sent data to send.
    As an example, consider the following sequence of events: new
@@ -981,6 +999,17 @@ Internet-Draft             QUIC Loss Detection            September 2020
    Sending different payloads each time reduces the chances of spurious
    retransmission.
 
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 18]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 6.3.  Handling Retry Packets
 
    A Retry packet causes a client to send another Initial packet,
@@ -999,20 +1028,9 @@ Internet-Draft             QUIC Loss Detection            September 2020
    Version Negotiation packet is received.  The client MAY use this
    value in place of its default for the initial RTT estimate.
 
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 18]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 6.4.  Discarding Keys and Packet State
 
-   When packet protection keys are discarded (see Section 4.8 of
+   When packet protection keys are discarded (see Section 4.9 of
    [QUIC-TLS]), all packets that were sent with those keys can no longer
    be acknowledged because their acknowledgements cannot be processed
    anymore.  The sender MUST discard all recovery state associated with
@@ -1040,6 +1058,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
    This document specifies a congestion controller for QUIC similar to
    TCP NewReno ([RFC6582]).
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 19]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    The signals QUIC provides for congestion control are generic and are
    designed to support different algorithms.  Endpoints can unilaterally
    choose a different algorithm to use, such as Cubic ([RFC8312]).
@@ -1058,14 +1084,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    The algorithm in this document specifies and uses the controller's
    congestion window in bytes.
 
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 19]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
    An endpoint MUST NOT send a packet if it would cause bytes_in_flight
    (see Appendix B.2) to be larger than the congestion window, unless
    the packet is sent on a PTO timer expiration (see Section 6.2) or
@@ -1073,10 +1091,11 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
 7.1.  Explicit Congestion Notification
 
-   If a path has been verified to support ECN ([RFC3168], [RFC8311]),
+   If a path has been validated to support ECN ([RFC3168], [RFC8311]),
    QUIC treats a Congestion Experienced (CE) codepoint in the IP header
    as a signal of congestion.  This document specifies an endpoint's
-   response when its peer receives packets with the ECN-CE codepoint.
+   response when the peer-reported ECN-CE count increases; see
+   Section 13.4.2 of [QUIC-TRANSPORT].
 
 7.2.  Initial and Minimum Congestion Window
 
@@ -1094,6 +1113,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
    handshake, the congestion window SHOULD be set to the new initial
    congestion window.
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 20]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    Prior to validating the client's address, the server can be further
    limited by the anti-amplification limit as specified in Section 8.1
    of [QUIC-TRANSPORT].  Though the anti-amplification limit can prevent
@@ -1102,25 +1130,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
    the congestion window.
 
    The minimum congestion window is the smallest value the congestion
-   window can decrease to as a response to loss, ECN-CE, or persistent
-   congestion.  The RECOMMENDED value is 2 * max_datagram_size.
+   window can decrease to as a response to loss, increase in the peer-
+   reported ECN-CE count, or persistent congestion.  The RECOMMENDED
+   value is 2 * max_datagram_size.
 
 7.3.  Congestion Control States
 
    The NewReno congestion controller described in this document has
    three distinct states, as shown in Figure 1.
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 20]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
                     New Path or      +------------+
                persistent congestion |   Slow     |
@@ -1151,6 +1168,16 @@ Internet-Draft             QUIC Loss Detection            September 2020
    below the slow start threshold.  A sender begins in slow start
    because the slow start threshold is initialized to an infinite value.
 
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 21]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    While a sender is in slow start, the congestion window increases by
    the number of bytes acknowledged when each acknowledgment is
    processed.  This results in exponential growth of the congestion
@@ -1170,13 +1197,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    a packet or the ECN-CE count reported by its peer increases.  A
    sender that is already in a recovery period stays in it and does not
    re-enter it.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 21]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    On entering a recovery period, a sender MUST set the slow start
    threshold to half the value of the congestion window when loss is
@@ -1202,6 +1222,18 @@ Internet-Draft             QUIC Loss Detection            September 2020
    when the lost segment that started recovery is acknowledged
    ([RFC5681]).
 
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 22]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 7.3.3.  Congestion Avoidance
 
    A NewReno sender is in congestion avoidance any time the congestion
@@ -1226,14 +1258,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    be processed until the handshake completes.  Endpoints MAY ignore the
    loss of Handshake, 0-RTT, and 1-RTT packets that might have arrived
    before the peer had packet protection keys to process those packets.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 22]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
    Endpoints MUST NOT ignore the loss of packets that were sent after
    the earliest acknowledged packet in a given packet number space.
 
@@ -1256,6 +1280,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 7.6.1.  Duration
 
    The persistent congestion duration is computed as follows:
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 23]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    (smoothed_rtt + max(4*rttvar, kGranularity) + max_ack_delay) *
        kPersistentCongestionThreshold
@@ -1281,15 +1314,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    The use of a duration enables a sender to establish persistent
    congestion without depending on PTO expiration.
 
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 23]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 7.6.2.  Establishing Persistent Congestion
 
    A sender establishes persistent congestion on receiving an
@@ -1314,6 +1338,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
    Since network congestion is not affected by packet number spaces,
    persistent congestion SHOULD consider packets sent across packet
    number spaces.  A sender that does not have state for all packet
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 24]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    number spaces or an implementation that cannot compare send times
    across packet number spaces MAY use state for just the packet number
    space that was acknowledged.
@@ -1332,19 +1364,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    kPersistentCongestionThreshold = 3
 
    Consider the following sequence of events:
-
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 24]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
                   +========+============================+
                   | Time   | Action                     |
@@ -1374,6 +1393,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
                                   Table 1
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 25]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    Packets 2 through 8 are declared lost when the acknowledgement for
    packet 9 is received at t = 12.2.
 
@@ -1391,16 +1419,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    A sender SHOULD pace sending of all in-flight packets based on input
    from the congestion controller.
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 25]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    Sending multiple packets into the network without any delay between
    them creates a packet burst that might cause short-term congestion
@@ -1431,12 +1449,18 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    interval = smoothed_rtt * packet_size / congestion_window / N
 
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 26]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    Using a value for "N" that is small, but at least 1 (for example,
    1.25) ensures that variations in round-trip time do not result in
-   under-utilization of the congestion window.  Values of 'N' larger
-   than 1 ultimately result in sending packets as acknowledgments are
-   received rather than when timers fire, provided the congestion window
-   is fully utilized and acknowledgments arrive at regular intervals.
+   under-utilization of the congestion window.
 
    Practical considerations, such as packetization, scheduling delays,
    and computational efficiency, can cause a sender to deviate from this
@@ -1447,17 +1471,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
    maximum burst size and the rate the "bucket" fills is determined by
    the above function.
 
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 26]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 7.8.  Under-utilizing the Congestion Window
 
    When bytes in flight is smaller than the congestion window and
@@ -1466,9 +1479,9 @@ Internet-Draft             QUIC Loss Detection            September 2020
    increased in either slow start or congestion avoidance.  This can
    happen due to insufficient application data or flow control limits.
 
-   A sender MAY use the pipeACK method described in Section 4.3 of
-   [RFC7661] to determine if the congestion window is sufficiently
-   utilized.
+   A sender can use a variety of mechnaisms to determine if the
+   congestion window is sufficiently utuilized.  For example, the
+   pipeACK method described in Section 4.3 of [RFC7661].
 
    A sender that paces packets (see Section 7.7) might delay sending
    packets and not fully utilize the congestion window due to this
@@ -1489,6 +1502,18 @@ Internet-Draft             QUIC Loss Detection            September 2020
    cause endpoints to reduce their sending rate by dropping packets, or
    alter send rate by changing ECN codepoints.
 
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 27]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 8.2.  Traffic Analysis
 
    Packets that carry only ACK frames can be heuristically identified by
@@ -1505,19 +1530,12 @@ Internet-Draft             QUIC Loss Detection            September 2020
    cause a sender to increase their send rate.  This increase could
    result in congestion and loss.
 
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 27]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
-   A sender MAY attempt to detect suppression of reports by marking
-   occasional packets that they send with ECN-CE.  If a packet sent with
-   ECN-CE is not reported as having been CE marked when the packet is
-   acknowledged, then the sender SHOULD disable ECN for that path.
+   A sender can detect suppression of reports by marking occasional
+   packets that it sends with an ECN-CE marking.  If a packet sent with
+   an ECN-CE marking is not reported as having been CE marked when the
+   packet is acknowledged, then the sender can disable ECN for that path
+   by not setting ECT codepoints in subsequent packets sent on that path
+   [RFC3168].
 
    Reporting additional ECN-CE markings will cause a sender to reduce
    their sending rate, which is similar in effect to advertising reduced
@@ -1540,14 +1558,23 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using TLS to Secure
               QUIC", Work in Progress, Internet-Draft, draft-ietf-quic-
-              tls-latest, 10 September 2020,
+              tls-latest, 12 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls-latest>.
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 28]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 10
-              September 2020, <https://tools.ietf.org/html/draft-ietf-
+              Internet-Draft, draft-ietf-quic-transport-latest, 12
+              October 2020, <https://tools.ietf.org/html/draft-ietf-
               quic-transport-latest>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -1563,13 +1590,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 28]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 10.2.  Informative References
 
    [FACK]     Mathis, M. and J. Mahdavi, "Forward Acknowledgement:
@@ -1582,9 +1602,9 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    [RACK]     Cheng, Y., Cardwell, N., Dukkipati, N., and P. Jha, "The
               RACK-TLP loss detection algorithm for TCP", Work in
-              Progress, Internet-Draft, draft-ietf-tcpm-rack-10, 22
-              August 2020, <http://www.ietf.org/internet-drafts/draft-
-              ietf-tcpm-rack-10.txt>.
+              Progress, Internet-Draft, draft-ietf-tcpm-rack-11, 30
+              September 2020, <http://www.ietf.org/internet-drafts/
+              draft-ietf-tcpm-rack-11.txt>.
 
    [RFC3168]  Ramakrishnan, K., Floyd, S., and D. Black, "The Addition
               of Explicit Congestion Notification (ECN) to IP",
@@ -1598,6 +1618,13 @@ Internet-Draft             QUIC Loss Detection            September 2020
    [RFC5681]  Allman, M., Paxson, V., and E. Blanton, "TCP Congestion
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/info/rfc5681>.
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 29]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    [RFC5682]  Sarolahti, P., Kojo, M., Yamamoto, K., and M. Hata,
               "Forward RTO-Recovery (F-RTO): An Algorithm for Detecting
@@ -1615,16 +1642,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
               "Computing TCP's Retransmission Timer", RFC 6298,
               DOI 10.17487/RFC6298, June 2011,
               <https://www.rfc-editor.org/info/rfc6298>.
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 29]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    [RFC6582]  Henderson, T., Floyd, S., Gurtov, A., and Y. Nishida, "The
               NewReno Modification to TCP's Fast Recovery Algorithm",
@@ -1657,6 +1674,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
               RFC 8312, DOI 10.17487/RFC8312, February 2018,
               <https://www.rfc-editor.org/info/rfc8312>.
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 30]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    [RFC8511]  Khademi, N., Welzl, M., Armitage, G., and G. Fairhurst,
               "TCP Alternative Backoff with ECN (ABE)", RFC 8511,
               DOI 10.17487/RFC8511, December 2018,
@@ -1674,13 +1699,6 @@ A.1.  Tracking Sent Packets
    expected that implementations will be able to access this information
    by packet number and crypto context and store the per-packet fields
    (Appendix A.1.1) for loss recovery and congestion control.
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 30]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    After a packet is declared lost, the endpoint can still maintain
    state for it for an amount of time to allow for packet reordering;
@@ -1712,6 +1730,14 @@ A.2.  Constants of Interest
    Constants used in loss recovery are based on a combination of RFCs,
    papers, and common practice.
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 31]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    kPacketThreshold:  Maximum reordering in packets before packet
       threshold loss detection considers a packet lost.  The value
       recommended in Section 6.1.1 is 3.
@@ -1728,15 +1754,6 @@ A.2.  Constants of Interest
 
    kPacketNumberSpace:  An enum to enumerate the three packet number
       spaces.
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 31]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    enum kPacketNumberSpace {
      Initial,
@@ -1760,12 +1777,22 @@ A.3.  Variables of interest
    min_rtt:  The minimum RTT seen in the connection, ignoring
       acknowledgment delay, as described in Section 5.2.
 
+   first_rtt_sample:  The time that the first RTT sample was obtained.
+
    max_ack_delay:  The maximum amount of time by which the receiver
       intends to delay acknowledgments for packets in the Application
       Data packet number space, as defined by the eponymous transport
       parameter (Section 18.2 of [QUIC-TRANSPORT]).  Note that the
       actual ack_delay in a received ACK frame may be larger due to late
       timers, reordering, or loss.
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 32]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    loss_detection_timer:  Multi-modal timer used for loss detection.
 
@@ -1786,14 +1813,6 @@ A.3.  Variables of interest
       in a packet number space to information about them.  Described in
       detail above in Appendix A.1.
 
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 32]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 A.4.  Initialization
 
    At the beginning of the connection, initialize the loss detection
@@ -1805,6 +1824,7 @@ A.4.  Initialization
    smoothed_rtt = kInitialRtt
    rttvar = kInitialRtt / 2
    min_rtt = 0
+   first_rtt_sample = 0
    for pn_space in [ Initial, Handshake, ApplicationData ]:
      largest_acked_packet[pn_space] = infinite
      time_of_last_ack_eliciting_packet[pn_space] = 0
@@ -1817,6 +1837,18 @@ A.5.  On Sending a Packet
    Appendix A.1.1.
 
    Pseudocode for OnPacketSent follows:
+
+
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 33]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    OnPacketSent(packet_number, pn_space, ack_eliciting,
                 in_flight, sent_bytes):
@@ -1843,13 +1875,6 @@ A.6.  On Receiving a Datagram
 
    Pseudocode for OnDatagramReceived follows:
 
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 33]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
    OnDatagramReceived(datagram):
      // If this datagram unblocks the server, arm the
      // PTO timer to avoid deadlock.
@@ -1873,6 +1898,14 @@ A.7.  On Receiving an Acknowledgment
      if (largest_acked_packet[pn_space] == infinite):
        largest_acked_packet[pn_space] = ack.largest_acked
      else:
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 34]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
        largest_acked_packet[pn_space] =
            max(largest_acked_packet[pn_space], ack.largest_acked)
 
@@ -1898,14 +1931,6 @@ A.7.  On Receiving an Acknowledgment
          ProcessECN(ack, pn_space)
 
      lost_packets = DetectAndRemoveLostPackets(pn_space)
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 34]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
      if (!lost_packets.empty()):
        OnPacketsLost(lost_packets)
      OnPacketsAcked(newly_acked_packets)
@@ -1918,16 +1943,25 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
 
    UpdateRtt(ack_delay):
-     if (is first RTT sample):
+     if (first_rtt_sample == 0):
        min_rtt = latest_rtt
        smoothed_rtt = latest_rtt
        rttvar = latest_rtt / 2
+       first_rtt_sample = now()
        return
 
      // min_rtt ignores acknowledgment delay.
      min_rtt = min(min_rtt, latest_rtt)
      // Limit ack_delay by max_ack_delay after handshake
      // confirmation. Note that ack_delay is 0 for
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 35]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
      // acknowledgements of Initial and Handshake packets.
      if (handshake confirmed):
        ack_delay = min(ack_delay, max_ack_delay)
@@ -1954,14 +1988,6 @@ A.8.  Setting the Loss Detection Timer
 
    Pseudocode for SetLossDetectionTimer follows:
 
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 35]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
    GetLossTimeAndSpace():
      time = loss_time[Initial]
      space = Initial
@@ -1984,6 +2010,14 @@ Internet-Draft             QUIC Loss Detection            September 2020
      pto_timeout = infinite
      pto_space = Initial
      for space in [ Initial, Handshake, ApplicationData ]:
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 36]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
        if (no in-flight packets in space):
            continue;
        if (space == ApplicationData):
@@ -2010,14 +2044,6 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    SetLossDetectionTimer():
      earliest_loss_time, _ = GetLossTimeAndSpace()
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 36]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
      if (earliest_loss_time != 0):
        // Time threshold loss detection.
        loss_detection_timer.update(earliest_loss_time)
@@ -2040,39 +2066,20 @@ Internet-Draft             QUIC Loss Detection            September 2020
      timeout, _ = GetPtoTimeAndSpace()
      loss_detection_timer.update(timeout)
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 37]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 A.9.  On Timeout
 
    When the loss detection timer expires, the timer's mode determines
    the action to be performed.
 
    Pseudocode for OnLossDetectionTimeout follows:
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 37]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    OnLossDetectionTimeout():
      earliest_loss_time, pn_space = GetLossTimeAndSpace()
@@ -2118,16 +2125,9 @@ A.10.  Detecting Lost Packets
 
 
 
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 38]
+Iyengar & Swett           Expires 15 April 2021                [Page 38]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
    DetectAndRemoveLostPackets(pn_space):
@@ -2161,6 +2161,31 @@ Internet-Draft             QUIC Loss Detection            September 2020
                                      unacked.time_sent + loss_delay)
      return lost_packets
 
+A.11.  Upon Dropping Initial or Handshake Keys
+
+   When Initial or Handshake keys are discarded, packets from the space
+   are discarded and loss detection state is updated.
+
+   Pseudocode for OnPacketNumberSpaceDiscarded follows:
+
+   OnPacketNumberSpaceDiscarded(pn_space):
+     assert(pn_space != ApplicationData)
+     RemoveFromBytesInFlight(sent_packets[pn_space])
+     sent_packets[pn_space].clear()
+     // Reset the loss detection and PTO timer
+     time_of_last_ack_eliciting_packet[pn_space] = 0
+     loss_time[pn_space] = 0
+     pto_count = 0
+     SetLossDetectionTimer()
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 39]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
 Appendix B.  Congestion Control Pseudocode
 
    We now describe an example implementation of the congestion
@@ -2178,14 +2203,6 @@ B.1.  Constants of interest
       Section 7.2.
 
    kLossReductionFactor:  Reduction in congestion window when a new loss
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 39]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
       event is detected.  Section 7 recommends a value is 0.5.
 
    kPersistentCongestionThreshold:  Period of time for persistent
@@ -2200,8 +2217,9 @@ B.2.  Variables of interest
    max_datagram_size:  The sender's current maximum payload size.  Does
       not include UDP or IP overhead.  The max datagram size is used for
       congestion window computations.  An endpoint sets the value of
-      this variable based on its PMTU (see Section 14.1 of
-      [QUIC-TRANSPORT]), with a minimum value of 1200 bytes.
+      this variable based on its Path Maximum Transmission Unit (PMTU;
+      see Section 14.2 of [QUIC-TRANSPORT]), with a minimum value of
+      1200 bytes.
 
    ecn_ce_counters[kPacketNumberSpace]:  The highest value reported for
       the ECN-CE counter in the packet number space by the peer in an
@@ -2216,6 +2234,14 @@ B.2.  Variables of interest
       bytes_in_flight to ensure congestion control does not impede
       congestion feedback.
 
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 40]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    congestion_window:  Maximum number of bytes-in-flight that may be
       sent.
 
@@ -2228,25 +2254,18 @@ B.2.  Variables of interest
       is below ssthresh, the mode is slow start and the window grows by
       the number of bytes acknowledged.
 
-   first_rtt_sample:  The time that the first RTT sample was obtained.
+   The congestion control pseudocode also accesses some of the variables
+   from the loss recovery pseudocode.
 
 B.3.  Initialization
 
    At the beginning of the connection, initialize the congestion control
    variables as follows:
 
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 40]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
    congestion_window = kInitialWindow
    bytes_in_flight = 0
    congestion_recovery_start_time = 0
    ssthresh = infinite
-   first_rtt_sample = 0
    for pn_space in [ Initial, Handshake, ApplicationData ]:
      ecn_ce_counters[pn_space] = 0
 
@@ -2274,37 +2293,15 @@ B.5.  On Packet Acknowledgement
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 41]
+Iyengar & Swett           Expires 15 April 2021                [Page 41]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
    InCongestionRecovery(sent_time):
      return sent_time <= congestion_recovery_start_time
 
    OnPacketsAcked(acked_packets):
-     if (first_rtt_sample == 0):
-       first_rtt_sample = now()
-
      for acked_packet in acked_packets:
        OnPacketAcked(acked_packet)
 
@@ -2349,9 +2346,12 @@ B.6.  On New Congestion Event
 
 
 
-Iyengar & Swett           Expires 14 March 2021                [Page 42]
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 42]
 
-Internet-Draft             QUIC Loss Detection            September 2020
+Internet-Draft             QUIC Loss Detection              October 2020
 
 
 B.7.  Process ECN Information
@@ -2380,7 +2380,8 @@ B.8.  On Packets Lost
      // Reset the congestion window if the loss of these
      // packets indicates persistent congestion.
      // Only consider packets sent after getting an RTT sample.
-     assert(first_rtt_sample != 0)
+     if (first_rtt_sample == 0):
+       return
      pc_lost = {}
      for lost in lost_packets:
        if lost.time_sent > first_rtt_sample:
@@ -2389,39 +2390,25 @@ B.8.  On Packets Lost
        congestion_window = kMinimumWindow
        congestion_recovery_start_time = 0
 
-B.9.  Upon dropping Initial or Handshake keys
+B.9.  Removing Discarded Packets From Bytes In Flight
 
-   When Initial or Handshake keys are discarded, packets from the space
-   are discarded and loss detection state is updated.
+   When Initial or Handshake keys are discarded, packets sent in that
+   space no longer count toward bytes in flight.
 
-   Pseudocode for OnPacketNumberSpaceDiscarded follows:
+   Pseudocode for RemoveFromBytesInFlight follows:
 
-
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 43]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
-   OnPacketNumberSpaceDiscarded(pn_space):
-     assert(pn_space != ApplicationData)
+   RemoveFromBytesInFlight(discarded_packets):
      // Remove any unacknowledged packets from flight.
-     foreach packet in sent_packets[pn_space]:
+     foreach packet in discarded_packets:
        if packet.in_flight
          bytes_in_flight -= size
-     sent_packets[pn_space].clear()
-     // Reset the loss detection and PTO timer
-     time_of_last_ack_eliciting_packet[pn_space] = 0
-     loss_time[pn_space] = 0
-     pto_count = 0
-     SetLossDetectionTimer()
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 43]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
 Appendix C.  Change Log
 
@@ -2430,7 +2417,11 @@ Appendix C.  Change Log
 
    Issue and pull request numbers are listed with a leading octothorp.
 
-C.1.  Since draft-ietf-quic-recovery-29
+C.1.  Since draft-ietf-quic-recovery-30
+
+   Editorial changes only.
+
+C.2.  Since draft-ietf-quic-recovery-29
 
    *  Allow caching of packets that can't be decrypted, by allowing the
       reported acknowledgment delay to exceed max_ack_delay prior to
@@ -2450,21 +2441,12 @@ C.1.  Since draft-ietf-quic-recovery-29
    *  Add normative requirements for increasing and reducing the
       congestion window (#3944, #3978, #3997, #3998)
 
-C.2.  Since draft-ietf-quic-recovery-28
+C.3.  Since draft-ietf-quic-recovery-28
 
    *  Refactored pseudocode to correct PTO calculation (#3564, #3674,
       #3681)
 
-C.3.  Since draft-ietf-quic-recovery-27
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 44]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
+C.4.  Since draft-ietf-quic-recovery-27
 
    *  Added recommendations for speeding up handshake under some loss
       conditions (#3078, #3080)
@@ -2477,6 +2459,13 @@ Internet-Draft             QUIC Loss Detection            September 2020
    *  Recommend repairing losses immediately after entering the recovery
       period (#3335, #3443)
 
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 44]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
    *  Clarified what loss conditions can be ignored during the handshake
       (#3456, #3450)
 
@@ -2485,15 +2474,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    *  Recommend use of adaptive loss detection thresholds (#3571, #3572)
 
-C.4.  Since draft-ietf-quic-recovery-26
+C.5.  Since draft-ietf-quic-recovery-26
 
    No changes.
 
-C.5.  Since draft-ietf-quic-recovery-25
+C.6.  Since draft-ietf-quic-recovery-25
 
    No significant changes.
 
-C.6.  Since draft-ietf-quic-recovery-24
+C.7.  Since draft-ietf-quic-recovery-24
 
    *  Require congestion control of some sort (#3247, #3244, #3248)
 
@@ -2501,7 +2490,7 @@ C.6.  Since draft-ietf-quic-recovery-24
 
    *  PTO is specific to a packet number space (#3067, #3074, #3066)
 
-C.7.  Since draft-ietf-quic-recovery-23
+C.8.  Since draft-ietf-quic-recovery-23
 
    *  Define under-utilizing the congestion window (#2630, #2686, #2675)
 
@@ -2514,15 +2503,7 @@ C.7.  Since draft-ietf-quic-recovery-23
    *  Define the current max_datagram_size for congestion control
       (#3041, #3167)
 
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 45]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
-C.8.  Since draft-ietf-quic-recovery-22
+C.9.  Since draft-ietf-quic-recovery-22
 
    *  PTO should always send an ack-eliciting packet (#2895)
 
@@ -2530,11 +2511,22 @@ C.8.  Since draft-ietf-quic-recovery-22
 
    *  Move ACK generation text to transport draft (#1860, #2916)
 
-C.9.  Since draft-ietf-quic-recovery-21
+
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 45]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
+C.10.  Since draft-ietf-quic-recovery-21
 
    *  No changes
 
-C.10.  Since draft-ietf-quic-recovery-20
+C.11.  Since draft-ietf-quic-recovery-20
 
    *  Path validation can be used as initial RTT value (#2644, #2687)
 
@@ -2543,7 +2535,7 @@ C.10.  Since draft-ietf-quic-recovery-20
    *  ACK delay only measures intentional delays induced by the
       implementation (#2596, #2786)
 
-C.11.  Since draft-ietf-quic-recovery-19
+C.12.  Since draft-ietf-quic-recovery-19
 
    *  Change kPersistentThreshold from an exponent to a multiplier
       (#2557)
@@ -2568,15 +2560,7 @@ C.11.  Since draft-ietf-quic-recovery-19
 
    *  Change initial RTT to 500ms to align with RFC6298 (#2184)
 
-C.12.  Since draft-ietf-quic-recovery-18
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 46]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
+C.13.  Since draft-ietf-quic-recovery-18
 
    *  Change IW byte limit to 14720 from 14600 (#2494)
 
@@ -2584,6 +2568,15 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    *  Improve loss detection's description of multiple packet number
       spaces and pseudocode (#2485, #2451, #2417)
+
+
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 46]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    *  Declare persistent congestion even if non-probe packets are sent
       and don't make persistent congestion more aggressive than RTO
@@ -2593,7 +2586,7 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    *  What to send on multiple PTOs (#2380)
 
-C.13.  Since draft-ietf-quic-recovery-17
+C.14.  Since draft-ietf-quic-recovery-17
 
    *  After Probe Timeout discard in-flight packets or send another
       (#2212, #1965)
@@ -2619,20 +2612,11 @@ C.13.  Since draft-ietf-quic-recovery-17
    *  Congestion and loss recovery state are discarded when keys are
       discarded (#2327)
 
-C.14.  Since draft-ietf-quic-recovery-16
+C.15.  Since draft-ietf-quic-recovery-16
 
    *  Unify TLP and RTO into a single PTO; eliminate min RTO, min TLP
       and min crypto timeouts; eliminate timeout validation (#2114,
       #2166, #2168, #1017)
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 47]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
 
    *  Redefine how congestion avoidance in terms of when the period
       starts (#1928, #1930)
@@ -2642,6 +2626,13 @@ Internet-Draft             QUIC Loss Detection            September 2020
 
    *  Integrate both time and packet thresholds into loss detection
       (#1969, #1212, #934, #1974)
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 47]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
    *  Reduce congestion window after idle, unless pacing is used (#2007,
       #2023)
@@ -2659,13 +2650,13 @@ Internet-Draft             QUIC Loss Detection            September 2020
    *  Only cancel loss detection timer if ack-eliciting packets are in
       flight (#2093, #2117)
 
-C.15.  Since draft-ietf-quic-recovery-14
+C.16.  Since draft-ietf-quic-recovery-14
 
    *  Used max_ack_delay from transport params (#1796, #1782)
 
    *  Merge ACK and ACK_ECN (#1783)
 
-C.16.  Since draft-ietf-quic-recovery-13
+C.17.  Since draft-ietf-quic-recovery-13
 
    *  Corrected the lack of ssthresh reduction in CongestionEvent
       pseudocode (#1598)
@@ -2679,16 +2670,7 @@ C.16.  Since draft-ietf-quic-recovery-13
 
    *  Packets are declared lost after an RTO is verified (#935, #1582)
 
-C.17.  Since draft-ietf-quic-recovery-12
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 48]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
+C.18.  Since draft-ietf-quic-recovery-12
 
    *  Changes to manage separate packet number spaces and encryption
       levels (#1190, #1242, #1413, #1450)
@@ -2696,11 +2678,19 @@ Internet-Draft             QUIC Loss Detection            September 2020
    *  Added ECN feedback mechanisms and handling; new ACK_ECN frame
       (#804, #805, #1372)
 
-C.18.  Since draft-ietf-quic-recovery-11
+C.19.  Since draft-ietf-quic-recovery-11
 
    No significant changes.
 
-C.19.  Since draft-ietf-quic-recovery-10
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 48]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
+C.20.  Since draft-ietf-quic-recovery-10
 
    *  Improved text on ack generation (#1139, #1159)
 
@@ -2714,15 +2704,15 @@ C.19.  Since draft-ietf-quic-recovery-10
    *  Minimum RTT (min_rtt) is initialized with an infinite value
       (#1169)
 
-C.20.  Since draft-ietf-quic-recovery-09
+C.21.  Since draft-ietf-quic-recovery-09
 
    No significant changes.
 
-C.21.  Since draft-ietf-quic-recovery-08
+C.22.  Since draft-ietf-quic-recovery-08
 
    *  Clarified pacing and RTO (#967, #977)
 
-C.22.  Since draft-ietf-quic-recovery-07
+C.23.  Since draft-ietf-quic-recovery-07
 
    *  Include ACK delay in RTO(and TLP) computations (#981)
 
@@ -2732,31 +2722,31 @@ C.22.  Since draft-ietf-quic-recovery-07
 
    *  Many editorial fixes.
 
-C.23.  Since draft-ietf-quic-recovery-06
+C.24.  Since draft-ietf-quic-recovery-06
 
    No significant changes.
 
-C.24.  Since draft-ietf-quic-recovery-05
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 49]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
+C.25.  Since draft-ietf-quic-recovery-05
 
    *  Add more congestion control text (#776)
 
-C.25.  Since draft-ietf-quic-recovery-04
+C.26.  Since draft-ietf-quic-recovery-04
 
    No significant changes.
 
-C.26.  Since draft-ietf-quic-recovery-03
+C.27.  Since draft-ietf-quic-recovery-03
 
    No significant changes.
 
-C.27.  Since draft-ietf-quic-recovery-02
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 49]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
+C.28.  Since draft-ietf-quic-recovery-02
 
    *  Integrate F-RTO (#544, #409)
 
@@ -2767,7 +2757,7 @@ C.27.  Since draft-ietf-quic-recovery-02
 
    *  Simplify RTO calculations (#142, #417)
 
-C.28.  Since draft-ietf-quic-recovery-01
+C.29.  Since draft-ietf-quic-recovery-01
 
    *  Overview added to loss detection
 
@@ -2779,11 +2769,11 @@ C.28.  Since draft-ietf-quic-recovery-01
 
    *  Fixed references and made TCP references informative
 
-C.29.  Since draft-ietf-quic-recovery-00
+C.30.  Since draft-ietf-quic-recovery-00
 
    *  Improved description of constants and ACK behavior
 
-C.30.  Since draft-iyengar-quic-loss-recovery-01
+C.31.  Since draft-iyengar-quic-loss-recovery-01
 
    *  Adopted as base for draft-ietf-quic-recovery
 
@@ -2791,25 +2781,44 @@ C.30.  Since draft-iyengar-quic-loss-recovery-01
 
    *  Added table of contents
 
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 50]
-
-Internet-Draft             QUIC Loss Detection            September 2020
-
-
 Appendix D.  Contributors
 
    The IETF QUIC Working Group received an enormous amount of support
    from many people.  The following people provided substantive
-   contributions to this document: Alessandro Ghedini, Benjamin
-   Saunders, Gorry Fairhurst, 奥 一穂 (Kazuho Oku), Lars Eggert, Magnus
-   Westerlund, Marten Seemann, Martin Duke, Martin Thomson, Nick Banks,
-   Praveen Balasubramanian.
+   contributions to this document:
+
+   *  Alessandro Ghedini
+
+   *  Benjamin Saunders
+
+   *  Gorry Fairhurst
+
+   *  山本和彦 (Kazu Yamamoto)
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 50]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
+
+   *  奥 一穂 (Kazuho Oku)
+
+   *  Lars Eggert
+
+   *  Magnus Westerlund
+
+   *  Marten Seemann
+
+   *  Martin Duke
+
+   *  Martin Thomson
+
+   *  Mirja Kühlewind
+
+   *  Nick Banks
+
+   *  Praveen Balasubramanian
 
 Acknowledgments
 
@@ -2844,13 +2853,4 @@ Authors' Addresses
 
 
 
-
-
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 14 March 2021                [Page 51]
+Iyengar & Swett           Expires 15 April 2021                [Page 51]

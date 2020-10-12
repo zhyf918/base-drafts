@@ -121,7 +121,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
      7.8.  Under-utilizing the Congestion Window . . . . . . . . . .  27
    8.  Security Considerations . . . . . . . . . . . . . . . . . . .  27
      8.1.  Congestion Signals  . . . . . . . . . . . . . . . . . . .  27
-     8.2.  Traffic Analysis  . . . . . . . . . . . . . . . . . . . .  28
+     8.2.  Traffic Analysis  . . . . . . . . . . . . . . . . . . . .  27
      8.3.  Misreporting ECN Markings . . . . . . . . . . . . . . . .  28
    9.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  28
    10. References  . . . . . . . . . . . . . . . . . . . . . . . . .  28
@@ -1479,10 +1479,6 @@ Internet-Draft             QUIC Loss Detection              October 2020
    increased in either slow start or congestion avoidance.  This can
    happen due to insufficient application data or flow control limits.
 
-   A sender can use a variety of mechanisms to determine if the
-   congestion window is sufficiently utilized.  For example, the pipeACK
-   method described in Section 4.3 of [RFC7661].
-
    A sender that paces packets (see Section 7.7) might delay sending
    packets and not fully utilize the congestion window due to this
    delay.  A sender SHOULD NOT consider itself application limited if it
@@ -1502,18 +1498,6 @@ Internet-Draft             QUIC Loss Detection              October 2020
    cause endpoints to reduce their sending rate by dropping packets, or
    alter send rate by changing ECN codepoints.
 
-
-
-
-
-
-
-
-Iyengar & Swett           Expires 15 April 2021                [Page 27]
-
-Internet-Draft             QUIC Loss Detection              October 2020
-
-
 8.2.  Traffic Analysis
 
    Packets that carry only ACK frames can be heuristically identified by
@@ -1522,6 +1506,13 @@ Internet-Draft             QUIC Loss Detection              October 2020
    reduce leaked information, endpoints can bundle acknowledgments with
    other frames, or they can use PADDING frames at a potential cost to
    performance.
+
+
+
+Iyengar & Swett           Expires 15 April 2021                [Page 27]
+
+Internet-Draft             QUIC Loss Detection              October 2020
+
 
 8.3.  Misreporting ECN Markings
 
@@ -1561,6 +1552,15 @@ Internet-Draft             QUIC Loss Detection              October 2020
               tls-latest, 12 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls-latest>.
 
+   [QUIC-TRANSPORT]
+              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
+              Multiplexed and Secure Transport", Work in Progress,
+              Internet-Draft, draft-ietf-quic-transport-latest, 12
+              October 2020, <https://tools.ietf.org/html/draft-ietf-
+              quic-transport-latest>.
+
+
+
 
 
 
@@ -1569,13 +1569,6 @@ Iyengar & Swett           Expires 15 April 2021                [Page 28]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
-
-   [QUIC-TRANSPORT]
-              Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
-              Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 12
-              October 2020, <https://tools.ietf.org/html/draft-ietf-
-              quic-transport-latest>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -1619,18 +1612,19 @@ Internet-Draft             QUIC Loss Detection              October 2020
               Control", RFC 5681, DOI 10.17487/RFC5681, September 2009,
               <https://www.rfc-editor.org/info/rfc5681>.
 
+   [RFC5682]  Sarolahti, P., Kojo, M., Yamamoto, K., and M. Hata,
+              "Forward RTO-Recovery (F-RTO): An Algorithm for Detecting
+              Spurious Retransmission Timeouts with TCP", RFC 5682,
+              DOI 10.17487/RFC5682, September 2009,
+              <https://www.rfc-editor.org/info/rfc5682>.
+
+
 
 
 Iyengar & Swett           Expires 15 April 2021                [Page 29]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
-
-   [RFC5682]  Sarolahti, P., Kojo, M., Yamamoto, K., and M. Hata,
-              "Forward RTO-Recovery (F-RTO): An Algorithm for Detecting
-              Spurious Retransmission Timeouts with TCP", RFC 5682,
-              DOI 10.17487/RFC5682, September 2009,
-              <https://www.rfc-editor.org/info/rfc5682>.
 
    [RFC5827]  Allman, M., Avrachenkov, K., Ayesta, U., Blanton, J., and
               P. Hurtig, "Early Retransmit for TCP and Stream Control
@@ -1674,6 +1668,12 @@ Internet-Draft             QUIC Loss Detection              October 2020
               RFC 8312, DOI 10.17487/RFC8312, February 2018,
               <https://www.rfc-editor.org/info/rfc8312>.
 
+   [RFC8511]  Khademi, N., Welzl, M., Armitage, G., and G. Fairhurst,
+              "TCP Alternative Backoff with ECN (ABE)", RFC 8511,
+              DOI 10.17487/RFC8511, December 2018,
+              <https://www.rfc-editor.org/info/rfc8511>.
+
+
 
 
 
@@ -1681,11 +1681,6 @@ Iyengar & Swett           Expires 15 April 2021                [Page 30]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
-
-   [RFC8511]  Khademi, N., Welzl, M., Armitage, G., and G. Fairhurst,
-              "TCP Alternative Backoff with ECN (ABE)", RFC 8511,
-              DOI 10.17487/RFC8511, December 2018,
-              <https://www.rfc-editor.org/info/rfc8511>.
 
 Appendix A.  Loss Recovery Pseudocode
 
@@ -1730,6 +1725,11 @@ A.2.  Constants of Interest
    Constants used in loss recovery are based on a combination of RFCs,
    papers, and common practice.
 
+   kPacketThreshold:  Maximum reordering in packets before packet
+      threshold loss detection considers a packet lost.  The value
+      recommended in Section 6.1.1 is 3.
+
+   kTimeThreshold:  Maximum reordering in time before time threshold
 
 
 
@@ -1738,11 +1738,6 @@ Iyengar & Swett           Expires 15 April 2021                [Page 31]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
-   kPacketThreshold:  Maximum reordering in packets before packet
-      threshold loss detection considers a packet lost.  The value
-      recommended in Section 6.1.1 is 3.
-
-   kTimeThreshold:  Maximum reordering in time before time threshold
       loss detection considers a packet lost.  Specified as an RTT
       multiplier.  The value recommended in Section 6.1.2 is 9/8.
 
@@ -1786,6 +1781,11 @@ A.3.  Variables of interest
       actual ack_delay in a received ACK frame may be larger due to late
       timers, reordering, or loss.
 
+   loss_detection_timer:  Multi-modal timer used for loss detection.
+
+   pto_count:  The number of times a PTO has been sent without receiving
+      an ack.
+
 
 
 
@@ -1793,11 +1793,6 @@ Iyengar & Swett           Expires 15 April 2021                [Page 32]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
-
-   loss_detection_timer:  Multi-modal timer used for loss detection.
-
-   pto_count:  The number of times a PTO has been sent without receiving
-      an ack.
 
    time_of_last_ack_eliciting_packet[kPacketNumberSpace]:  The time the
       most recent ack-eliciting packet was sent.
@@ -1837,6 +1832,11 @@ A.5.  On Sending a Packet
    Appendix A.1.1.
 
    Pseudocode for OnPacketSent follows:
+
+
+
+
+
 
 
 

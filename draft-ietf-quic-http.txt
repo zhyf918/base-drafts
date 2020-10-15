@@ -531,10 +531,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
    Prior to making requests for an origin whose scheme is not "https",
    the client MUST ensure the server is willing to serve that scheme.
-   If the client intends to make requests for an origin whose scheme is
-   "http", this means that it MUST obtain a valid "http-opportunistic"
-   response for the origin as described in [RFC8164] prior to making any
-   such requests.  Other schemes might define other mechanisms.
+   For origins whose scheme is "http", an experimental method to
+   accomplish this is described in [RFC8164].  Other mechanisms might be
+   defined for various schemes in the future.
 
 3.3.  Connection Establishment
 
@@ -554,6 +553,7 @@ Internet-Draft                   HTTP/3                     October 2020
    selecting the ALPN token "h3" in the TLS handshake.  Support for
    other application-layer protocols MAY be offered in the same
    handshake.
+
 
 
 
@@ -3036,10 +3036,6 @@ Internet-Draft                   HTTP/3                     October 2020
               RFC 8126, DOI 10.17487/RFC8126, June 2017,
               <https://www.rfc-editor.org/info/rfc8126>.
 
-   [RFC8164]  Nottingham, M. and M. Thomson, "Opportunistic Security for
-              HTTP/2", RFC 8164, DOI 10.17487/RFC8164, May 2017,
-              <https://www.rfc-editor.org/info/rfc8164>.
-
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
               May 2017, <https://www.rfc-editor.org/info/rfc8174>.
@@ -3073,6 +3069,10 @@ Internet-Draft                   HTTP/3                     October 2020
               <http://www.ietf.org/internet-drafts/draft-ietf-httpbis-
               messaging-12.txt>.
 
+   [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
+              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
+              DOI 10.17487/RFC7540, May 2015,
+              <https://www.rfc-editor.org/info/rfc7540>.
 
 
 
@@ -3082,14 +3082,13 @@ Bishop                    Expires 18 April 2021                [Page 55]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   [HTTP2]    Belshe, M., Peon, R., and M. Thomson, Ed., "Hypertext
-              Transfer Protocol Version 2 (HTTP/2)", RFC 7540,
-              DOI 10.17487/RFC7540, May 2015,
-              <https://www.rfc-editor.org/info/rfc7540>.
-
    [RFC6585]  Nottingham, M. and R. Fielding, "Additional HTTP Status
               Codes", RFC 6585, DOI 10.17487/RFC6585, April 2012,
               <https://www.rfc-editor.org/info/rfc6585>.
+
+   [RFC8164]  Nottingham, M. and M. Thomson, "Opportunistic Security for
+              HTTP/2", RFC 8164, DOI 10.17487/RFC8164, May 2017,
+              <https://www.rfc-editor.org/info/rfc8164>.
 
    [TFO]      Cheng, Y., Chu, J., Radhakrishnan, S., and A. Jain, "TCP
               Fast Open", RFC 7413, DOI 10.17487/RFC7413, December 2014,
@@ -3130,6 +3129,7 @@ A.1.  Streams
    and sent data has been acknowledged by the peer.  HTTP/2 considers a
    stream closed when the frame containing the END_STREAM bit has been
    committed to the transport.  As a result, the stream for an
+   equivalent exchange could remain "active" for a longer period of
 
 
 
@@ -3138,7 +3138,6 @@ Bishop                    Expires 18 April 2021                [Page 56]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   equivalent exchange could remain "active" for a longer period of
    time.  HTTP/3 servers might choose to permit a larger number of
    concurrent client-initiated bidirectional streams to achieve
    equivalent concurrency to HTTP/2, depending on the expected usage
@@ -3185,6 +3184,7 @@ A.2.1.  Prioritization Differences
    HTTP/2 specifies priority assignments in PRIORITY frames and
    (optionally) in HEADERS frames.  HTTP/3 does not provide a means of
    signaling priority.
+
 
 
 

@@ -5517,8 +5517,9 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    A UDP datagram can include one or more QUIC packets.  The datagram
    size refers to the total UDP payload size of a single UDP datagram
-   carrying QUIC packets.  The datagram size includes includes the QUIC
-   headers and protected payload, but not the UDP or IP headers.
+   carrying QUIC packets.  The datagram size includes includes one or
+   more QUIC packet headers and the protected payloads, but not the UDP
+   or IP headers.
 
    The maximum datagram size is defined as the largest size of UDP
    payload that can be sent across a network path using a single UDP
@@ -5535,9 +5536,8 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Section 14.2.1) or Datagram Packetization Layer PMTU Discovery
    (DPLPMTUD; see Section 14.3).
 
-   Enforcement of the max_udp_payload_size transport parameter
-   (Section 18.2) might act as an additional limit on the maximum
-   datagram size.  A sender can avoid exceeding this limit, once the
+
+
 
 
 
@@ -5546,6 +5546,9 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 99]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
+   Enforcement of the max_udp_payload_size transport parameter
+   (Section 18.2) might act as an additional limit on the maximum
+   datagram size.  A sender can avoid exceeding this limit, once the
    value is known.  However, prior to learning the value of the
    transport parameter, endpoints risk datagrams being lost if they send
    datagrams larger than the smallest allowed maximum datagram size of
@@ -5584,14 +5587,11 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    The Path Maximum Transmission Unit (PMTU) is the maximum size of the
    entire IP packet including the IP header, UDP header, and UDP
-   payload.  The UDP payload includes QUIC packet headers, protected
-   payload, and any authentication fields.  The PMTU can depend on path
-   characteristics, and can therefore change over time.  The largest UDP
-   payload an endpoint sends at any given time is referred to as the
-   endpoint's maximum datagram size.
-
-
-
+   payload.  The UDP payload includes one or more QUIC packet headers,
+   the protected payloads, and any authentication fields.  The PMTU can
+   depend on path characteristics, and can therefore change over time.
+   The largest UDP payload an endpoint sends at any given time is
+   referred to as the endpoint's maximum datagram size.
 
 
 
@@ -5700,7 +5700,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 14.3.2.  Validating the Network Path with DPLPMTUD
 
-   QUIC provides an acknowledged PL, therefore a sender does not
+   QUIC is an acknowledged PL, therefore a QUIC sender does not
    implement a DPLPMTUD CONFIRMATION_TIMER while in the SEARCH_COMPLETE
    state; see Section 5.2 of [DPLPMTUD].
 

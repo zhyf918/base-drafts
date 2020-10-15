@@ -5,12 +5,12 @@
 QUIC                                                     M. Thomson, Ed.
 Internet-Draft                                                   Mozilla
 Intended status: Standards Track                          S. Turner, Ed.
-Expires: 11 April 2021                                             sn3rd
-                                                          8 October 2020
+Expires: 18 April 2021                                             sn3rd
+                                                         15 October 2020
 
 
                         Using TLS to Secure QUIC
-                       draft-ietf-quic-tls-latest
+                          draft-ietf-quic-tls
 
 Abstract
 
@@ -42,7 +42,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 11 April 2021.
+   This Internet-Draft will expire on 18 April 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 1]
+Thomson & Turner          Expires 18 April 2021                 [Page 1]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 2]
+Thomson & Turner          Expires 18 April 2021                 [Page 2]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -150,13 +150,13 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
      B.1.  Analysis of AEAD_AES_128_GCM and AEAD_AES_256_GCM Usage
            Limits  . . . . . . . . . . . . . . . . . . . . . . . . .  56
        B.1.1.  Confidentiality Limit . . . . . . . . . . . . . . . .  56
-       B.1.2.  Integrity Limit . . . . . . . . . . . . . . . . . . .  57
+       B.1.2.  Integrity Limit . . . . . . . . . . . . . . . . . . .  56
      B.2.  Analysis of AEAD_AES_128_CCM Usage Limits . . . . . . . .  57
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  58
      C.1.  Since draft-ietf-quic-tls-30  . . . . . . . . . . . . . .  58
      C.2.  Since draft-ietf-quic-tls-29  . . . . . . . . . . . . . .  58
      C.3.  Since draft-ietf-quic-tls-28  . . . . . . . . . . . . . .  58
-     C.4.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  59
+     C.4.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  58
      C.5.  Since draft-ietf-quic-tls-26  . . . . . . . . . . . . . .  59
      C.6.  Since draft-ietf-quic-tls-25  . . . . . . . . . . . . . .  59
      C.7.  Since draft-ietf-quic-tls-24  . . . . . . . . . . . . . .  59
@@ -165,24 +165,24 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 3]
+Thomson & Turner          Expires 18 April 2021                 [Page 3]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
-     C.10. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  60
-     C.11. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  60
+     C.10. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  59
+     C.11. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  59
      C.12. Since draft-ietf-quic-tls-18  . . . . . . . . . . . . . .  60
      C.13. Since draft-ietf-quic-tls-17  . . . . . . . . . . . . . .  60
      C.14. Since draft-ietf-quic-tls-14  . . . . . . . . . . . . . .  60
-     C.15. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  61
+     C.15. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  60
      C.16. Since draft-ietf-quic-tls-12  . . . . . . . . . . . . . .  61
      C.17. Since draft-ietf-quic-tls-11  . . . . . . . . . . . . . .  61
      C.18. Since draft-ietf-quic-tls-10  . . . . . . . . . . . . . .  61
      C.19. Since draft-ietf-quic-tls-09  . . . . . . . . . . . . . .  61
      C.20. Since draft-ietf-quic-tls-08  . . . . . . . . . . . . . .  61
      C.21. Since draft-ietf-quic-tls-07  . . . . . . . . . . . . . .  61
-     C.22. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  62
+     C.22. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  61
      C.23. Since draft-ietf-quic-tls-04  . . . . . . . . . . . . . .  62
      C.24. Since draft-ietf-quic-tls-03  . . . . . . . . . . . . . .  62
      C.25. Since draft-ietf-quic-tls-02  . . . . . . . . . . . . . .  62
@@ -221,7 +221,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 4]
+Thomson & Turner          Expires 18 April 2021                 [Page 4]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -277,7 +277,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 5]
+Thomson & Turner          Expires 18 April 2021                 [Page 5]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -333,7 +333,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 6]
+Thomson & Turner          Expires 18 April 2021                 [Page 6]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -389,7 +389,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 7]
+Thomson & Turner          Expires 18 April 2021                 [Page 7]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -445,7 +445,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 8]
+Thomson & Turner          Expires 18 April 2021                 [Page 8]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -501,7 +501,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                 [Page 9]
+Thomson & Turner          Expires 18 April 2021                 [Page 9]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -557,7 +557,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 10]
+Thomson & Turner          Expires 18 April 2021                [Page 10]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -613,7 +613,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 11]
+Thomson & Turner          Expires 18 April 2021                [Page 11]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -669,7 +669,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 12]
+Thomson & Turner          Expires 18 April 2021                [Page 12]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -725,7 +725,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 13]
+Thomson & Turner          Expires 18 April 2021                [Page 13]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -781,7 +781,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 14]
+Thomson & Turner          Expires 18 April 2021                [Page 14]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -837,7 +837,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 15]
+Thomson & Turner          Expires 18 April 2021                [Page 15]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -893,7 +893,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 16]
+Thomson & Turner          Expires 18 April 2021                [Page 16]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -949,7 +949,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 17]
+Thomson & Turner          Expires 18 April 2021                [Page 17]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 18]
+Thomson & Turner          Expires 18 April 2021                [Page 18]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 19]
+Thomson & Turner          Expires 18 April 2021                [Page 19]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 20]
+Thomson & Turner          Expires 18 April 2021                [Page 20]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 21]
+Thomson & Turner          Expires 18 April 2021                [Page 21]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 22]
+Thomson & Turner          Expires 18 April 2021                [Page 22]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 23]
+Thomson & Turner          Expires 18 April 2021                [Page 23]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 24]
+Thomson & Turner          Expires 18 April 2021                [Page 24]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 25]
+Thomson & Turner          Expires 18 April 2021                [Page 25]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1453,7 +1453,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 26]
+Thomson & Turner          Expires 18 April 2021                [Page 26]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1509,7 +1509,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 27]
+Thomson & Turner          Expires 18 April 2021                [Page 27]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1565,7 +1565,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 28]
+Thomson & Turner          Expires 18 April 2021                [Page 28]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 29]
+Thomson & Turner          Expires 18 April 2021                [Page 29]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 30]
+Thomson & Turner          Expires 18 April 2021                [Page 30]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1733,7 +1733,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 31]
+Thomson & Turner          Expires 18 April 2021                [Page 31]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1789,7 +1789,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 32]
+Thomson & Turner          Expires 18 April 2021                [Page 32]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1845,7 +1845,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 33]
+Thomson & Turner          Expires 18 April 2021                [Page 33]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1901,7 +1901,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 34]
+Thomson & Turner          Expires 18 April 2021                [Page 34]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -1957,7 +1957,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 35]
+Thomson & Turner          Expires 18 April 2021                [Page 35]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2013,7 +2013,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 36]
+Thomson & Turner          Expires 18 April 2021                [Page 36]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2069,7 +2069,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 37]
+Thomson & Turner          Expires 18 April 2021                [Page 37]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2125,7 +2125,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 38]
+Thomson & Turner          Expires 18 April 2021                [Page 38]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2181,7 +2181,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 39]
+Thomson & Turner          Expires 18 April 2021                [Page 39]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2237,7 +2237,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 40]
+Thomson & Turner          Expires 18 April 2021                [Page 40]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2293,7 +2293,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 41]
+Thomson & Turner          Expires 18 April 2021                [Page 41]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2349,7 +2349,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 42]
+Thomson & Turner          Expires 18 April 2021                [Page 42]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2405,7 +2405,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 43]
+Thomson & Turner          Expires 18 April 2021                [Page 43]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2461,7 +2461,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 44]
+Thomson & Turner          Expires 18 April 2021                [Page 44]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2517,7 +2517,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 45]
+Thomson & Turner          Expires 18 April 2021                [Page 45]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2573,7 +2573,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 46]
+Thomson & Turner          Expires 18 April 2021                [Page 46]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2604,16 +2604,15 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    [QUIC-RECOVERY]
               Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
               and Congestion Control", Work in Progress, Internet-Draft,
-              draft-ietf-quic-recovery-latest, 8 October 2020,
-              <https://tools.ietf.org/html/draft-ietf-quic-recovery-
-              latest>.
+              draft-ietf-quic-recovery, 15 October 2020,
+              <https://tools.ietf.org/html/draft-ietf-quic-recovery>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport-latest, 8
-              October 2020, <https://tools.ietf.org/html/draft-ietf-
-              quic-transport-latest>.
+              Internet-Draft, draft-ietf-quic-transport, 15 October
+              2020,
+              <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
@@ -2629,7 +2628,8 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 47]
+
+Thomson & Turner          Expires 18 April 2021                [Page 47]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2685,7 +2685,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 48]
+Thomson & Turner          Expires 18 April 2021                [Page 48]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2698,8 +2698,8 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    [QUIC-HTTP]
               Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http-latest, 8 October 2020,
-              <https://tools.ietf.org/html/draft-ietf-quic-http-latest>.
+              quic-http, 15 October 2020,
+              <https://tools.ietf.org/html/draft-ietf-quic-http>.
 
    [RFC2818]  Rescorla, E., "HTTP Over TLS", RFC 2818,
               DOI 10.17487/RFC2818, May 2000,
@@ -2741,7 +2741,7 @@ A.1.  Keys
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 49]
+Thomson & Turner          Expires 18 April 2021                [Page 49]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2797,7 +2797,7 @@ A.2.  Client Initial
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 50]
+Thomson & Turner          Expires 18 April 2021                [Page 50]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2853,7 +2853,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 51]
+Thomson & Turner          Expires 18 April 2021                [Page 51]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2909,7 +2909,7 @@ A.3.  Server Initial
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 52]
+Thomson & Turner          Expires 18 April 2021                [Page 52]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -2965,7 +2965,7 @@ A.5.  ChaCha20-Poly1305 Short Header Packet
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 53]
+Thomson & Turner          Expires 18 April 2021                [Page 53]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -3021,7 +3021,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 54]
+Thomson & Turner          Expires 18 April 2021                [Page 54]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
@@ -3057,30 +3057,16 @@ Appendix B.  AEAD Algorithm Analysis
 
    The analyses that follow rely on a count of the number of block
    operations involved in producing each message.  This analysis is
-   performed for packets of up to 2^11 (l = 2^7) and 2^16 (l = 2^12).  A
-   size of 2^11 is expected to be a limit that matches common deployment
-   patterns, whereas the 2^16 is the maximum possible size of a QUIC
-   packet.  Only endpoints that strictly limit packet size can use the
-   larger limits that are derived using the smaller packet size.
+   performed for packets of size up to 2^11 (l = 2^7) and 2^16 (l =
+   2^12).  A size of 2^11 is expected to be a limit that matches common
+   deployment patterns, whereas the 2^16 is the maximum possible size of
+   a QUIC packet.  Only endpoints that strictly limit packet size can
+   use the larger confidentiality and integrity limits that are derived
+   using the smaller packet size.
 
    For AEAD_AES_128_GCM and AEAD_AES_256_GCM, the message length (l) is
    the length of the associated data in blocks plus the length of the
    plaintext in blocks.
-
-
-
-
-
-
-
-
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 55]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
 
    For AEAD_AES_128_CCM, the total number of block cipher operations is
    the sum of: the length of the associated data in blocks, the length
@@ -3088,6 +3074,14 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    plus 1.  In this analysis, this is simplified to a value of twice the
    length of the packet in blocks (that is, "2l = 2^8" for packets that
    are limited to 2^11 bytes, or "2l = 2^13" otherwise).  This
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 55]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
+
    simplification is based on the packet containing all of the
    associated data and ciphertext.  This results in a 1 to 3 block
    overestimation of the number of operations per packet.
@@ -3125,18 +3119,8 @@ B.1.1.  Confidentiality Limit
    Thus, endpoints that do not send packets larger than 2^11 bytes
    cannot protect more than 2^28 packets in a single connection without
    causing an attacker to gain an larger advantage than the target of
-   2^-57.  The limit for endpoints that do not limit packet size is
-   instead 2^23.
-
-
-
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 56]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
+   2^-57.  The limit for endpoints that allow for the packet size to be
+   as large as 2^16 is instead 2^23.
 
 B.1.2.  Integrity Limit
 
@@ -3145,6 +3129,14 @@ B.1.2.  Integrity Limit
 
    (1 / 2^(8 * n)) + ((2 * v) / 2^(2 * n))
            + ((2 * o * v) / 2^(k + n)) + (n * (v + (v * l)) / 2^k)
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 56]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
    The goal is to limit this advantage to 2^-57.  For AEAD_AES_128_GCM,
    the fourth term in this inequality dominates the rest, so the others
@@ -3155,8 +3147,8 @@ B.1.2.  Integrity Limit
 
    Endpoints that do not attempt to remove protection from packets
    larger than 2^11 bytes can attempt to remove protection from at most
-   2^57 packets.  Packets attempt to remove protection from any packet
-   can attempt to remove protection from at most 2^52 packets.
+   2^57 packets.  Endpoints that do not restrict the size of processed
+   packets can attempt to remove protection from at most 2^52 packets.
 
    For AEAD_AES_256_GCM, the same term dominates, but the larger value
    of k produces the following approximation:
@@ -3184,16 +3176,6 @@ B.2.  Analysis of AEAD_AES_128_CCM Usage Limits
 
    (2l * q)^2 / 2^n
 
-
-
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 57]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    The integrity limit in Theorem 1 in [CCM-ANALYSIS] provides an
    attacker a strictly higher advantage for the same number of messages.
    As the targets for the confidentiality advantage and the integrity
@@ -3203,6 +3185,14 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    ideal PRP of no more than:
 
    v / 2^t + (2l * (v + q))^2 / 2^n
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 57]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
    As "t" and "n" are both 128, the first term is negligible relative to
    the second, so that term can be removed without a significant effect
@@ -3218,7 +3208,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    By setting "q = v", values for both confidentiality and integrity
    limits can be produced.  Endpoints that limit packets to 2^11 bytes
    therefore have both confidentiality and integrity limits of 2^26.5
-   packets.  Endpoints that do not limit packet size have a limit of
+   packets.  Endpoints that do not restrict packet size have a limit of
    2^21.5.
 
 Appendix C.  Change Log
@@ -3242,14 +3232,6 @@ C.2.  Since draft-ietf-quic-tls-29
 
 C.3.  Since draft-ietf-quic-tls-28
 
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 58]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Defined limits on the number of packets that can be protected with
       a single key and limits on the number of packets that can fail
       authentication (#3619, #3620)
@@ -3257,6 +3239,16 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    *  Update Initial salt, Retry keys, and samples (#3711)
 
 C.4.  Since draft-ietf-quic-tls-27
+
+
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 58]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
    *  Allowed CONNECTION_CLOSE in any packet number space, with
       restrictions on use of the application-specific variant (#3430,
@@ -3298,14 +3290,6 @@ C.8.  Since draft-ietf-quic-tls-23
 
 C.9.  Since draft-ietf-quic-tls-22
 
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 59]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Update the salt used for Initial secrets (#2887, #2980)
 
 C.10.  Since draft-ietf-quic-tls-21
@@ -3313,6 +3297,14 @@ C.10.  Since draft-ietf-quic-tls-21
    *  No changes
 
 C.11.  Since draft-ietf-quic-tls-20
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 59]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
    *  Mandate the use of the QUIC transport parameters extension (#2528,
       #2560)
@@ -3353,21 +3345,22 @@ C.14.  Since draft-ietf-quic-tls-14
       -  Change the labels for calculation of QUIC keys (#1845, #1971,
          #1991)
 
-
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 60]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Initial keys are discarded once Handshake keys are available
       (#1951, #2045)
 
 C.15.  Since draft-ietf-quic-tls-13
 
    *  Updated to TLS 1.3 final (#1660)
+
+
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 60]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
 C.16.  Since draft-ietf-quic-tls-12
 
@@ -3409,21 +3402,21 @@ C.20.  Since draft-ietf-quic-tls-08
 
 C.21.  Since draft-ietf-quic-tls-07
 
-
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 61]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Handshake errors can be reported with CONNECTION_CLOSE (#608,
       #891)
 
 C.22.  Since draft-ietf-quic-tls-05
 
    No significant changes.
+
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 61]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
 C.23.  Since draft-ietf-quic-tls-04
 
@@ -3466,14 +3459,6 @@ C.27.  Since draft-ietf-quic-tls-00
 
    *  Changed bit used to signal key phase
 
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 62]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Updated key phase markings during the handshake
 
    *  Added TLS interface requirements section
@@ -3481,6 +3466,13 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    *  Moved to use of TLS exporters for key derivation
 
    *  Moved TLS error code definitions into this document
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 62]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
 C.28.  Since draft-thomson-quic-tls-01
 
@@ -3522,14 +3514,6 @@ Contributors
 
    *  Martin Duke
 
-
-
-
-Thomson & Turner          Expires 11 April 2021                [Page 63]
-
-Internet-Draft          Using TLS to Secure QUIC            October 2020
-
-
    *  Mike Bishop
 
    *  Mikkel Fahnøe Jørgensen
@@ -3537,6 +3521,14 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    *  Nick Banks
 
    *  Nick Harper
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 63]
+
+Internet-Draft          Using TLS to Secure QUIC            October 2020
+
 
    *  Roberto Peon
 
@@ -3581,4 +3573,12 @@ Authors' Addresses
 
 
 
-Thomson & Turner          Expires 11 April 2021                [Page 64]
+
+
+
+
+
+
+
+
+Thomson & Turner          Expires 18 April 2021                [Page 64]

@@ -599,16 +599,16 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
    An endpoint initializes the RTT estimator during connection
    establishment and when the estimator is reset during connection
-   migration (Section 9.4 of [QUIC-TRANSPORT]).  Before any RTT samples
-   are available for a new path or when the estimator is reset, the
-   estimator is initialized using the initial RTT; see Section 6.2.2.
+   migration; see Section 9.4 of [QUIC-TRANSPORT].  Before any RTT
+   samples are available for a new path or when the estimator is reset,
+   the estimator is initialized using the initial RTT; see
+   Section 6.2.2.
 
    smoothed_rtt and rttvar are initialized as follows, where kInitialRtt
    contains the initial RTT value:
 
    smoothed_rtt = kInitialRtt
    rttvar = kInitialRtt / 2
-
 
 
 

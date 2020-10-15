@@ -5,8 +5,8 @@
 QUIC                                                     J. Iyengar, Ed.
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                           I. Swett, Ed.
-Expires: 16 April 2021                                            Google
-                                                         13 October 2020
+Expires: 18 April 2021                                            Google
+                                                         15 October 2020
 
 
                QUIC Loss Detection and Congestion Control
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 16 April 2021.
+   This Internet-Draft will expire on 18 April 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 1]
+Iyengar & Swett           Expires 18 April 2021                 [Page 1]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 2]
+Iyengar & Swett           Expires 18 April 2021                 [Page 2]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -165,7 +165,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 3]
+Iyengar & Swett           Expires 18 April 2021                 [Page 3]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -221,7 +221,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 4]
+Iyengar & Swett           Expires 18 April 2021                 [Page 4]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -277,7 +277,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 5]
+Iyengar & Swett           Expires 18 April 2021                 [Page 5]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -333,7 +333,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 6]
+Iyengar & Swett           Expires 18 April 2021                 [Page 6]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -389,7 +389,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 7]
+Iyengar & Swett           Expires 18 April 2021                 [Page 7]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -445,7 +445,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 8]
+Iyengar & Swett           Expires 18 April 2021                 [Page 8]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -501,7 +501,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                 [Page 9]
+Iyengar & Swett           Expires 18 April 2021                 [Page 9]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -557,7 +557,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 10]
+Iyengar & Swett           Expires 18 April 2021                [Page 10]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -613,7 +613,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 11]
+Iyengar & Swett           Expires 18 April 2021                [Page 11]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -669,7 +669,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 12]
+Iyengar & Swett           Expires 18 April 2021                [Page 12]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -725,7 +725,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 13]
+Iyengar & Swett           Expires 18 April 2021                [Page 13]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -781,7 +781,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 14]
+Iyengar & Swett           Expires 18 April 2021                [Page 14]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -837,7 +837,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 15]
+Iyengar & Swett           Expires 18 April 2021                [Page 15]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -893,7 +893,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 16]
+Iyengar & Swett           Expires 18 April 2021                [Page 16]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -949,7 +949,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 17]
+Iyengar & Swett           Expires 18 April 2021                [Page 17]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 18]
+Iyengar & Swett           Expires 18 April 2021                [Page 18]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 19]
+Iyengar & Swett           Expires 18 April 2021                [Page 19]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 20]
+Iyengar & Swett           Expires 18 April 2021                [Page 20]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 21]
+Iyengar & Swett           Expires 18 April 2021                [Page 21]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 22]
+Iyengar & Swett           Expires 18 April 2021                [Page 22]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 23]
+Iyengar & Swett           Expires 18 April 2021                [Page 23]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 24]
+Iyengar & Swett           Expires 18 April 2021                [Page 24]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 25]
+Iyengar & Swett           Expires 18 April 2021                [Page 25]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1453,7 +1453,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 26]
+Iyengar & Swett           Expires 18 April 2021                [Page 26]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1509,7 +1509,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 27]
+Iyengar & Swett           Expires 18 April 2021                [Page 27]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1549,13 +1549,13 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using TLS to Secure
               QUIC", Work in Progress, Internet-Draft, draft-ietf-quic-
-              tls, 13 October 2020,
+              tls, 15 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 13 October
+              Internet-Draft, draft-ietf-quic-transport, 15 October
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -1565,7 +1565,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 28]
+Iyengar & Swett           Expires 18 April 2021                [Page 28]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 29]
+Iyengar & Swett           Expires 18 April 2021                [Page 29]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 30]
+Iyengar & Swett           Expires 18 April 2021                [Page 30]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1733,7 +1733,7 @@ A.2.  Constants of Interest
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 31]
+Iyengar & Swett           Expires 18 April 2021                [Page 31]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1789,7 +1789,7 @@ A.3.  Variables of interest
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 32]
+Iyengar & Swett           Expires 18 April 2021                [Page 32]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1845,7 +1845,7 @@ A.5.  On Sending a Packet
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 33]
+Iyengar & Swett           Expires 18 April 2021                [Page 33]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1901,7 +1901,7 @@ A.7.  On Receiving an Acknowledgment
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 34]
+Iyengar & Swett           Expires 18 April 2021                [Page 34]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -1957,7 +1957,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 35]
+Iyengar & Swett           Expires 18 April 2021                [Page 35]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2013,7 +2013,7 @@ A.8.  Setting the Loss Detection Timer
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 36]
+Iyengar & Swett           Expires 18 April 2021                [Page 36]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2069,7 +2069,7 @@ Internet-Draft             QUIC Loss Detection              October 2020
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 37]
+Iyengar & Swett           Expires 18 April 2021                [Page 37]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2125,7 +2125,7 @@ A.10.  Detecting Lost Packets
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 38]
+Iyengar & Swett           Expires 18 April 2021                [Page 38]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2181,7 +2181,7 @@ A.11.  Upon Dropping Initial or Handshake Keys
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 39]
+Iyengar & Swett           Expires 18 April 2021                [Page 39]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2237,7 +2237,7 @@ B.2.  Variables of interest
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 40]
+Iyengar & Swett           Expires 18 April 2021                [Page 40]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2293,7 +2293,7 @@ B.5.  On Packet Acknowledgement
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 41]
+Iyengar & Swett           Expires 18 April 2021                [Page 41]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2349,7 +2349,7 @@ B.6.  On New Congestion Event
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 42]
+Iyengar & Swett           Expires 18 April 2021                [Page 42]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2405,7 +2405,7 @@ B.8.  On Packets Lost
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 43]
+Iyengar & Swett           Expires 18 April 2021                [Page 43]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2461,7 +2461,7 @@ C.3.  Since draft-ietf-quic-recovery-28
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 44]
+Iyengar & Swett           Expires 18 April 2021                [Page 44]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2517,7 +2517,7 @@ C.8.  Since draft-ietf-quic-recovery-23
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 45]
+Iyengar & Swett           Expires 18 April 2021                [Page 45]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2573,7 +2573,7 @@ C.12.  Since draft-ietf-quic-recovery-19
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 46]
+Iyengar & Swett           Expires 18 April 2021                [Page 46]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2629,7 +2629,7 @@ C.15.  Since draft-ietf-quic-recovery-16
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 47]
+Iyengar & Swett           Expires 18 April 2021                [Page 47]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2685,7 +2685,7 @@ C.18.  Since draft-ietf-quic-recovery-12
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 48]
+Iyengar & Swett           Expires 18 April 2021                [Page 48]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2741,7 +2741,7 @@ C.25.  Since draft-ietf-quic-recovery-05
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 49]
+Iyengar & Swett           Expires 18 April 2021                [Page 49]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2797,7 +2797,7 @@ C.31.  Since draft-iyengar-quic-loss-recovery-01
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 50]
+Iyengar & Swett           Expires 18 April 2021                [Page 50]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
@@ -2853,4 +2853,4 @@ Authors' Addresses
 
 
 
-Iyengar & Swett           Expires 16 April 2021                [Page 51]
+Iyengar & Swett           Expires 18 April 2021                [Page 51]

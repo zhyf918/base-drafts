@@ -931,9 +931,13 @@ Internet-Draft             QUIC Loss Detection              October 2020
    server's Initial packets were lost.
 
    To speed up handshake completion under these conditions, an endpoint
-   MAY send a packet containing unacknowledged CRYPTO data earlier than
-   the PTO expiry, subject to the address validation limits in
-   Section 8.1 of [QUIC-TRANSPORT].
+   MAY, for a limited number of occasions per each connection, send a
+   packet containing unacknowledged CRYPTO data earlier than the PTO
+   expiry, subject to the address validation limits in Section 8.1 of
+   [QUIC-TRANSPORT].  Doing so at most once for each connection is
+   adequate to quickly recover from a single packet loss.  Endpoints
+   that do not cease retransmitting packets in response to
+   unauthenticated data risk creating an infinite exchange of packets.
 
    Endpoints can also use coalesced packets (see Section 12.2 of
    [QUIC-TRANSPORT]) to ensure that each datagram elicits at least one
@@ -941,10 +945,6 @@ Internet-Draft             QUIC Loss Detection              October 2020
    packet containing PING and PADDING frames with a 0-RTT data packet
    and a server can coalesce an Initial packet containing a PING frame
    with one or more packets in its first flight.
-
-
-
-
 
 
 

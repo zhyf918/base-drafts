@@ -190,23 +190,23 @@ Internet-Draft           QUIC Transport Protocol            October 2020
      13.4.  Explicit Congestion Notification . . . . . . . . . . . .  96
        13.4.1.  Reporting ECN Counts . . . . . . . . . . . . . . . .  96
        13.4.2.  ECN Validation . . . . . . . . . . . . . . . . . . .  97
-   14. Packet Size . . . . . . . . . . . . . . . . . . . . . . . . .  99
-     14.1.  Initial Packet Size  . . . . . . . . . . . . . . . . . . 100
+   14. Datagram Size . . . . . . . . . . . . . . . . . . . . . . . .  99
+     14.1.  Initial Datagram Size  . . . . . . . . . . . . . . . . . 100
      14.2.  Path Maximum Transmission Unit . . . . . . . . . . . . . 100
        14.2.1.  Handling of ICMP Messages by PMTUD . . . . . . . . . 101
      14.3.  Datagram Packetization Layer PMTU Discovery  . . . . . . 102
        14.3.1.  DPLPMTUD and Initial Connectivity  . . . . . . . . . 102
-       14.3.2.  Validating the QUIC Path with DPLPMTUD . . . . . . . 102
-       14.3.3.  Handling of ICMP Messages by DPLPMTUD  . . . . . . . 102
+       14.3.2.  Validating the Network Path with DPLPMTUD  . . . . . 102
+       14.3.3.  Handling of ICMP Messages by DPLPMTUD  . . . . . . . 103
      14.4.  Sending QUIC PMTU Probes . . . . . . . . . . . . . . . . 103
        14.4.1.  PMTU Probes Containing Source Connection ID  . . . . 103
-   15. Versions  . . . . . . . . . . . . . . . . . . . . . . . . . . 103
-   16. Variable-Length Integer Encoding  . . . . . . . . . . . . . . 104
+   15. Versions  . . . . . . . . . . . . . . . . . . . . . . . . . . 104
+   16. Variable-Length Integer Encoding  . . . . . . . . . . . . . . 105
    17. Packet Formats  . . . . . . . . . . . . . . . . . . . . . . . 105
-     17.1.  Packet Number Encoding and Decoding  . . . . . . . . . . 105
-     17.2.  Long Header Packets  . . . . . . . . . . . . . . . . . . 106
+     17.1.  Packet Number Encoding and Decoding  . . . . . . . . . . 106
+     17.2.  Long Header Packets  . . . . . . . . . . . . . . . . . . 107
        17.2.1.  Version Negotiation Packet . . . . . . . . . . . . . 109
-       17.2.2.  Initial Packet . . . . . . . . . . . . . . . . . . . 110
+       17.2.2.  Initial Packet . . . . . . . . . . . . . . . . . . . 111
        17.2.3.  0-RTT  . . . . . . . . . . . . . . . . . . . . . . . 113
        17.2.4.  Handshake Packet . . . . . . . . . . . . . . . . . . 114
        17.2.5.  Retry Packet . . . . . . . . . . . . . . . . . . . . 115
@@ -434,14 +434,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
       -  Section 13 defines models for the transmission, retransmission,
          and acknowledgement of data, and
 
-      -  Section 14 specifies rules for managing the size of packets.
+      -  Section 14 specifies rules for managing the size of datagrams
+         carrying QUIC packets.
 
    *  Finally, encoding details of QUIC protocol elements are described
       in:
 
       -  Section 15 (Versions),
 
-      -  Section 16 (Integer Encoding),
 
 
 
@@ -449,6 +449,8 @@ Iyengar & Thomson         Expires 18 April 2021                 [Page 8]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+      -  Section 16 (Integer Encoding),
 
       -  Section 17 (Packet Headers),
 
@@ -496,8 +498,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    Client:  The endpoint that initiates a QUIC connection.
 
-   Server:  The endpoint that accepts a QUIC connection.
-
 
 
 
@@ -505,6 +505,8 @@ Iyengar & Thomson         Expires 18 April 2021                 [Page 9]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   Server:  The endpoint that accepts a QUIC connection.
 
    Address:  When used without qualification, the tuple of IP version,
       IP address, and UDP port number that represents one end of a
@@ -552,8 +554,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    x (?) = C..D:  Indicates that x has a value in the range from C to D,
       inclusive, with the length described by ?, as above
 
-   [x (E)]:  Indicates that x is optional (and has length of E)
-
 
 
 
@@ -561,6 +561,8 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 10]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   [x (E)]:  Indicates that x is optional (and has length of E)
 
    x (E) ...:  Indicates that x is repeated zero or more times (and that
       each instance is length E)
@@ -605,10 +607,8 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    provide any means of ensuring ordering between bytes on different
    streams.
 
-   QUIC allows for an arbitrary number of streams to operate
-   concurrently and for an arbitrary amount of data to be sent on any
-   stream, subject to flow control constraints and stream limits; see
-   Section 4.
+
+
 
 
 
@@ -617,6 +617,11 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 11]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   QUIC allows for an arbitrary number of streams to operate
+   concurrently and for an arbitrary amount of data to be sent on any
+   stream, subject to flow control constraints and stream limits; see
+   Section 4.
 
 2.1.  Stream Types and Identifiers
 
@@ -657,11 +662,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
                           Table 1: Stream ID Types
 
-   The stream space for each type begins at the minimum value (0x0
-   through 0x3 respectively); successive streams of each type are
-   created with numerically increasing stream IDs.  A stream ID that is
-   used out of order results in all streams of that type with lower-
-   numbered stream IDs also being opened.
 
 
 
@@ -673,6 +673,12 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 12]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   The stream space for each type begins at the minimum value (0x0
+   through 0x3 respectively); successive streams of each type are
+   created with numerically increasing stream IDs.  A stream ID that is
+   used out of order results in all streams of that type with lower-
+   numbered stream IDs also being opened.
 
 2.2.  Sending and Receiving Data
 
@@ -715,12 +721,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    information.  Instead, it relies on receiving priority information
    from the application.
 
-   A QUIC implementation SHOULD provide ways in which an application can
-   indicate the relative priority of streams.  An implementation uses
-   information provided by the application to determine how to allocate
-   resources to active streams.
-
-
 
 
 
@@ -729,6 +729,11 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 13]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   A QUIC implementation SHOULD provide ways in which an application can
+   indicate the relative priority of streams.  An implementation uses
+   information provided by the application to determine how to allocate
+   resources to active streams.
 
 2.4.  Operations on Streams
 
@@ -772,11 +777,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    components.  Two state machines are described: one for the streams on
    which an endpoint transmits data (Section 3.1), and another for
    streams on which an endpoint receives data (Section 3.2).
-
-
-
-
-
 
 
 
@@ -5513,30 +5513,30 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    however change mid-connection; an endpoint MUST disable ECN if
    validation later fails.
 
-14.  Packet Size
+14.  Datagram Size
 
-   The QUIC packet size includes the QUIC header and protected payload,
-   but not the UDP or IP headers.
+   A UDP datagram can include one or more QUIC packets.  The datagram
+   size refers to the total UDP payload size of a single UDP datagram
+   carrying QUIC packets.  The datagram size includes one or more QUIC
+   packet headers and protected payloads, but not the UDP or IP headers.
+
+   The maximum datagram size is defined as the largest size of UDP
+   payload that can be sent across a network path using a single UDP
+   datagram.
 
    QUIC depends upon a minimum IP packet size of at least 1280 bytes.
    This is the IPv6 minimum size ([IPv6]) and is also supported by most
-   modern IPv4 networks.  Assuming the minimum IP header size, this
-   results in a QUIC maximum packet size of 1232 bytes for IPv6 and 1252
-   bytes for IPv4.
+   modern IPv4 networks.  Assuming the minimum IP header size of 40
+   bytes for IPv6 and 20 bytes for IPv4 and a UDP header size of 8
+   bytes, this results in a maximum datagram size of 1232 bytes for IPv6
+   and 1252 bytes for IPv4.
 
-   The QUIC maximum packet size is the largest size of QUIC packet that
-   can be sent across a network path using a single packet.  Any maximum
-   packet size larger than 1200 bytes can be discovered using Path
-   Maximum Transmission Unit Discovery (PMTUD; see Section 14.2.1) or
-   Datagram Packetization Layer PMTU Discovery (DPLPMTUD; see
-   Section 14.3).
+   The maximum datagram size MUST be at least 1200 bytes.
 
-   Enforcement of the max_udp_payload_size transport parameter
-   (Section 18.2) might act as an additional limit on the maximum packet
-   size.  A sender can avoid exceeding this limit, once the value is
-   known.  However, prior to learning the value of the transport
-   parameter, endpoints risk datagrams being lost if they send packets
-   larger than the smallest allowed maximum packet size of 1200 bytes.
+   Any maximum datagram size larger than 1200 bytes can be discovered
+   using Path Maximum Transmission Unit Discovery (PMTUD; see
+   Section 14.2.1) or Datagram Packetization Layer PMTU Discovery
+   (DPLPMTUD; see Section 14.3).
 
 
 
@@ -5546,16 +5546,24 @@ Iyengar & Thomson         Expires 18 April 2021                [Page 99]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
+   Enforcement of the max_udp_payload_size transport parameter
+   (Section 18.2) might act as an additional limit on the maximum
+   datagram size.  A sender can avoid exceeding this limit, once the
+   value is known.  However, prior to learning the value of the
+   transport parameter, endpoints risk datagrams being lost if they send
+   datagrams larger than the smallest allowed maximum datagram size of
+   1200 bytes.
+
    UDP datagrams MUST NOT be fragmented at the IP layer.  In IPv4
    ([IPv4]), the DF bit MUST be set if possible, to prevent
    fragmentation on the path.
 
-14.1.  Initial Packet Size
+14.1.  Initial Datagram Size
 
    A client MUST expand the payload of all UDP datagrams carrying
-   Initial packets to at least the smallest allowed maximum packet size
-   (1200 bytes) by adding PADDING frames to the Initial packet or by
-   coalescing the Initial packet; see Section 12.2.  Sending a UDP
+   Initial packets to at least the smallest allowed maximum datagram
+   size (1200 bytes) by adding PADDING frames to the Initial packet or
+   by coalescing the Initial packet; see Section 12.2.  Sending a UDP
    datagram of this size ensures that the network path from the client
    to the server supports a reasonable Path Maximum Transmission Unit
    (PMTU).  This also helps reduce the amplitude of amplification
@@ -5567,8 +5575,8 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    that it chooses.
 
    A server MUST discard an Initial packet that is carried in a UDP
-   datagram with a payload that is less than the smallest allowed
-   maximum packet size of 1200 bytes.  A server MAY also immediately
+   datagram with a payload that is smaller than the smallest allowed
+   maximum datagram size of 1200 bytes.  A server MAY also immediately
    close the connection by sending a CONNECTION_CLOSE frame with an
    error code of PROTOCOL_VIOLATION; see Section 10.2.3.
 
@@ -5579,19 +5587,11 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    The Path Maximum Transmission Unit (PMTU) is the maximum size of the
    entire IP packet including the IP header, UDP header, and UDP
-   payload.  The UDP payload includes the QUIC packet header, protected
-   payload, and any authentication fields.  The PMTU can depend on path
-   characteristics, and can therefore change over time.  The largest UDP
-   payload an endpoint sends at any given time is referred to as the
-   endpoint's maximum packet size.
-
-   An endpoint SHOULD use DPLPMTUD (Section 14.3) or PMTUD
-   (Section 14.2.1) to determine whether the path to a destination will
-   support a desired maximum packet size without fragmentation.  In the
-   absence of these mechanisms, QUIC endpoints SHOULD NOT send IP
-   packets larger than the smallest allowed maximum packet size.
-
-
+   payload.  The UDP payload includes one or more QUIC packet headers
+   and protected payloads.  The PMTU can depend on path characteristics,
+   and can therefore change over time.  The largest UDP payload an
+   endpoint sends at any given time is referred to as the endpoint's
+   maximum datagram size.
 
 
 
@@ -5602,41 +5602,47 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 100]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
-   Both DPLPMTUD and PMTUD send IP packets that are larger than the
-   current maximum packet size, referred to as PMTU probes.  All QUIC
+   An endpoint SHOULD use DPLPMTUD (Section 14.3) or PMTUD
+   (Section 14.2.1) to determine whether the path to a destination will
+   support a desired maximum datagram size without fragmentation.  In
+   the absence of these mechanisms, QUIC endpoints SHOULD NOT send
+   datagrams larger than the smallest allowed maximum datagram size.
+
+   Both DPLPMTUD and PMTUD send datagrams that are larger than the
+   current maximum datagram size, referred to as PMTU probes.  All QUIC
    packets that are not sent in a PMTU probe SHOULD be sized to fit
-   within the maximum packet size to avoid the packet being fragmented
-   or dropped ([RFC8085]).
+   within the maximum datagram size to avoid the datagram being
+   fragmented or dropped ([RFC8085]).
 
    If a QUIC endpoint determines that the PMTU between any pair of local
    and remote IP addresses has fallen below the smallest allowed maximum
-   packet size of 1200 bytes, it MUST immediately cease sending QUIC
+   datagram size of 1200 bytes, it MUST immediately cease sending QUIC
    packets, except for those in PMTU probes or those containing
    CONNECTION_CLOSE frames, on the affected path.  An endpoint MAY
    terminate the connection if an alternative path cannot be found.
 
    Each pair of local and remote addresses could have a different PMTU.
    QUIC implementations that implement any kind of PMTU discovery
-   therefore SHOULD maintain a maximum packet size for each combination
-   of local and remote IP addresses.
+   therefore SHOULD maintain a maximum datagram size for each
+   combination of local and remote IP addresses.
 
    A QUIC implementation MAY be more conservative in computing the
-   maximum packet size to allow for unknown tunnel overheads or IP
+   maximum datagram size to allow for unknown tunnel overheads or IP
    header options/extensions.
 
 14.2.1.  Handling of ICMP Messages by PMTUD
 
    Path Maximum Transmission Unit Discovery (PMTUD; [RFC1191],
    [RFC8201]) relies on reception of ICMP messages (e.g., IPv6 Packet
-   Too Big messages) that indicate when a packet is dropped because it
-   is larger than the local router MTU.  DPLPMTUD can also optionally
+   Too Big messages) that indicate when an IP packet is dropped because
+   it is larger than the local router MTU.  DPLPMTUD can also optionally
    use these messages.  This use of ICMP messages is potentially
    vulnerable to off-path attacks that successfully guess the addresses
    used on the path and reduce the PMTU to a bandwidth-inefficient
    value.
 
    An endpoint MUST ignore an ICMP message that claims the PMTU has
-   decreased below the minimum QUIC packet size.
+   decreased below QUIC's smallest allowed maximum datagram size.
 
    The requirements for generating ICMP ([RFC1812], [RFC4443]) state
    that the quoted packet should contain as much of the original packet
@@ -5645,12 +5651,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    information unintelligible, as described in Section 1.1 of
    [DPLPMTUD].
 
-   QUIC endpoints using PMTUD SHOULD validate ICMP messages to protect
-   from off-path injection as specified in [RFC8201] and Section 5.2 of
-   [RFC8085].  This validation SHOULD use the quoted packet supplied in
-   the payload of an ICMP message to associate the message with a
-   corresponding transport connection (see Section 4.6.1 of [DPLPMTUD]).
-
 
 
 Iyengar & Thomson         Expires 18 April 2021               [Page 101]
@@ -5658,14 +5658,19 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 101]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
+   QUIC endpoints using PMTUD SHOULD validate ICMP messages to protect
+   from off-path injection as specified in [RFC8201] and Section 5.2 of
+   [RFC8085].  This validation SHOULD use the quoted packet supplied in
+   the payload of an ICMP message to associate the message with a
+   corresponding transport connection (see Section 4.6.1 of [DPLPMTUD]).
    ICMP message validation MUST include matching IP addresses and UDP
    ports ([RFC8085]) and, when possible, connection IDs to an active
    QUIC session.  The endpoint SHOULD ignore all ICMP messages that fail
    validation.
 
    An endpoint MUST NOT increase PMTU based on ICMP messages; see
-   Section 3, clause 6 of [DPLPMTUD].  Any reduction in the QUIC maximum
-   packet size in response to ICMP messages MAY be provisional until
+   Section 3, clause 6 of [DPLPMTUD].  Any reduction in QUIC's maximum
+   datagram size in response to ICMP messages MAY be provisional until
    QUIC's loss detection algorithm determines that the quoted packet has
    actually been lost.
 
@@ -5677,33 +5682,28 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    PADDING frame implement "Probing using padding data", as defined in
    Section 4.1 of [DPLPMTUD].
 
-   Endpoints SHOULD set the initial value of BASE_PMTU (see Section 5.1
-   of [DPLPMTUD]) to be consistent with the minimum QUIC packet size.
-   The MIN_PLPMTU is the same as the BASE_PMTU.
+   Endpoints SHOULD set the initial value of BASE_PLPMTU (Section 5.1 of
+   [DPLPMTUD]) to be consistent with QUIC's smallest allowed maximum
+   datagram size.  The MIN_PLPMTU is the same as the BASE_PLPMTU.
 
-   QUIC endpoints implementing DPLPMTUD maintain a maximum packet size
-   (DPLPMTUD MPS) for each combination of local and remote IP addresses.
+   QUIC endpoints implementing DPLPMTUD maintain a DPLPMTUD Maximum
+   Packet Size (MPS, Section 4.4 of [DPLPMTUD]) for each combination of
+   local and remote IP addresses.  This corresponds to the maximum
+   datagram size.
 
 14.3.1.  DPLPMTUD and Initial Connectivity
 
    From the perspective of DPLPMTUD, QUIC is an acknowledged
-   packetization layer (PL).  A sender can therefore enter the DPLPMTUD
-   BASE state when the QUIC connection handshake has been completed.
+   Packetization Layer (PL).  A QUIC sender can therefore enter the
+   DPLPMTUD BASE state (Section 5.2 of [DPLPMTUD]) when the QUIC
+   connection handshake has been completed.
 
-14.3.2.  Validating the QUIC Path with DPLPMTUD
+14.3.2.  Validating the Network Path with DPLPMTUD
 
-   QUIC provides an acknowledged PL, therefore a sender does not
-   implement the DPLPMTUD CONFIRMATION_TIMER while in the
-   SEARCH_COMPLETE state; see Section 5.2 of [DPLPMTUD].
+   QUIC is an acknowledged PL, therefore a QUIC sender does not
+   implement a DPLPMTUD CONFIRMATION_TIMER while in the SEARCH_COMPLETE
+   state; see Section 5.2 of [DPLPMTUD].
 
-14.3.3.  Handling of ICMP Messages by DPLPMTUD
-
-   An endpoint using DPLPMTUD requires the validation of any received
-   ICMP Packet Too Big (PTB) message before using the PTB information,
-   as defined in Section 4.6 of [DPLPMTUD].  In addition to UDP port
-   validation, QUIC validates an ICMP message by using other PL
-   information (e.g., validation of connection IDs in the quoted packet
-   of any received ICMP message).
 
 
 
@@ -5714,6 +5714,15 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 102]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
+14.3.3.  Handling of ICMP Messages by DPLPMTUD
+
+   An endpoint using DPLPMTUD requires the validation of any received
+   ICMP Packet Too Big (PTB) message before using the PTB information,
+   as defined in Section 4.6 of [DPLPMTUD].  In addition to UDP port
+   validation, QUIC validates an ICMP message by using other PL
+   information (e.g., validation of connection IDs in the quoted packet
+   of any received ICMP message).
+
    The considerations for processing ICMP messages described in
    Section 14.2.1 also apply if these messages are used by DPLPMTUD.
 
@@ -5722,12 +5731,12 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    PMTU probes are ack-eliciting packets.
 
    Endpoints could limit the content of PMTU probes to PING and PADDING
-   frames as packets that are larger than the current maximum packet
-   size are more likely to be dropped by the network.  Loss of a QUIC
-   packet that is carried in a PMTU probe is therefore not a reliable
-   indication of congestion and SHOULD NOT trigger a congestion control
-   reaction; see Section 3, Bullet 7 of [DPLPMTUD].  However, PMTU
-   probes consume congestion window, which could delay subsequent
+   frames, since packets that are larger than the current maximum
+   datagram size are more likely to be dropped by the network.  Loss of
+   a QUIC packet that is carried in a PMTU probe is therefore not a
+   reliable indication of congestion and SHOULD NOT trigger a congestion
+   control reaction; see Section 3, Bullet 7 of [DPLPMTUD].  However,
+   PMTU probes consume congestion window, which could delay subsequent
    transmission by an application.
 
 14.4.1.  PMTU Probes Containing Source Connection ID
@@ -5751,15 +5760,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    that could be used for routing or validation of the ICMP message.
 
    Note:  The purpose of using a packet with a long header is only to
-      ensure that the quoted packet contained in the ICMP message
-      contains a Source Connection ID field.  This packet does not need
-      to be a valid packet and it can be sent even if there is no
-      current use for packets of that type.
-
-15.  Versions
-
-   QUIC versions are identified using a 32-bit unsigned number.
-
 
 
 
@@ -5769,6 +5769,15 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 103]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+      ensure that the quoted packet contained in the ICMP message
+      contains a Source Connection ID field.  This packet does not need
+      to be a valid packet and it can be sent even if there is no
+      current use for packets of that type.
+
+15.  Versions
+
+   QUIC versions are identified using a 32-bit unsigned number.
 
    The version 0x00000000 is reserved to represent version negotiation.
    This version of the specification is identified by the number
@@ -5808,6 +5817,15 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    the draft number to 0xff000000.  For example, draft-ietf-quic-
    transport-13 would be identified as 0xff00000d.
 
+
+
+
+
+Iyengar & Thomson         Expires 18 April 2021               [Page 104]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    Implementors are encouraged to register version numbers of QUIC that
    they are using for private experimentation on the GitHub wiki at
    https://github.com/quicwg/base-drafts/wiki/QUIC-Versions.
@@ -5817,14 +5835,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    QUIC packets and frames commonly use a variable-length encoding for
    non-negative integer values.  This encoding ensures that smaller
    integer values need fewer bytes to encode.
-
-
-
-
-Iyengar & Thomson         Expires 18 April 2021               [Page 104]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    The QUIC variable-length integer encoding reserves the two most
    significant bits of the first byte to encode the base 2 logarithm of
@@ -5865,6 +5875,13 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    endian) and all field sizes are in bits.  Hexadecimal notation is
    used for describing the value of fields.
 
+
+
+Iyengar & Thomson         Expires 18 April 2021               [Page 105]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
 17.1.  Packet Number Encoding and Decoding
 
    Packet numbers are integers in the range 0 to 2^62-1 (Section 12.3).
@@ -5872,15 +5889,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    to 4 bytes.  The number of bits required to represent the packet
    number is reduced by including only the least significant bits of the
    packet number.
-
-
-
-
-
-Iyengar & Thomson         Expires 18 April 2021               [Page 105]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    The encoded packet number is protected as described in Section 5.4 of
    [QUIC-TLS].
@@ -5922,14 +5930,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    packet.  The next expected packet is the highest received packet
    number plus one.  For example, if the highest successfully
    authenticated packet had a packet number of 0xa82f30ea, then a packet
-   containing a 16-bit value of 0x9b32 will be decoded as 0xa82f9b32.
-   Example pseudo-code for packet number decoding can be found in
-   Appendix A.
-
-17.2.  Long Header Packets
-
-
-
 
 
 
@@ -5937,6 +5937,12 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 106]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   containing a 16-bit value of 0x9b32 will be decoded as 0xa82f9b32.
+   Example pseudo-code for packet number decoding can be found in
+   Appendix A.
+
+17.2.  Long Header Packets
 
    Long Header Packet {
      Header Form (1) = 1,
@@ -5978,13 +5984,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
       determines how the rest of the protocol fields are interpreted.
 
    Destination Connection ID Length:  The byte following the version
-      contains the length in bytes of the Destination Connection ID
-      field that follows it.  This length is encoded as an 8-bit
-      unsigned integer.  In QUIC version 1, this value MUST NOT exceed
-      20.  Endpoints that receive a version 1 long header with a value
-      larger than 20 MUST drop the packet.  In order to properly form a
-      Version Negotiation packet, servers SHOULD be able to read longer
-      connection IDs from other QUIC versions.
+
 
 
 
@@ -5993,6 +5993,14 @@ Iyengar & Thomson         Expires 18 April 2021               [Page 107]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+      contains the length in bytes of the Destination Connection ID
+      field that follows it.  This length is encoded as an 8-bit
+      unsigned integer.  In QUIC version 1, this value MUST NOT exceed
+      20.  Endpoints that receive a version 1 long header with a value
+      larger than 20 MUST drop the packet.  In order to properly form a
+      Version Negotiation packet, servers SHOULD be able to read longer
+      connection IDs from other QUIC versions.
 
    Destination Connection ID:  The Destination Connection ID field
       follows the Destination Connection ID Length field, which
@@ -6030,6 +6038,18 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
                      Table 5: Long Header Packet Types
 
+
+
+
+
+
+
+
+Iyengar & Thomson         Expires 18 April 2021               [Page 108]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    The header form bit, Destination and Source Connection ID lengths,
    Destination and Source Connection ID fields, and Version fields of a
    long header packet are version-independent.  The other fields in the
@@ -6042,14 +6062,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    packets in this version of QUIC contain these additional fields:
 
    Reserved Bits:  Two bits (those with a mask of 0x0c) of byte 0 are
-
-
-
-Iyengar & Thomson         Expires 18 April 2021               [Page 108]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
       reserved across multiple packet types.  These bits are protected
       using header protection; see Section 5.4 of [QUIC-TLS].  The value
       included prior to protection MUST be set to 0.  An endpoint MUST
@@ -6086,6 +6098,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    contains a version that is not supported by the server, and is only
    sent by servers.
 
+
+
+
+Iyengar & Thomson         Expires 18 April 2021               [Page 109]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    The layout of a Version Negotiation packet is:
 
    Version Negotiation Packet {
@@ -6098,13 +6118,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
      Source Connection ID (0..2040),
      Supported Version (32) ...,
    }
-
-
-
-Iyengar & Thomson         Expires 18 April 2021               [Page 109]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
                    Figure 14: Version Negotiation Packet
 
@@ -6141,6 +6154,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Consequently, a Version Negotiation packet consumes an entire UDP
    datagram.
 
+
+
+
+Iyengar & Thomson         Expires 18 April 2021               [Page 110]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    A server MUST NOT send more than one Version Negotiation packet in
    response to a single UDP datagram.
 
@@ -6151,16 +6172,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    An Initial packet uses long headers with a type value of 0x0.  It
    carries the first CRYPTO frames sent by the client and server to
    perform key exchange, and carries ACKs in either direction.
-
-
-
-
-
-
-Iyengar & Thomson         Expires 18 April 2021               [Page 110]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    Initial Packet {
      Header Form (1) = 1,
@@ -6200,23 +6211,18 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    Packet Payload:  The payload of the packet.
 
-   In order to prevent tampering by version-unaware middleboxes, Initial
-   packets are protected with connection- and version-specific keys
-   (Initial keys) as described in [QUIC-TLS].  This protection does not
-   provide confidentiality or integrity against on-path attackers, but
-   provides some level of protection against off-path attackers.
-
-
-
-
-
-
 
 
 Iyengar & Thomson         Expires 18 April 2021               [Page 111]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   In order to prevent tampering by version-unaware middleboxes, Initial
+   packets are protected with connection- and version-specific keys
+   (Initial keys) as described in [QUIC-TLS].  This protection does not
+   provide confidentiality or integrity against on-path attackers, but
+   provides some level of protection against off-path attackers.
 
    The client and server use the Initial packet type for any packet that
    contains an initial cryptographic handshake message.  This includes
@@ -6260,12 +6266,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    Any data in CRYPTO frames is discarded - and no longer retransmitted
    - when Initial keys are discarded.
-
-
-
-
-
-
 
 
 

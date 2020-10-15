@@ -4,8 +4,8 @@
 
 QUIC                                                      M. Bishop, Ed.
 Internet-Draft                                                    Akamai
-Intended status: Standards Track                         14 October 2020
-Expires: 17 April 2021
+Intended status: Standards Track                         15 October 2020
+Expires: 18 April 2021
 
 
              Hypertext Transfer Protocol Version 3 (HTTP/3)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 17 April 2021.
+   This Internet-Draft will expire on 18 April 2021.
 
 
 
@@ -53,7 +53,7 @@ Status of This Memo
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 1]
+Bishop                    Expires 18 April 2021                 [Page 1]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 2]
+Bishop                    Expires 18 April 2021                 [Page 2]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -165,7 +165,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 3]
+Bishop                    Expires 18 April 2021                 [Page 3]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -221,7 +221,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 4]
+Bishop                    Expires 18 April 2021                 [Page 4]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -277,7 +277,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 5]
+Bishop                    Expires 18 April 2021                 [Page 5]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -333,7 +333,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 6]
+Bishop                    Expires 18 April 2021                 [Page 6]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -389,7 +389,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 7]
+Bishop                    Expires 18 April 2021                 [Page 7]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -445,7 +445,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 8]
+Bishop                    Expires 18 April 2021                 [Page 8]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -501,7 +501,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                 [Page 9]
+Bishop                    Expires 18 April 2021                 [Page 9]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -557,7 +557,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 10]
+Bishop                    Expires 18 April 2021                [Page 10]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -613,7 +613,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 11]
+Bishop                    Expires 18 April 2021                [Page 11]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -669,7 +669,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 12]
+Bishop                    Expires 18 April 2021                [Page 12]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -725,7 +725,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 13]
+Bishop                    Expires 18 April 2021                [Page 13]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -781,7 +781,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 14]
+Bishop                    Expires 18 April 2021                [Page 14]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -837,7 +837,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 15]
+Bishop                    Expires 18 April 2021                [Page 15]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -893,7 +893,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 16]
+Bishop                    Expires 18 April 2021                [Page 16]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -949,7 +949,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 17]
+Bishop                    Expires 18 April 2021                [Page 17]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 18]
+Bishop                    Expires 18 April 2021                [Page 18]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 19]
+Bishop                    Expires 18 April 2021                [Page 19]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 20]
+Bishop                    Expires 18 April 2021                [Page 20]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 21]
+Bishop                    Expires 18 April 2021                [Page 21]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 22]
+Bishop                    Expires 18 April 2021                [Page 22]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 23]
+Bishop                    Expires 18 April 2021                [Page 23]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 24]
+Bishop                    Expires 18 April 2021                [Page 24]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 25]
+Bishop                    Expires 18 April 2021                [Page 25]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1453,7 +1453,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 26]
+Bishop                    Expires 18 April 2021                [Page 26]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1509,7 +1509,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 27]
+Bishop                    Expires 18 April 2021                [Page 27]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1565,7 +1565,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 28]
+Bishop                    Expires 18 April 2021                [Page 28]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 29]
+Bishop                    Expires 18 April 2021                [Page 29]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 30]
+Bishop                    Expires 18 April 2021                [Page 30]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1733,7 +1733,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 31]
+Bishop                    Expires 18 April 2021                [Page 31]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1789,7 +1789,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 32]
+Bishop                    Expires 18 April 2021                [Page 32]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1845,7 +1845,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 33]
+Bishop                    Expires 18 April 2021                [Page 33]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1901,7 +1901,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 34]
+Bishop                    Expires 18 April 2021                [Page 34]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -1957,7 +1957,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 35]
+Bishop                    Expires 18 April 2021                [Page 35]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2013,7 +2013,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 36]
+Bishop                    Expires 18 April 2021                [Page 36]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2069,7 +2069,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 37]
+Bishop                    Expires 18 April 2021                [Page 37]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2125,7 +2125,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 38]
+Bishop                    Expires 18 April 2021                [Page 38]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2181,7 +2181,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 39]
+Bishop                    Expires 18 April 2021                [Page 39]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2237,7 +2237,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 40]
+Bishop                    Expires 18 April 2021                [Page 40]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2293,7 +2293,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 41]
+Bishop                    Expires 18 April 2021                [Page 41]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2349,7 +2349,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 42]
+Bishop                    Expires 18 April 2021                [Page 42]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2405,7 +2405,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 43]
+Bishop                    Expires 18 April 2021                [Page 43]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2461,7 +2461,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 44]
+Bishop                    Expires 18 April 2021                [Page 44]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2517,7 +2517,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 45]
+Bishop                    Expires 18 April 2021                [Page 45]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2573,7 +2573,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 46]
+Bishop                    Expires 18 April 2021                [Page 46]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2629,7 +2629,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 47]
+Bishop                    Expires 18 April 2021                [Page 47]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2685,7 +2685,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 48]
+Bishop                    Expires 18 April 2021                [Page 48]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2741,7 +2741,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 49]
+Bishop                    Expires 18 April 2021                [Page 49]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2797,7 +2797,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 50]
+Bishop                    Expires 18 April 2021                [Page 50]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2853,7 +2853,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 51]
+Bishop                    Expires 18 April 2021                [Page 51]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2909,7 +2909,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 52]
+Bishop                    Expires 18 April 2021                [Page 52]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2965,7 +2965,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 53]
+Bishop                    Expires 18 April 2021                [Page 53]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -2982,13 +2982,13 @@ Internet-Draft                   HTTP/3                     October 2020
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 14 October 2020,
+              Internet-Draft, draft-ietf-quic-qpack, 15 October 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 14 October
+              Internet-Draft, draft-ietf-quic-transport, 15 October
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -3021,7 +3021,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 54]
+Bishop                    Expires 18 April 2021                [Page 54]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3077,7 +3077,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                    Expires 17 April 2021                [Page 55]
+Bishop                    Expires 18 April 2021                [Page 55]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3133,7 +3133,7 @@ A.1.  Streams
 
 
 
-Bishop                    Expires 17 April 2021                [Page 56]
+Bishop                    Expires 18 April 2021                [Page 56]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3189,7 +3189,7 @@ A.2.1.  Prioritization Differences
 
 
 
-Bishop                    Expires 17 April 2021                [Page 57]
+Bishop                    Expires 18 April 2021                [Page 57]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3245,7 +3245,7 @@ A.2.4.  Guidance for New Frame Type Definitions
 
 
 
-Bishop                    Expires 17 April 2021                [Page 58]
+Bishop                    Expires 18 April 2021                [Page 58]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3301,7 +3301,7 @@ A.2.5.  Mapping Between HTTP/2 and HTTP/3 Frame Types
 
 
 
-Bishop                    Expires 17 April 2021                [Page 59]
+Bishop                    Expires 18 April 2021                [Page 59]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3357,7 +3357,7 @@ A.3.  HTTP/2 SETTINGS Parameters
 
 
 
-Bishop                    Expires 17 April 2021                [Page 60]
+Bishop                    Expires 18 April 2021                [Page 60]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3413,7 +3413,7 @@ A.4.  HTTP/2 Error Codes
 
 
 
-Bishop                    Expires 17 April 2021                [Page 61]
+Bishop                    Expires 18 April 2021                [Page 61]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3469,7 +3469,7 @@ A.4.1.  Mapping Between HTTP/2 and HTTP/3 Errors
 
 
 
-Bishop                    Expires 17 April 2021                [Page 62]
+Bishop                    Expires 18 April 2021                [Page 62]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3525,7 +3525,7 @@ B.6.  Since draft-ietf-quic-http-25
 
 
 
-Bishop                    Expires 17 April 2021                [Page 63]
+Bishop                    Expires 18 April 2021                [Page 63]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3581,7 +3581,7 @@ B.9.  Since draft-ietf-quic-http-22
 
 
 
-Bishop                    Expires 17 April 2021                [Page 64]
+Bishop                    Expires 18 April 2021                [Page 64]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3637,7 +3637,7 @@ B.11.  Since draft-ietf-quic-http-20
 
 
 
-Bishop                    Expires 17 April 2021                [Page 65]
+Bishop                    Expires 18 April 2021                [Page 65]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3693,7 +3693,7 @@ B.14.  Since draft-ietf-quic-http-17
 
 
 
-Bishop                    Expires 17 April 2021                [Page 66]
+Bishop                    Expires 18 April 2021                [Page 66]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3749,7 +3749,7 @@ B.18.  Since draft-ietf-quic-http-13
 
 
 
-Bishop                    Expires 17 April 2021                [Page 67]
+Bishop                    Expires 18 April 2021                [Page 67]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3805,7 +3805,7 @@ B.22.  Since draft-ietf-quic-http-09
 
 
 
-Bishop                    Expires 17 April 2021                [Page 68]
+Bishop                    Expires 18 April 2021                [Page 68]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3861,7 +3861,7 @@ B.28.  Since draft-ietf-quic-http-03
 
 
 
-Bishop                    Expires 17 April 2021                [Page 69]
+Bishop                    Expires 18 April 2021                [Page 69]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3917,7 +3917,7 @@ B.31.  Since draft-ietf-quic-http-00
 
 
 
-Bishop                    Expires 17 April 2021                [Page 70]
+Bishop                    Expires 18 April 2021                [Page 70]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -3973,7 +3973,7 @@ Acknowledgements
 
 
 
-Bishop                    Expires 17 April 2021                [Page 71]
+Bishop                    Expires 18 April 2021                [Page 71]
 
 Internet-Draft                   HTTP/3                     October 2020
 
@@ -4029,4 +4029,4 @@ Author's Address
 
 
 
-Bishop                    Expires 17 April 2021                [Page 72]
+Bishop                    Expires 18 April 2021                [Page 72]

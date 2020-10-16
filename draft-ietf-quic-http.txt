@@ -83,7 +83,7 @@ Table of Contents
    3.  Connection Setup and Management . . . . . . . . . . . . . . .   8
      3.1.  Draft Version Identification  . . . . . . . . . . . . . .   8
      3.2.  Discovering an HTTP/3 Endpoint  . . . . . . . . . . . . .   9
-       3.2.1.  HTTP Alternative Services . . . . . . . . . . . . . .   9
+       3.2.1.  HTTP Alternative Services . . . . . . . . . . . . . .  10
        3.2.2.  Other Schemes . . . . . . . . . . . . . . . . . . . .  10
      3.3.  Connection Establishment  . . . . . . . . . . . . . . . .  10
      3.4.  Connection Reuse  . . . . . . . . . . . . . . . . . . . .  11
@@ -94,17 +94,17 @@ Table of Contents
        4.1.3.  Malformed Requests and Responses  . . . . . . . . . .  18
      4.2.  The CONNECT Method  . . . . . . . . . . . . . . . . . . .  19
      4.3.  HTTP Upgrade  . . . . . . . . . . . . . . . . . . . . . .  20
-     4.4.  Server Push . . . . . . . . . . . . . . . . . . . . . . .  20
-   5.  Connection Closure  . . . . . . . . . . . . . . . . . . . . .  22
-     5.1.  Idle Connections  . . . . . . . . . . . . . . . . . . . .  22
+     4.4.  Server Push . . . . . . . . . . . . . . . . . . . . . . .  21
+   5.  Connection Closure  . . . . . . . . . . . . . . . . . . . . .  23
+     5.1.  Idle Connections  . . . . . . . . . . . . . . . . . . . .  23
      5.2.  Connection Shutdown . . . . . . . . . . . . . . . . . . .  23
      5.3.  Immediate Application Closure . . . . . . . . . . . . . .  25
-     5.4.  Transport Closure . . . . . . . . . . . . . . . . . . . .  25
-   6.  Stream Mapping and Usage  . . . . . . . . . . . . . . . . . .  25
+     5.4.  Transport Closure . . . . . . . . . . . . . . . . . . . .  26
+   6.  Stream Mapping and Usage  . . . . . . . . . . . . . . . . . .  26
      6.1.  Bidirectional Streams . . . . . . . . . . . . . . . . . .  26
-     6.2.  Unidirectional Streams  . . . . . . . . . . . . . . . . .  26
+     6.2.  Unidirectional Streams  . . . . . . . . . . . . . . . . .  27
        6.2.1.  Control Streams . . . . . . . . . . . . . . . . . . .  28
-       6.2.2.  Push Streams  . . . . . . . . . . . . . . . . . . . .  28
+       6.2.2.  Push Streams  . . . . . . . . . . . . . . . . . . . .  29
        6.2.3.  Reserved Stream Types . . . . . . . . . . . . . . . .  29
 
 
@@ -114,26 +114,26 @@ Bishop                    Expires 19 April 2021                 [Page 2]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   7.  HTTP Framing Layer  . . . . . . . . . . . . . . . . . . . . .  29
-     7.1.  Frame Layout  . . . . . . . . . . . . . . . . . . . . . .  30
+   7.  HTTP Framing Layer  . . . . . . . . . . . . . . . . . . . . .  30
+     7.1.  Frame Layout  . . . . . . . . . . . . . . . . . . . . . .  31
      7.2.  Frame Definitions . . . . . . . . . . . . . . . . . . . .  31
        7.2.1.  DATA  . . . . . . . . . . . . . . . . . . . . . . . .  31
-       7.2.2.  HEADERS . . . . . . . . . . . . . . . . . . . . . . .  31
+       7.2.2.  HEADERS . . . . . . . . . . . . . . . . . . . . . . .  32
        7.2.3.  CANCEL_PUSH . . . . . . . . . . . . . . . . . . . . .  32
        7.2.4.  SETTINGS  . . . . . . . . . . . . . . . . . . . . . .  33
        7.2.5.  PUSH_PROMISE  . . . . . . . . . . . . . . . . . . . .  36
        7.2.6.  GOAWAY  . . . . . . . . . . . . . . . . . . . . . . .  38
        7.2.7.  MAX_PUSH_ID . . . . . . . . . . . . . . . . . . . . .  38
        7.2.8.  Reserved Frame Types  . . . . . . . . . . . . . . . .  39
-   8.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  39
+   8.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  40
      8.1.  HTTP/3 Error Codes  . . . . . . . . . . . . . . . . . . .  40
    9.  Extensions to HTTP/3  . . . . . . . . . . . . . . . . . . . .  41
    10. Security Considerations . . . . . . . . . . . . . . . . . . .  42
      10.1.  Server Authority . . . . . . . . . . . . . . . . . . . .  42
-     10.2.  Cross-Protocol Attacks . . . . . . . . . . . . . . . . .  42
+     10.2.  Cross-Protocol Attacks . . . . . . . . . . . . . . . . .  43
      10.3.  Intermediary Encapsulation Attacks . . . . . . . . . . .  43
      10.4.  Cacheability of Pushed Responses . . . . . . . . . . . .  43
-     10.5.  Denial-of-Service Considerations . . . . . . . . . . . .  43
+     10.5.  Denial-of-Service Considerations . . . . . . . . . . . .  44
        10.5.1.  Limits on Field Section Size . . . . . . . . . . . .  44
        10.5.2.  CONNECT Issues . . . . . . . . . . . . . . . . . . .  45
      10.6.  Use of Compression . . . . . . . . . . . . . . . . . . .  45
@@ -249,7 +249,7 @@ Internet-Draft                   HTTP/3                     October 2020
    The QUIC transport protocol incorporates stream multiplexing and per-
    stream flow control, similar to that provided by the HTTP/2 framing
    layer.  By providing reliability at the stream level and congestion
-   control across the entire connection, it has the capability to
+   control across the entire connection, QUIC has the capability to
    improve the performance of HTTP compared to a TCP mapping.  QUIC also
    incorporates TLS 1.3 ([TLS13]) at the transport layer, offering
    comparable security to running TLS over TCP, with the improved
@@ -310,17 +310,17 @@ Internet-Draft                   HTTP/3                     October 2020
 
 2.1.  Document Organization
 
-   The following sections provide a detailed overview of the connection
-   lifecycle and key concepts:
+   The following sections provide a detailed overview of the lifecycle
+   of an HTTP/3 connection:
 
    *  Connection Setup and Management (Section 3) covers how an HTTP/3
-      endpoint is discovered and a connection is established.
+      endpoint is discovered and an HTTP/3 connection is established.
 
    *  HTTP Request Lifecycle (Section 4) describes how HTTP semantics
       are expressed using frames.
 
-   *  Connection Closure (Section 5) describes how connections are
-      terminated, either gracefully or abruptly.
+   *  Connection Closure (Section 5) describes how HTTP/3 connections
+      are terminated, either gracefully or abruptly.
 
    The details of the wire protocol and interactions with the transport
    are described in subsequent sections:
@@ -394,6 +394,9 @@ Bishop                    Expires 19 April 2021                 [Page 7]
 Internet-Draft                   HTTP/3                     October 2020
 
 
+   HTTP/3 connection:  A QUIC connection where the negotiated
+      application protocol is HTTP/3.
+
    peer:  An endpoint.  When discussing a particular endpoint, "peer"
       refers to the endpoint that is remote to the primary subject of
       discussion.
@@ -437,10 +440,7 @@ Internet-Draft                   HTTP/3                     October 2020
    example, draft-ietf-quic-http-01 is identified using the string
    "h3-01".
 
-   Draft versions MUST use the corresponding draft transport version as
-   their transport.  For example, the application protocol defined in
-   draft-ietf-quic-http-25 uses the transport defined in draft-ietf-
-   quic-transport-25.
+
 
 
 
@@ -449,6 +449,11 @@ Bishop                    Expires 19 April 2021                 [Page 8]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   Draft versions MUST use the corresponding draft transport version as
+   their transport.  For example, the application protocol defined in
+   draft-ietf-quic-http-25 uses the transport defined in draft-ietf-
+   quic-transport-25.
 
    Non-compatible experiments that are based on these draft versions
    MUST append the string "-" and an experiment name to the identifier.
@@ -472,9 +477,9 @@ Internet-Draft                   HTTP/3                     October 2020
    certificate that the client considers to be trustworthy for the host
    identified by the authority component of the URL.  If a server
    presents a certificate and proof that it controls the corresponding
-   private key, then a client will accept a secured connection to that
-   server as being authoritative for all origins with the "https" scheme
-   and a host identified in the certificate.
+   private key, then a client will accept a secured TLS session with
+   that server as being authoritative for all origins with the "https"
+   scheme and a host identified in the certificate.
 
    A client MAY attempt access to a resource with an "https" URI by
    resolving the host identifier to an IP address, establishing a QUIC
@@ -492,11 +497,6 @@ Internet-Draft                   HTTP/3                     October 2020
    advertisement always includes an explicit port, and URLs contain
    either an explicit port or a default port associated with the scheme.
 
-3.2.1.  HTTP Alternative Services
-
-   An HTTP origin advertises the availability of an equivalent HTTP/3
-   endpoint via the Alt-Svc HTTP response header field or the HTTP/2
-   ALTSVC frame ([ALTSVC]), using the "h3" ALPN token.
 
 
 
@@ -505,6 +505,12 @@ Bishop                    Expires 19 April 2021                 [Page 9]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+3.2.1.  HTTP Alternative Services
+
+   An HTTP origin advertises the availability of an equivalent HTTP/3
+   endpoint via the Alt-Svc HTTP response header field or the HTTP/2
+   ALTSVC frame ([ALTSVC]), using the "h3" ALPN token.
 
    For example, an origin could indicate in an HTTP response that HTTP/3
    was available on UDP port 50781 at the same hostname by including the
@@ -548,12 +554,6 @@ Internet-Draft                   HTTP/3                     October 2020
    Indication (SNI; [RFC6066]) TLS extension unless an alternative
    mechanism to indicate the target host is used.
 
-   QUIC connections are established as described in [QUIC-TRANSPORT].
-   During connection establishment, HTTP/3 support is indicated by
-   selecting the ALPN token "h3" in the TLS handshake.  Support for
-   other application-layer protocols MAY be offered in the same
-   handshake.
-
 
 
 
@@ -561,6 +561,12 @@ Bishop                    Expires 19 April 2021                [Page 10]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   QUIC connections are established as described in [QUIC-TRANSPORT].
+   During connection establishment, HTTP/3 support is indicated by
+   selecting the ALPN token "h3" in the TLS handshake.  Support for
+   other application-layer protocols MAY be offered in the same
+   handshake.
 
    While connection-level options pertaining to the core QUIC protocol
    are set in the initial crypto handshake, HTTP/3-specific settings are
@@ -594,22 +600,16 @@ Internet-Draft                   HTTP/3                     October 2020
    Clients SHOULD NOT open more than one HTTP/3 connection to a given
    host and port pair, where the host is derived from a URI, a selected
    alternative service ([ALTSVC]), or a configured proxy.  A client MAY
-   open multiple connections to the same IP address and UDP port using
-   different transport or TLS configurations but SHOULD avoid creating
-   multiple connections with the same configuration.
+   open multiple HTTP/3 connections to the same IP address and UDP port
+   using different transport or TLS configurations but SHOULD avoid
+   creating multiple connections with the same configuration.
 
-   Servers are encouraged to maintain open connections for as long as
-   possible but are permitted to terminate idle connections if
-   necessary.  When either endpoint chooses to close the HTTP/3
-   connection, the terminating endpoint SHOULD first send a GOAWAY frame
-   (Section 5.2) so that both endpoints can reliably determine whether
-   previously sent frames have been processed and gracefully complete or
-   terminate any necessary remaining tasks.
 
-   A server that does not wish clients to reuse connections for a
-   particular origin can indicate that it is not authoritative for a
-   request by sending a 421 (Misdirected Request) status code in
-   response to the request; see Section 9.1.2 of [HTTP2].
+
+
+
+
+
 
 
 
@@ -617,6 +617,19 @@ Bishop                    Expires 19 April 2021                [Page 11]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   Servers are encouraged to maintain open HTTP/3 connections for as
+   long as possible but are permitted to terminate idle connections if
+   necessary.  When either endpoint chooses to close the HTTP/3
+   connection, the terminating endpoint SHOULD first send a GOAWAY frame
+   (Section 5.2) so that both endpoints can reliably determine whether
+   previously sent frames have been processed and gracefully complete or
+   terminate any necessary remaining tasks.
+
+   A server that does not wish clients to reuse HTTP/3 connections for a
+   particular origin can indicate that it is not authoritative for a
+   request by sending a 421 (Misdirected Request) status code in
+   response to the request; see Section 9.1.2 of [HTTP2].
 
 4.  HTTP Request Lifecycle
 
@@ -654,6 +667,13 @@ Internet-Draft                   HTTP/3                     October 2020
    5.6 of [SEMANTICS]; the payload body is described in Section 5.5.4 of
    [SEMANTICS].
 
+
+
+Bishop                    Expires 19 April 2021                [Page 12]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    Receipt of an invalid sequence of frames MUST be treated as a
    connection error of type H3_FRAME_UNEXPECTED (Section 8).  In
    particular, a DATA frame before any HEADERS frame, or a HEADERS or
@@ -665,14 +685,6 @@ Internet-Draft                   HTTP/3                     October 2020
    Section 4.4 for more details.  These frames are not permitted in
    pushed responses; a pushed response that includes PUSH_PROMISE frames
    MUST be treated as a connection error of type H3_FRAME_UNEXPECTED.
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 12]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Frames of unknown types (Section 9), including reserved frames
    (Section 7.2.8) MAY be sent on a request or push stream before,
@@ -710,6 +722,14 @@ Internet-Draft                   HTTP/3                     October 2020
    A server can send a complete response prior to the client sending an
    entire request if the response does not depend on any portion of the
    request that has not been sent and received.  When the server does
+
+
+
+Bishop                    Expires 19 April 2021                [Page 13]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    not need to receive the remainder of the request, it MAY abort
    reading the request stream, send a complete response, and cleanly
    close the sending part of the stream.  The error code H3_NO_ERROR
@@ -720,15 +740,6 @@ Internet-Draft                   HTTP/3                     October 2020
    If the server sends a partial or complete response but does not abort
    reading the request, clients SHOULD continue sending the body of the
    request and close the stream normally.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 13]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
 4.1.1.  Field Formatting and Compression
 
@@ -764,6 +775,17 @@ Internet-Draft                   HTTP/3                     October 2020
    Alive, Proxy-Connection, Transfer-Encoding, and Upgrade, even if they
    are not nominated by the Connection field.
 
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 14]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
 4.1.1.1.  Pseudo-Header Fields
 
    Like HTTP/2, HTTP/3 employs a series of pseudo-header fields where
@@ -778,14 +800,6 @@ Internet-Draft                   HTTP/3                     October 2020
    Pseudo-header fields are only valid in the context in which they are
    defined.  Pseudo-header fields defined for requests MUST NOT appear
    in responses; pseudo-header fields defined for responses MUST NOT
-
-
-
-Bishop                    Expires 19 April 2021                [Page 14]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
    appear in requests.  Pseudo-header fields MUST NOT appear in
    trailers.  Endpoints MUST treat a request or response that contains
    undefined or invalid pseudo-header fields as malformed
@@ -813,6 +827,21 @@ Internet-Draft                   HTTP/3                     October 2020
       URIs.
 
       To ensure that the HTTP/1.1 request line can be reproduced
+
+
+
+
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 15]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
       accurately, this pseudo-header field MUST be omitted when
       translating from an HTTP/1.1 request that has a request target in
       origin or asterisk form; see Section 3.2 of [HTTP11].  Clients
@@ -834,13 +863,6 @@ Internet-Draft                   HTTP/3                     October 2020
       OPTIONS request for an "http" or "https" URI that does not include
       a path component; these MUST include a ":path" pseudo-header field
       with a value of '*'; see Section 3.2.4 of [HTTP11].
-
-
-
-Bishop                    Expires 19 April 2021                [Page 15]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    All HTTP/3 requests MUST include exactly one value for the ":method",
    ":scheme", and ":path" pseudo-header fields, unless it is a CONNECT
@@ -867,6 +889,15 @@ Internet-Draft                   HTTP/3                     October 2020
    pseudo-header field MUST be included in all responses; otherwise, the
    response is malformed (Section 4.1.3).
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 16]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    HTTP/3 does not define a way to carry the version or reason phrase
    that is included in an HTTP/1.1 status line.
 
@@ -885,18 +916,6 @@ Internet-Draft                   HTTP/3                     October 2020
    of 0x3b, 0x20 (the ASCII string "; ") before being passed into a
    context other than HTTP/2 or HTTP/3, such as an HTTP/1.1 connection,
    or a generic HTTP server application.
-
-
-
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 16]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
 4.1.1.3.  Header Size Constraints
 
@@ -926,6 +945,15 @@ Internet-Draft                   HTTP/3                     October 2020
    send an HTTP response with an appropriate status code rather than
    canceling a request it has already begun processing.
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 17]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    Implementations SHOULD cancel requests by abruptly terminating any
    directions of a stream that are still open.  This means resetting the
    sending parts of streams and aborting reading on receiving parts of
@@ -944,15 +972,6 @@ Internet-Draft                   HTTP/3                     October 2020
    that were partially or fully processed.  When a server abandons a
    response after partial processing, it SHOULD abort its response
    stream with the error code H3_REQUEST_CANCELLED.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 17]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Client SHOULD use the error code H3_REQUEST_CANCELLED to cancel
    requests.  Upon receipt of this error code, a server MAY abruptly
@@ -983,6 +1002,14 @@ Internet-Draft                   HTTP/3                     October 2020
 
    *  an invalid sequence of HTTP messages,
 
+
+
+
+Bishop                    Expires 19 April 2021                [Page 18]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    *  the inclusion of uppercase field names, or
 
    *  the inclusion of invalid characters in field names or values
@@ -1000,15 +1027,6 @@ Internet-Draft                   HTTP/3                     October 2020
    request or response.  Malformed requests or responses that are
    detected MUST be treated as a stream error (Section 8) of type
    H3_GENERAL_PROTOCOL_ERROR.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 18]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    For malformed requests, a server MAY send an HTTP response indicating
    the error prior to closing or resetting the stream.  Clients MUST NOT
@@ -1039,6 +1057,15 @@ Internet-Draft                   HTTP/3                     October 2020
       connect to (equivalent to the authority-form of the request-target
       of CONNECT requests; see Section 3.2.3 of [HTTP11])
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 19]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    The request stream remains open at the end of the request to carry
    the data to be transferred.  A CONNECT request that does not conform
    to these restrictions is malformed; see Section 4.1.3.
@@ -1055,16 +1082,6 @@ Internet-Draft                   HTTP/3                     October 2020
    TCP server is packaged into DATA frames by the proxy.  Note that the
    size and number of TCP segments is not guaranteed to map predictably
    to the size and number of HTTP DATA or QUIC STREAM frames.
-
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 19]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Once the CONNECT method has completed, only DATA frames are permitted
    to be sent on the stream.  Extension frames MAY be used if
@@ -1096,6 +1113,15 @@ Internet-Draft                   HTTP/3                     October 2020
    [SEMANTICS]) or 101 (Switching Protocols) informational status code
    (Section 14.2.2 of [SEMANTICS]).
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 20]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
 4.4.  Server Push
 
    Server push is an interaction mode that permits a server to push a
@@ -1106,7 +1132,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
    Each server push is assigned a unique Push ID by the server.  The
    Push ID is used to refer to the push in various contexts throughout
-   the lifetime of the connection.
+   the lifetime of the HTTP/3 connection.
 
    The Push ID space begins at zero, and ends at a maximum value set by
    the MAX_PUSH_ID frame; see Section 7.2.7.  In particular, a server is
@@ -1114,14 +1140,6 @@ Internet-Draft                   HTTP/3                     October 2020
    client sends MAX_PUSH_ID frames to control the number of pushes that
    a server can promise.  A server SHOULD use Push IDs sequentially,
    beginning from zero.  A client MUST treat receipt of a push stream as
-
-
-
-Bishop                    Expires 19 April 2021                [Page 20]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
    a connection error of type H3_ID_ERROR when no MAX_PUSH_ID frame has
    been sent or when the stream references a Push ID that is greater
    than the maximum Push ID.
@@ -1152,6 +1170,14 @@ Internet-Draft                   HTTP/3                     October 2020
 
    *  safe; see Section 8.2.1 of [SEMANTICS]
 
+
+
+
+Bishop                    Expires 19 April 2021                [Page 21]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    *  does not include a request body or trailer section
 
    The server MUST include a value in the ":authority" pseudo-header
@@ -1170,13 +1196,6 @@ Internet-Draft                   HTTP/3                     October 2020
    with the same Push ID on multiple request streams.  These
    associations do not affect the operation of the protocol, but MAY be
    considered by user agents when deciding how to use pushed resources.
-
-
-
-Bishop                    Expires 19 April 2021                [Page 21]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Ordering of a PUSH_PROMISE frame in relation to certain parts of the
    response is important.  The server SHOULD send PUSH_PROMISE frames
@@ -1205,6 +1224,16 @@ Internet-Draft                   HTTP/3                     October 2020
    Section 5.2.2.3 of [CACHING]) at the time the pushed response is
    received.
 
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 22]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    Pushed responses that are not cacheable MUST NOT be stored by any
    HTTP cache.  They MAY be made available to the application
    separately.
@@ -1218,21 +1247,12 @@ Internet-Draft                   HTTP/3                     October 2020
 5.1.  Idle Connections
 
    Each QUIC endpoint declares an idle timeout during the handshake.  If
-   the connection remains idle (no packets received) for longer than
-   this duration, the peer will assume that the connection has been
-   closed.  HTTP/3 implementations will need to open a new connection
-   for new requests if the existing connection has been idle for longer
-   than the server's advertised idle timeout, and SHOULD do so if
-   approaching the idle timeout.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 22]
-
-Internet-Draft                   HTTP/3                     October 2020
-
+   the QUIC connection remains idle (no packets received) for longer
+   than this duration, the peer will assume that the connection has been
+   closed.  HTTP/3 implementations will need to open a new HTTP/3
+   connection for new requests if the existing connection has been idle
+   for longer than the server's advertised idle timeout, and SHOULD do
+   so if approaching the idle timeout.
 
    HTTP clients are expected to request that the transport keep
    connections open while there are responses outstanding for requests
@@ -1248,8 +1268,8 @@ Internet-Draft                   HTTP/3                     October 2020
 
    Even when a connection is not idle, either endpoint can decide to
    stop using the connection and initiate a graceful connection close.
-   Endpoints initiate the graceful shutdown of a connection by sending a
-   GOAWAY frame (Section 7.2.6).  The GOAWAY frame contains an
+   Endpoints initiate the graceful shutdown of an HTTP/3 connection by
+   sending a GOAWAY frame (Section 7.2.6).  The GOAWAY frame contains an
    identifier that indicates to the receiver the range of requests or
    pushes that were or might be processed in this connection.  The
    server sends a client-initiated bidirectional Stream ID; the client
@@ -1259,9 +1279,17 @@ Internet-Draft                   HTTP/3                     October 2020
    were processed.
 
    The information in the GOAWAY frame enables a client and server to
-   agree on which requests or pushes were accepted prior to the
-   connection shutdown.  Upon sending a GOAWAY frame, the endpoint
+   agree on which requests or pushes were accepted prior to the shutdown
+   of the HTTP/3 connection.  Upon sending a GOAWAY frame, the endpoint
    SHOULD explicitly cancel (see Section 4.1.2 and Section 7.2.3) any
+
+
+
+Bishop                    Expires 19 April 2021                [Page 23]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    requests or pushes that have identifiers greater than or equal to
    that indicated, in order to clean up transport state for the affected
    streams.  The endpoint SHOULD continue to do so as more requests or
@@ -1277,18 +1305,9 @@ Internet-Draft                   HTTP/3                     October 2020
       requests with a Stream ID greater than or equal to the identifier
       contained in the GOAWAY frame, those requests will not be
       processed.  Clients can safely retry unprocessed requests on a
-      different connection.  A client that is unable to retry requests
-      loses all requests that are in flight when the server closes the
-      connection.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 23]
-
-Internet-Draft                   HTTP/3                     October 2020
-
+      different HTTP connection.  A client that is unable to retry
+      requests loses all requests that are in flight when the server
+      closes the connection.
 
       Requests on Stream IDs less than the Stream ID in a GOAWAY frame
       from the server might have been processed; their status cannot be
@@ -1314,9 +1333,18 @@ Internet-Draft                   HTTP/3                     October 2020
    An endpoint MAY send multiple GOAWAY frames indicating different
    identifiers, but the identifier in each frame MUST NOT be greater
    than the identifier in any previous frame, since clients might
-   already have retried unprocessed requests on another connection.
+   already have retried unprocessed requests on another HTTP connection.
    Receiving a GOAWAY containing a larger identifier than previously
    received MUST be treated as a connection error of type H3_ID_ERROR.
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 24]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
    An endpoint that is attempting to gracefully shut down a connection
    can send a GOAWAY frame with a value set to the maximum possible
@@ -1334,17 +1362,6 @@ Internet-Draft                   HTTP/3                     October 2020
    with Push IDs greater than or equal to this value.  Like the server,
    the client MAY send subsequent GOAWAY frames so long as the specified
    Push ID is no greater than any previously sent value.
-
-
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 24]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Even when a GOAWAY indicates that a given request or push will not be
    processed or accepted upon receipt, the underlying transport
@@ -1375,6 +1392,16 @@ Internet-Draft                   HTTP/3                     October 2020
    same packet as the QUIC CONNECTION_CLOSE frame improves the chances
    of the frame being received by clients.
 
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 25]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
 5.4.  Transport Closure
 
    For various reasons, the QUIC transport could indicate to the
@@ -1394,14 +1421,6 @@ Internet-Draft                   HTTP/3                     October 2020
    this framing is invisible to the HTTP framing layer.  The transport
    layer buffers and orders received QUIC STREAM frames, exposing the
    data contained within as a reliable byte stream to the application.
-
-
-
-Bishop                    Expires 19 April 2021                [Page 25]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
    Although QUIC permits out-of-order delivery within a stream, HTTP/3
    does not make use of this feature.
 
@@ -1413,7 +1432,8 @@ Internet-Draft                   HTTP/3                     October 2020
    When HTTP fields and data are sent over QUIC, the QUIC layer handles
    most of the stream management.  HTTP does not need to do any separate
    multiplexing when using QUIC - data sent over a QUIC stream always
-   maps to a particular HTTP transaction or connection context.
+   maps to a particular HTTP transaction or to the entire HTTP/3
+   connection context.
 
 6.1.  Bidirectional Streams
 
@@ -1426,6 +1446,17 @@ Internet-Draft                   HTTP/3                     October 2020
    of permitted streams and the initial stream flow control window.  So
    as to not unnecessarily limit parallelism, at least 100 requests
    SHOULD be permitted at a time.
+
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 26]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
    HTTP/3 does not use server-initiated bidirectional streams, though an
    extension could define a use for these streams.  Clients MUST treat
@@ -1446,17 +1477,6 @@ Internet-Draft                   HTTP/3                     October 2020
    }
 
                    Figure 1: Unidirectional Stream Header
-
-
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 26]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    Two stream types are defined in this document: control streams
    (Section 6.2.1) and push streams (Section 6.2.2).  [QPACK] defines
@@ -1479,6 +1499,20 @@ Internet-Draft                   HTTP/3                     October 2020
    being the minimum number required for the base HTTP/3 protocol and
    QPACK), and SHOULD provide at least 1,024 bytes of flow control
    credit to each stream.
+
+
+
+
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 27]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
    Note that an endpoint is not required to grant additional credits to
    create more unidirectional streams if its peer consumes all the
@@ -1505,15 +1539,6 @@ Internet-Draft                   HTTP/3                     October 2020
    closed or reset prior to the reception of the unidirectional stream
    header.
 
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 27]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
 6.2.1.  Control Streams
 
    A control stream is indicated by a stream type of 0x00.  Data on this
@@ -1533,9 +1558,17 @@ Internet-Draft                   HTTP/3                     October 2020
 
    A pair of unidirectional streams is used rather than a single
    bidirectional stream.  This allows either peer to send data as soon
-   as it is able.  Depending on whether 0-RTT is enabled on the
+   as it is able.  Depending on whether 0-RTT is enabled on the QUIC
    connection, either client or server might be able to send stream data
    first after the cryptographic handshake completes.
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 28]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
 6.2.2.  Push Streams
 
@@ -1562,14 +1595,6 @@ Internet-Draft                   HTTP/3                     October 2020
 
                         Figure 2: Push Stream Header
 
-
-
-
-Bishop                    Expires 19 April 2021                [Page 28]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
    Each Push ID MUST only be used once in a push stream header.  If a
    push stream header includes a Push ID that was used in another push
    stream header, the client MUST treat this as a connection error of
@@ -1590,31 +1615,6 @@ Internet-Draft                   HTTP/3                     October 2020
    it.  When resetting the stream, either the H3_NO_ERROR error code or
    a reserved error code (Section 8.1) SHOULD be used.
 
-7.  HTTP Framing Layer
-
-   HTTP frames are carried on QUIC streams, as described in Section 6.
-   HTTP/3 defines three stream types: control stream, request stream,
-   and push stream.  This section describes HTTP/3 frame formats and
-   their permitted stream types; see Table 1 for an overview.  A
-   comparison between HTTP/2 and HTTP/3 frames is provided in
-   Appendix A.2.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1625,6 +1625,15 @@ Bishop                    Expires 19 April 2021                [Page 29]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+7.  HTTP Framing Layer
+
+   HTTP frames are carried on QUIC streams, as described in Section 6.
+   HTTP/3 defines three stream types: control stream, request stream,
+   and push stream.  This section describes HTTP/3 frame formats and
+   their permitted stream types; see Table 1 for an overview.  A
+   comparison between HTTP/2 and HTTP/3 frames is provided in
+   Appendix A.2.
 
    +==============+================+================+========+=========+
    | Frame        | Control Stream | Request        | Push   | Section |
@@ -1664,6 +1673,15 @@ Internet-Draft                   HTTP/3                     October 2020
    Note that, unlike QUIC frames, HTTP/3 frames can span multiple
    packets.
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 30]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
 7.1.  Frame Layout
 
    All frames have the following format:
@@ -1673,14 +1691,6 @@ Internet-Draft                   HTTP/3                     October 2020
      Length (i),
      Frame Payload (..),
    }
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 30]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
                        Figure 3: HTTP/3 Frame Format
 
@@ -1717,6 +1727,17 @@ Internet-Draft                   HTTP/3                     October 2020
    respond with a connection error (Section 8) of type
    H3_FRAME_UNEXPECTED.
 
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 31]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    DATA Frame {
      Type (i) = 0x0,
      Length (i),
@@ -1729,14 +1750,6 @@ Internet-Draft                   HTTP/3                     October 2020
 
    The HEADERS frame (type=0x1) is used to carry an HTTP field section,
    encoded using QPACK.  See [QPACK] for more details.
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 31]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    HEADERS Frame {
      Type (i) = 0x1,
@@ -1773,6 +1786,14 @@ Internet-Draft                   HTTP/3                     October 2020
    the promised response.  A server SHOULD send a CANCEL_PUSH frame even
    if it has opened the corresponding stream.
 
+
+
+
+Bishop                    Expires 19 April 2021                [Page 32]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    Sending a CANCEL_PUSH frame has no direct effect on the state of
    existing push streams.  A client SHOULD NOT send a CANCEL_PUSH frame
    when it has already received a corresponding push stream.  A push
@@ -1784,15 +1805,6 @@ Internet-Draft                   HTTP/3                     October 2020
    A CANCEL_PUSH frame is sent on the control stream.  Receiving a
    CANCEL_PUSH frame on a stream other than the control stream MUST be
    treated as a connection error of type H3_FRAME_UNEXPECTED.
-
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 32]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    CANCEL_PUSH Frame {
      Type (i) = 0x3,
@@ -1824,24 +1836,12 @@ Internet-Draft                   HTTP/3                     October 2020
    parameter can be referred to as a "setting identifier" and a "setting
    value".
 
-   SETTINGS frames always apply to a connection, never a single stream.
-   A SETTINGS frame MUST be sent as the first frame of each control
-   stream (see Section 6.2.1) by each peer, and MUST NOT be sent
-   subsequently.  If an endpoint receives a second SETTINGS frame on the
-   control stream, the endpoint MUST respond with a connection error of
-   type H3_FRAME_UNEXPECTED.
-
-   SETTINGS frames MUST NOT be sent on any stream other than the control
-   stream.  If an endpoint receives a SETTINGS frame on a different
-   stream, the endpoint MUST respond with a connection error of type
-   H3_FRAME_UNEXPECTED.
-
-
-
-
-
-
-
+   SETTINGS frames always apply to an entire HTTP/3 connection, never a
+   single stream.  A SETTINGS frame MUST be sent as the first frame of
+   each control stream (see Section 6.2.1) by each peer, and MUST NOT be
+   sent subsequently.  If an endpoint receives a second SETTINGS frame
+   on the control stream, the endpoint MUST respond with a connection
+   error of type H3_FRAME_UNEXPECTED.
 
 
 
@@ -1849,6 +1849,11 @@ Bishop                    Expires 19 April 2021                [Page 33]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   SETTINGS frames MUST NOT be sent on any stream other than the control
+   stream.  If an endpoint receives a SETTINGS frame on a different
+   stream, the endpoint MUST respond with a connection error of type
+   H3_FRAME_UNEXPECTED.
 
    SETTINGS parameters are not negotiated; they describe characteristics
    of the sending peer that can be used by the receiving peer.  However,
@@ -1893,11 +1898,6 @@ Internet-Draft                   HTTP/3                     October 2020
 
    SETTINGS_MAX_FIELD_SECTION_SIZE (0x6):  The default value is
       unlimited.  See Section 4.1.1 for usage.
-
-
-
-
-
 
 
 
@@ -1953,7 +1953,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
    When a 0-RTT QUIC connection is being used, the initial value of each
    server setting is the value used in the previous session.  Clients
-   SHOULD store the settings the server provided in the connection where
+   SHOULD store the settings the server provided in the HTTP/3
 
 
 
@@ -1962,10 +1962,10 @@ Bishop                    Expires 19 April 2021                [Page 35]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   resumption information was provided, but MAY opt not to store
-   settings in certain cases (e.g., if the session ticket is received
-   before the SETTINGS frame).  A client MUST comply with stored
-   settings - or default values, if no values are stored - when
+   connection where resumption information was provided, but MAY opt not
+   to store settings in certain cases (e.g., if the session ticket is
+   received before the SETTINGS frame).  A client MUST comply with
+   stored settings - or default values, if no values are stored - when
    attempting 0-RTT.  Once a server has provided new settings, clients
    MUST comply with those values.
 
@@ -2077,11 +2077,11 @@ Internet-Draft                   HTTP/3                     October 2020
 7.2.6.  GOAWAY
 
    The GOAWAY frame (type=0x7) is used to initiate graceful shutdown of
-   a connection by either endpoint.  GOAWAY allows an endpoint to stop
-   accepting new requests or pushes while still finishing processing of
-   previously received requests and pushes.  This enables administrative
-   actions, like server maintenance.  GOAWAY by itself does not close a
-   connection.
+   an HTTP/3 connection by either endpoint.  GOAWAY allows an endpoint
+   to stop accepting new requests or pushes while still finishing
+   processing of previously received requests and pushes.  This enables
+   administrative actions, like server maintenance.  GOAWAY by itself
+   does not close a connection.
 
    GOAWAY Frame {
      Type (i) = 0x7,
@@ -2100,9 +2100,10 @@ Internet-Draft                   HTTP/3                     October 2020
    In the client to server direction, the GOAWAY frame carries a Push ID
    encoded as a variable-length integer.
 
-   The GOAWAY frame applies to the connection, not a specific stream.  A
-   client MUST treat a GOAWAY frame on a stream other than the control
-   stream as a connection error (Section 8) of type H3_FRAME_UNEXPECTED.
+   The GOAWAY frame applies to the entire connection, not a specific
+   stream.  A client MUST treat a GOAWAY frame on a stream other than
+   the control stream as a connection error (Section 8) of type
+   H3_FRAME_UNEXPECTED.
 
    See Section 5.2 for more information on the use of the GOAWAY frame.
 
@@ -2119,9 +2120,8 @@ Internet-Draft                   HTTP/3                     October 2020
    of a MAX_PUSH_ID frame on any other stream MUST be treated as a
    connection error of type H3_FRAME_UNEXPECTED.
 
-   A server MUST NOT send a MAX_PUSH_ID frame.  A client MUST treat the
-   receipt of a MAX_PUSH_ID frame as a connection error of type
-   H3_FRAME_UNEXPECTED.
+
+
 
 
 
@@ -2130,11 +2130,15 @@ Bishop                    Expires 19 April 2021                [Page 38]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   The maximum Push ID is unset when a connection is created, meaning
-   that a server cannot push until it receives a MAX_PUSH_ID frame.  A
-   client that wishes to manage the number of promised server pushes can
-   increase the maximum Push ID by sending MAX_PUSH_ID frames as the
-   server fulfills or cancels server pushes.
+   A server MUST NOT send a MAX_PUSH_ID frame.  A client MUST treat the
+   receipt of a MAX_PUSH_ID frame as a connection error of type
+   H3_FRAME_UNEXPECTED.
+
+   The maximum Push ID is unset when an HTTP/3 connection is created,
+   meaning that a server cannot push until it receives a MAX_PUSH_ID
+   frame.  A client that wishes to manage the number of promised server
+   pushes can increase the maximum Push ID by sending MAX_PUSH_ID frames
+   as the server fulfills or cancels server pushes.
 
    MAX_PUSH_ID Frame {
      Type (i) = 0xd,
@@ -2157,9 +2161,9 @@ Internet-Draft                   HTTP/3                     October 2020
    values of N are reserved to exercise the requirement that unknown
    types be ignored (Section 9).  These frames have no semantics, and
    can be sent on any open stream when application-layer padding is
-   desired.  They MAY also be sent on connections where no data is
-   currently being transferred.  Endpoints MUST NOT consider these
-   frames to have any meaning upon receipt.
+   desired.  They MAY also be sent on open streams in connections where
+   no data is currently being transferred.  Endpoints MUST NOT consider
+   these frames to have any meaning upon receipt.
 
    The payload and length of the frames are selected in any manner the
    implementation chooses.
@@ -2168,6 +2172,19 @@ Internet-Draft                   HTTP/3                     October 2020
    HTTP/3 frame have also been reserved (Section 11.2.1).  These frame
    types MUST NOT be sent, and their receipt MUST be treated as a
    connection error of type H3_FRAME_UNEXPECTED.
+
+
+
+
+
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 39]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
 8.  Error Handling
 
@@ -2178,13 +2195,6 @@ Internet-Draft                   HTTP/3                     October 2020
    associated error codes, but do not necessarily indicate a problem
    with the connection or either implementation.  For example, a stream
    can be reset if the requested resource is no longer needed.
-
-
-
-Bishop                    Expires 19 April 2021                [Page 39]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    An endpoint MAY choose to treat a stream error as a connection error
    under certain circumstances.  Implementations need to consider the
@@ -2203,7 +2213,7 @@ Internet-Draft                   HTTP/3                     October 2020
 
    The following error codes are defined for use when abruptly
    terminating streams, aborting reading of streams, or immediately
-   closing connections.
+   closing HTTP/3 connections.
 
    H3_NO_ERROR (0x100):  No error.  This is used when the connection or
       stream needs to be closed, but there is no error to signal.
@@ -2218,11 +2228,19 @@ Internet-Draft                   HTTP/3                     October 2020
    H3_STREAM_CREATION_ERROR (0x103):  The endpoint detected that its
       peer created a stream that it will not accept.
 
-   H3_CLOSED_CRITICAL_STREAM (0x104):  A stream required by the
+   H3_CLOSED_CRITICAL_STREAM (0x104):  A stream required by the HTTP/3
       connection was closed or reset.
 
    H3_FRAME_UNEXPECTED (0x105):  A frame was received that was not
       permitted in the current state or on the current stream.
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 40]
+
+Internet-Draft                   HTTP/3                     October 2020
+
 
    H3_FRAME_ERROR (0x106):  A frame that fails to satisfy layout
       requirements or with an invalid size was received.
@@ -2234,14 +2252,6 @@ Internet-Draft                   HTTP/3                     October 2020
       such as exceeding a limit, reducing a limit, or being reused.
 
    H3_SETTINGS_ERROR (0x109):  An endpoint detected an error in the
-
-
-
-Bishop                    Expires 19 April 2021                [Page 40]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
       payload of a SETTINGS frame.
 
    H3_MISSING_SETTINGS (0x10a):  No SETTINGS frame was received at the
@@ -2256,8 +2266,8 @@ Internet-Draft                   HTTP/3                     October 2020
    H3_REQUEST_INCOMPLETE (0x10d):  The client's stream terminated
       without containing a fully-formed request.
 
-   H3_CONNECT_ERROR (0x10f):  The connection established in response to
-      a CONNECT request was reset or abnormally closed.
+   H3_CONNECT_ERROR (0x10f):  The TCP connection established in response
+      to a CONNECT request was reset or abnormally closed.
 
    H3_VERSION_FALLBACK (0x110):  The requested operation cannot be
       served over HTTP/3.  The peer should retry over HTTP/1.1.
@@ -2279,6 +2289,15 @@ Internet-Draft                   HTTP/3                     October 2020
    does not affect the existing options for extending HTTP, such as
    defining new methods, status codes, or fields.
 
+
+
+
+
+Bishop                    Expires 19 April 2021                [Page 41]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
    Extensions are permitted to use new frame types (Section 7.2), new
    settings (Section 7.2.4.1), new error codes (Section 8), or new
    unidirectional stream types (Section 6.2).  Registries are
@@ -2290,14 +2309,6 @@ Internet-Draft                   HTTP/3                     October 2020
    extensible protocol elements.  Implementations MUST discard frames
    and unidirectional streams that have unknown or unsupported types.
    This means that any of these extension points can be safely used by
-
-
-
-Bishop                    Expires 19 April 2021                [Page 41]
-
-Internet-Draft                   HTTP/3                     October 2020
-
-
    extensions without prior arrangement or negotiation.  However, where
    a known frame type is required to be in a specific location, such as
    the SETTINGS frame as the first frame of the control stream (see
@@ -2333,17 +2344,6 @@ Internet-Draft                   HTTP/3                     October 2020
    considerations of establishing authority are discussed in
    Section 16.1 of [SEMANTICS].
 
-10.2.  Cross-Protocol Attacks
-
-   The use of ALPN in the TLS and QUIC handshakes establishes the target
-   application protocol before application-layer bytes are processed.
-   Because all QUIC packets are encrypted, it is difficult for an
-   attacker to control the plaintext bytes of an HTTP/3 connection,
-   which could be used in a cross-protocol attack on a plaintext
-   protocol.
-
-
-
 
 
 
@@ -2353,6 +2353,15 @@ Bishop                    Expires 19 April 2021                [Page 42]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+10.2.  Cross-Protocol Attacks
+
+   The use of ALPN in the TLS and QUIC handshakes establishes the target
+   application protocol before application-layer bytes are processed.
+   Because all QUIC packets are encrypted, it is difficult for an
+   attacker to control the plaintext bytes of an HTTP/3 connection,
+   which could be used in a cross-protocol attack on a plaintext
+   protocol.
 
 10.3.  Intermediary Encapsulation Attacks
 
@@ -2393,6 +2402,14 @@ Internet-Draft                   HTTP/3                     October 2020
    Clients are required to reject pushed responses for which an origin
    server is not authoritative; see Section 4.4.
 
+
+
+
+Bishop                    Expires 19 April 2021                [Page 43]
+
+Internet-Draft                   HTTP/3                     October 2020
+
+
 10.5.  Denial-of-Service Considerations
 
    An HTTP/3 connection can demand a greater commitment of resources to
@@ -2401,14 +2418,6 @@ Internet-Draft                   HTTP/3                     October 2020
    storing a greater amount of state.  Settings for these features
    ensure that memory commitments for these features are strictly
    bounded.
-
-
-
-
-Bishop                    Expires 19 April 2021                [Page 43]
-
-Internet-Draft                   HTTP/3                     October 2020
-
 
    The number of PUSH_PROMISE frames is constrained in a similar
    fashion.  A client that accepts server push SHOULD limit the number
@@ -2449,15 +2458,6 @@ Internet-Draft                   HTTP/3                     October 2020
    destination.  This ordering and other reasons, such as ensuring cache
    correctness, mean that an endpoint likely needs to buffer the entire
    header field section.  Since there is no hard limit to the size of a
-   field section, some endpoints could be forced to commit a large
-   amount of available memory for header fields.
-
-   An endpoint can use the SETTINGS_MAX_FIELD_SECTION_SIZE
-   (Section 4.1.1.3) setting to advise peers of limits that might apply
-   on the size of field sections.  This setting is only advisory, so
-   endpoints MAY choose to send field sections that exceed this limit
-   and risk having the request or response being treated as malformed.
-   This setting is specific to a connection, so any request or response
 
 
 
@@ -2466,9 +2466,18 @@ Bishop                    Expires 19 April 2021                [Page 44]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-   could encounter a hop with a lower, unknown limit.  An intermediary
-   can attempt to avoid this problem by passing on values presented by
-   different peers, but they are not obligated to do so.
+   field section, some endpoints could be forced to commit a large
+   amount of available memory for header fields.
+
+   An endpoint can use the SETTINGS_MAX_FIELD_SECTION_SIZE
+   (Section 4.1.1.3) setting to advise peers of limits that might apply
+   on the size of field sections.  This setting is only advisory, so
+   endpoints MAY choose to send field sections that exceed this limit
+   and risk having the request or response being treated as malformed.
+   This setting is specific to an HTTP/3 connection, so any request or
+   response could encounter a hop with a lower, unknown limit.  An
+   intermediary can attempt to avoid this problem by passing on values
+   presented by different peers, but they are not obligated to do so.
 
    A server that receives a larger field section than it is willing to
    handle can send an HTTP 431 (Request Header Fields Too Large) status
@@ -2506,21 +2515,15 @@ Internet-Draft                   HTTP/3                     October 2020
    data.  Compression MUST NOT be used if the source of data cannot be
    reliably determined.
 
-   Further considerations regarding the compression of fields sections
-   are described in [QPACK].
-
-
-
-
-
-
-
 
 
 Bishop                    Expires 19 April 2021                [Page 45]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   Further considerations regarding the compression of fields sections
+   are described in [QPACK].
 
 10.7.  Padding and Traffic Analysis
 
@@ -2566,9 +2569,6 @@ Internet-Draft                   HTTP/3                     October 2020
    The use of 0-RTT with HTTP/3 creates an exposure to replay attack.
    The anti-replay mitigations in [HTTP-REPLAY] MUST be applied when
    using HTTP/3 with 0-RTT.
-
-
-
 
 
 
@@ -2930,8 +2930,8 @@ Internet-Draft                   HTTP/3                     October 2020
 
    Stream Type:  A name or label for the stream type.
 
-   Sender:  Which endpoint on a connection may initiate a stream of this
-      type.  Values are "Client", "Server", or "Both".
+   Sender:  Which endpoint on an HTTP/3 connection may initiate a stream
+      of this type.  Values are "Client", "Server", or "Both".
 
    Specifications for permanent registrations MUST include a description
    of the stream type, including the layout and semantics of the stream
@@ -3464,8 +3464,8 @@ A.4.1.  Mapping Between HTTP/2 and HTTP/3 Errors
    against accidental conversion that could result in the use of
    inappropriate or unknown error codes for the target version.  An
    intermediary is permitted to promote stream errors to connection
-   errors but they should be aware of the cost to the connection for
-   what might be a temporary or intermittent error.
+   errors but they should be aware of the cost to the HTTP/3 connection
+   for what might be a temporary or intermittent error.
 
 
 

@@ -847,14 +847,16 @@ Internet-Draft                    QPACK                     October 2020
    (indicating whether the string is Huffman-coded), followed by the
    Length encoded as a 7-bit prefix integer, and finally Length bytes of
    data.  When Huffman encoding is enabled, the Huffman table from
-   Appendix B of [RFC7541] is used without modification.
+   Appendix B of [RFC7541] is used without modification and Length
+   indicates the size of the string after encoding.
 
    This document expands the definition of string literals by permitting
    them to begin other than on a byte boundary.  An "N-bit prefix string
-   literal" begins with the same Huffman flag, followed by the length
-   encoded as an (N-1)-bit prefix integer.  The prefix size, N, can have
-   a value between 2 and 8 inclusive.  The remainder of the string
-   literal is unmodified.
+   literal" begins mid-byte, with the first (8-N) bits allocated to a
+   previous field.  The string uses one bit for the Huffman flag,
+   followed by the Length encoded as an (N-1)-bit prefix integer.  The
+   prefix size, N, can have a value between 2 and 8 inclusive.  The
+   remainder of the string literal is unmodified.
 
    A string literal without a prefix length noted is an 8-bit prefix
    string literal and follows the definitions in [RFC7541] without
@@ -888,8 +890,6 @@ Internet-Draft                    QPACK                     October 2020
    An endpoint MAY avoid creating a decoder stream if its decoder sets
    the maximum capacity of the dynamic table to zero.
 
-   An endpoint MUST allow its peer to create an encoder stream and a
-   decoder stream even if the connection's settings prevent their use.
 
 
 
@@ -897,6 +897,9 @@ Krasic, et al.            Expires 22 April 2021                [Page 16]
 
 Internet-Draft                    QPACK                     October 2020
 
+
+   An endpoint MUST allow its peer to create an encoder stream and a
+   decoder stream even if the connection's settings prevent their use.
 
 4.3.  Encoder Instructions
 
@@ -935,9 +938,6 @@ Internet-Draft                    QPACK                     October 2020
    are not evictable; see Section 2.1.1.  Changing the capacity of the
    dynamic table is not acknowledged as this instruction does not insert
    an entry.
-
-
-
 
 
 

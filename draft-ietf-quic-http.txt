@@ -678,6 +678,8 @@ Internet-Draft                   HTTP/3                     October 2020
    connection error of type H3_FRAME_UNEXPECTED (Section 8).  In
    particular, a DATA frame before any HEADERS frame, or a HEADERS or
    DATA frame after the trailing HEADERS frame is considered invalid.
+   Other frame types, especially unknown frame types, might be permitted
+   subject to their own rules; see Section 9.
 
    A server MAY send one or more PUSH_PROMISE frames (Section 7.2.5)
    before, after, or interleaved with the frames of a response message.
@@ -719,9 +721,7 @@ Internet-Draft                   HTTP/3                     October 2020
    complete response, the server SHOULD abort its response with the
    error code H3_REQUEST_INCOMPLETE.
 
-   A server can send a complete response prior to the client sending an
-   entire request if the response does not depend on any portion of the
-   request that has not been sent and received.  When the server does
+
 
 
 
@@ -730,6 +730,9 @@ Bishop                    Expires 22 April 2021                [Page 13]
 Internet-Draft                   HTTP/3                     October 2020
 
 
+   A server can send a complete response prior to the client sending an
+   entire request if the response does not depend on any portion of the
+   request that has not been sent and received.  When the server does
    not need to receive the remainder of the request, it MAY abort
    reading the request stream, send a complete response, and cleanly
    close the sending part of the stream.  The error code H3_NO_ERROR
@@ -775,9 +778,6 @@ Internet-Draft                   HTTP/3                     October 2020
    This means that an intermediary transforming an HTTP/1.x message to
    HTTP/3 will need to remove any fields nominated by the Connection
    field, along with the Connection field itself.  Such intermediaries
-   SHOULD also remove other connection-specific fields, such as Keep-
-   Alive, Proxy-Connection, Transfer-Encoding, and Upgrade, even if they
-   are not nominated by the Connection field.
 
 
 
@@ -785,6 +785,10 @@ Bishop                    Expires 22 April 2021                [Page 14]
 
 Internet-Draft                   HTTP/3                     October 2020
 
+
+   SHOULD also remove other connection-specific fields, such as Keep-
+   Alive, Proxy-Connection, Transfer-Encoding, and Upgrade, even if they
+   are not nominated by the Connection field.
 
 4.1.1.1.  Pseudo-Header Fields
 
@@ -827,13 +831,9 @@ Internet-Draft                   HTTP/3                     October 2020
       URIs.
 
       To ensure that the HTTP/1.1 request line can be reproduced
-
-
-
-
-
-
-
+      accurately, this pseudo-header field MUST be omitted when
+      translating from an HTTP/1.1 request that has a request target in
+      origin or asterisk form; see Section 3.2 of [HTTP11].  Clients
 
 
 
@@ -842,9 +842,6 @@ Bishop                    Expires 22 April 2021                [Page 15]
 Internet-Draft                   HTTP/3                     October 2020
 
 
-      accurately, this pseudo-header field MUST be omitted when
-      translating from an HTTP/1.1 request that has a request target in
-      origin or asterisk form; see Section 3.2 of [HTTP11].  Clients
       that generate HTTP/3 requests directly SHOULD use the ":authority"
       pseudo-header field instead of the Host field.  An intermediary
       that converts an HTTP/3 request to HTTP/1.1 MUST create a Host
@@ -889,6 +886,9 @@ Internet-Draft                   HTTP/3                     October 2020
    pseudo-header field MUST be included in all responses; otherwise, the
    response is malformed (Section 4.1.3).
 
+   HTTP/3 does not define a way to carry the version or reason phrase
+   that is included in an HTTP/1.1 status line.
+
 
 
 
@@ -897,9 +897,6 @@ Bishop                    Expires 22 April 2021                [Page 16]
 
 Internet-Draft                   HTTP/3                     October 2020
 
-
-   HTTP/3 does not define a way to carry the version or reason phrase
-   that is included in an HTTP/1.1 status line.
 
 4.1.1.2.  Field Compression
 
@@ -945,7 +942,10 @@ Internet-Draft                   HTTP/3                     October 2020
    send an HTTP response with an appropriate status code rather than
    canceling a request it has already begun processing.
 
-
+   Implementations SHOULD cancel requests by abruptly terminating any
+   directions of a stream that are still open.  This means resetting the
+   sending parts of streams and aborting reading on receiving parts of
+   streams; see Section 2.4 of [QUIC-TRANSPORT].
 
 
 
@@ -953,11 +953,6 @@ Bishop                    Expires 22 April 2021                [Page 17]
 
 Internet-Draft                   HTTP/3                     October 2020
 
-
-   Implementations SHOULD cancel requests by abruptly terminating any
-   directions of a stream that are still open.  This means resetting the
-   sending parts of streams and aborting reading on receiving parts of
-   streams; see Section 2.4 of [QUIC-TRANSPORT].
 
    When the server cancels a request without performing any application
    processing, the request is considered "rejected."  The server SHOULD
@@ -1002,6 +997,11 @@ Internet-Draft                   HTTP/3                     October 2020
 
    *  an invalid sequence of HTTP messages,
 
+   *  the inclusion of uppercase field names, or
+
+   *  the inclusion of invalid characters in field names or values
+
+
 
 
 
@@ -1009,10 +1009,6 @@ Bishop                    Expires 22 April 2021                [Page 18]
 
 Internet-Draft                   HTTP/3                     October 2020
 
-
-   *  the inclusion of uppercase field names, or
-
-   *  the inclusion of invalid characters in field names or values
 
    A request or response that includes a payload body can include a
    Content-Length header field.  A request or response is also malformed
@@ -1057,6 +1053,10 @@ Internet-Draft                   HTTP/3                     October 2020
       connect to (equivalent to the authority-form of the request-target
       of CONNECT requests; see Section 3.2.3 of [HTTP11])
 
+   The request stream remains open at the end of the request to carry
+   the data to be transferred.  A CONNECT request that does not conform
+   to these restrictions is malformed; see Section 4.1.3.
+
 
 
 
@@ -1065,10 +1065,6 @@ Bishop                    Expires 22 April 2021                [Page 19]
 
 Internet-Draft                   HTTP/3                     October 2020
 
-
-   The request stream remains open at the end of the request to carry
-   the data to be transferred.  A CONNECT request that does not conform
-   to these restrictions is malformed; see Section 4.1.3.
 
    A proxy that supports CONNECT establishes a TCP connection
    ([RFC0793]) to the server identified in the ":authority" pseudo-
@@ -1112,6 +1108,10 @@ Internet-Draft                   HTTP/3                     October 2020
    HTTP/3 does not support the HTTP Upgrade mechanism (Section 6.6 of
    [SEMANTICS]) or 101 (Switching Protocols) informational status code
    (Section 14.2.2 of [SEMANTICS]).
+
+
+
+
 
 
 
@@ -2191,10 +2191,9 @@ Internet-Draft                   HTTP/3                     October 2020
    Frame types of the format "0x1f * N + 0x21" for non-negative integer
    values of N are reserved to exercise the requirement that unknown
    types be ignored (Section 9).  These frames have no semantics, and
-   can be sent on any open stream when application-layer padding is
-   desired.  They MAY also be sent on open streams in connections where
-   no data is currently being transferred.  Endpoints MUST NOT consider
-   these frames to have any meaning upon receipt.
+   MAY be sent on any stream where frames are allowed to be sent.  This
+   enables their use for application-layer padding.  Endpoints MUST NOT
+   consider these frames to have any meaning upon receipt.
 
    The payload and length of the frames are selected in any manner the
    implementation chooses.
@@ -2234,6 +2233,7 @@ Internet-Draft                   HTTP/3                     October 2020
    closing HTTP/3 connections.
 
    H3_NO_ERROR (0x100):  No error.  This is used when the connection or
+      stream needs to be closed, but there is no error to signal.
 
 
 
@@ -2241,8 +2241,6 @@ Bishop                    Expires 22 April 2021                [Page 40]
 
 Internet-Draft                   HTTP/3                     October 2020
 
-
-      stream needs to be closed, but there is no error to signal.
 
    H3_GENERAL_PROTOCOL_ERROR (0x101):  Peer violated protocol
       requirements in a way that does not match a more specific error
@@ -2289,6 +2287,8 @@ Internet-Draft                   HTTP/3                     October 2020
 
    H3_VERSION_FALLBACK (0x110):  The requested operation cannot be
       served over HTTP/3.  The peer should retry over HTTP/1.1.
+
+
 
 
 

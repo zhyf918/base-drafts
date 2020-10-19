@@ -9209,6 +9209,9 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    Date:  The date of last update to the registration.
 
+   Change Controller:  The entity that is responsible for the definition
+      of the registration.
+
    Contact:  Contact details for the registrant.
 
    Notes:  Supplementary notes about the registration.
@@ -9230,9 +9233,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    intended for use by specifications that are developed through the
    standards process [STD] and its allocation MUST be negotiated with
    IANA before use.
-
-
-
 
 
 
@@ -9323,7 +9323,8 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    permanent.
 
    All registrations in this document are assigned a permanent status
-   and list as contact the IETF (quic@ietf.org).
+   and list a change controller of the IETF and a contact of the QUIC
+   working group (quic@ietf.org).
 
 22.2.  QUIC Transport Parameter Registry
 
@@ -9341,7 +9342,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Parameter Name:  A short mnemonic for the parameter.
 
    The initial contents of this registry are shown in Table 6.
-
 
 
 

@@ -214,7 +214,7 @@ Internet-Draft                    QPACK                     October 2020
       and trailer fields; this document uses "fields" for generality.
 
    HTTP field line:  A name-value pair sent as part of an HTTP field
-      section.  See Section 5 of [SEMANTICS].
+      section.  See Section 5.4 and Section 5.6 of [SEMANTICS].
 
    HTTP field value:  Data associated with a field name, composed from
 

@@ -153,15 +153,15 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
        B.1.2.  Integrity Limit . . . . . . . . . . . . . . . . . . .  56
      B.2.  Analysis of AEAD_AES_128_CCM Usage Limits . . . . . . . .  57
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  58
-     C.1.  Since draft-ietf-quic-tls-30  . . . . . . . . . . . . . .  58
-     C.2.  Since draft-ietf-quic-tls-29  . . . . . . . . . . . . . .  58
-     C.3.  Since draft-ietf-quic-tls-28  . . . . . . . . . . . . . .  58
-     C.4.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  58
-     C.5.  Since draft-ietf-quic-tls-26  . . . . . . . . . . . . . .  59
-     C.6.  Since draft-ietf-quic-tls-25  . . . . . . . . . . . . . .  59
-     C.7.  Since draft-ietf-quic-tls-24  . . . . . . . . . . . . . .  59
-     C.8.  Since draft-ietf-quic-tls-23  . . . . . . . . . . . . . .  59
-     C.9.  Since draft-ietf-quic-tls-22  . . . . . . . . . . . . . .  59
+     C.1.  Since draft-ietf-quic-tls-31  . . . . . . . . . . . . . .  58
+     C.2.  Since draft-ietf-quic-tls-30  . . . . . . . . . . . . . .  58
+     C.3.  Since draft-ietf-quic-tls-29  . . . . . . . . . . . . . .  58
+     C.4.  Since draft-ietf-quic-tls-28  . . . . . . . . . . . . . .  58
+     C.5.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  59
+     C.6.  Since draft-ietf-quic-tls-26  . . . . . . . . . . . . . .  59
+     C.7.  Since draft-ietf-quic-tls-25  . . . . . . . . . . . . . .  59
+     C.8.  Since draft-ietf-quic-tls-24  . . . . . . . . . . . . . .  59
+     C.9.  Since draft-ietf-quic-tls-23  . . . . . . . . . . . . . .  59
 
 
 
@@ -170,25 +170,26 @@ Thomson & Turner          Expires 23 April 2021                 [Page 3]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
-     C.10. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  59
-     C.11. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  59
-     C.12. Since draft-ietf-quic-tls-18  . . . . . . . . . . . . . .  60
-     C.13. Since draft-ietf-quic-tls-17  . . . . . . . . . . . . . .  60
-     C.14. Since draft-ietf-quic-tls-14  . . . . . . . . . . . . . .  60
-     C.15. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  60
-     C.16. Since draft-ietf-quic-tls-12  . . . . . . . . . . . . . .  61
-     C.17. Since draft-ietf-quic-tls-11  . . . . . . . . . . . . . .  61
-     C.18. Since draft-ietf-quic-tls-10  . . . . . . . . . . . . . .  61
-     C.19. Since draft-ietf-quic-tls-09  . . . . . . . . . . . . . .  61
-     C.20. Since draft-ietf-quic-tls-08  . . . . . . . . . . . . . .  61
-     C.21. Since draft-ietf-quic-tls-07  . . . . . . . . . . . . . .  61
-     C.22. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  61
-     C.23. Since draft-ietf-quic-tls-04  . . . . . . . . . . . . . .  62
-     C.24. Since draft-ietf-quic-tls-03  . . . . . . . . . . . . . .  62
-     C.25. Since draft-ietf-quic-tls-02  . . . . . . . . . . . . . .  62
-     C.26. Since draft-ietf-quic-tls-01  . . . . . . . . . . . . . .  62
-     C.27. Since draft-ietf-quic-tls-00  . . . . . . . . . . . . . .  62
-     C.28. Since draft-thomson-quic-tls-01 . . . . . . . . . . . . .  63
+     C.10. Since draft-ietf-quic-tls-22  . . . . . . . . . . . . . .  59
+     C.11. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  59
+     C.12. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  60
+     C.13. Since draft-ietf-quic-tls-18  . . . . . . . . . . . . . .  60
+     C.14. Since draft-ietf-quic-tls-17  . . . . . . . . . . . . . .  60
+     C.15. Since draft-ietf-quic-tls-14  . . . . . . . . . . . . . .  60
+     C.16. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  60
+     C.17. Since draft-ietf-quic-tls-12  . . . . . . . . . . . . . .  61
+     C.18. Since draft-ietf-quic-tls-11  . . . . . . . . . . . . . .  61
+     C.19. Since draft-ietf-quic-tls-10  . . . . . . . . . . . . . .  61
+     C.20. Since draft-ietf-quic-tls-09  . . . . . . . . . . . . . .  61
+     C.21. Since draft-ietf-quic-tls-08  . . . . . . . . . . . . . .  61
+     C.22. Since draft-ietf-quic-tls-07  . . . . . . . . . . . . . .  61
+     C.23. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  61
+     C.24. Since draft-ietf-quic-tls-04  . . . . . . . . . . . . . .  62
+     C.25. Since draft-ietf-quic-tls-03  . . . . . . . . . . . . . .  62
+     C.26. Since draft-ietf-quic-tls-02  . . . . . . . . . . . . . .  62
+     C.27. Since draft-ietf-quic-tls-01  . . . . . . . . . . . . . .  62
+     C.28. Since draft-ietf-quic-tls-00  . . . . . . . . . . . . . .  62
+     C.29. Since draft-thomson-quic-tls-01 . . . . . . . . . . . . .  63
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  63
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
 
@@ -216,8 +217,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
    This document uses the terminology established in [QUIC-TRANSPORT].
 
-   For brevity, the acronym TLS is used to refer to TLS 1.3, though a
-   newer version could be used; see Section 4.2.
+
 
 
 
@@ -225,6 +225,9 @@ Thomson & Turner          Expires 23 April 2021                 [Page 4]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   For brevity, the acronym TLS is used to refer to TLS 1.3, though a
+   newer version could be used; see Section 4.2.
 
 2.1.  TLS Overview
 
@@ -269,11 +272,8 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    supports X.509 [RFC5280] certificate-based authentication for both
    server and client.
 
-   The TLS key exchange is resistant to tampering by attackers and it
-   produces shared secrets that cannot be controlled by either
-   participating peer.
 
-   TLS provides two basic handshake modes of interest to QUIC:
+
 
 
 
@@ -281,6 +281,12 @@ Thomson & Turner          Expires 23 April 2021                 [Page 5]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   The TLS key exchange is resistant to tampering by attackers and it
+   produces shared secrets that cannot be controlled by either
+   participating peer.
+
+   TLS provides two basic handshake modes of interest to QUIC:
 
    *  A full 1-RTT handshake, in which the client is able to send
       Application Data after one round trip and the server immediately
@@ -325,18 +331,18 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
    *  Initial Keys
 
-   *  Early Data (0-RTT) Keys
-
-   *  Handshake Keys
-
-   *  Application Data (1-RTT) Keys
-
 
 
 Thomson & Turner          Expires 23 April 2021                 [Page 6]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   *  Early Data (0-RTT) Keys
+
+   *  Handshake Keys
+
+   *  Application Data (1-RTT) Keys
 
    Application Data may appear only in the Early Data and Application
    Data levels.  Handshake and Alert messages may appear in any level.
@@ -379,12 +385,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    uses the TLS handshake; TLS uses the reliability, ordered delivery,
    and record layer provided by QUIC.
 
-   At a high level, there are two main interactions between the TLS and
-   QUIC components:
-
-   *  The TLS component sends and receives messages via the QUIC
-      component, with QUIC providing a reliable stream abstraction to
-      TLS.
 
 
 
@@ -393,6 +393,13 @@ Thomson & Turner          Expires 23 April 2021                 [Page 7]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   At a high level, there are two main interactions between the TLS and
+   QUIC components:
+
+   *  The TLS component sends and receives messages via the QUIC
+      component, with QUIC providing a reliable stream abstraction to
+      TLS.
 
    *  The TLS component provides a series of updates to the QUIC
       component, including (a) new packet protection keys to install (b)
@@ -435,13 +442,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    TCP, once TLS handshake data has been delivered to QUIC, it is QUIC's
    responsibility to deliver it reliably.  Each chunk of data that is
    produced by TLS is associated with the set of keys that TLS is
-   currently using.  If QUIC needs to retransmit that data, it MUST use
-   the same keys even if TLS has already updated to newer keys.
-
-   One important difference between TLS records (used with TCP) and QUIC
-   CRYPTO frames is that in QUIC multiple frames may appear in the same
-   QUIC packet as long as they are associated with the same packet
-   number space.  For instance, an endpoint can bundle a Handshake
 
 
 
@@ -450,6 +450,13 @@ Thomson & Turner          Expires 23 April 2021                 [Page 8]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
+   currently using.  If QUIC needs to retransmit that data, it MUST use
+   the same keys even if TLS has already updated to newer keys.
+
+   One important difference between TLS records (used with TCP) and QUIC
+   CRYPTO frames is that in QUIC multiple frames may appear in the same
+   QUIC packet as long as they are associated with the same packet
+   number space.  For instance, an endpoint can bundle a Handshake
    message and an ACK for some Handshake data into the same packet.
    Some frames are prohibited in different packet number spaces; see
    Section 12.5 of [QUIC-TRANSPORT].
@@ -491,13 +498,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    *  Processing stored transport and application state from a resumed
       session and determining if it is valid to accept early data
 
-   *  Rekeying (both transmit and receive)
-
-   *  Handshake state updates
-
-   Additional functions might be needed to configure TLS.
-
-
 
 
 
@@ -505,6 +505,12 @@ Thomson & Turner          Expires 23 April 2021                 [Page 9]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   *  Rekeying (both transmit and receive)
+
+   *  Handshake state updates
+
+   Additional functions might be needed to configure TLS.
 
 4.1.1.  Handshake Complete
 
@@ -546,12 +552,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    A QUIC server starts the process by providing TLS with the client's
    handshake bytes.
 
-   At any time, the TLS stack at an endpoint will have a current sending
-   encryption level and receiving encryption level.  Encryption levels
-   determine the packet type and keys that are used for protecting data.
-
-
-
 
 
 
@@ -561,6 +561,10 @@ Thomson & Turner          Expires 23 April 2021                [Page 10]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   At any time, the TLS stack at an endpoint will have a current sending
+   encryption level and receiving encryption level.  Encryption levels
+   determine the packet type and keys that are used for protecting data.
 
    Each encryption level is associated with a different sequence of
    bytes, which is reliably transmitted to the peer in CRYPTO frames.
@@ -602,12 +606,8 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
       violations of this requirement as a connection error of type
       PROTOCOL_VIOLATION.
 
-   *  If the packet is from a new encryption level, it is saved for
-      later processing by TLS.  Once TLS moves to receiving from this
-      encryption level, saved data can be provided to TLS.  When TLS
-      provides keys for a higher encryption level, if there is data from
-      a previous encryption level that TLS has not consumed, this MUST
-      be treated as a connection error of type PROTOCOL_VIOLATION.
+
+
 
 
 
@@ -617,6 +617,13 @@ Thomson & Turner          Expires 23 April 2021                [Page 11]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   *  If the packet is from a new encryption level, it is saved for
+      later processing by TLS.  Once TLS moves to receiving from this
+      encryption level, saved data can be provided to TLS.  When TLS
+      provides keys for a higher encryption level, if there is data from
+      a previous encryption level that TLS has not consumed, this MUST
+      be treated as a connection error of type PROTOCOL_VIOLATION.
 
    Each time that TLS is provided with new data, new handshake bytes are
    requested from TLS.  TLS might not provide any bytes if the handshake
@@ -657,13 +664,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    to TLS.  TLS only provides new keys after being initialized (by a
    client) or when provided with new handshake data.
 
-   However, a TLS implementation could perform some of its processing
-   asynchronously.  In particular, the process of validating a
-   certificate can take some time.  While waiting for TLS processing to
-   complete, an endpoint SHOULD buffer received packets if they might be
-   processed using keys that aren't yet available.  These packets can be
-   processed once keys are provided by TLS.  An endpoint SHOULD continue
-   to respond to packets that can be processed during this time.
 
 
 
@@ -673,6 +673,14 @@ Thomson & Turner          Expires 23 April 2021                [Page 12]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   However, a TLS implementation could perform some of its processing
+   asynchronously.  In particular, the process of validating a
+   certificate can take some time.  While waiting for TLS processing to
+   complete, an endpoint SHOULD buffer received packets if they might be
+   processed using keys that aren't yet available.  These packets can be
+   processed once keys are provided by TLS.  An endpoint SHOULD continue
+   to respond to packets that can be processed during this time.
 
    After processing inputs, TLS might produce handshake bytes, keys for
    new encryption levels, or both.
@@ -715,20 +723,18 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    process those acknowledgments in order to detect lost Handshake
    packets.
 
-   QUIC also needs access to keys that might not ordinarily be available
-   to a TLS implementation.  For instance, a client might need to
-   acknowledge Handshake packets before it is ready to send CRYPTO
-   frames at that encryption level.  TLS therefore needs to provide keys
-   to QUIC before it might produce them for its own use.
-
-
-
 
 
 Thomson & Turner          Expires 23 April 2021                [Page 13]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   QUIC also needs access to keys that might not ordinarily be available
+   to a TLS implementation.  For instance, a client might need to
+   acknowledge Handshake packets before it is ready to send CRYPTO
+   frames at that encryption level.  TLS therefore needs to provide keys
+   to QUIC before it might produce them for its own use.
 
 4.1.5.  TLS Interface Summary
 
@@ -770,13 +776,7 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 
              Figure 5: Interaction Summary between QUIC and TLS
 
-   Figure 5 shows the multiple packets that form a single "flight" of
-   messages being processed individually, to show what incoming messages
-   trigger different actions.  New handshake messages are requested
-   after incoming packets have been processed.  This process varies
-   based on the structure of endpoint implementations and the order in
-   which packets arrive; this is intended to illustrate the steps
-   involved in a single handshake exchange.
+
 
 
 
@@ -785,6 +785,14 @@ Thomson & Turner          Expires 23 April 2021                [Page 14]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   Figure 5 shows the multiple packets that form a single "flight" of
+   messages being processed individually, to show what incoming messages
+   trigger different actions.  New handshake messages are requested
+   after incoming packets have been processed.  This process varies
+   based on the structure of endpoint implementations and the order in
+   which packets arrive; this is intended to illustrate the steps
+   involved in a single handshake exchange.
 
 4.2.  TLS Version
 
@@ -826,14 +834,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    However, in addition to the overheads added by QUIC, there are
    several variables that could cause this limit to be exceeded.  Large
    session tickets, multiple or large key shares, and long lists of
-   supported ciphers, signature algorithms, versions, QUIC transport
-   parameters, and other negotiable parameters and extensions could
-   cause this message to grow.
-
-
-
-
-
 
 
 
@@ -841,6 +841,10 @@ Thomson & Turner          Expires 23 April 2021                [Page 15]
 
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
+
+   supported ciphers, signature algorithms, versions, QUIC transport
+   parameters, and other negotiable parameters and extensions could
+   cause this message to grow.
 
    For servers, in addition to connection IDs and tokens, the size of
    TLS session tickets can have an effect on a client's ability to
@@ -886,10 +890,6 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    handshake TLS CertificateRequest messages and clients MUST treat
    receipt of such messages as a connection error of type
    PROTOCOL_VIOLATION.
-
-
-
-
 
 
 
@@ -3218,30 +3218,30 @@ Appendix C.  Change Log
 
    Issue and pull request numbers are listed with a leading octothorp.
 
-C.1.  Since draft-ietf-quic-tls-30
+C.1.  Since draft-ietf-quic-tls-31
+
+   *  Packet protection limits are based on maximum-sized packets;
+      improved analysis (#3701, #4175)
+
+C.2.  Since draft-ietf-quic-tls-30
 
    *  Add a new error code for AEAD_LIMIT_REACHED code to avoid conflict
       (#4087, #4088)
 
-C.2.  Since draft-ietf-quic-tls-29
+C.3.  Since draft-ietf-quic-tls-29
 
    *  Updated limits on packet protection (#3788, #3789)
 
    *  Allow for packet processing to continue while waiting for TLS to
       provide keys (#3821, #3874)
 
-C.3.  Since draft-ietf-quic-tls-28
+C.4.  Since draft-ietf-quic-tls-28
 
    *  Defined limits on the number of packets that can be protected with
       a single key and limits on the number of packets that can fail
       authentication (#3619, #3620)
 
    *  Update Initial salt, Retry keys, and samples (#3711)
-
-C.4.  Since draft-ietf-quic-tls-27
-
-
-
 
 
 
@@ -3250,6 +3250,8 @@ Thomson & Turner          Expires 23 April 2021                [Page 58]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
+C.5.  Since draft-ietf-quic-tls-27
+
    *  Allowed CONNECTION_CLOSE in any packet number space, with
       restrictions on use of the application-specific variant (#3430,
       #3435, #3440)
@@ -3257,15 +3259,15 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
    *  Prohibit the use of the compatibility mode from TLS 1.3 (#3594,
       #3595)
 
-C.5.  Since draft-ietf-quic-tls-26
+C.6.  Since draft-ietf-quic-tls-26
 
    *  No changes
 
-C.6.  Since draft-ietf-quic-tls-25
+C.7.  Since draft-ietf-quic-tls-25
 
    *  No changes
 
-C.7.  Since draft-ietf-quic-tls-24
+C.8.  Since draft-ietf-quic-tls-24
 
    *  Rewrite key updates (#3050)
 
@@ -3275,7 +3277,7 @@ C.7.  Since draft-ietf-quic-tls-24
 
       -  Define the label used with HKDF-Expand-Label (#3054)
 
-C.8.  Since draft-ietf-quic-tls-23
+C.9.  Since draft-ietf-quic-tls-23
 
    *  Key update text update (#3050):
 
@@ -3288,15 +3290,13 @@ C.8.  Since draft-ietf-quic-tls-23
 
    *  PING can be sent at any encryption level (#3034, #3035)
 
-C.9.  Since draft-ietf-quic-tls-22
+C.10.  Since draft-ietf-quic-tls-22
 
    *  Update the salt used for Initial secrets (#2887, #2980)
 
-C.10.  Since draft-ietf-quic-tls-21
+C.11.  Since draft-ietf-quic-tls-21
 
    *  No changes
-
-C.11.  Since draft-ietf-quic-tls-20
 
 
 
@@ -3306,26 +3306,28 @@ Thomson & Turner          Expires 23 April 2021                [Page 59]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
+C.12.  Since draft-ietf-quic-tls-20
+
    *  Mandate the use of the QUIC transport parameters extension (#2528,
       #2560)
 
    *  Define handshake completion and confirmation; define clearer rules
       when it encryption keys should be discarded (#2214, #2267, #2673)
 
-C.12.  Since draft-ietf-quic-tls-18
+C.13.  Since draft-ietf-quic-tls-18
 
    *  Increased the set of permissible frames in 0-RTT (#2344, #2355)
 
    *  Transport parameter extension is mandatory (#2528, #2560)
 
-C.13.  Since draft-ietf-quic-tls-17
+C.14.  Since draft-ietf-quic-tls-17
 
    *  Endpoints discard initial keys as soon as handshake keys are
       available (#1951, #2045)
 
    *  Use of ALPN or equivalent is mandatory (#2263, #2284)
 
-C.14.  Since draft-ietf-quic-tls-14
+C.15.  Since draft-ietf-quic-tls-14
 
    *  Update the salt used for Initial secrets (#1970)
 
@@ -3348,11 +3350,9 @@ C.14.  Since draft-ietf-quic-tls-14
    *  Initial keys are discarded once Handshake keys are available
       (#1951, #2045)
 
-C.15.  Since draft-ietf-quic-tls-13
+C.16.  Since draft-ietf-quic-tls-13
 
    *  Updated to TLS 1.3 final (#1660)
-
-
 
 
 
@@ -3362,7 +3362,7 @@ Thomson & Turner          Expires 23 April 2021                [Page 60]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
-C.16.  Since draft-ietf-quic-tls-12
+C.17.  Since draft-ietf-quic-tls-12
 
    *  Changes to integration of the TLS handshake (#829, #1018, #1094,
       #1165, #1190, #1233, #1242, #1252, #1450)
@@ -3381,31 +3381,31 @@ C.16.  Since draft-ietf-quic-tls-12
 
    *  Changed codepoint of TLS extension (#1395, #1402)
 
-C.17.  Since draft-ietf-quic-tls-11
+C.18.  Since draft-ietf-quic-tls-11
 
    *  Encrypted packet numbers.
 
-C.18.  Since draft-ietf-quic-tls-10
+C.19.  Since draft-ietf-quic-tls-10
 
    *  No significant changes.
 
-C.19.  Since draft-ietf-quic-tls-09
+C.20.  Since draft-ietf-quic-tls-09
 
    *  Cleaned up key schedule and updated the salt used for handshake
       packet protection (#1077)
 
-C.20.  Since draft-ietf-quic-tls-08
+C.21.  Since draft-ietf-quic-tls-08
 
    *  Specify value for max_early_data_size to enable 0-RTT (#942)
 
    *  Update key derivation function (#1003, #1004)
 
-C.21.  Since draft-ietf-quic-tls-07
+C.22.  Since draft-ietf-quic-tls-07
 
    *  Handshake errors can be reported with CONNECTION_CLOSE (#608,
       #891)
 
-C.22.  Since draft-ietf-quic-tls-05
+C.23.  Since draft-ietf-quic-tls-05
 
    No significant changes.
 
@@ -3418,19 +3418,19 @@ Thomson & Turner          Expires 23 April 2021                [Page 61]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
-C.23.  Since draft-ietf-quic-tls-04
+C.24.  Since draft-ietf-quic-tls-04
 
    *  Update labels used in HKDF-Expand-Label to match TLS 1.3 (#642)
 
-C.24.  Since draft-ietf-quic-tls-03
+C.25.  Since draft-ietf-quic-tls-03
 
    No significant changes.
 
-C.25.  Since draft-ietf-quic-tls-02
+C.26.  Since draft-ietf-quic-tls-02
 
    *  Updates to match changes in transport draft
 
-C.26.  Since draft-ietf-quic-tls-01
+C.27.  Since draft-ietf-quic-tls-01
 
    *  Use TLS alerts to signal TLS errors (#272, #374)
 
@@ -3455,7 +3455,7 @@ C.26.  Since draft-ietf-quic-tls-01
 
    *  Decouple QUIC version and ALPN (#12)
 
-C.27.  Since draft-ietf-quic-tls-00
+C.28.  Since draft-ietf-quic-tls-00
 
    *  Changed bit used to signal key phase
 
@@ -3474,7 +3474,7 @@ Thomson & Turner          Expires 23 April 2021                [Page 62]
 Internet-Draft          Using TLS to Secure QUIC            October 2020
 
 
-C.28.  Since draft-thomson-quic-tls-01
+C.29.  Since draft-thomson-quic-tls-01
 
    *  Adopted as base for draft-ietf-quic-tls
 

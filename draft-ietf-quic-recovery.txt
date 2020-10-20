@@ -151,17 +151,17 @@ Internet-Draft             QUIC Loss Detection              October 2020
      B.8.  On Packets Lost . . . . . . . . . . . . . . . . . . . . .  44
      B.9.  Removing Discarded Packets From Bytes In Flight . . . . .  45
    Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  45
-     C.1.  Since draft-ietf-quic-recovery-30 . . . . . . . . . . . .  45
-     C.2.  Since draft-ietf-quic-recovery-29 . . . . . . . . . . . .  45
-     C.3.  Since draft-ietf-quic-recovery-28 . . . . . . . . . . . .  45
-     C.4.  Since draft-ietf-quic-recovery-27 . . . . . . . . . . . .  46
-     C.5.  Since draft-ietf-quic-recovery-26 . . . . . . . . . . . .  46
-     C.6.  Since draft-ietf-quic-recovery-25 . . . . . . . . . . . .  46
-     C.7.  Since draft-ietf-quic-recovery-24 . . . . . . . . . . . .  46
-     C.8.  Since draft-ietf-quic-recovery-23 . . . . . . . . . . . .  46
-     C.9.  Since draft-ietf-quic-recovery-22 . . . . . . . . . . . .  47
-     C.10. Since draft-ietf-quic-recovery-21 . . . . . . . . . . . .  47
-     C.11. Since draft-ietf-quic-recovery-20 . . . . . . . . . . . .  47
+     C.1.  Since draft-ietf-quic-recovery-31 . . . . . . . . . . . .  45
+     C.2.  Since draft-ietf-quic-recovery-30 . . . . . . . . . . . .  45
+     C.3.  Since draft-ietf-quic-recovery-29 . . . . . . . . . . . .  45
+     C.4.  Since draft-ietf-quic-recovery-28 . . . . . . . . . . . .  46
+     C.5.  Since draft-ietf-quic-recovery-27 . . . . . . . . . . . .  46
+     C.6.  Since draft-ietf-quic-recovery-26 . . . . . . . . . . . .  46
+     C.7.  Since draft-ietf-quic-recovery-25 . . . . . . . . . . . .  46
+     C.8.  Since draft-ietf-quic-recovery-24 . . . . . . . . . . . .  46
+     C.9.  Since draft-ietf-quic-recovery-23 . . . . . . . . . . . .  46
+     C.10. Since draft-ietf-quic-recovery-22 . . . . . . . . . . . .  47
+     C.11. Since draft-ietf-quic-recovery-21 . . . . . . . . . . . .  47
 
 
 
@@ -170,26 +170,27 @@ Iyengar & Swett           Expires 23 April 2021                 [Page 3]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
-     C.12. Since draft-ietf-quic-recovery-19 . . . . . . . . . . . .  47
-     C.13. Since draft-ietf-quic-recovery-18 . . . . . . . . . . . .  48
-     C.14. Since draft-ietf-quic-recovery-17 . . . . . . . . . . . .  48
-     C.15. Since draft-ietf-quic-recovery-16 . . . . . . . . . . . .  48
-     C.16. Since draft-ietf-quic-recovery-14 . . . . . . . . . . . .  49
-     C.17. Since draft-ietf-quic-recovery-13 . . . . . . . . . . . .  49
-     C.18. Since draft-ietf-quic-recovery-12 . . . . . . . . . . . .  49
-     C.19. Since draft-ietf-quic-recovery-11 . . . . . . . . . . . .  50
-     C.20. Since draft-ietf-quic-recovery-10 . . . . . . . . . . . .  50
-     C.21. Since draft-ietf-quic-recovery-09 . . . . . . . . . . . .  50
-     C.22. Since draft-ietf-quic-recovery-08 . . . . . . . . . . . .  50
-     C.23. Since draft-ietf-quic-recovery-07 . . . . . . . . . . . .  50
-     C.24. Since draft-ietf-quic-recovery-06 . . . . . . . . . . . .  50
-     C.25. Since draft-ietf-quic-recovery-05 . . . . . . . . . . . .  50
-     C.26. Since draft-ietf-quic-recovery-04 . . . . . . . . . . . .  51
-     C.27. Since draft-ietf-quic-recovery-03 . . . . . . . . . . . .  51
-     C.28. Since draft-ietf-quic-recovery-02 . . . . . . . . . . . .  51
-     C.29. Since draft-ietf-quic-recovery-01 . . . . . . . . . . . .  51
-     C.30. Since draft-ietf-quic-recovery-00 . . . . . . . . . . . .  51
-     C.31. Since draft-iyengar-quic-loss-recovery-01 . . . . . . . .  51
+     C.12. Since draft-ietf-quic-recovery-20 . . . . . . . . . . . .  47
+     C.13. Since draft-ietf-quic-recovery-19 . . . . . . . . . . . .  47
+     C.14. Since draft-ietf-quic-recovery-18 . . . . . . . . . . . .  48
+     C.15. Since draft-ietf-quic-recovery-17 . . . . . . . . . . . .  48
+     C.16. Since draft-ietf-quic-recovery-16 . . . . . . . . . . . .  49
+     C.17. Since draft-ietf-quic-recovery-14 . . . . . . . . . . . .  49
+     C.18. Since draft-ietf-quic-recovery-13 . . . . . . . . . . . .  49
+     C.19. Since draft-ietf-quic-recovery-12 . . . . . . . . . . . .  50
+     C.20. Since draft-ietf-quic-recovery-11 . . . . . . . . . . . .  50
+     C.21. Since draft-ietf-quic-recovery-10 . . . . . . . . . . . .  50
+     C.22. Since draft-ietf-quic-recovery-09 . . . . . . . . . . . .  50
+     C.23. Since draft-ietf-quic-recovery-08 . . . . . . . . . . . .  50
+     C.24. Since draft-ietf-quic-recovery-07 . . . . . . . . . . . .  50
+     C.25. Since draft-ietf-quic-recovery-06 . . . . . . . . . . . .  51
+     C.26. Since draft-ietf-quic-recovery-05 . . . . . . . . . . . .  51
+     C.27. Since draft-ietf-quic-recovery-04 . . . . . . . . . . . .  51
+     C.28. Since draft-ietf-quic-recovery-03 . . . . . . . . . . . .  51
+     C.29. Since draft-ietf-quic-recovery-02 . . . . . . . . . . . .  51
+     C.30. Since draft-ietf-quic-recovery-01 . . . . . . . . . . . .  51
+     C.31. Since draft-ietf-quic-recovery-00 . . . . . . . . . . . .  51
+     C.32. Since draft-iyengar-quic-loss-recovery-01 . . . . . . . .  51
    Appendix D.  Contributors . . . . . . . . . . . . . . . . . . . .  52
    Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  52
    Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  52
@@ -217,7 +218,6 @@ Internet-Draft             QUIC Loss Detection              October 2020
       CONNECTION_CLOSE are considered ack-eliciting.
 
    Ack-eliciting packets:  Packets that contain ack-eliciting frames
-
 
 
 
@@ -2486,11 +2486,16 @@ Appendix C.  Change Log
 
    Issue and pull request numbers are listed with a leading octothorp.
 
-C.1.  Since draft-ietf-quic-recovery-30
+C.1.  Since draft-ietf-quic-recovery-31
+
+   *  Limit the number of Initial packets sent in response to
+      unauthenticated packets (#4183, #4188)
+
+C.2.  Since draft-ietf-quic-recovery-30
 
    Editorial changes only.
 
-C.2.  Since draft-ietf-quic-recovery-29
+C.3.  Since draft-ietf-quic-recovery-29
 
    *  Allow caching of packets that can't be decrypted, by allowing the
       reported acknowledgment delay to exceed max_ack_delay prior to
@@ -2510,11 +2515,6 @@ C.2.  Since draft-ietf-quic-recovery-29
    *  Add normative requirements for increasing and reducing the
       congestion window (#3944, #3978, #3997, #3998)
 
-C.3.  Since draft-ietf-quic-recovery-28
-
-   *  Refactored pseudocode to correct PTO calculation (#3564, #3674,
-      #3681)
-
 
 
 Iyengar & Swett           Expires 23 April 2021                [Page 45]
@@ -2522,7 +2522,12 @@ Iyengar & Swett           Expires 23 April 2021                [Page 45]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
-C.4.  Since draft-ietf-quic-recovery-27
+C.4.  Since draft-ietf-quic-recovery-28
+
+   *  Refactored pseudocode to correct PTO calculation (#3564, #3674,
+      #3681)
+
+C.5.  Since draft-ietf-quic-recovery-27
 
    *  Added recommendations for speeding up handshake under some loss
       conditions (#3078, #3080)
@@ -2543,15 +2548,15 @@ C.4.  Since draft-ietf-quic-recovery-27
 
    *  Recommend use of adaptive loss detection thresholds (#3571, #3572)
 
-C.5.  Since draft-ietf-quic-recovery-26
+C.6.  Since draft-ietf-quic-recovery-26
 
    No changes.
 
-C.6.  Since draft-ietf-quic-recovery-25
+C.7.  Since draft-ietf-quic-recovery-25
 
    No significant changes.
 
-C.7.  Since draft-ietf-quic-recovery-24
+C.8.  Since draft-ietf-quic-recovery-24
 
    *  Require congestion control of some sort (#3247, #3244, #3248)
 
@@ -2559,16 +2564,11 @@ C.7.  Since draft-ietf-quic-recovery-24
 
    *  PTO is specific to a packet number space (#3067, #3074, #3066)
 
-C.8.  Since draft-ietf-quic-recovery-23
+C.9.  Since draft-ietf-quic-recovery-23
 
    *  Define under-utilizing the congestion window (#2630, #2686, #2675)
 
    *  PTO MUST send data if possible (#3056, #3057)
-
-   *  Connection Close is not ack-eliciting (#3097, #3098)
-
-   *  MUST limit bursts to the initial congestion window (#3160)
-
 
 
 
@@ -2578,10 +2578,14 @@ Iyengar & Swett           Expires 23 April 2021                [Page 46]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
+   *  Connection Close is not ack-eliciting (#3097, #3098)
+
+   *  MUST limit bursts to the initial congestion window (#3160)
+
    *  Define the current max_datagram_size for congestion control
       (#3041, #3167)
 
-C.9.  Since draft-ietf-quic-recovery-22
+C.10.  Since draft-ietf-quic-recovery-22
 
    *  PTO should always send an ack-eliciting packet (#2895)
 
@@ -2589,11 +2593,11 @@ C.9.  Since draft-ietf-quic-recovery-22
 
    *  Move ACK generation text to transport draft (#1860, #2916)
 
-C.10.  Since draft-ietf-quic-recovery-21
+C.11.  Since draft-ietf-quic-recovery-21
 
    *  No changes
 
-C.11.  Since draft-ietf-quic-recovery-20
+C.12.  Since draft-ietf-quic-recovery-20
 
    *  Path validation can be used as initial RTT value (#2644, #2687)
 
@@ -2602,7 +2606,7 @@ C.11.  Since draft-ietf-quic-recovery-20
    *  ACK delay only measures intentional delays induced by the
       implementation (#2596, #2786)
 
-C.12.  Since draft-ietf-quic-recovery-19
+C.13.  Since draft-ietf-quic-recovery-19
 
    *  Change kPersistentThreshold from an exponent to a multiplier
       (#2557)
@@ -2622,10 +2626,6 @@ C.12.  Since draft-ietf-quic-recovery-19
    *  Don't arm the handshake timer if there is no handshake data
       (#2590)
 
-   *  Clarify that the time threshold loss alarm takes precedence over
-      the crypto handshake timer (#2590, #2620)
-
-   *  Change initial RTT to 500ms to align with RFC6298 (#2184)
 
 
 
@@ -2634,7 +2634,12 @@ Iyengar & Swett           Expires 23 April 2021                [Page 47]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
-C.13.  Since draft-ietf-quic-recovery-18
+   *  Clarify that the time threshold loss alarm takes precedence over
+      the crypto handshake timer (#2590, #2620)
+
+   *  Change initial RTT to 500ms to align with RFC6298 (#2184)
+
+C.14.  Since draft-ietf-quic-recovery-18
 
    *  Change IW byte limit to 14720 from 14600 (#2494)
 
@@ -2651,7 +2656,7 @@ C.13.  Since draft-ietf-quic-recovery-18
 
    *  What to send on multiple PTOs (#2380)
 
-C.14.  Since draft-ietf-quic-recovery-17
+C.15.  Since draft-ietf-quic-recovery-17
 
    *  After Probe Timeout discard in-flight packets or send another
       (#2212, #1965)
@@ -2677,11 +2682,6 @@ C.14.  Since draft-ietf-quic-recovery-17
    *  Congestion and loss recovery state are discarded when keys are
       discarded (#2327)
 
-C.15.  Since draft-ietf-quic-recovery-16
-
-   *  Unify TLP and RTO into a single PTO; eliminate min RTO, min TLP
-      and min crypto timeouts; eliminate timeout validation (#2114,
-      #2166, #2168, #1017)
 
 
 
@@ -2689,6 +2689,12 @@ Iyengar & Swett           Expires 23 April 2021                [Page 48]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
+
+C.16.  Since draft-ietf-quic-recovery-16
+
+   *  Unify TLP and RTO into a single PTO; eliminate min RTO, min TLP
+      and min crypto timeouts; eliminate timeout validation (#2114,
+      #2166, #2168, #1017)
 
    *  Redefine how congestion avoidance in terms of when the period
       starts (#1928, #1930)
@@ -2715,13 +2721,13 @@ Internet-Draft             QUIC Loss Detection              October 2020
    *  Only cancel loss detection timer if ack-eliciting packets are in
       flight (#2093, #2117)
 
-C.16.  Since draft-ietf-quic-recovery-14
+C.17.  Since draft-ietf-quic-recovery-14
 
    *  Used max_ack_delay from transport params (#1796, #1782)
 
    *  Merge ACK and ACK_ECN (#1783)
 
-C.17.  Since draft-ietf-quic-recovery-13
+C.18.  Since draft-ietf-quic-recovery-13
 
    *  Corrected the lack of ssthresh reduction in CongestionEvent
       pseudocode (#1598)
@@ -2733,12 +2739,6 @@ C.17.  Since draft-ietf-quic-recovery-13
 
    *  Reduce early retransmission timer to RTT/8 (#945, #1581)
 
-   *  Packets are declared lost after an RTO is verified (#935, #1582)
-
-C.18.  Since draft-ietf-quic-recovery-12
-
-
-
 
 
 Iyengar & Swett           Expires 23 April 2021                [Page 49]
@@ -2746,17 +2746,21 @@ Iyengar & Swett           Expires 23 April 2021                [Page 49]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
+   *  Packets are declared lost after an RTO is verified (#935, #1582)
+
+C.19.  Since draft-ietf-quic-recovery-12
+
    *  Changes to manage separate packet number spaces and encryption
       levels (#1190, #1242, #1413, #1450)
 
    *  Added ECN feedback mechanisms and handling; new ACK_ECN frame
       (#804, #805, #1372)
 
-C.19.  Since draft-ietf-quic-recovery-11
+C.20.  Since draft-ietf-quic-recovery-11
 
    No significant changes.
 
-C.20.  Since draft-ietf-quic-recovery-10
+C.21.  Since draft-ietf-quic-recovery-10
 
    *  Improved text on ack generation (#1139, #1159)
 
@@ -2770,15 +2774,15 @@ C.20.  Since draft-ietf-quic-recovery-10
    *  Minimum RTT (min_rtt) is initialized with an infinite value
       (#1169)
 
-C.21.  Since draft-ietf-quic-recovery-09
+C.22.  Since draft-ietf-quic-recovery-09
 
    No significant changes.
 
-C.22.  Since draft-ietf-quic-recovery-08
+C.23.  Since draft-ietf-quic-recovery-08
 
    *  Clarified pacing and RTO (#967, #977)
 
-C.23.  Since draft-ietf-quic-recovery-07
+C.24.  Since draft-ietf-quic-recovery-07
 
    *  Include ACK delay in RTO(and TLP) computations (#981)
 
@@ -2788,11 +2792,7 @@ C.23.  Since draft-ietf-quic-recovery-07
 
    *  Many editorial fixes.
 
-C.24.  Since draft-ietf-quic-recovery-06
 
-   No significant changes.
-
-C.25.  Since draft-ietf-quic-recovery-05
 
 
 
@@ -2802,17 +2802,23 @@ Iyengar & Swett           Expires 23 April 2021                [Page 50]
 Internet-Draft             QUIC Loss Detection              October 2020
 
 
+C.25.  Since draft-ietf-quic-recovery-06
+
+   No significant changes.
+
+C.26.  Since draft-ietf-quic-recovery-05
+
    *  Add more congestion control text (#776)
 
-C.26.  Since draft-ietf-quic-recovery-04
+C.27.  Since draft-ietf-quic-recovery-04
 
    No significant changes.
 
-C.27.  Since draft-ietf-quic-recovery-03
+C.28.  Since draft-ietf-quic-recovery-03
 
    No significant changes.
 
-C.28.  Since draft-ietf-quic-recovery-02
+C.29.  Since draft-ietf-quic-recovery-02
 
    *  Integrate F-RTO (#544, #409)
 
@@ -2823,7 +2829,7 @@ C.28.  Since draft-ietf-quic-recovery-02
 
    *  Simplify RTO calculations (#142, #417)
 
-C.29.  Since draft-ietf-quic-recovery-01
+C.30.  Since draft-ietf-quic-recovery-01
 
    *  Overview added to loss detection
 
@@ -2835,21 +2841,15 @@ C.29.  Since draft-ietf-quic-recovery-01
 
    *  Fixed references and made TCP references informative
 
-C.30.  Since draft-ietf-quic-recovery-00
+C.31.  Since draft-ietf-quic-recovery-00
 
    *  Improved description of constants and ACK behavior
 
-C.31.  Since draft-iyengar-quic-loss-recovery-01
+C.32.  Since draft-iyengar-quic-loss-recovery-01
 
    *  Adopted as base for draft-ietf-quic-recovery
 
    *  Updated authors/editors list
-
-   *  Added table of contents
-
-
-
-
 
 
 
@@ -2857,6 +2857,8 @@ Iyengar & Swett           Expires 23 April 2021                [Page 51]
 
 Internet-Draft             QUIC Loss Detection              October 2020
 
+
+   *  Added table of contents
 
 Appendix D.  Contributors
 
@@ -2904,8 +2906,6 @@ Authors' Addresses
    Google
 
    Email: ianswett@google.com
-
-
 
 
 

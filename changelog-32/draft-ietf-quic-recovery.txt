@@ -2488,7 +2488,8 @@ Appendix C.  Change Log
 
 C.1.  Since draft-ietf-quic-recovery-31
 
-   Editorial changes only.
+   *  Limit the number of Initial packets sent in response to
+      unauthenticated packets (#4183, #4188)
 
 C.2.  Since draft-ietf-quic-recovery-30
 
@@ -2513,7 +2514,6 @@ C.3.  Since draft-ietf-quic-recovery-29
 
    *  Add normative requirements for increasing and reducing the
       congestion window (#3944, #3978, #3997, #3998)
-
 
 
 

@@ -4103,11 +4103,10 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    connections.  An endpoint that wishes to communicate a fatal
    connection error MUST use a CONNECTION_CLOSE frame if it is able.
 
-   To support this process, an endpoint can issue a stateless reset
-   token, which is a 16 byte value that is hard to guess.  If that
-   endpoint sends a stateless reset, a UDP datagram that ends in the
-   stateless reset token, the recipient will immediately end the
-   connection.
+   To support this process, an endpoint issues a stateless reset token,
+   which is a 16 byte value that is hard to guess.  If that endpoint
+   sends a stateless reset, a UDP datagram that ends in the stateless
+   reset token, the recipient will immediately end the connection.
 
    A stateless reset token is issued by including the value in the
    Stateless Reset Token field of a NEW_CONNECTION_ID frame.  Servers
@@ -4115,9 +4114,9 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    handshake that applies to the connection ID that it selected during
    the handshake; clients cannot use this transport parameter because
    their transport parameters do not have confidentiality protection.
-   These tokens are protected by encryption, so only client and server
-   know their value.  Tokens are invalidated when their associated
-   connection ID is retired via a RETIRE_CONNECTION_ID frame
+   These exchanges are protected by encryption, so only client and
+   server know their value.  Tokens are invalidated when their
+   associated connection ID is retired via a RETIRE_CONNECTION_ID frame
    (Section 19.16).
 
    An endpoint that receives packets that it cannot process sends a
@@ -4134,6 +4133,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    This design ensures that a stateless reset packet is - to the extent
    possible - indistinguishable from a regular packet with a short
    header.
+
 
 
 

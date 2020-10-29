@@ -4818,7 +4818,7 @@ Iyengar & Thomson          Expires 2 May 2021                  [Page 86]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
-   The format and semantics of each frame type is explained in more
+   The format and semantics of each frame type are explained in more
    detail in Section 19.  The remainder of this section provides a
    summary of important and general information.
 

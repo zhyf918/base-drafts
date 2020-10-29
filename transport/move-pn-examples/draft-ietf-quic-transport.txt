@@ -9879,19 +9879,19 @@ Internet-Draft           QUIC Transport Protocol            October 2020
              Figure 45: Sample Packet Number Encoding Algorithm
 
    For example, if an endpoint has received an acknowledgment for packet
-   0xabe8bc, sending a packet with a number of 0xac5c02 requires a
-   packet number encoding with 16 bits or more; whereas the 24-bit
-   packet number encoding is needed to send a packet with a number of
-   0xace8fe.
+   0xabe8bc and is sending a packet with a number of 0xac5c02, there are
+   29,519 (0x734f) outstanding packets.  In order to represent at least
+   twice this range (59,038 packets, or 0xe69e), 16 bits will be
+   required.
+
+   In the same state, sending a packet with a number of 0xace8fe uses
+   the 24-bit encoding, because at least 18 bits are required to
+   represent twice the range (131,182 packets, or 0x2006e).
 
 Appendix B.  Sample Packet Number Decoding Algorithm
 
    The pseudo-code in Figure 46 shows how an implementation can decode
    packet numbers after header protection has been removed.
-
-
-
-
 
 
 

@@ -10318,11 +10318,21 @@ specification reference is provided.<a href="#section-22.4-4.4" class="pilcrow">
       <h2 id="name-sample-packet-number-decodi">
 <a href="#section-appendix.a" class="section-number selfRef">Appendix A. </a><a href="#name-sample-packet-number-decodi" class="section-name selfRef">Sample Packet Number Decoding Algorithm</a>
       </h2>
-<p id="section-appendix.a-1">The pseudo-code in <a href="#alg-decode-pn" class="xref">Figure 45</a> shows how an implementation can decode
+<p id="section-appendix.a-1">The pseudo-code in <a href="#alg-decode-pn" class="xref">Figure 45</a> includes an example algorithm for decoding
 packet numbers after header protection has been removed.<a href="#section-appendix.a-1" class="pilcrow">¶</a></p>
+<p id="section-appendix.a-2">The DecodePacketNumber function takes three arguments:<a href="#section-appendix.a-2" class="pilcrow">¶</a></p>
+<ul class="normal">
+<li class="normal" id="section-appendix.a-3.1">largest_pn is the largest packet number that has been successfully
+processed in the current packet number space.<a href="#section-appendix.a-3.1" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-appendix.a-3.2">truncated_pn is the value of the Packet Number field.<a href="#section-appendix.a-3.2" class="pilcrow">¶</a>
+</li>
+        <li class="normal" id="section-appendix.a-3.3">pn_nbits is the number of bits in the Packet Number field (8, 16, 24, or 32).<a href="#section-appendix.a-3.3" class="pilcrow">¶</a>
+</li>
+      </ul>
 <span id="name-sample-packet-number-decodin"></span><div id="alg-decode-pn">
 <figure id="figure-45">
-        <div class="artwork art-text alignLeft" id="section-appendix.a-2.1">
+        <div class="artwork art-text alignLeft" id="section-appendix.a-4.1">
 <pre>
 DecodePacketNumber(largest_pn, truncated_pn, pn_nbits):
    expected_pn  = largest_pn + 1
@@ -10399,8 +10409,8 @@ incurred.<a href="#section-appendix.b-8" class="pilcrow">¶</a></p>
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
 final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>

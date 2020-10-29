@@ -298,7 +298,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
      C.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 178
      C.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 179
      C.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 179
-     C.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 179
+     C.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 180
      C.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 180
      C.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 181
      C.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 181
@@ -313,7 +313,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
      C.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 187
      C.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 188
      C.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 188
-     C.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 188
+     C.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 189
      C.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 189
      C.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 190
      C.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 190
@@ -9843,13 +9843,13 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 Appendix A.  Sample Packet Number Decoding Algorithm
 
-   The pseudo-code in Figure 45 shows how an implementation can decode
-   packet numbers after header protection has been removed.
+   The pseudo-code in Figure 45 includes an example algorithm for
+   decoding packet numbers after header protection has been removed.
 
+   The DecodePacketNumber function takes three arguments:
 
-
-
-
+   *  largest_pn is the largest packet number that has been successfully
+      processed in the current packet number space.
 
 
 
@@ -9857,6 +9857,11 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 176]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  truncated_pn is the value of the Packet Number field.
+
+   *  pn_nbits is the number of bits in the Packet Number field (8, 16,
+      24, or 32).
 
    DecodePacketNumber(largest_pn, truncated_pn, pn_nbits):
       expected_pn  = largest_pn + 1
@@ -9901,11 +9906,6 @@ Appendix B.  Sample ECN Validation Algorithm
    "capable" state the endpoint sends packets with an ECT marking, by
    default ECT(0); otherwise, the endpoint sends unmarked packets.
 
-   To start testing a path, the ECN state is set to "testing" and
-   existing ECN counts are remembered as a baseline.
-
-
-
 
 
 
@@ -9913,6 +9913,9 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 177]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   To start testing a path, the ECN state is set to "testing" and
+   existing ECN counts are remembered as a baseline.
 
    The testing period runs for a number of packets or a limited time, as
    determined by the endpoint.  The goal is not to limit the duration of
@@ -9960,15 +9963,15 @@ C.1.  Since draft-ietf-quic-transport-31
    *  Though senders need to expand datagrams in some cases, receivers
       cannot enforce this requirement (#4253, #4254)
 
-   *  Split contact into contact and change controller for IANA
-      registrations (#4230, #4239)
-
 
 
 Iyengar & Thomson          Expires 2 May 2021                 [Page 178]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Split contact into contact and change controller for IANA
+      registrations (#4230, #4239)
 
 C.2.  Since draft-ietf-quic-transport-30
 
@@ -10014,10 +10017,7 @@ C.3.  Since draft-ietf-quic-transport-29
    *  Limit recommendation for immediate acknowledgment to when ack-
       eliciting packets are reordered (#4001, #4000)
 
-C.4.  Since draft-ietf-quic-transport-28
 
-   *  Made SERVER_BUSY error (0x2) more generic, now CONNECTION_REFUSED
-      (#3709, #3690, #3694)
 
 
 
@@ -10025,6 +10025,11 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 179]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+C.4.  Since draft-ietf-quic-transport-28
+
+   *  Made SERVER_BUSY error (0x2) more generic, now CONNECTION_REFUSED
+      (#3709, #3690, #3694)
 
    *  Allow TRANSPORT_PARAMETER_ERROR when validating connection IDs
       (#3703, #3691)
@@ -10068,11 +10073,6 @@ C.5.  Since draft-ietf-quic-transport-27
 
    *  Redefined max_packet_size to max_udp_datagram_size (#3471, #3473)
 
-   *  Guidance on limiting outstanding attempts to retire connection IDs
-      (#3489, #3509, #3557, #3547)
-
-   *  Restored text on dropping bogus Version Negotiation packets
-      (#3532, #3533)
 
 
 
@@ -10081,6 +10081,12 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 180]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Guidance on limiting outstanding attempts to retire connection IDs
+      (#3489, #3509, #3557, #3547)
+
+   *  Restored text on dropping bogus Version Negotiation packets
+      (#3532, #3533)
 
    *  Clarified that largest acknowledged needs to be saved, but not
       necessarily signaled in all cases (#3541, #3581)
@@ -10125,18 +10131,18 @@ C.8.  Since draft-ietf-quic-transport-24
 
    *  Correct overflow in packet number decode algorithm (#3187, #3188)
 
-   *  Allow use of CRYPTO_BUFFER_EXCEEDED for CRYPTO frame errors
-      (#3258, #3186)
-
-   *  Define applicability and scope of NEW_TOKEN (#3150, #3152, #3155,
-      #3156)
-
 
 
 Iyengar & Thomson          Expires 2 May 2021                 [Page 181]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Allow use of CRYPTO_BUFFER_EXCEEDED for CRYPTO frame errors
+      (#3258, #3186)
+
+   *  Define applicability and scope of NEW_TOKEN (#3150, #3152, #3155,
+      #3156)
 
    *  Tokens from Retry and NEW_TOKEN must be differentiated (#3127,
       #3128)
@@ -10181,18 +10187,18 @@ C.9.  Since draft-ietf-quic-transport-23
 
       -  tokens cannot be reused (#2785, #2968)
 
-   *  Clearer rules for sharing of UDP ports and use of connection IDs
-      when doing so (#2844, #2851)
-
-   *  A new connection ID is necessary when responding to migration
-      (#2778, #2969)
-
 
 
 Iyengar & Thomson          Expires 2 May 2021                 [Page 182]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Clearer rules for sharing of UDP ports and use of connection IDs
+      when doing so (#2844, #2851)
+
+   *  A new connection ID is necessary when responding to migration
+      (#2778, #2969)
 
    *  Stronger requirements for connection ID retirement (#3046, #3096)
 
@@ -10236,12 +10242,6 @@ C.10.  Since draft-ietf-quic-transport-22
    *  A maximum ACK delay of 0 is used for handshake packet number
       spaces (#2646, #2638)
 
-   *  Improved rules for use of congestion control state on new paths
-      (#2685, #2918)
-
-   *  Removed recommendation to coordinate spin for multiple connections
-      that share a path (#2763, #2882)
-
 
 
 
@@ -10249,6 +10249,12 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 183]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Improved rules for use of congestion control state on new paths
+      (#2685, #2918)
+
+   *  Removed recommendation to coordinate spin for multiple connections
+      that share a path (#2763, #2882)
 
    *  Allow smaller stateless resets and recommend a smaller minimum on
       packets that might trigger a stateless reset (#2770, #2869, #2927,
@@ -10292,12 +10298,6 @@ C.12.  Since draft-ietf-quic-transport-20
    *  More normative language about use of stateless reset (#2471,
       #2574)
 
-   *  Allow reuse of stateless reset tokens (#2732, #2733)
-
-   *  Allow, but not require, enforcing non-duplicate transport
-      parameters (#2689, #2691)
-
-
 
 
 
@@ -10305,6 +10305,11 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 184]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Allow reuse of stateless reset tokens (#2732, #2733)
+
+   *  Allow, but not require, enforcing non-duplicate transport
+      parameters (#2689, #2691)
 
    *  Added an active_connection_id_limit transport parameter (#1994,
       #1998)
@@ -10348,11 +10353,6 @@ C.13.  Since draft-ietf-quic-transport-19
 
    *  The "QUIC bit" is ignored in Version Negotiation (#2400, #2561)
 
-   *  Initial packets from clients need to be padded to 1200 unless a
-      Handshake packet is sent as well (#2522, #2523)
-
-   *  CRYPTO frames can be discarded if too much data is buffered
-      (#1834, #2524)
 
 
 
@@ -10361,6 +10361,12 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 185]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Initial packets from clients need to be padded to 1200 unless a
+      Handshake packet is sent as well (#2522, #2523)
+
+   *  CRYPTO frames can be discarded if too much data is buffered
+      (#1834, #2524)
 
    *  Stateless reset uses a short header packet (#2599, #2600)
 
@@ -10404,12 +10410,6 @@ C.15.  Since draft-ietf-quic-transport-17
    *  Disable ECN count verification for packets that arrive out of
       order (#2198, #2215)
 
-   *  Use Probe Timeout (PTO) instead of RTO (#2206, #2238)
-
-   *  Loosen constraints on retransmission of ACK ranges (#2199, #2245)
-
-   *  Limit Retry and Version Negotiation to once per datagram (#2259,
-      #2303)
 
 
 
@@ -10417,6 +10417,13 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 186]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Use Probe Timeout (PTO) instead of RTO (#2206, #2238)
+
+   *  Loosen constraints on retransmission of ACK ranges (#2199, #2245)
+
+   *  Limit Retry and Version Negotiation to once per datagram (#2259,
+      #2303)
 
    *  Set a maximum value for max_ack_delay transport parameter (#2282,
       #2301)
@@ -10459,13 +10466,6 @@ C.16.  Since draft-ietf-quic-transport-16
 
       -  Move packet number length to first byte
 
-      -  Move ODCIL to first byte of retry packets
-
-      -  Simplify packet number protection (#1575)
-
-   *  Allow STOP_SENDING to open a remote bidirectional stream (#1797,
-      #2013)
-
 
 
 
@@ -10473,6 +10473,13 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 187]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+      -  Move ODCIL to first byte of retry packets
+
+      -  Simplify packet number protection (#1575)
+
+   *  Allow STOP_SENDING to open a remote bidirectional stream (#1797,
+      #2013)
 
    *  Added mitigation for off-path migration attacks (#1278, #1749,
       #2033)
@@ -10515,13 +10522,6 @@ C.18.  Since draft-ietf-quic-transport-14
 
    *  Prevent handshake deadlock (#1764, #1824)
 
-C.19.  Since draft-ietf-quic-transport-13
-
-   *  Streams open when higher-numbered streams of the same type open
-      (#1342, #1549)
-
-   *  Split initial stream flow control limit into 3 transport
-      parameters (#1016, #1542)
 
 
 
@@ -10529,6 +10529,14 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 188]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+C.19.  Since draft-ietf-quic-transport-13
+
+   *  Streams open when higher-numbered streams of the same type open
+      (#1342, #1549)
+
+   *  Split initial stream flow control limit into 3 transport
+      parameters (#1016, #1542)
 
    *  All flow control transport parameters are optional (#1610)
 
@@ -10570,6 +10578,14 @@ C.20.  Since draft-ietf-quic-transport-12
       -  QUIC packet protection is used in place of TLS record
          protection
 
+
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 189]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
       -  Separate QUIC packet number spaces are used for the handshake
 
       -  Changed Retry to be independent of the cryptographic handshake
@@ -10578,13 +10594,6 @@ C.20.  Since draft-ietf-quic-transport-12
 
       -  Limit the use of HelloRetryRequest to address TLS needs (like
          key shares)
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 189]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    *  Enable server to transition connections to a preferred address
       (#560, #1251, #1373)
@@ -10624,6 +10633,15 @@ C.21.  Since draft-ietf-quic-transport-11
 
 C.22.  Since draft-ietf-quic-transport-10
 
+
+
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 190]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    *  Swap payload length and packed number fields in long header
       (#1294)
 
@@ -10633,14 +10651,6 @@ C.22.  Since draft-ietf-quic-transport-10
    *  Spin bit reserved (#1283)
 
    *  Coalescing multiple QUIC packets in a UDP datagram (#1262, #1285)
-
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 190]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    *  A more complete connection migration (#1249)
 
@@ -10680,16 +10690,6 @@ C.23.  Since draft-ietf-quic-transport-09
 
    *  Rework of packet handling and version negotiation (#1038)
 
-   *  Stream 0 is now exempt from flow control until the handshake
-      completes (#1074, #725, #825, #1082)
-
-   *  Improved retransmission rules for all frame types: information is
-      retransmitted, not packets or frames (#463, #765, #1095, #1053)
-
-   *  Added an error code for server busy signals (#1137)
-
-
-
 
 
 
@@ -10697,6 +10697,14 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 191]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Stream 0 is now exempt from flow control until the handshake
+      completes (#1074, #725, #825, #1082)
+
+   *  Improved retransmission rules for all frame types: information is
+      retransmitted, not packets or frames (#463, #765, #1095, #1053)
+
+   *  Added an error code for server busy signals (#1137)
 
    *  Endpoints now set the connection ID that their peer uses.
       Connection IDs are variable length.  Removed the
@@ -10737,14 +10745,6 @@ C.25.  Since draft-ietf-quic-transport-07
 
    *  Rename and consolidate packet types (#846, #822, #847)
 
-   *  Packet types are assigned new codepoints and the Connection ID
-      Flag is inverted (#426, #956)
-
-   *  Removed type for Version Negotiation and use Version 0 (#963,
-      #968)
-
-   *  Streams are split into unidirectional and bidirectional (#643,
-      #656, #720, #872, #175, #885)
 
 
 
@@ -10753,6 +10753,15 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 192]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Packet types are assigned new codepoints and the Connection ID
+      Flag is inverted (#426, #956)
+
+   *  Removed type for Version Negotiation and use Version 0 (#963,
+      #968)
+
+   *  Streams are split into unidirectional and bidirectional (#643,
+      #656, #720, #872, #175, #885)
 
       -  Stream limits now have separate uni- and bi-directional
          transport parameters (#909, #958)
@@ -10793,15 +10802,6 @@ C.26.  Since draft-ietf-quic-transport-06
 
    *  1-RTT-protected long header types removed (#848)
 
-   *  No acknowledgments during draining period (#852)
-
-   *  Remove "application close" as a separate close type (#854)
-
-   *  Remove timestamps from the ACK frame (#841)
-
-   *  Require transport parameters to only appear once (#792)
-
-
 
 
 
@@ -10809,6 +10809,14 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 193]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  No acknowledgments during draining period (#852)
+
+   *  Remove "application close" as a separate close type (#854)
+
+   *  Remove timestamps from the ACK frame (#841)
+
+   *  Require transport parameters to only appear once (#792)
 
 C.27.  Since draft-ietf-quic-transport-05
 
@@ -10849,6 +10857,15 @@ C.28.  Since draft-ietf-quic-transport-04
 
    *  Clarifications to the stream state machine (#572, #571)
 
+
+
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 194]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    *  Increased the maximum length of the Largest Acknowledged field in
       ACK frames to 64 bits (#629)
 
@@ -10858,13 +10875,6 @@ C.28.  Since draft-ietf-quic-transport-04
       #328)
 
    *  Update labels used in HKDF-Expand-Label to match TLS 1.3 (#642)
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 194]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
 C.29.  Since draft-ietf-quic-transport-03
 
@@ -10905,6 +10915,13 @@ C.30.  Since draft-ietf-quic-transport-02
 
       -  BLOCKED split to match WINDOW_UPDATE split (#454)
 
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 195]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
       -  Define STREAM_ID_NEEDED frame (#455)
 
    *  A NEW_CONNECTION_ID frame supports connection migration without
@@ -10912,15 +10929,6 @@ C.30.  Since draft-ietf-quic-transport-02
 
    *  Transport parameters for 0-RTT are retained from a previous
       connection (#405, #513, #512)
-
-
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 195]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
       -  A client in 0-RTT no longer required to reset excess streams
          (#425, #479)
@@ -10961,14 +10969,6 @@ C.31.  Since draft-ietf-quic-transport-01
 
    *  Path MTU Discovery (#64, #106)
 
-   *  The initial handshake packet from the client needs to fit in a
-      single packet (#338)
-
-   *  Forbid acknowledgment of packets containing only ACK and PADDING
-      (#291)
-
-   *  Require that frames are processed when packets are acknowledged
-      (#381, #341)
 
 
 
@@ -10977,6 +10977,15 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 196]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  The initial handshake packet from the client needs to fit in a
+      single packet (#338)
+
+   *  Forbid acknowledgment of packets containing only ACK and PADDING
+      (#291)
+
+   *  Require that frames are processed when packets are acknowledged
+      (#381, #341)
 
    *  Removed the STOP_WAITING frame (#66)
 
@@ -11018,6 +11027,13 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    *  Moved length-determining fields to the start of STREAM and ACK
       (#168, #277)
 
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 197]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    *  Added the ability to pad between frames (#158, #276)
 
    *  Remove error code and reason phrase from GOAWAY (#352, #355)
@@ -11026,13 +11042,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    *  Error codes for RESET_STREAM and CONNECTION_CLOSE are now at a
       consistent offset (#249)
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 197]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    *  Defined priority as the responsibility of the application protocol
       (#104, #303)
@@ -11074,6 +11083,13 @@ Contributors
 
    *  Antoine Delignat-Lavaud
 
+
+
+Iyengar & Thomson          Expires 2 May 2021                 [Page 198]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    *  Brian Trammell
 
    *  Christian Huitema
@@ -11081,14 +11097,6 @@ Contributors
    *  Colin Perkins
 
    *  David Schinazi
-
-
-
-
-Iyengar & Thomson          Expires 2 May 2021                 [Page 198]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    *  Dmitri Tikhonov
 
@@ -11130,14 +11138,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    *  Ryan Hamilton
 
-   *  Subodh Iyengar
-
-   *  Tatsuhiro Tsujikawa
-
-   *  Ted Hardie
-
-   *  Tom Jones
-
 
 
 
@@ -11145,6 +11145,14 @@ Iyengar & Thomson          Expires 2 May 2021                 [Page 199]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Subodh Iyengar
+
+   *  Tatsuhiro Tsujikawa
+
+   *  Ted Hardie
+
+   *  Tom Jones
 
    *  Victor Vasiliev
 
@@ -11160,14 +11168,6 @@ Authors' Addresses
    Mozilla
 
    Email: mt@lowentropy.net
-
-
-
-
-
-
-
-
 
 
 

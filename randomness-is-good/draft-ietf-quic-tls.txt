@@ -2560,11 +2560,11 @@ Internet-Draft          Using TLS to Secure QUIC            October 2020
 9.7.  Randomness
 
    TLS relies on a cryptographically secure pseudorandom number
-   generator (CS-PRNG) [RFC4086] to produce random or unpredictable
+   generator (CSPRNG) [RFC4086] to produce random or unpredictable
    values.  In addition to the uses in TLS, a source of unpredictable
    values is used in QUIC for a variety of protocol elements, including
    stateless reset messages, stateless reset tokens, and PATH_CHALLENGE
-   frames.  An endpoint that employs a weak CS-PRNG forfeits many of the
+   frames.  An endpoint that employs a weak CSPRNG forfeits many of the
    security properties that QUIC provides.
 
 

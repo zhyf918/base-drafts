@@ -257,23 +257,23 @@ Internet-Draft           QUIC Transport Protocol            October 2020
        21.1.3.  Connection Migration . . . . . . . . . . . . . . . . 152
      21.2.  Handshake Denial of Service  . . . . . . . . . . . . . . 156
      21.3.  Amplification Attack . . . . . . . . . . . . . . . . . . 157
-     21.4.  Optimistic ACK Attack  . . . . . . . . . . . . . . . . . 157
-     21.5.  Request Forgery Attacks  . . . . . . . . . . . . . . . . 157
+     21.4.  Optimistic ACK Attack  . . . . . . . . . . . . . . . . . 158
+     21.5.  Request Forgery Attacks  . . . . . . . . . . . . . . . . 158
        21.5.1.  Control Options for Endpoints  . . . . . . . . . . . 159
        21.5.2.  Request Forgery with Client Initial Packets  . . . . 160
-       21.5.3.  Request Forgery with Preferred Addresses . . . . . . 160
+       21.5.3.  Request Forgery with Preferred Addresses . . . . . . 161
        21.5.4.  Request Forgery with Spoofed Migration . . . . . . . 161
-       21.5.5.  Generic Request Forgery Countermeasures  . . . . . . 161
-     21.6.  Slowloris Attacks  . . . . . . . . . . . . . . . . . . . 162
+       21.5.5.  Generic Request Forgery Countermeasures  . . . . . . 162
+     21.6.  Slowloris Attacks  . . . . . . . . . . . . . . . . . . . 163
      21.7.  Stream Fragmentation and Reassembly Attacks  . . . . . . 163
-     21.8.  Stream Commitment Attack . . . . . . . . . . . . . . . . 163
+     21.8.  Stream Commitment Attack . . . . . . . . . . . . . . . . 164
      21.9.  Peer Denial of Service . . . . . . . . . . . . . . . . . 164
-     21.10. Explicit Congestion Notification Attacks . . . . . . . . 164
+     21.10. Explicit Congestion Notification Attacks . . . . . . . . 165
      21.11. Stateless Reset Oracle . . . . . . . . . . . . . . . . . 165
-     21.12. Version Downgrade  . . . . . . . . . . . . . . . . . . . 165
+     21.12. Version Downgrade  . . . . . . . . . . . . . . . . . . . 166
      21.13. Targeted Attacks by Routing  . . . . . . . . . . . . . . 166
      21.14. Traffic Analysis . . . . . . . . . . . . . . . . . . . . 166
-   22. IANA Considerations . . . . . . . . . . . . . . . . . . . . . 166
+   22. IANA Considerations . . . . . . . . . . . . . . . . . . . . . 167
 
 
 
@@ -282,54 +282,54 @@ Iyengar & Thomson          Expires 3 May 2021                   [Page 5]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
-     22.1.  Registration Policies for QUIC Registries  . . . . . . . 166
-       22.1.1.  Provisional Registrations  . . . . . . . . . . . . . 166
-       22.1.2.  Selecting Codepoints . . . . . . . . . . . . . . . . 167
+     22.1.  Registration Policies for QUIC Registries  . . . . . . . 167
+       22.1.1.  Provisional Registrations  . . . . . . . . . . . . . 167
+       22.1.2.  Selecting Codepoints . . . . . . . . . . . . . . . . 168
        22.1.3.  Reclaiming Provisional Codepoints  . . . . . . . . . 168
-       22.1.4.  Permanent Registrations  . . . . . . . . . . . . . . 168
+       22.1.4.  Permanent Registrations  . . . . . . . . . . . . . . 169
      22.2.  QUIC Transport Parameter Registry  . . . . . . . . . . . 169
-     22.3.  QUIC Frame Types Registry  . . . . . . . . . . . . . . . 170
-     22.4.  QUIC Transport Error Codes Registry  . . . . . . . . . . 171
-   23. References  . . . . . . . . . . . . . . . . . . . . . . . . . 173
-     23.1.  Normative References . . . . . . . . . . . . . . . . . . 173
-     23.2.  Informative References . . . . . . . . . . . . . . . . . 174
-   Appendix A.  Sample Packet Number Decoding Algorithm  . . . . . . 177
-   Appendix B.  Sample ECN Validation Algorithm  . . . . . . . . . . 178
-   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . . 179
-     C.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 179
-     C.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 180
-     C.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 180
-     C.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 181
-     C.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 181
-     C.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 182
-     C.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 182
-     C.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 182
-     C.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 183
-     C.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 184
-     C.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 185
-     C.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 185
-     C.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 186
-     C.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 187
-     C.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 187
-     C.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 188
-     C.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 189
-     C.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 189
-     C.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 190
-     C.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 190
-     C.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 191
-     C.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 191
-     C.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 192
-     C.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 193
-     C.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 193
-     C.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 194
-     C.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 195
-     C.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 195
-     C.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 196
-     C.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 196
-     C.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 197
-     C.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 199
-     C.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 199
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . . 199
+     22.3.  QUIC Frame Types Registry  . . . . . . . . . . . . . . . 171
+     22.4.  QUIC Transport Error Codes Registry  . . . . . . . . . . 172
+   23. References  . . . . . . . . . . . . . . . . . . . . . . . . . 174
+     23.1.  Normative References . . . . . . . . . . . . . . . . . . 174
+     23.2.  Informative References . . . . . . . . . . . . . . . . . 175
+   Appendix A.  Sample Packet Number Decoding Algorithm  . . . . . . 178
+   Appendix B.  Sample ECN Validation Algorithm  . . . . . . . . . . 179
+   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . . 180
+     C.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 180
+     C.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 181
+     C.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 181
+     C.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 182
+     C.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 182
+     C.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 183
+     C.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 183
+     C.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 183
+     C.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 184
+     C.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 185
+     C.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 186
+     C.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 186
+     C.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 187
+     C.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 188
+     C.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 188
+     C.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 189
+     C.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 190
+     C.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 190
+     C.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 191
+     C.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 191
+     C.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 192
+     C.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 192
+     C.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 193
+     C.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 194
+     C.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 194
+     C.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 195
+     C.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 196
+     C.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 196
+     C.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 197
+     C.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 197
+     C.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 198
+     C.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 200
+     C.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 200
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . . 200
 
 
 
@@ -338,7 +338,7 @@ Iyengar & Thomson          Expires 3 May 2021                   [Page 6]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 201
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 202
 
 1.  Overview
 
@@ -8293,11 +8293,9 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 21.  Security Considerations
 
    The goal of QUIC is to provide a secure transport connection.
-   However, third-parties and malicious peers are able to disrupt the
-   connection in various ways.  Section 21.1 presents an in-depth
-   overview of the security properties QUIC attempts to provide;
-   subsequent sections discuss the mitigations QUIC employs against
-   various types of attacks.
+   Section 21.1 provides an overview of those properties; subsequent
+   sections discuss constraints and caveats regarding these properties,
+   including descriptions of known attacks and countermeasures.
 
 21.1.  Overview of Security Properties
 
@@ -8335,9 +8333,11 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    providing these properties.  Any attack on the TLS handshake could
    affect QUIC.
 
-   Any attack on the TLS handshake that compromises the secrecy or
-   uniqueness of session keys affects other security guarantees provided
-   by QUIC that depends on these keys.  For instance, migration
+
+
+
+
+
 
 
 
@@ -8346,6 +8346,9 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 149]
 Internet-Draft           QUIC Transport Protocol            October 2020
 
 
+   Any attack on the TLS handshake that compromises the secrecy or
+   uniqueness of session keys affects other security guarantees provided
+   by QUIC that depends on these keys.  For instance, migration
    (Section 9) depends on the efficacy of confidentiality protections,
    both for the negotiation of keys using the TLS handshake and for QUIC
    packet protection, to avoid linkability across network paths.
@@ -8389,10 +8392,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    other than by dropping packets to cause endpoints to abandon the
    attempt.
 
-   An on-path attacker can also replace the addresses of packets on
-   either side and therefore cause the client or server to have an
-   incorrect view of the remote addresses.  Such an attack is
-   indistinguishable from the functions performed by a NAT.
+
 
 
 
@@ -8401,6 +8401,11 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 150]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   An on-path attacker can also replace the addresses of packets on
+   either side and therefore cause the client or server to have an
+   incorrect view of the remote addresses.  Such an attack is
+   indistinguishable from the functions performed by a NAT.
 
 21.1.1.4.  Parameter Negotiation
 
@@ -8444,12 +8449,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    modify existing data in those packets should not be able to generate
    packets deemed valid by the receiving endpoint.
 
-   A spoofing attack, in which an active attacker rewrites unprotected
-   parts of a packet that it forwards or injects, such as the source or
-   destination address, is only effective if the attacker can forward
-   packets to the original endpoint.  Packet protection ensures that the
-   packet payloads can only be processed by the endpoints that completed
-   the handshake, and invalid packets are ignored by those endpoints.
+
 
 
 
@@ -8457,6 +8457,13 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 151]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   A spoofing attack, in which an active attacker rewrites unprotected
+   parts of a packet that it forwards or injects, such as the source or
+   destination address, is only effective if the attacker can forward
+   packets to the original endpoint.  Packet protection ensures that the
+   packet payloads can only be processed by the endpoints that completed
+   the handshake, and invalid packets are ignored by those endpoints.
 
    An attacker can also modify the boundaries between packets and UDP
    datagrams, causing multiple packets to be coalesced into a single
@@ -8499,13 +8506,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    *  Reorder packets
 
-   *  Drop packets
-
-   *  Split and merge datagrams along packet boundaries
-
-   An on-path attacker cannot:
-
-
 
 
 
@@ -8513,6 +8513,12 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 152]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Drop packets
+
+   *  Split and merge datagrams along packet boundaries
+
+   An on-path attacker cannot:
 
    *  Modify an authenticated portion of a packet and cause the
       recipient to accept that packet
@@ -8556,12 +8562,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    *  Inspect packets
 
-   *  Inject new packets
-
-   *  Reorder injected packets
-
-   An off-path attacker cannot:
-
 
 
 
@@ -8569,6 +8569,12 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 153]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   *  Inject new packets
+
+   *  Reorder injected packets
+
+   An off-path attacker cannot:
 
    *  Modify any part of a packet
 
@@ -8612,12 +8618,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    4.  An off-path attacker cannot cause migration to a new path to fail
        if it cannot observe the new path.
 
-   5.  An off-path attacker can become a limited on-path attacker during
-       migration to a new path for which it is also an off-path
-       attacker.
-
-
-
 
 
 
@@ -8625,6 +8625,10 @@ Iyengar & Thomson          Expires 3 May 2021                 [Page 154]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
+
+   5.  An off-path attacker can become a limited on-path attacker during
+       migration to a new path for which it is also an off-path
+       attacker.
 
    6.  An off-path attacker can become a limited on-path attacker by
        affecting shared NAT state such that it sends packets to the
@@ -8666,6 +8670,18 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    *  Modify the authenticated and encrypted portion of a packet and
       cause the recipient to accept that packet
 
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 155]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    A limited on-path attacker can only delay packets up to the point
    that the original packets arrive before the duplicate packets,
    meaning that it cannot offer routing with worse latency than the
@@ -8674,13 +8690,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    In the presence of a limited on-path attacker, QUIC aims to provide
    the following properties:
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 155]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    1.  A limited on-path attacker cannot cause a connection to close
        once the handshake has completed.
@@ -8715,6 +8724,20 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Addresses cannot change during the handshake, so endpoints can
    discard packets that are received on a different network path.
 
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 156]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    The Source and Destination Connection ID fields are the primary means
    of protection against off-path attack during the handshake.  These
    are required to match those set by a peer.  Except for an Initial and
@@ -8730,14 +8753,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    the QUIC version.  This allows endpoints to use the same process for
    authenticating packets that they receive as they use after the
    cryptographic handshake completes.  Packets that cannot be
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 156]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    authenticated are discarded.  Protecting packets in this fashion
    provides a strong assurance that the sender of the packet saw the
    Initial packet and understood it.
@@ -8769,6 +8784,16 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Servers SHOULD provide mitigations for this attack by limiting the
    usage and lifetime of address validation tokens; see Section 8.1.3.
 
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 157]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
 21.4.  Optimistic ACK Attack
 
    An endpoint that acknowledges packets it has not received might cause
@@ -8786,14 +8811,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    access to capabilities of its peer that might otherwise be
    unavailable to the attacker.  For a networking protocol, a request
    forgery attack is often used to exploit any implicit authorization
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 157]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    conferred on the peer by the victim due to the peer's location in the
    network.
 
@@ -8826,6 +8843,13 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    these countermeasures could be insufficient if UDP-based services do
    not properly authorize requests.
 
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 158]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    Because the migration attack described in Section 21.5.4 is quite
    powerful and does not have adequate countermeasures, QUIC server
    implementations should assume that attackers can cause them to
@@ -8838,17 +8862,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    allow servers to migrate, thus preventing spoofed migration attacks
    on clients.  Any future extension which allows server migration MUST
    also define countermeasures for forgery attacks.
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 158]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
 21.5.1.  Control Options for Endpoints
 
@@ -8885,6 +8898,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    of the application protocol, some control is possible in many
    protocol usage contexts.  As the attacker has access to packet
    protection keys, they are likely to be capable of predicting how a
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 159]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    peer will encrypt future packets.  Successful control over datagram
    content then only requires that the attacker be able to predict the
    packet number and placement of frames in packets with some amount of
@@ -8894,17 +8915,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    not feasible.  The focus of the mitigations in subsequent sections is
    on limiting the ways in which datagrams that are sent prior to
    address validation can be used for request forgery.
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 159]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
 21.5.2.  Request Forgery with Client Initial Packets
 
@@ -8939,6 +8949,19 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Section 8.1.  In particular, this affects cases where clients use
    0-RTT to request data from servers.
 
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 160]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    Sending a Retry packet (Section 17.2.5) offers a server the option to
    change the Token field.  After sending a Retry, the server can also
    control the Destination Connection ID field of subsequent Initial
@@ -8953,14 +8976,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    to after confirming the handshake; see Section 9.6.  The Destination
    Connection ID field of packets that the client sends to a preferred
    address can be used for request forgery.
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 160]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    A client MUST NOT send non-probing frames to a preferred address
    prior to validating that address; see Section 8.  This greatly
@@ -8990,6 +9005,19 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    an attacker might be able to control most of the content of
    datagrams.
 
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 161]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    This document does not offer specific countermeasures that can be
    implemented by endpoints aside from the generic measures described in
    Section 21.5.5.  However, countermeasures for address spoofing at the
@@ -9010,14 +9038,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    Services offered over loopback interfaces often lack proper
    authentication.  Endpoints MAY prevent connection attempts or
    migration to a loopback address.  Endpoints SHOULD NOT allow
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 161]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    connections or migration to a loopback address if the same service
    was previously available at a different interface or if the address
    was provided by a service at a non-loopback address.  Endpoints that
@@ -9046,6 +9066,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    specific UDP ports that are common targets of attacks or particular
    patterns in datagrams that are used for attacks.  Endpoints MAY
    choose to avoid sending datagrams to these ports or not send
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 162]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    datagrams that match these patterns prior to validating the
    destination address.  Endpoints MAY retire connection IDs containing
    patterns known to be problematic without using them.
@@ -9065,14 +9093,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    amounts of data, gradually opening flow control windows in order to
    control the sender rate, or manufacturing ACK frames that simulate a
    high loss rate.
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 162]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    QUIC deployments SHOULD provide mitigations for the Slowloris
    attacks, such as increasing the maximum number of clients the server
@@ -9100,6 +9120,16 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    can lead to better performance when endpoints are well behaved, but
    renders endpoints vulnerable to the stream fragmentation attack.
 
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 163]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    QUIC deployments SHOULD provide mitigations against stream
    fragmentation attacks.  Mitigations could consist of avoiding over-
    committing memory, limiting the size of tracking data structures,
@@ -9121,14 +9151,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    streams of the same type; see Section 3.2.  Thus, on a new
    connection, opening stream 4000000 opens 1 million and 1 client-
    initiated bidirectional streams.
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 163]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
    The number of active streams is limited by the
    initial_max_streams_bidi and initial_max_streams_uni transport
@@ -9152,6 +9174,18 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    bandwidth consumption or effect on state, then this could allow a
    malicious peer to exhaust processing capacity.
 
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 164]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    While there are legitimate uses for all messages, implementations
    SHOULD track cost of processing relative to progress and treat
    excessive quantities of any non-productive packets as indicative of
@@ -9171,20 +9205,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    attack.  Therefore, QUIC endpoints ignore the ECN field on an IP
    packet unless at least one QUIC packet in that IP packet is
    successfully processed; see Section 13.4.
-
-
-
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 164]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
 21.11.  Stateless Reset Oracle
 
@@ -9207,6 +9227,21 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    connection with the corresponding connection ID could be active on
    any endpoint using the same static key.
 
+
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 165]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
+
    In the case of a cluster that uses dynamic load balancing, it is
    possible that a change in load balancer configuration could occur
    while an active instance retains connection state.  Even if an
@@ -9227,20 +9262,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    contain any mechanism to prevent version downgrade attacks.  Future
    versions of QUIC that use Version Negotiation packets MUST define a
    mechanism that is robust against version downgrade attacks.
-
-
-
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 165]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
 
 21.13.  Targeted Attacks by Routing
 
@@ -9264,6 +9285,18 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    information might leak.  Endpoints might also reveal sensitive
    information through other side channels, such as the timing of
    packets.
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 166]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
 
 22.  IANA Considerations
 
@@ -9291,13 +9324,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    space or the very first unassigned value (see Section 22.1.2) can be
    rejected.
 
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 166]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    Provisional registrations will include a date field that indicates
    when the registration was last updated.  A request to update the date
    on any provisional registration can be made without review from the
@@ -9319,6 +9345,14 @@ Internet-Draft           QUIC Transport Protocol            October 2020
       of the registration.
 
    Contact:  Contact details for the registrant.
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 167]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
 
    Notes:  Supplementary notes about the registration.
 
@@ -9345,15 +9379,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    eight bytes (that is, values 2^14 and above) SHOULD be used unless
    the usage is especially sensitive to having a longer encoding.
 
-
-
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 167]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    Applications to register codepoints in QUIC registries MAY include a
    codepoint as part of the registration.  IANA MUST allocate the
    selected codepoint unless that codepoint is already assigned or the
@@ -9375,6 +9400,15 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    implementers as possible in order to determine whether any use of the
    codepoint is known.  The expert(s) are advised to allow at least four
    weeks for responses.
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 168]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
 
    If any use of the codepoints is identified by this search or a
    request to update the registration is made, the codepoint MUST NOT be
@@ -9403,13 +9437,6 @@ Internet-Draft           QUIC Transport Protocol            October 2020
    architecturally dubious).  The creation of a registry MAY specify
    additional constraints on permanent registrations.
 
-
-
-Iyengar & Thomson          Expires 3 May 2021                 [Page 168]
-
-Internet-Draft           QUIC Transport Protocol            October 2020
-
-
    The creation of a registry MAY identify a range of codepoints where
    registrations are governed by a different registration policy.  For
    instance, the registries for 62-bit codepoints in this document have
@@ -9431,6 +9458,13 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
    IANA [SHALL add/has added] a registry for "QUIC Transport Parameters"
    under a "QUIC" heading.
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 169]
+
+Internet-Draft           QUIC Transport Protocol            October 2020
+
 
    The "QUIC Transport Parameters" registry governs a 62-bit space.
    This registry follows the registration policy from Section 22.1.
@@ -9461,7 +9495,29 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 169]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 3 May 2021                 [Page 170]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9517,7 +9573,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 170]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 171]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9573,7 +9629,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 171]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 172]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9629,7 +9685,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 172]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 173]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9685,7 +9741,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 173]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 174]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9741,7 +9797,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 174]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 175]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9797,7 +9853,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 175]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 176]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9853,7 +9909,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 176]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 177]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9909,7 +9965,7 @@ Appendix A.  Sample Packet Number Decoding Algorithm
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 177]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 178]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -9965,7 +10021,7 @@ Appendix B.  Sample ECN Validation Algorithm
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 178]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 179]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10021,7 +10077,7 @@ C.1.  Since draft-ietf-quic-transport-31
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 179]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 180]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10077,7 +10133,7 @@ C.3.  Since draft-ietf-quic-transport-29
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 180]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 181]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10133,7 +10189,7 @@ C.5.  Since draft-ietf-quic-transport-27
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 181]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 182]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10189,7 +10245,7 @@ C.8.  Since draft-ietf-quic-transport-24
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 182]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 183]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10245,7 +10301,7 @@ C.9.  Since draft-ietf-quic-transport-23
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 183]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 184]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10301,7 +10357,7 @@ C.10.  Since draft-ietf-quic-transport-22
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 184]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 185]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10357,7 +10413,7 @@ C.12.  Since draft-ietf-quic-transport-20
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 185]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 186]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10413,7 +10469,7 @@ C.13.  Since draft-ietf-quic-transport-19
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 186]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 187]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10469,7 +10525,7 @@ C.15.  Since draft-ietf-quic-transport-17
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 187]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 188]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10525,7 +10581,7 @@ C.16.  Since draft-ietf-quic-transport-16
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 188]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 189]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10581,7 +10637,7 @@ C.18.  Since draft-ietf-quic-transport-14
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 189]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 190]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10637,7 +10693,7 @@ C.20.  Since draft-ietf-quic-transport-12
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 190]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 191]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10693,7 +10749,7 @@ C.22.  Since draft-ietf-quic-transport-10
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 191]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 192]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10749,7 +10805,7 @@ C.23.  Since draft-ietf-quic-transport-09
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 192]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 193]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10805,7 +10861,7 @@ C.25.  Since draft-ietf-quic-transport-07
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 193]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 194]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10861,7 +10917,7 @@ C.26.  Since draft-ietf-quic-transport-06
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 194]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 195]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10917,7 +10973,7 @@ C.28.  Since draft-ietf-quic-transport-04
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 195]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 196]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -10973,7 +11029,7 @@ C.30.  Since draft-ietf-quic-transport-02
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 196]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 197]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -11029,7 +11085,7 @@ C.31.  Since draft-ietf-quic-transport-01
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 197]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 198]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -11085,7 +11141,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 198]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 199]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -11141,7 +11197,7 @@ Contributors
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 199]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 200]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -11197,7 +11253,7 @@ Internet-Draft           QUIC Transport Protocol            October 2020
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 200]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 201]
 
 Internet-Draft           QUIC Transport Protocol            October 2020
 
@@ -11253,4 +11309,4 @@ Authors' Addresses
 
 
 
-Iyengar & Thomson          Expires 3 May 2021                 [Page 201]
+Iyengar & Thomson          Expires 3 May 2021                 [Page 202]

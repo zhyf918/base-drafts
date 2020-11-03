@@ -293,43 +293,43 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    23. References  . . . . . . . . . . . . . . . . . . . . . . . . . 173
      23.1.  Normative References . . . . . . . . . . . . . . . . . . 173
      23.2.  Informative References . . . . . . . . . . . . . . . . . 174
-   Appendix A.  Sample Packet Number Decoding Algorithm  . . . . . . 177
-   Appendix B.  Sample ECN Validation Algorithm  . . . . . . . . . . 178
-   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . . 179
-     C.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 179
-     C.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 180
-     C.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 180
-     C.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 181
-     C.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 181
-     C.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 182
-     C.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 182
-     C.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 182
-     C.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 183
-     C.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 184
-     C.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 185
-     C.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 185
-     C.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 186
-     C.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 187
-     C.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 187
-     C.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 188
-     C.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 189
-     C.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 189
-     C.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 190
-     C.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 190
-     C.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 191
-     C.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 191
-     C.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 192
-     C.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 193
-     C.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 193
-     C.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 194
-     C.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 195
-     C.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 195
-     C.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 196
-     C.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 196
-     C.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 197
-     C.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 199
-     C.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 199
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . . 199
+   Appendix A.  Sample Packet Number Encoding Algorithm  . . . . . . 177
+   Appendix B.  Sample Packet Number Decoding Algorithm  . . . . . . 178
+   Appendix C.  Sample ECN Validation Algorithm  . . . . . . . . . . 179
+   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . . 180
+     D.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 180
+     D.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 181
+     D.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 181
+     D.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 182
+     D.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 182
+     D.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 183
+     D.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 183
+     D.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 183
+     D.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 184
+     D.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 185
+     D.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 186
+     D.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 186
+     D.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 187
+     D.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 188
+     D.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 188
+     D.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 189
+     D.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 190
+     D.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 190
+     D.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 191
+     D.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 191
+     D.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 192
+     D.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 192
+     D.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 193
+     D.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 194
+     D.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 194
+     D.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 195
+     D.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 196
+     D.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 196
+     D.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 197
+     D.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 197
+     D.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 198
+     D.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 200
+     D.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 200
 
 
 
@@ -338,7 +338,8 @@ Iyengar & Thomson          Expires 7 May 2021                   [Page 6]
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 201
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . . 200
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 202
 
 1.  Overview
 
@@ -382,7 +383,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    packets and encrypts as much as is practical.  QUIC packets are
    carried in UDP datagrams ([UDP]) to better facilitate deployment in
    existing systems and networks.
-
 
 
 
@@ -5504,7 +5504,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    An endpoint thus attempts to use ECN and validates this for each new
    connection, when switching to a server's preferred address, and on
-   active connection migration to a new path.  Appendix B describes one
+   active connection migration to a new path.  Appendix C describes one
    possible algorithm.
 
    Other methods of probing paths for ECN support are possible, as are
@@ -6004,13 +6004,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    As a result, the size of the packet number encoding is at least one
    bit more than the base-2 logarithm of the number of contiguous
-   unacknowledged packet numbers, including the new packet.
-
-   For example, if an endpoint has received an acknowledgment for packet
-   0xabe8bc, sending a packet with a number of 0xac5c02 requires a
-   packet number encoding with 16 bits or more; whereas the 24-bit
-   packet number encoding is needed to send a packet with a number of
-   0xace8fe.
+   unacknowledged packet numbers, including the new packet.  Pseudo-code
+   and examples for packet number encoding can be found in Appendix A.
 
    At a receiver, protection of the packet number is removed prior to
    recovering the full packet number.  The full packet number is then
@@ -6022,11 +6017,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Once header protection is removed, the packet number is decoded by
    finding the packet number value that is closest to the next expected
    packet.  The next expected packet is the highest received packet
-   number plus one.  For example, if the highest successfully
-   authenticated packet had a packet number of 0xa82f30ea, then a packet
-   containing a 16-bit value of 0x9b32 will be decoded as 0xa82f9b32.
-   Example pseudo-code for packet number decoding can be found in
-   Appendix A.
+   number plus one.  Pseudo-code and an example for packet number
+   decoding can be found in Appendix B.
 
 17.2.  Long Header Packets
 
@@ -6042,6 +6034,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      Source Connection ID (0..160),
    }
 
+                    Figure 13: Long Header Packet Format
+
+
+
+
+
+
+
 
 
 
@@ -6049,8 +6049,6 @@ Iyengar & Thomson          Expires 7 May 2021                 [Page 108]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
-
-                    Figure 13: Long Header Packet Format
 
    Long headers are used for packets that are sent prior to the
    establishment of 1-RTT keys.  Once 1-RTT keys are available, a sender
@@ -6092,11 +6090,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
       of this field in more detail.
 
    Source Connection ID Length:  The byte following the Destination
-
-
-
-
-
+      Connection ID contains the length in bytes of the Source
+      Connection ID field that follows it.  This length is encoded as a
+      8-bit unsigned integer.  In QUIC version 1, this value MUST NOT
+      exceed 20 bytes.  Endpoints that receive a version 1 long header
+      with a value larger than 20 MUST drop the packet.  In order to
+      properly form a Version Negotiation packet, servers SHOULD be able
+      to read longer connection IDs from other QUIC versions.
 
 
 
@@ -6105,14 +6105,6 @@ Iyengar & Thomson          Expires 7 May 2021                 [Page 109]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
-
-      Connection ID contains the length in bytes of the Source
-      Connection ID field that follows it.  This length is encoded as a
-      8-bit unsigned integer.  In QUIC version 1, this value MUST NOT
-      exceed 20 bytes.  Endpoints that receive a version 1 long header
-      with a value larger than 20 MUST drop the packet.  In order to
-      properly form a Version Negotiation packet, servers SHOULD be able
-      to read longer connection IDs from other QUIC versions.
 
    Source Connection ID:  The Source Connection ID field follows the
       Source Connection ID Length field, which indicates the length of
@@ -6148,8 +6140,16 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    packets in this version of QUIC contain these additional fields:
 
    Reserved Bits:  Two bits (those with a mask of 0x0c) of byte 0 are
+      reserved across multiple packet types.  These bits are protected
+      using header protection; see Section 5.4 of [QUIC-TLS].  The value
+      included prior to protection MUST be set to 0.  An endpoint MUST
+      treat receipt of a packet that has a non-zero value for these bits
+      after removing both packet and header protection as a connection
+      error of type PROTOCOL_VIOLATION.  Discarding such a packet after
+      only removing header protection can expose the endpoint to
+      attacks; see Section 9.3 of [QUIC-TLS].
 
-
+   Packet Number Length:  In packet types that contain a Packet Number
 
 
 
@@ -6162,16 +6162,6 @@ Iyengar & Thomson          Expires 7 May 2021                 [Page 110]
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-      reserved across multiple packet types.  These bits are protected
-      using header protection; see Section 5.4 of [QUIC-TLS].  The value
-      included prior to protection MUST be set to 0.  An endpoint MUST
-      treat receipt of a packet that has a non-zero value for these bits
-      after removing both packet and header protection as a connection
-      error of type PROTOCOL_VIOLATION.  Discarding such a packet after
-      only removing header protection can expose the endpoint to
-      attacks; see Section 9.3 of [QUIC-TLS].
-
-   Packet Number Length:  In packet types that contain a Packet Number
       field, the least significant two bits (those with a mask of 0x03)
       of byte 0 contain the length of the packet number, encoded as an
       unsigned, two-bit integer that is one less than the length of the
@@ -6211,13 +6201,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      Supported Version (32) ...,
    }
 
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 111]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
                    Figure 14: Version Negotiation Packet
 
    The value in the Unused field is selected randomly by the server.
@@ -6227,6 +6210,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    The Version field of a Version Negotiation packet MUST be set to
    0x00000000.
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 111]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    The server MUST include the value from the Source Connection ID field
    of the packet it receives in the Destination Connection ID field.
@@ -6265,6 +6255,16 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    An Initial packet uses long headers with a type value of 0x0.  It
    carries the first CRYPTO frames sent by the client and server to
    perform key exchange, and carries ACKs in either direction.
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -9897,15 +9897,15 @@ Internet-Draft           QUIC Transport Protocol           November 2020
               3", BCP 9, RFC 2026, DOI 10.17487/RFC2026, October 1996,
               <https://www.rfc-editor.org/info/rfc2026>.
 
-Appendix A.  Sample Packet Number Decoding Algorithm
+Appendix A.  Sample Packet Number Encoding Algorithm
 
-   The pseudo-code in Figure 45 includes an example algorithm for
-   decoding packet numbers after header protection has been removed.
+   The pseudo-code in Figure 45 shows how an implementation can select
+   an appropriate size for packet number encodings.
 
-   The DecodePacketNumber function takes three arguments:
+   The EncodePacketNumber function takes two arguments:
 
-   *  largest_pn is the largest packet number that has been successfully
-      processed in the current packet number space.
+   *  full_pn is the full packet number of the packet being sent.
+
 
 
 
@@ -9914,10 +9914,61 @@ Iyengar & Thomson          Expires 7 May 2021                 [Page 177]
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
+   *  largest_acked is the largest packet number which has been
+      acknowledged by the peer in the current packet number space, if
+      any.
+
+   EncodePacketNumber(full_pn, largest_acked):
+
+     // The number of bits must be at least one more
+     // than the base-2 logarithm of the number of contiguous
+     // unacknowledged packet numbers, including the new packet.
+     if largest_acked is None:
+       num_unacked = full_pn + 1
+     else:
+       num_unacked = full_pn - largest_acked
+
+     min_bits = log(num_unacked, 2) + 1
+     num_bytes = ceil(min_bits / 8)
+
+     // Encode the integer value and truncate to
+     // the num_bytes least-significant bytes.
+     return encode(full_pn, num_bytes)
+
+             Figure 45: Sample Packet Number Encoding Algorithm
+
+   For example, if an endpoint has received an acknowledgment for packet
+   0xabe8bc and is sending a packet with a number of 0xac5c02, there are
+   29,519 (0x734f) outstanding packets.  In order to represent at least
+   twice this range (59,038 packets, or 0xe69e), 16 bits are required.
+
+   In the same state, sending a packet with a number of 0xace8fe uses
+   the 24-bit encoding, because at least 18 bits are required to
+   represent twice the range (131,182 packets, or 0x2006e).
+
+Appendix B.  Sample Packet Number Decoding Algorithm
+
+   The pseudo-code in Figure 46 includes an example algorithm for
+   decoding packet numbers after header protection has been removed.
+
+   The DecodePacketNumber function takes three arguments:
+
+   *  largest_pn is the largest packet number that has been successfully
+      processed in the current packet number space.
+
    *  truncated_pn is the value of the Packet Number field.
 
    *  pn_nbits is the number of bits in the Packet Number field (8, 16,
       24, or 32).
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 178]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    DecodePacketNumber(largest_pn, truncated_pn, pn_nbits):
       expected_pn  = largest_pn + 1
@@ -9944,9 +9995,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
          return candidate_pn - pn_win
       return candidate_pn
 
-             Figure 45: Sample Packet Number Decoding Algorithm
+             Figure 46: Sample Packet Number Decoding Algorithm
 
-Appendix B.  Sample ECN Validation Algorithm
+   For example, if the highest successfully authenticated packet had a
+   packet number of 0xa82f30ea, then a packet containing a 16-bit value
+   of 0x9b32 will be decoded as 0xa82f9b32.
+
+Appendix C.  Sample ECN Validation Algorithm
 
    Each time an endpoint commences sending on a new network path, it
    determines whether the path supports ECN; see Section 13.4.  If the
@@ -9965,7 +10020,8 @@ Appendix B.  Sample ECN Validation Algorithm
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 178]
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 179]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9997,14 +10053,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    marked packets are discarded by the path, the short duration of the
    testing period limits the number of losses incurred.
 
-Appendix C.  Change Log
+Appendix D.  Change Log
 
       *RFC Editor's Note:* Please remove this section prior to
       publication of a final version of this document.
 
    Issue and pull request numbers are listed with a leading octothorp.
 
-C.1.  Since draft-ietf-quic-transport-31
+D.1.  Since draft-ietf-quic-transport-31
 
    *  Require expansion of datagrams to ensure that a path supports at
       least 1200 bytes in both directions:
@@ -10021,7 +10077,7 @@ C.1.  Since draft-ietf-quic-transport-31
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 179]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 180]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10029,7 +10085,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Split contact into contact and change controller for IANA
       registrations (#4230, #4239)
 
-C.2.  Since draft-ietf-quic-transport-30
+D.2.  Since draft-ietf-quic-transport-30
 
    *  Use TRANSPORT_PARAMETER_ERROR for an invalid transport parameter
       (#4099, #4100)
@@ -10040,7 +10096,7 @@ C.2.  Since draft-ietf-quic-transport-30
    *  Allow use of address validation token when server address changes
       (#4076, #4089)
 
-C.3.  Since draft-ietf-quic-transport-29
+D.3.  Since draft-ietf-quic-transport-29
 
    *  Require the same connection ID on coalesced packets (#3800, #3930)
 
@@ -10077,12 +10133,12 @@ C.3.  Since draft-ietf-quic-transport-29
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 180]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 181]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-C.4.  Since draft-ietf-quic-transport-28
+D.4.  Since draft-ietf-quic-transport-28
 
    *  Made SERVER_BUSY error (0x2) more generic, now CONNECTION_REFUSED
       (#3709, #3690, #3694)
@@ -10096,7 +10152,7 @@ C.4.  Since draft-ietf-quic-transport-28
    *  disable_active_migration does not apply to the addresses offered
       in server_preferred_address (#3608, #3670)
 
-C.5.  Since draft-ietf-quic-transport-27
+D.5.  Since draft-ietf-quic-transport-27
 
    *  Allowed CONNECTION_CLOSE in any packet number space, with a
       requirement to use a new transport-level error for application-
@@ -10133,7 +10189,7 @@ C.5.  Since draft-ietf-quic-transport-27
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 181]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 182]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10154,12 +10210,12 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Opening a stream in the wrong direction is an error (#3527)
 
-C.6.  Since draft-ietf-quic-transport-26
+D.6.  Since draft-ietf-quic-transport-26
 
    *  Change format of transport parameters to use varints (#3294,
       #3169)
 
-C.7.  Since draft-ietf-quic-transport-25
+D.7.  Since draft-ietf-quic-transport-25
 
    *  Define the use of CONNECTION_CLOSE prior to establishing
       connection state (#3269, #3297, #3292)
@@ -10169,7 +10225,7 @@ C.7.  Since draft-ietf-quic-transport-25
 
    *  Define the timer for address validation (#2910, #3339)
 
-C.8.  Since draft-ietf-quic-transport-24
+D.8.  Since draft-ietf-quic-transport-24
 
    *  Added HANDSHAKE_DONE to signal handshake confirmation (#2863,
       #3142, #3145)
@@ -10189,7 +10245,7 @@ C.8.  Since draft-ietf-quic-transport-24
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 182]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 183]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10228,7 +10284,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Packets on one path must not adjust values for a different path
       (#2909, #3139)
 
-C.9.  Since draft-ietf-quic-transport-23
+D.9.  Since draft-ietf-quic-transport-23
 
    *  Allow ClientHello to span multiple packets (#2928, #3045)
 
@@ -10245,7 +10301,7 @@ C.9.  Since draft-ietf-quic-transport-23
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 183]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 184]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10271,7 +10327,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Servers have to change connection IDs in Retry (#2837, #3147)
 
-C.10.  Since draft-ietf-quic-transport-22
+D.10.  Since draft-ietf-quic-transport-22
 
    *  Rules for preventing correlation by connection ID tightened
       (#2084, #2929)
@@ -10301,7 +10357,7 @@ C.10.  Since draft-ietf-quic-transport-22
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 184]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 185]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10333,12 +10389,12 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Moved ACK generation guidance from recovery draft to transport
       draft (#1860, #2916).
 
-C.11.  Since draft-ietf-quic-transport-21
+D.11.  Since draft-ietf-quic-transport-21
 
    *  Connection ID lengths are now one octet, but limited in version 1
       to 20 octets of length (#2736, #2749)
 
-C.12.  Since draft-ietf-quic-transport-20
+D.12.  Since draft-ietf-quic-transport-20
 
    *  Error codes are encoded as variable-length integers (#2672, #2680)
 
@@ -10357,7 +10413,7 @@ C.12.  Since draft-ietf-quic-transport-20
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 185]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 186]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10390,7 +10446,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Document hack for enabling routing of ICMP when doing PMTU probing
       (#1243, #2402)
 
-C.13.  Since draft-ietf-quic-transport-19
+D.13.  Since draft-ietf-quic-transport-19
 
    *  Refine discussion of 0-RTT transport parameters (#2467, #2464)
 
@@ -10413,7 +10469,7 @@ C.13.  Since draft-ietf-quic-transport-19
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 186]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 187]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10426,7 +10482,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Stateless reset uses a short header packet (#2599, #2600)
 
-C.14.  Since draft-ietf-quic-transport-18
+D.14.  Since draft-ietf-quic-transport-18
 
    *  Removed version negotiation; version negotiation, including
       authentication of the result, will be addressed in the next
@@ -10445,7 +10501,7 @@ C.14.  Since draft-ietf-quic-transport-18
 
    *  Increased the set of permissible frames in 0-RTT (#2344, #2355)
 
-C.15.  Since draft-ietf-quic-transport-17
+D.15.  Since draft-ietf-quic-transport-17
 
    *  Stream-related errors now use STREAM_STATE_ERROR (#2305)
 
@@ -10469,7 +10525,7 @@ C.15.  Since draft-ietf-quic-transport-17
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 187]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 188]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10492,7 +10548,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  ACK of non-existent packet is illegal (#2298, #2302)
 
-C.16.  Since draft-ietf-quic-transport-16
+D.16.  Since draft-ietf-quic-transport-16
 
    *  Stream limits are defined as counts, not maximums (#1850, #1906)
 
@@ -10525,7 +10581,7 @@ C.16.  Since draft-ietf-quic-transport-16
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 188]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 189]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10555,11 +10611,11 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  ICMP PTB validation clarifications (#2161, #2109, #2108)
 
-C.17.  Since draft-ietf-quic-transport-15
+D.17.  Since draft-ietf-quic-transport-15
 
    Substantial editorial reorganization; no technical changes.
 
-C.18.  Since draft-ietf-quic-transport-14
+D.18.  Since draft-ietf-quic-transport-14
 
    *  Merge ACK and ACK_ECN (#1778, #1801)
 
@@ -10581,12 +10637,12 @@ C.18.  Since draft-ietf-quic-transport-14
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 189]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 190]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-C.19.  Since draft-ietf-quic-transport-13
+D.19.  Since draft-ietf-quic-transport-13
 
    *  Streams open when higher-numbered streams of the same type open
       (#1342, #1549)
@@ -10624,7 +10680,7 @@ C.19.  Since draft-ietf-quic-transport-13
 
    *  Remove frame type field from APPLICATION_CLOSE (#1508, #1528)
 
-C.20.  Since draft-ietf-quic-transport-12
+D.20.  Since draft-ietf-quic-transport-12
 
    *  Changes to integration of the TLS handshake (#829, #1018, #1094,
       #1165, #1190, #1233, #1242, #1252, #1450, #1458)
@@ -10637,7 +10693,7 @@ C.20.  Since draft-ietf-quic-transport-12
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 190]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 191]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10675,7 +10731,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Added frame type extension mechanism (#58, #1473)
 
-C.21.  Since draft-ietf-quic-transport-11
+D.21.  Since draft-ietf-quic-transport-11
 
    *  Enable server to transition connections to a preferred address
       (#560, #1251)
@@ -10687,13 +10743,13 @@ C.21.  Since draft-ietf-quic-transport-11
 
    *  STREAM frames can now be empty (#1350)
 
-C.22.  Since draft-ietf-quic-transport-10
+D.22.  Since draft-ietf-quic-transport-10
 
 
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 191]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 192]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10732,7 +10788,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Remove implication that Version Negotiation is sent when a packet
       of the wrong version is received (#1197)
 
-C.23.  Since draft-ietf-quic-transport-09
+D.23.  Since draft-ietf-quic-transport-09
 
    *  Added PATH_CHALLENGE and PATH_RESPONSE frames to replace PING with
       Data and PONG frame.  Changed ACK frame type from 0x0e to 0x0d.
@@ -10749,7 +10805,7 @@ C.23.  Since draft-ietf-quic-transport-09
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 192]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 193]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10767,7 +10823,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
       omit_connection_id transport parameter and the corresponding short
       header flag. (#1089, #1052, #1146, #821, #745, #821, #1166, #1151)
 
-C.24.  Since draft-ietf-quic-transport-08
+D.24.  Since draft-ietf-quic-transport-08
 
    *  Clarified requirements for BLOCKED usage (#65, #924)
 
@@ -10795,7 +10851,7 @@ C.24.  Since draft-ietf-quic-transport-08
 
    *  Removed transport parameters from NewSessionTicket (#1015)
 
-C.25.  Since draft-ietf-quic-transport-07
+D.25.  Since draft-ietf-quic-transport-07
 
    *  The long header now has version before packet number (#926, #939)
 
@@ -10805,7 +10861,7 @@ C.25.  Since draft-ietf-quic-transport-07
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 193]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 194]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10848,7 +10904,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Increased the range over which packet numbers are randomized
       (#864, #850, #964)
 
-C.26.  Since draft-ietf-quic-transport-06
+D.26.  Since draft-ietf-quic-transport-06
 
    *  Replaced FNV-1a with AES-GCM for all "Cleartext" packets (#554)
 
@@ -10861,7 +10917,7 @@ C.26.  Since draft-ietf-quic-transport-06
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 194]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 195]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10874,7 +10930,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Require transport parameters to only appear once (#792)
 
-C.27.  Since draft-ietf-quic-transport-05
+D.27.  Since draft-ietf-quic-transport-05
 
    *  Stateless token is server-only (#726)
 
@@ -10889,7 +10945,7 @@ C.27.  Since draft-ietf-quic-transport-05
 
    *  Clarify Keep-alive requirements (#729)
 
-C.28.  Since draft-ietf-quic-transport-04
+D.28.  Since draft-ietf-quic-transport-04
 
    *  Introduce STOP_SENDING frame, RESET_STREAM only resets in one
       direction (#165)
@@ -10917,7 +10973,7 @@ C.28.  Since draft-ietf-quic-transport-04
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 195]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 196]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10932,13 +10988,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Update labels used in HKDF-Expand-Label to match TLS 1.3 (#642)
 
-C.29.  Since draft-ietf-quic-transport-03
+D.29.  Since draft-ietf-quic-transport-03
 
    *  Change STREAM and RESET_STREAM layout
 
    *  Add MAX_STREAM_ID settings
 
-C.30.  Since draft-ietf-quic-transport-02
+D.30.  Since draft-ietf-quic-transport-02
 
    *  The size of the initial packet payload has a fixed minimum (#267,
       #472)
@@ -10973,7 +11029,7 @@ C.30.  Since draft-ietf-quic-transport-02
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 196]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 197]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10991,7 +11047,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Expanded security considerations (#440, #444, #445, #448)
 
-C.31.  Since draft-ietf-quic-transport-01
+D.31.  Since draft-ietf-quic-transport-01
 
    *  Defined short and long packet headers (#40, #148, #361)
 
@@ -11029,7 +11085,7 @@ C.31.  Since draft-ietf-quic-transport-01
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 197]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 198]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -11085,7 +11141,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 198]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 199]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -11102,7 +11158,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Defined priority as the responsibility of the application protocol
       (#104, #303)
 
-C.32.  Since draft-ietf-quic-transport-00
+D.32.  Since draft-ietf-quic-transport-00
 
    *  Replaced DIVERSIFICATION_NONCE flag with KEY_PHASE flag
 
@@ -11114,7 +11170,7 @@ C.32.  Since draft-ietf-quic-transport-00
 
    *  Use big endian for all numeric values
 
-C.33.  Since draft-hamilton-quic-transport-protocol-01
+D.33.  Since draft-hamilton-quic-transport-protocol-01
 
    *  Adopted as base for draft-ietf-quic-tls
 
@@ -11141,7 +11197,7 @@ Contributors
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 199]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 200]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -11197,7 +11253,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 200]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 201]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -11253,4 +11309,4 @@ Authors' Addresses
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 201]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 202]

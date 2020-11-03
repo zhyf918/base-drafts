@@ -251,28 +251,28 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      20.1.  Transport Error Codes  . . . . . . . . . . . . . . . . . 146
      20.2.  Application Protocol Error Codes . . . . . . . . . . . . 148
    21. Security Considerations . . . . . . . . . . . . . . . . . . . 148
-     21.1.  Handshake Denial of Service  . . . . . . . . . . . . . . 148
-     21.2.  Amplification Attack . . . . . . . . . . . . . . . . . . 149
-     21.3.  Optimistic ACK Attack  . . . . . . . . . . . . . . . . . 149
-     21.4.  Request Forgery Attacks  . . . . . . . . . . . . . . . . 150
-       21.4.1.  Control Options for Endpoints  . . . . . . . . . . . 151
-       21.4.2.  Request Forgery with Client Initial Packets  . . . . 152
-       21.4.3.  Request Forgery with Preferred Addresses . . . . . . 153
-       21.4.4.  Request Forgery with Spoofed Migration . . . . . . . 153
-       21.4.5.  Generic Request Forgery Countermeasures  . . . . . . 154
-     21.5.  Slowloris Attacks  . . . . . . . . . . . . . . . . . . . 155
-     21.6.  Stream Fragmentation and Reassembly Attacks  . . . . . . 155
-     21.7.  Stream Commitment Attack . . . . . . . . . . . . . . . . 156
-     21.8.  Peer Denial of Service . . . . . . . . . . . . . . . . . 156
-     21.9.  Explicit Congestion Notification Attacks . . . . . . . . 157
-     21.10. Stateless Reset Oracle . . . . . . . . . . . . . . . . . 157
-     21.11. Version Downgrade  . . . . . . . . . . . . . . . . . . . 158
-     21.12. Targeted Attacks by Routing  . . . . . . . . . . . . . . 158
-     21.13. Traffic Analysis . . . . . . . . . . . . . . . . . . . . 158
-     21.14. Overview of Security Properties  . . . . . . . . . . . . 158
-       21.14.1.  Handshake . . . . . . . . . . . . . . . . . . . . . 159
-       21.14.2.  Protected Packets . . . . . . . . . . . . . . . . . 161
-       21.14.3.  Connection Migration  . . . . . . . . . . . . . . . 161
+     21.1.  Overview of Security Properties  . . . . . . . . . . . . 148
+       21.1.1.  Handshake  . . . . . . . . . . . . . . . . . . . . . 149
+       21.1.2.  Protected Packets  . . . . . . . . . . . . . . . . . 150
+       21.1.3.  Connection Migration . . . . . . . . . . . . . . . . 151
+     21.2.  Handshake Denial of Service  . . . . . . . . . . . . . . 155
+     21.3.  Amplification Attack . . . . . . . . . . . . . . . . . . 156
+     21.4.  Optimistic ACK Attack  . . . . . . . . . . . . . . . . . 157
+     21.5.  Request Forgery Attacks  . . . . . . . . . . . . . . . . 157
+       21.5.1.  Control Options for Endpoints  . . . . . . . . . . . 158
+       21.5.2.  Request Forgery with Client Initial Packets  . . . . 159
+       21.5.3.  Request Forgery with Preferred Addresses . . . . . . 160
+       21.5.4.  Request Forgery with Spoofed Migration . . . . . . . 160
+       21.5.5.  Generic Request Forgery Countermeasures  . . . . . . 161
+     21.6.  Slowloris Attacks  . . . . . . . . . . . . . . . . . . . 162
+     21.7.  Stream Fragmentation and Reassembly Attacks  . . . . . . 162
+     21.8.  Stream Commitment Attack . . . . . . . . . . . . . . . . 163
+     21.9.  Peer Denial of Service . . . . . . . . . . . . . . . . . 163
+     21.10. Explicit Congestion Notification Attacks . . . . . . . . 164
+     21.11. Stateless Reset Oracle . . . . . . . . . . . . . . . . . 164
+     21.12. Version Downgrade  . . . . . . . . . . . . . . . . . . . 165
+     21.13. Targeted Attacks by Routing  . . . . . . . . . . . . . . 165
+     21.14. Traffic Analysis . . . . . . . . . . . . . . . . . . . . 165
    22. IANA Considerations . . . . . . . . . . . . . . . . . . . . . 166
 
 
@@ -1963,7 +1963,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
    Server deployments that use this simple form of load balancing MUST
-   avoid the creation of a stateless reset oracle; see Section 21.10.
+   avoid the creation of a stateless reset oracle; see Section 21.11.
 
 5.3.  Operations on Connections
 
@@ -2092,7 +2092,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    How to perform version negotiation is left as future work defined by
    future versions of QUIC.  In particular, that future work will ensure
-   robustness against version downgrade attacks; see Section 21.11.
+   robustness against version downgrade attacks; see Section 21.12.
 
 6.2.1.  Version Negotiation Between Draft Versions
 
@@ -3672,7 +3672,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 9.6.2.  Migration to a Preferred Address
 
    A client that migrates to a preferred address MUST validate the
-   address it chooses before migrating; see Section 21.4.3.
+   address it chooses before migrating; see Section 21.5.3.
 
    A server might receive a packet addressed to its preferred IP address
    at any time after it accepts a connection.  If this packet contains a
@@ -4062,7 +4062,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Initial or Handshake packets.  Such an immediate close might expose
    legitimate connections to a denial of service.  QUIC does not include
    defensive measures for on-path attacks during the handshake; see
-   Section 21.1.  However, at the cost of reducing feedback about errors
+   Section 21.2.  However, at the cost of reducing feedback about errors
    for legitimate peers, some forms of denial of service can be made
    more difficult for an attacker if endpoints discard illegal packets
    rather than terminating a connection with CONNECTION_CLOSE.  For this
@@ -4353,7 +4353,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    A denial of service attack is possible if the same connection ID is
    used by instances that share a static key, or if an attacker can
    cause a packet to be routed to an instance that has no state but the
-   same static key; see Section 21.10.  A connection ID from a
+   same static key; see Section 21.11.  A connection ID from a
    connection that is reset by revealing the Stateless Reset Token MUST
    NOT be reused for new connections at nodes that share a static key.
 
@@ -5467,7 +5467,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    ECN counts are only incremented when QUIC packets from the received
    IP packet are processed.  As such, duplicate QUIC packets are not
-   processed and do not increase ECN counts; see Section 21.9 for
+   processed and do not increase ECN counts; see Section 21.10 for
    relevant security concerns.
 
 13.4.2.  ECN Validation
@@ -8253,7 +8253,409 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 21.  Security Considerations
 
-21.1.  Handshake Denial of Service
+   The goal of QUIC is to provide a secure transport connection.
+   Section 21.1 provides an overview of those properties; subsequent
+   sections discuss constraints and caveats regarding these properties,
+   including descriptions of known attacks and countermeasures.
+
+21.1.  Overview of Security Properties
+
+   A complete security analysis of QUIC is outside the scope of this
+   document.  This section provides an informal description of the
+   desired security properties as an aid to implementors and to help
+   guide protocol analysis.
+
+   QUIC assumes the threat model described in [SEC-CONS] and provides
+   protections against many of the attacks that arise from that model.
+
+   For this purpose, attacks are divided into passive and active
+   attacks.  Passive attackers have the capability to read packets from
+   the network, while active attackers also have the capability to write
+   packets into the network.  However, a passive attack may involve an
+   attacker with the ability to cause a routing change or other
+   modification in the path taken by packets that comprise a connection.
+
+   Attackers are additionally categorized as either on-path attackers or
+   off-path attackers; see Section 3.5 of [SEC-CONS].  An on-path
+   attacker can read, modify, or remove any packet it observes such that
+   it no longer reaches its destination, while an off-path attacker
+   observes the packets, but cannot prevent the original packet from
+   reaching its intended destination.  Both types of attackers can also
+   transmit arbitrary packets.
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 148]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   Properties of the handshake, protected packets, and connection
+   migration are considered separately.
+
+21.1.1.  Handshake
+
+   The QUIC handshake incorporates the TLS 1.3 handshake and inherits
+   the cryptographic properties described in Appendix E.1 of [TLS13].
+   Many of the security properties of QUIC depend on the TLS handshake
+   providing these properties.  Any attack on the TLS handshake could
+   affect QUIC.
+
+   Any attack on the TLS handshake that compromises the secrecy or
+   uniqueness of session keys affects other security guarantees provided
+   by QUIC that depends on these keys.  For instance, migration
+   (Section 9) depends on the efficacy of confidentiality protections,
+   both for the negotiation of keys using the TLS handshake and for QUIC
+   packet protection, to avoid linkability across network paths.
+
+   An attack on the integrity of the TLS handshake might allow an
+   attacker to affect the selection of application protocol or QUIC
+   version.
+
+   In addition to the properties provided by TLS, the QUIC handshake
+   provides some defense against DoS attacks on the handshake.
+
+21.1.1.1.  Anti-Amplification
+
+   Address validation (Section 8) is used to verify that an entity that
+   claims a given address is able to receive packets at that address.
+   Address validation limits amplification attack targets to addresses
+   for which an attacker can observe packets.
+
+   Prior to validation, endpoints are limited in what they are able to
+   send.  During the handshake, a server cannot send more than three
+   times the data it receives; clients that initiate new connections or
+   migrate to a new network path are limited.
+
+21.1.1.2.  Server-Side DoS
+
+   Computing the server's first flight for a full handshake is
+   potentially expensive, requiring both a signature and a key exchange
+   computation.  In order to prevent computational DoS attacks, the
+   Retry packet provides a cheap token exchange mechanism that allows
+   servers to validate a client's IP address prior to doing any
+   expensive computations at the cost of a single round trip.  After a
+   successful handshake, servers can issue new tokens to a client, which
+   will allow new connection establishment without incurring this cost.
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 149]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+21.1.1.3.  On-Path Handshake Termination
+
+   An on-path or off-path attacker can force a handshake to fail by
+   replacing or racing Initial packets.  Once valid Initial packets have
+   been exchanged, subsequent Handshake packets are protected with the
+   handshake keys and an on-path attacker cannot force handshake failure
+   other than by dropping packets to cause endpoints to abandon the
+   attempt.
+
+   An on-path attacker can also replace the addresses of packets on
+   either side and therefore cause the client or server to have an
+   incorrect view of the remote addresses.  Such an attack is
+   indistinguishable from the functions performed by a NAT.
+
+21.1.1.4.  Parameter Negotiation
+
+   The entire handshake is cryptographically protected, with the Initial
+   packets being encrypted with per-version keys and the Handshake and
+   later packets being encrypted with keys derived from the TLS key
+   exchange.  Further, parameter negotiation is folded into the TLS
+   transcript and thus provides the same integrity guarantees as
+   ordinary TLS negotiation.  An attacker can observe the client's
+   transport parameters (as long as it knows the version-specific salt)
+   but cannot observe the server's transport parameters and cannot
+   influence parameter negotiation.
+
+   Connection IDs are unencrypted but integrity protected in all
+   packets.
+
+   This version of QUIC does not incorporate a version negotiation
+   mechanism; implementations of incompatible versions will simply fail
+   to establish a connection.
+
+21.1.2.  Protected Packets
+
+   Packet protection (Section 12.1) provides authentication and
+   encryption of all packets except Version Negotiation packets, though
+   Initial and Retry packets have limited encryption and authentication
+   based on version-specific inputs; see [QUIC-TLS] for more details.
+   This section considers passive and active attacks against protected
+   packets.
+
+   Both on-path and off-path attackers can mount a passive attack in
+   which they save observed packets for an offline attack against packet
+   protection at a future time; this is true for any observer of any
+   packet on any network.
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 150]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   A blind attacker, one who injects packets without being able to
+   observe valid packets for a connection, is unlikely to be successful,
+   since packet protection ensures that valid packets are only generated
+   by endpoints that possess the key material established during the
+   handshake; see Section 7 and Section 21.1.1.  Similarly, any active
+   attacker that observes packets and attempts to insert new data or
+   modify existing data in those packets should not be able to generate
+   packets deemed valid by the receiving endpoint.
+
+   A spoofing attack, in which an active attacker rewrites unprotected
+   parts of a packet that it forwards or injects, such as the source or
+   destination address, is only effective if the attacker can forward
+   packets to the original endpoint.  Packet protection ensures that the
+   packet payloads can only be processed by the endpoints that completed
+   the handshake, and invalid packets are ignored by those endpoints.
+
+   An attacker can also modify the boundaries between packets and UDP
+   datagrams, causing multiple packets to be coalesced into a single
+   datagram, or splitting coalesced packets into multiple datagrams.
+   Aside from datagrams containing Initial packets, which require
+   padding, modification of how packets are arranged in datagrams has no
+   functional effect on a connection, although it might change some
+   performance characteristics.
+
+21.1.3.  Connection Migration
+
+   Connection Migration (Section 9) provides endpoints with the ability
+   to transition between IP addresses and ports on multiple paths, using
+   one path at a time for transmission and receipt of non-probing
+   frames.  Path validation (Section 8.2) establishes that a peer is
+   both willing and able to receive packets sent on a particular path.
+   This helps reduce the effects of address spoofing by limiting the
+   number of packets sent to a spoofed address.
+
+   This section describes the intended security properties of connection
+   migration when under various types of DoS attacks.
+
+21.1.3.1.  On-Path Active Attacks
+
+   An attacker that can cause a packet it observes to no longer reach
+   its intended destination is considered an on-path attacker.  When an
+   attacker is present between a client and server, endpoints are
+   required to send packets through the attacker to establish
+   connectivity on a given path.
+
+   An on-path attacker can:
+
+   *  Inspect packets
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 151]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   *  Modify IP and UDP packet headers
+
+   *  Inject new packets
+
+   *  Delay packets
+
+   *  Reorder packets
+
+   *  Drop packets
+
+   *  Split and merge datagrams along packet boundaries
+
+   An on-path attacker cannot:
+
+   *  Modify an authenticated portion of a packet and cause the
+      recipient to accept that packet
+
+   An on-path attacker has the opportunity to modify the packets that it
+   observes, however any modifications to an authenticated portion of a
+   packet will cause it to be dropped by the receiving endpoint as
+   invalid, as packet payloads are both authenticated and encrypted.
+
+   In the presence of an on-path attacker, QUIC aims to provide the
+   following properties:
+
+   1.  An on-path attacker can prevent use of a path for a connection,
+       causing it to fail if it cannot use a different path that does
+       not contain the attacker.  This can be achieved by dropping all
+       packets, modifying them so that they fail to decrypt, or other
+       methods.
+
+   2.  An on-path attacker can prevent migration to a new path for which
+       the attacker is also on-path by causing path validation to fail
+       on the new path.
+
+   3.  An on-path attacker cannot prevent a client from migrating to a
+       path for which the attacker is not on-path.
+
+   4.  An on-path attacker can reduce the throughput of a connection by
+       delaying packets or dropping them.
+
+   5.  An on-path attacker cannot cause an endpoint to accept a packet
+       for which it has modified an authenticated portion of that
+       packet.
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 152]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+21.1.3.2.  Off-Path Active Attacks
+
+   An off-path attacker is not directly on the path between a client and
+   server, but could be able to obtain copies of some or all packets
+   sent between the client and the server.  It is also able to send
+   copies of those packets to either endpoint.
+
+   An off-path attacker can:
+
+   *  Inspect packets
+
+   *  Inject new packets
+
+   *  Reorder injected packets
+
+   An off-path attacker cannot:
+
+   *  Modify any part of a packet
+
+   *  Delay packets
+
+   *  Drop packets
+
+   *  Reorder original packets
+
+   An off-path attacker can modify packets that it has observed and
+   inject them back into the network, potentially with spoofed source
+   and destination addresses.
+
+   For the purposes of this discussion, it is assumed that an off-path
+   attacker has the ability to observe, modify, and re-inject a packet
+   into the network that will reach the destination endpoint prior to
+   the arrival of the original packet observed by the attacker.  In
+   other words, an attacker has the ability to consistently "win" a race
+   with the legitimate packets between the endpoints, potentially
+   causing the original packet to be ignored by the recipient.
+
+   It is also assumed that an attacker has the resources necessary to
+   affect NAT state, potentially both causing an endpoint to lose its
+   NAT binding, and an attacker to obtain the same port for use with its
+   traffic.
+
+   In the presence of an off-path attacker, QUIC aims to provide the
+   following properties:
+
+   1.  An off-path attacker can race packets and attempt to become a
+       "limited" on-path attacker.
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 153]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   2.  An off-path attacker can cause path validation to succeed for
+       forwarded packets with the source address listed as the off-path
+       attacker as long as it can provide improved connectivity between
+       the client and the server.
+
+   3.  An off-path attacker cannot cause a connection to close once the
+       handshake has completed.
+
+   4.  An off-path attacker cannot cause migration to a new path to fail
+       if it cannot observe the new path.
+
+   5.  An off-path attacker can become a limited on-path attacker during
+       migration to a new path for which it is also an off-path
+       attacker.
+
+   6.  An off-path attacker can become a limited on-path attacker by
+       affecting shared NAT state such that it sends packets to the
+       server from the same IP address and port that the client
+       originally used.
+
+21.1.3.3.  Limited On-Path Active Attacks
+
+   A limited on-path attacker is an off-path attacker that has offered
+   improved routing of packets by duplicating and forwarding original
+   packets between the server and the client, causing those packets to
+   arrive before the original copies such that the original packets are
+   dropped by the destination endpoint.
+
+   A limited on-path attacker differs from an on-path attacker in that
+   it is not on the original path between endpoints, and therefore the
+   original packets sent by an endpoint are still reaching their
+   destination.  This means that a future failure to route copied
+   packets to the destination faster than their original path will not
+   prevent the original packets from reaching the destination.
+
+   A limited on-path attacker can:
+
+   *  Inspect packets
+
+   *  Inject new packets
+
+   *  Modify unencrypted packet headers
+
+   *  Reorder packets
+
+   A limited on-path attacker cannot:
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 154]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   *  Delay packets so that they arrive later than packets sent on the
+      original path
+
+   *  Drop packets
+
+   *  Modify the authenticated and encrypted portion of a packet and
+      cause the recipient to accept that packet
+
+   A limited on-path attacker can only delay packets up to the point
+   that the original packets arrive before the duplicate packets,
+   meaning that it cannot offer routing with worse latency than the
+   original path.  If a limited on-path attacker drops packets, the
+   original copy will still arrive at the destination endpoint.
+
+   In the presence of a limited on-path attacker, QUIC aims to provide
+   the following properties:
+
+   1.  A limited on-path attacker cannot cause a connection to close
+       once the handshake has completed.
+
+   2.  A limited on-path attacker cannot cause an idle connection to
+       close if the client is first to resume activity.
+
+   3.  A limited on-path attacker can cause an idle connection to be
+       deemed lost if the server is the first to resume activity.
+
+   Note that these guarantees are the same guarantees provided for any
+   NAT, for the same reasons.
+
+21.2.  Handshake Denial of Service
 
    As an encrypted and authenticated transport QUIC provides a range of
    protections against denial of service.  Once the cryptographic
@@ -8271,6 +8673,15 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    against attack from off the network path.  All QUIC packets contain
    proof that the recipient saw a preceding packet from its peer.
 
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 155]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    Addresses cannot change during the handshake, so endpoints can
    discard packets that are received on a different network path.
 
@@ -8281,14 +8692,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    include a Destination Connection ID field that matches a value the
    endpoint previously chose.  This is the only protection offered for
    Version Negotiation packets.
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 148]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    The Destination Connection ID field in an Initial packet is selected
    by a client to be unpredictable, which serves an additional purpose.
@@ -8315,7 +8718,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    identified and discarded using other methods, but no specific method
    is mandated in this document.
 
-21.2.  Amplification Attack
+21.3.  Amplification Attack
 
    An attacker might be able to receive an address validation token
    (Section 8) from a server and then release the IP address it used to
@@ -8328,7 +8731,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Servers SHOULD provide mitigations for this attack by limiting the
    usage and lifetime of address validation tokens; see Section 8.1.3.
 
-21.3.  Optimistic ACK Attack
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 156]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+21.4.  Optimistic ACK Attack
 
    An endpoint that acknowledges packets it has not received might cause
    a congestion controller to permit sending at rates beyond what the
@@ -8337,16 +8747,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    close the connection with a connection error of type
    PROTOCOL_VIOLATION; see Section 10.2.
 
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 149]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.4.  Request Forgery Attacks
+21.5.  Request Forgery Attacks
 
    A request forgery attack occurs where an endpoint causes its peer to
    issue a request towards a victim, with the request controlled by the
@@ -8386,21 +8787,19 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    these countermeasures could be insufficient if UDP-based services do
    not properly authorize requests.
 
-   Because the migration attack described in Section 21.4.4 is quite
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 157]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+   Because the migration attack described in Section 21.5.4 is quite
    powerful and does not have adequate countermeasures, QUIC server
    implementations should assume that attackers can cause them to
    generate arbitrary UDP payloads to arbitrary destinations.  QUIC
    servers SHOULD NOT be deployed in networks that also have
    inadequately secured UDP endpoints.
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 150]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    Although it is not generally possible to ensure that clients are not
    co-located with vulnerable endpoints, this version of QUIC does not
@@ -8408,7 +8807,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    on clients.  Any future extension which allows server migration MUST
    also define countermeasures for forgery attacks.
 
-21.4.1.  Control Options for Endpoints
+21.5.1.  Control Options for Endpoints
 
    QUIC offers some opportunities for an attacker to influence or
    control where its peer sends UDP datagrams:
@@ -8443,27 +8842,25 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    of the application protocol, some control is possible in many
    protocol usage contexts.  As the attacker has access to packet
    protection keys, they are likely to be capable of predicting how a
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 158]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    peer will encrypt future packets.  Successful control over datagram
    content then only requires that the attacker be able to predict the
    packet number and placement of frames in packets with some amount of
    reliability.
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 151]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    This section assumes that limiting control over datagram content is
    not feasible.  The focus of the mitigations in subsequent sections is
    on limiting the ways in which datagrams that are sent prior to
    address validation can be used for request forgery.
 
-21.4.2.  Request Forgery with Client Initial Packets
+21.5.2.  Request Forgery with Client Initial Packets
 
    An attacker acting as a server can choose the IP address and port on
    which it advertises its availability, so Initial packets from clients
@@ -8496,6 +8893,19 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Section 8.1.  In particular, this affects cases where clients use
    0-RTT to request data from servers.
 
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 159]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    Sending a Retry packet (Section 17.2.5) offers a server the option to
    change the Token field.  After sending a Retry, the server can also
    control the Destination Connection ID field of subsequent Initial
@@ -8504,17 +8914,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Retry packet validates the server's address, thereby preventing the
    use of subsequent Initial packets for request forgery.
 
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 152]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.4.3.  Request Forgery with Preferred Addresses
+21.5.3.  Request Forgery with Preferred Addresses
 
    Servers can specify a preferred address, which clients then migrate
    to after confirming the handshake; see Section 9.6.  The Destination
@@ -8528,10 +8928,10 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    This document does not offer any additional countermeasures that are
    specific to use of preferred addresses and can be implemented by
-   endpoints.  The generic measures described in Section 21.4.5 could be
+   endpoints.  The generic measures described in Section 21.5.5 could be
    used as further mitigation.
 
-21.4.4.  Request Forgery with Spoofed Migration
+21.5.4.  Request Forgery with Spoofed Migration
 
    Clients are able to present a spoofed source address as part of an
    apparent connection migration to cause a server to send datagrams to
@@ -8549,12 +8949,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    an attacker might be able to control most of the content of
    datagrams.
 
-   This document does not offer specific countermeasures that can be
-   implemented by endpoints aside from the generic measures described in
-   Section 21.4.5.  However, countermeasures for address spoofing at the
-   network level, in particular ingress filtering [BCP38], are
-   especially effective against attacks that use spoofing and originate
-   from an external network.
 
 
 
@@ -8563,14 +8957,19 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 153]
+Iyengar & Thomson          Expires 7 May 2021                 [Page 160]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-21.4.5.  Generic Request Forgery Countermeasures
+   This document does not offer specific countermeasures that can be
+   implemented by endpoints aside from the generic measures described in
+   Section 21.5.5.  However, countermeasures for address spoofing at the
+   network level, in particular ingress filtering [BCP38], are
+   especially effective against attacks that use spoofing and originate
+   from an external network.
+
+21.5.5.  Generic Request Forgery Countermeasures
 
    The most effective defense against request forgery attacks is to
    modify vulnerable services to use strong authentication.  However,
@@ -8611,26 +9010,24 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    specific UDP ports that are common targets of attacks or particular
    patterns in datagrams that are used for attacks.  Endpoints MAY
    choose to avoid sending datagrams to these ports or not send
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 161]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    datagrams that match these patterns prior to validating the
    destination address.  Endpoints MAY retire connection IDs containing
    patterns known to be problematic without using them.
 
    Note:  Modifying endpoints to apply these protections is more
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 154]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
       efficient than deploying network-based protections, as endpoints
       do not need to perform any additional processing when sending to
       an address that has been validated.
 
-21.5.  Slowloris Attacks
+21.6.  Slowloris Attacks
 
    The attacks commonly known as Slowloris ([SLOWLORIS]) try to keep
    many connections to the target endpoint open and hold them open as
@@ -8648,7 +9045,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    a connection is allowed to have, and restricting the length of time
    an endpoint is allowed to stay connected.
 
-21.6.  Stream Fragmentation and Reassembly Attacks
+21.7.  Stream Fragmentation and Reassembly Attacks
 
    An adversarial sender might intentionally not send portions of the
    stream data, causing the receiver to commit resources for the unsent
@@ -8667,22 +9064,23 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    can lead to better performance when endpoints are well behaved, but
    renders endpoints vulnerable to the stream fragmentation attack.
 
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 162]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    QUIC deployments SHOULD provide mitigations against stream
    fragmentation attacks.  Mitigations could consist of avoiding over-
    committing memory, limiting the size of tracking data structures,
    delaying reassembly of STREAM frames, implementing heuristics based
    on the age and duration of reassembly holes, or some combination.
 
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 155]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.7.  Stream Commitment Attack
+21.8.  Stream Commitment Attack
 
    An adversarial endpoint can open a large number of streams,
    exhausting state on an endpoint.  The adversarial endpoint could
@@ -8705,7 +9103,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    However, setting the limit too low could affect performance when
    applications expect to open large number of streams.
 
-21.8.  Peer Denial of Service
+21.9.  Peer Denial of Service
 
    QUIC and TLS both contain frames or messages that have legitimate
    uses in some contexts, but that can be abused to cause a peer to
@@ -8720,25 +9118,25 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    bandwidth consumption or effect on state, then this could allow a
    malicious peer to exhaust processing capacity.
 
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 163]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    While there are legitimate uses for all messages, implementations
    SHOULD track cost of processing relative to progress and treat
    excessive quantities of any non-productive packets as indicative of
    an attack.  Endpoints MAY respond to this condition with a connection
    error, or by dropping packets.
 
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 156]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.9.  Explicit Congestion Notification Attacks
+21.10.  Explicit Congestion Notification Attacks
 
    An on-path attacker could manipulate the value of ECN fields in the
    IP header to influence the sender's rate.  [RFC3168] discusses
@@ -8752,7 +9150,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    packet unless at least one QUIC packet in that IP packet is
    successfully processed; see Section 13.4.
 
-21.10.  Stateless Reset Oracle
+21.11.  Stateless Reset Oracle
 
    Stateless resets create a possible denial of service attack analogous
    to a TCP reset injection.  This attack is possible if an attacker is
@@ -8773,6 +9171,21 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    connection with the corresponding connection ID could be active on
    any endpoint using the same static key.
 
+
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 7 May 2021                 [Page 164]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    In the case of a cluster that uses dynamic load balancing, it is
    possible that a change in load balancer configuration could occur
    while an active instance retains connection state.  Even if an
@@ -8783,18 +9196,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    for the connection to time out.  However, this is acceptable only if
    the routing cannot be influenced by an attacker.
 
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 157]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.11.  Version Downgrade
+21.12.  Version Downgrade
 
    This document defines QUIC Version Negotiation packets in Section 6
    that can be used to negotiate the QUIC version used between two
@@ -8805,7 +9207,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    versions of QUIC that use Version Negotiation packets MUST define a
    mechanism that is robust against version downgrade attacks.
 
-21.12.  Targeted Attacks by Routing
+21.13.  Targeted Attacks by Routing
 
    Deployments should limit the ability of an attacker to target a new
    connection to a particular server instance.  This means that client-
@@ -8815,7 +9217,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    of client-selected values; a Source Connection ID can be selected to
    route later packets to the same server.
 
-21.13.  Traffic Analysis
+21.14.  Traffic Analysis
 
    The length of QUIC packets can reveal information about the length of
    the content of those packets.  The PADDING frame is provided so that
@@ -8828,411 +9230,9 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    information through other side channels, such as the timing of
    packets.
 
-21.14.  Overview of Security Properties
 
-   A complete security analysis of QUIC is outside the scope of this
-   document.  This section provides an informal description of the
-   desired security properties as an aid to implementors and to help
-   guide protocol analysis.
 
-   QUIC assumes the threat model described in [SEC-CONS] and provides
-   protections against many of the attacks that arise from that model.
 
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 158]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   For this purpose, attacks are divided into passive and active
-   attacks.  Passive attackers have the capability to read packets from
-   the network, while active attackers also have the capability to write
-   packets into the network.  However, a passive attack may involve an
-   attacker with the ability to cause a routing change or other
-   modification in the path taken by packets that comprise a connection.
-
-   Attackers are additionally categorized as either on-path attackers or
-   off-path attackers; see Section 3.5 of [SEC-CONS].  An on-path
-   attacker can read, modify, or remove any packet it observes such that
-   it no longer reaches its destination, while an off-path attacker
-   observes the packets, but cannot prevent the original packet from
-   reaching its intended destination.  Both types of attackers can also
-   transmit arbitrary packets.
-
-   Properties of the handshake, protected packets, and connection
-   migration are considered separately.
-
-21.14.1.  Handshake
-
-   The QUIC handshake incorporates the TLS 1.3 handshake and inherits
-   the cryptographic properties described in Appendix E.1 of [TLS13].
-   Many of the security properties of QUIC depend on the TLS handshake
-   providing these properties.  Any attack on the TLS handshake could
-   affect QUIC.
-
-   Any attack on the TLS handshake that compromises the secrecy or
-   uniqueness of session keys affects other security guarantees provided
-   by QUIC that depends on these keys.  For instance, migration
-   (Section 9) depends on the efficacy of confidentiality protections,
-   both for the negotiation of keys using the TLS handshake and for QUIC
-   packet protection, to avoid linkability across network paths.
-
-   An attack on the integrity of the TLS handshake might allow an
-   attacker to affect the selection of application protocol or QUIC
-   version.
-
-   In addition to the properties provided by TLS, the QUIC handshake
-   provides some defense against DoS attacks on the handshake.
-
-21.14.1.1.  Anti-Amplification
-
-   Address validation (Section 8) is used to verify that an entity that
-   claims a given address is able to receive packets at that address.
-   Address validation limits amplification attack targets to addresses
-   for which an attacker can observe packets.
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 159]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   Prior to validation, endpoints are limited in what they are able to
-   send.  During the handshake, a server cannot send more than three
-   times the data it receives; clients that initiate new connections or
-   migrate to a new network path are limited.
-
-21.14.1.2.  Server-Side DoS
-
-   Computing the server's first flight for a full handshake is
-   potentially expensive, requiring both a signature and a key exchange
-   computation.  In order to prevent computational DoS attacks, the
-   Retry packet provides a cheap token exchange mechanism that allows
-   servers to validate a client's IP address prior to doing any
-   expensive computations at the cost of a single round trip.  After a
-   successful handshake, servers can issue new tokens to a client, which
-   will allow new connection establishment without incurring this cost.
-
-21.14.1.3.  On-Path Handshake Termination
-
-   An on-path or off-path attacker can force a handshake to fail by
-   replacing or racing Initial packets.  Once valid Initial packets have
-   been exchanged, subsequent Handshake packets are protected with the
-   handshake keys and an on-path attacker cannot force handshake failure
-   other than by dropping packets to cause endpoints to abandon the
-   attempt.
-
-   An on-path attacker can also replace the addresses of packets on
-   either side and therefore cause the client or server to have an
-   incorrect view of the remote addresses.  Such an attack is
-   indistinguishable from the functions performed by a NAT.
-
-21.14.1.4.  Parameter Negotiation
-
-   The entire handshake is cryptographically protected, with the Initial
-   packets being encrypted with per-version keys and the Handshake and
-   later packets being encrypted with keys derived from the TLS key
-   exchange.  Further, parameter negotiation is folded into the TLS
-   transcript and thus provides the same integrity guarantees as
-   ordinary TLS negotiation.  An attacker can observe the client's
-   transport parameters (as long as it knows the version-specific salt)
-   but cannot observe the server's transport parameters and cannot
-   influence parameter negotiation.
-
-   Connection IDs are unencrypted but integrity protected in all
-   packets.
-
-   This version of QUIC does not incorporate a version negotiation
-   mechanism; implementations of incompatible versions will simply fail
-   to establish a connection.
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 160]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-21.14.2.  Protected Packets
-
-   Packet protection (Section 12.1) provides authentication and
-   encryption of all packets except Version Negotiation packets, though
-   Initial and Retry packets have limited encryption and authentication
-   based on version-specific inputs; see [QUIC-TLS] for more details.
-   This section considers passive and active attacks against protected
-   packets.
-
-   Both on-path and off-path attackers can mount a passive attack in
-   which they save observed packets for an offline attack against packet
-   protection at a future time; this is true for any observer of any
-   packet on any network.
-
-   A blind attacker, one who injects packets without being able to
-   observe valid packets for a connection, is unlikely to be successful,
-   since packet protection ensures that valid packets are only generated
-   by endpoints that possess the key material established during the
-   handshake; see Section 7 and Section 21.14.1.  Similarly, any active
-   attacker that observes packets and attempts to insert new data or
-   modify existing data in those packets should not be able to generate
-   packets deemed valid by the receiving endpoint.
-
-   A spoofing attack, in which an active attacker rewrites unprotected
-   parts of a packet that it forwards or injects, such as the source or
-   destination address, is only effective if the attacker can forward
-   packets to the original endpoint.  Packet protection ensures that the
-   packet payloads can only be processed by the endpoints that completed
-   the handshake, and invalid packets are ignored by those endpoints.
-
-   An attacker can also modify the boundaries between packets and UDP
-   datagrams, causing multiple packets to be coalesced into a single
-   datagram, or splitting coalesced packets into multiple datagrams.
-   Aside from datagrams containing Initial packets, which require
-   padding, modification of how packets are arranged in datagrams has no
-   functional effect on a connection, although it might change some
-   performance characteristics.
-
-21.14.3.  Connection Migration
-
-   Connection Migration (Section 9) provides endpoints with the ability
-   to transition between IP addresses and ports on multiple paths, using
-   one path at a time for transmission and receipt of non-probing
-   frames.  Path validation (Section 8.2) establishes that a peer is
-   both willing and able to receive packets sent on a particular path.
-   This helps reduce the effects of address spoofing by limiting the
-   number of packets sent to a spoofed address.
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 161]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   This section describes the intended security properties of connection
-   migration when under various types of DoS attacks.
-
-21.14.3.1.  On-Path Active Attacks
-
-   An attacker that can cause a packet it observes to no longer reach
-   its intended destination is considered an on-path attacker.  When an
-   attacker is present between a client and server, endpoints are
-   required to send packets through the attacker to establish
-   connectivity on a given path.
-
-   An on-path attacker can:
-
-   *  Inspect packets
-
-   *  Modify IP and UDP packet headers
-
-   *  Inject new packets
-
-   *  Delay packets
-
-   *  Reorder packets
-
-   *  Drop packets
-
-   *  Split and merge datagrams along packet boundaries
-
-   An on-path attacker cannot:
-
-   *  Modify an authenticated portion of a packet and cause the
-      recipient to accept that packet
-
-   An on-path attacker has the opportunity to modify the packets that it
-   observes, however any modifications to an authenticated portion of a
-   packet will cause it to be dropped by the receiving endpoint as
-   invalid, as packet payloads are both authenticated and encrypted.
-
-   In the presence of an on-path attacker, QUIC aims to provide the
-   following properties:
-
-   1.  An on-path attacker can prevent use of a path for a connection,
-       causing it to fail if it cannot use a different path that does
-       not contain the attacker.  This can be achieved by dropping all
-       packets, modifying them so that they fail to decrypt, or other
-       methods.
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 162]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   2.  An on-path attacker can prevent migration to a new path for which
-       the attacker is also on-path by causing path validation to fail
-       on the new path.
-
-   3.  An on-path attacker cannot prevent a client from migrating to a
-       path for which the attacker is not on-path.
-
-   4.  An on-path attacker can reduce the throughput of a connection by
-       delaying packets or dropping them.
-
-   5.  An on-path attacker cannot cause an endpoint to accept a packet
-       for which it has modified an authenticated portion of that
-       packet.
-
-21.14.3.2.  Off-Path Active Attacks
-
-   An off-path attacker is not directly on the path between a client and
-   server, but could be able to obtain copies of some or all packets
-   sent between the client and the server.  It is also able to send
-   copies of those packets to either endpoint.
-
-   An off-path attacker can:
-
-   *  Inspect packets
-
-   *  Inject new packets
-
-   *  Reorder injected packets
-
-   An off-path attacker cannot:
-
-   *  Modify any part of a packet
-
-   *  Delay packets
-
-   *  Drop packets
-
-   *  Reorder original packets
-
-   An off-path attacker can modify packets that it has observed and
-   inject them back into the network, potentially with spoofed source
-   and destination addresses.
-
-
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 163]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   For the purposes of this discussion, it is assumed that an off-path
-   attacker has the ability to observe, modify, and re-inject a packet
-   into the network that will reach the destination endpoint prior to
-   the arrival of the original packet observed by the attacker.  In
-   other words, an attacker has the ability to consistently "win" a race
-   with the legitimate packets between the endpoints, potentially
-   causing the original packet to be ignored by the recipient.
-
-   It is also assumed that an attacker has the resources necessary to
-   affect NAT state, potentially both causing an endpoint to lose its
-   NAT binding, and an attacker to obtain the same port for use with its
-   traffic.
-
-   In the presence of an off-path attacker, QUIC aims to provide the
-   following properties:
-
-   1.  An off-path attacker can race packets and attempt to become a
-       "limited" on-path attacker.
-
-   2.  An off-path attacker can cause path validation to succeed for
-       forwarded packets with the source address listed as the off-path
-       attacker as long as it can provide improved connectivity between
-       the client and the server.
-
-   3.  An off-path attacker cannot cause a connection to close once the
-       handshake has completed.
-
-   4.  An off-path attacker cannot cause migration to a new path to fail
-       if it cannot observe the new path.
-
-   5.  An off-path attacker can become a limited on-path attacker during
-       migration to a new path for which it is also an off-path
-       attacker.
-
-   6.  An off-path attacker can become a limited on-path attacker by
-       affecting shared NAT state such that it sends packets to the
-       server from the same IP address and port that the client
-       originally used.
-
-21.14.3.3.  Limited On-Path Active Attacks
-
-   A limited on-path attacker is an off-path attacker that has offered
-   improved routing of packets by duplicating and forwarding original
-   packets between the server and the client, causing those packets to
-   arrive before the original copies such that the original packets are
-   dropped by the destination endpoint.
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 164]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-   A limited on-path attacker differs from an on-path attacker in that
-   it is not on the original path between endpoints, and therefore the
-   original packets sent by an endpoint are still reaching their
-   destination.  This means that a future failure to route copied
-   packets to the destination faster than their original path will not
-   prevent the original packets from reaching the destination.
-
-   A limited on-path attacker can:
-
-   *  Inspect packets
-
-   *  Inject new packets
-
-   *  Modify unencrypted packet headers
-
-   *  Reorder packets
-
-   A limited on-path attacker cannot:
-
-   *  Delay packets so that they arrive later than packets sent on the
-      original path
-
-   *  Drop packets
-
-   *  Modify the authenticated and encrypted portion of a packet and
-      cause the recipient to accept that packet
-
-   A limited on-path attacker can only delay packets up to the point
-   that the original packets arrive before the duplicate packets,
-   meaning that it cannot offer routing with worse latency than the
-   original path.  If a limited on-path attacker drops packets, the
-   original copy will still arrive at the destination endpoint.
-
-   In the presence of a limited on-path attacker, QUIC aims to provide
-   the following properties:
-
-   1.  A limited on-path attacker cannot cause a connection to close
-       once the handshake has completed.
-
-   2.  A limited on-path attacker cannot cause an idle connection to
-       close if the client is first to resume activity.
-
-   3.  A limited on-path attacker can cause an idle connection to be
-       deemed lost if the server is the first to resume activity.
-
-   Note that these guarantees are the same guarantees provided for any
-   NAT, for the same reasons.
 
 
 

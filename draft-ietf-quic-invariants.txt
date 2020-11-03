@@ -135,6 +135,9 @@ Internet-Draft               QUIC Invariants               November 2020
    BCP 14 [RFC2119] [RFC8174] when, and only when, they appear in all
    capitals, as shown here.
 
+   This document defines requirements on future QUIC versions, even
+   where normative language is not used.
+
    This document uses terms and notational conventions from
    [QUIC-TRANSPORT].
 
@@ -160,15 +163,15 @@ Internet-Draft               QUIC Invariants               November 2020
 
    x (?) = C:  Indicates that x has a fixed value of C
 
-   x (E) ...:  Indicates that x is repeated zero or more times (and that
-      each instance is length E)
-
 
 
 Thomson                    Expires 7 May 2021                   [Page 3]
 
 Internet-Draft               QUIC Invariants               November 2020
 
+
+   x (E) ...:  Indicates that x is repeated zero or more times (and that
+      each instance is length E)
 
    This document uses network byte order (that is, big endian) values.
    Fields are placed starting from the high-order bits of each byte.
@@ -208,9 +211,6 @@ Internet-Draft               QUIC Invariants               November 2020
 5.1.  Long Header
 
    Long headers take the form described in Figure 2.
-
-
-
 
 
 

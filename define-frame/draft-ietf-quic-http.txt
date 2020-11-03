@@ -4,8 +4,8 @@
 
 QUIC                                                      M. Bishop, Ed.
 Internet-Draft                                                    Akamai
-Intended status: Standards Track                         29 October 2020
-Expires: 2 May 2021
+Intended status: Standards Track                         3 November 2020
+Expires: 7 May 2021
 
 
              Hypertext Transfer Protocol Version 3 (HTTP/3)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 2 May 2021.
+   This Internet-Draft will expire on 7 May 2021.
 
 
 
@@ -53,9 +53,9 @@ Status of This Memo
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 1]
+Bishop                     Expires 7 May 2021                   [Page 1]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 2]
+Bishop                     Expires 7 May 2021                   [Page 2]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    7.  HTTP Framing Layer  . . . . . . . . . . . . . . . . . . . . .  30
@@ -165,9 +165,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 3]
+Bishop                     Expires 7 May 2021                   [Page 3]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
        A.4.1.  Mapping Between HTTP/2 and HTTP/3 Errors  . . . . . .  62
@@ -221,9 +221,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 4]
+Bishop                     Expires 7 May 2021                   [Page 4]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 1.1.  Prior versions of HTTP
@@ -277,9 +277,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 5]
+Bishop                     Expires 7 May 2021                   [Page 5]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Within each stream, the basic unit of HTTP/3 communication is a frame
@@ -333,9 +333,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 6]
+Bishop                     Expires 7 May 2021                   [Page 6]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Error Handling (Section 8) describes how error conditions are
@@ -389,9 +389,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 7]
+Bishop                     Expires 7 May 2021                   [Page 7]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    HTTP/3 connection:  A QUIC connection where the negotiated
@@ -445,9 +445,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 8]
+Bishop                     Expires 7 May 2021                   [Page 8]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Draft versions MUST use the corresponding draft transport version as
@@ -501,9 +501,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                   [Page 9]
+Bishop                     Expires 7 May 2021                   [Page 9]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 3.2.1.  HTTP Alternative Services
@@ -557,9 +557,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 10]
+Bishop                     Expires 7 May 2021                  [Page 10]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    QUIC connections are established as described in [QUIC-TRANSPORT].
@@ -613,9 +613,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 11]
+Bishop                     Expires 7 May 2021                  [Page 11]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Servers are encouraged to maintain open HTTP/3 connections for as
@@ -669,9 +669,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 12]
+Bishop                     Expires 7 May 2021                  [Page 12]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Receipt of an invalid sequence of frames MUST be treated as a
@@ -725,9 +725,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 13]
+Bishop                     Expires 7 May 2021                  [Page 13]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    A server can send a complete response prior to the client sending an
@@ -781,9 +781,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 14]
+Bishop                     Expires 7 May 2021                  [Page 14]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    SHOULD also remove other connection-specific fields, such as Keep-
@@ -837,9 +837,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 15]
+Bishop                     Expires 7 May 2021                  [Page 15]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
       accurately, this pseudo-header field MUST be omitted when
@@ -893,9 +893,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 16]
+Bishop                     Expires 7 May 2021                  [Page 16]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    HTTP/3 does not define a way to carry the version or reason phrase
@@ -949,9 +949,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 17]
+Bishop                     Expires 7 May 2021                  [Page 17]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Implementations SHOULD cancel requests by abruptly terminating any
@@ -1005,9 +1005,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 18]
+Bishop                     Expires 7 May 2021                  [Page 18]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  the inclusion of uppercase field names, or
@@ -1061,9 +1061,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 19]
+Bishop                     Expires 7 May 2021                  [Page 19]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    The request stream remains open at the end of the request to carry
@@ -1117,9 +1117,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 20]
+Bishop                     Expires 7 May 2021                  [Page 20]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 4.4.  Server Push
@@ -1173,9 +1173,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 21]
+Bishop                     Expires 7 May 2021                  [Page 21]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  does not include a request body or trailer section
@@ -1229,9 +1229,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 22]
+Bishop                     Expires 7 May 2021                  [Page 22]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Pushed responses that are not cacheable MUST NOT be stored by any
@@ -1285,9 +1285,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 23]
+Bishop                     Expires 7 May 2021                  [Page 23]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    requests or pushes that have identifiers greater than or equal to
@@ -1341,9 +1341,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 24]
+Bishop                     Expires 7 May 2021                  [Page 24]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    An endpoint that is attempting to gracefully shut down a connection
@@ -1397,9 +1397,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 25]
+Bishop                     Expires 7 May 2021                  [Page 25]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 5.4.  Transport Closure
@@ -1453,9 +1453,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 26]
+Bishop                     Expires 7 May 2021                  [Page 26]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    HTTP/3 does not use server-initiated bidirectional streams, though an
@@ -1509,9 +1509,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 27]
+Bishop                     Expires 7 May 2021                  [Page 27]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Note that an endpoint is not required to grant additional credits to
@@ -1565,9 +1565,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 28]
+Bishop                     Expires 7 May 2021                  [Page 28]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 6.2.2.  Push Streams
@@ -1621,9 +1621,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 29]
+Bishop                     Expires 7 May 2021                  [Page 29]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 7.  HTTP Framing Layer
@@ -1677,9 +1677,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 30]
+Bishop                     Expires 7 May 2021                  [Page 30]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 7.1.  Frame Layout
@@ -1733,9 +1733,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 31]
+Bishop                     Expires 7 May 2021                  [Page 31]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    DATA Frame {
@@ -1789,9 +1789,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 32]
+Bishop                     Expires 7 May 2021                  [Page 32]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    A server sends CANCEL_PUSH to indicate that it will not be fulfilling
@@ -1845,9 +1845,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 33]
+Bishop                     Expires 7 May 2021                  [Page 33]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 7.2.4.  SETTINGS
@@ -1901,9 +1901,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 34]
+Bishop                     Expires 7 May 2021                  [Page 34]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Setting {
@@ -1957,9 +1957,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 35]
+Bishop                     Expires 7 May 2021                  [Page 35]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    All settings begin at an initial value.  Each endpoint SHOULD use
@@ -2013,9 +2013,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 36]
+Bishop                     Expires 7 May 2021                  [Page 36]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    connection error of type H3_SETTINGS_ERROR.  If a server accepts
@@ -2069,9 +2069,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 37]
+Bishop                     Expires 7 May 2021                  [Page 37]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Allowing duplicate references to the same Push ID is primarily to
@@ -2125,9 +2125,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 38]
+Bishop                     Expires 7 May 2021                  [Page 38]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    The GOAWAY frame applies to the entire connection, not a specific
@@ -2181,9 +2181,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 39]
+Bishop                     Expires 7 May 2021                  [Page 39]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 7.2.8.  Reserved Frame Types
@@ -2237,9 +2237,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 40]
+Bishop                     Expires 7 May 2021                  [Page 40]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    H3_GENERAL_PROTOCOL_ERROR (0x101):  Peer violated protocol
@@ -2293,9 +2293,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 41]
+Bishop                     Expires 7 May 2021                  [Page 41]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Error codes of the format "0x1f * N + 0x21" for non-negative integer
@@ -2349,9 +2349,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 42]
+Bishop                     Expires 7 May 2021                  [Page 42]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    This document does not mandate a specific method for negotiating the
@@ -2405,9 +2405,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 43]
+Bishop                     Expires 7 May 2021                  [Page 43]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 10.4.  Cacheability of Pushed Responses
@@ -2461,9 +2461,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 44]
+Bishop                     Expires 7 May 2021                  [Page 44]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    All these features - i.e., server push, unknown protocol elements,
@@ -2517,9 +2517,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 45]
+Bishop                     Expires 7 May 2021                  [Page 45]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 10.6.  Use of Compression
@@ -2573,9 +2573,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 46]
+Bishop                     Expires 7 May 2021                  [Page 46]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    To mitigate attacks that rely on compression, disabling or limiting
@@ -2629,9 +2629,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 47]
+Bishop                     Expires 7 May 2021                  [Page 47]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    HTTP/3's preference for using a single QUIC connection allows
@@ -2685,9 +2685,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 48]
+Bishop                     Expires 7 May 2021                  [Page 48]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Standards Action or IESG Approval as defined in Section 4.9 and 4.10
@@ -2741,9 +2741,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 49]
+Bishop                     Expires 7 May 2021                  [Page 49]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Additionally, each code of the format "0x1f * N + 0x21" for non-
@@ -2797,9 +2797,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 50]
+Bishop                     Expires 7 May 2021                  [Page 50]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Additionally, each code of the format "0x1f * N + 0x21" for non-
@@ -2853,9 +2853,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 51]
+Bishop                     Expires 7 May 2021                  [Page 51]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    |                           |        | error        |               |
@@ -2909,9 +2909,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 52]
+Bishop                     Expires 7 May 2021                  [Page 52]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    | H3_CONNECT_ERROR          | 0x010f | TCP reset    | Section 8.1   |
@@ -2965,9 +2965,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 53]
+Bishop                     Expires 7 May 2021                  [Page 53]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
             +================+=======+===============+========+
@@ -3004,13 +3004,13 @@ Internet-Draft                   HTTP/3                     October 2020
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 29 October 2020,
+              Internet-Draft, draft-ietf-quic-qpack, 3 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 29 October
+              Internet-Draft, draft-ietf-quic-transport, 3 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -3021,9 +3021,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 54]
+Bishop                     Expires 7 May 2021                  [Page 54]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
@@ -3077,9 +3077,9 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 55]
+Bishop                     Expires 7 May 2021                  [Page 55]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    [BREACH]   Gluck, Y., Harris, N., and A. Prado, "BREACH: Reviving the
@@ -3133,9 +3133,9 @@ Appendix A.  Considerations for Transitioning from HTTP/2
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 56]
+Bishop                     Expires 7 May 2021                  [Page 56]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    similar to HTTP/2 in key aspects, such as the relationship of
@@ -3189,9 +3189,9 @@ A.2.  HTTP Frame Types
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 57]
+Bishop                     Expires 7 May 2021                  [Page 57]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Frame payloads are largely drawn from [HTTP2].  However, QUIC
@@ -3245,9 +3245,9 @@ A.2.2.  Field Compression Differences
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 58]
+Bishop                     Expires 7 May 2021                  [Page 58]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 A.2.3.  Flow Control Differences
@@ -3301,9 +3301,9 @@ A.2.5.  Mapping Between HTTP/2 and HTTP/3 Frame Types
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 59]
+Bishop                     Expires 7 May 2021                  [Page 59]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    PUSH_PROMISE (0x5):  The PUSH_PROMISE frame does not reference a
@@ -3357,9 +3357,9 @@ A.3.  HTTP/2 SETTINGS Parameters
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 60]
+Bishop                     Expires 7 May 2021                  [Page 60]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    SETTINGS_MAX_CONCURRENT_STREAMS:  QUIC controls the largest open
@@ -3413,9 +3413,9 @@ A.4.  HTTP/2 Error Codes
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 61]
+Bishop                     Expires 7 May 2021                  [Page 61]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    PROTOCOL_ERROR (0x1):  This is mapped to H3_GENERAL_PROTOCOL_ERROR
@@ -3469,9 +3469,9 @@ A.4.1.  Mapping Between HTTP/2 and HTTP/3 Errors
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 62]
+Bishop                     Expires 7 May 2021                  [Page 62]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    An intermediary that encounters an error from an upstream origin can
@@ -3525,9 +3525,9 @@ B.4.  Since draft-ietf-quic-http-28
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 63]
+Bishop                     Expires 7 May 2021                  [Page 63]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  CANCEL_PUSH is recommended even when the stream is reset (#3698,
@@ -3581,9 +3581,9 @@ B.9.  Since draft-ietf-quic-http-23
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 64]
+Bishop                     Expires 7 May 2021                  [Page 64]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 B.10.  Since draft-ietf-quic-http-22
@@ -3637,9 +3637,9 @@ B.12.  Since draft-ietf-quic-http-20
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 65]
+Bishop                     Expires 7 May 2021                  [Page 65]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Prohibit closing the control stream (#2509, #2666)
@@ -3693,9 +3693,9 @@ B.13.  Since draft-ietf-quic-http-19
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 66]
+Bishop                     Expires 7 May 2021                  [Page 66]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
 B.14.  Since draft-ietf-quic-http-18
@@ -3749,9 +3749,9 @@ B.16.  Since draft-ietf-quic-http-16
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 67]
+Bishop                     Expires 7 May 2021                  [Page 67]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Removed reservation of error code 0 and moved HTTP_NO_ERROR to
@@ -3805,9 +3805,9 @@ B.20.  Since draft-ietf-quic-http-12
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 68]
+Bishop                     Expires 7 May 2021                  [Page 68]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Unidirectional streams carry a type byte and are extensible
@@ -3861,9 +3861,9 @@ B.27.  Since draft-ietf-quic-http-05
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 69]
+Bishop                     Expires 7 May 2021                  [Page 69]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Guidance about keep-alive and QUIC PINGs (#729)
@@ -3917,9 +3917,9 @@ B.31.  Since draft-ietf-quic-http-01
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 70]
+Bishop                     Expires 7 May 2021                  [Page 70]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  HPACK Sequence counter can wrap (#173)
@@ -3973,9 +3973,9 @@ Acknowledgements
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 71]
+Bishop                     Expires 7 May 2021                  [Page 71]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    *  Alan Frindell
@@ -4029,9 +4029,9 @@ Author's Address
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 72]
+Bishop                     Expires 7 May 2021                  [Page 72]
 
-Internet-Draft                   HTTP/3                     October 2020
+Internet-Draft                   HTTP/3                    November 2020
 
 
    Mike Bishop (editor)
@@ -4085,4 +4085,4 @@ Internet-Draft                   HTTP/3                     October 2020
 
 
 
-Bishop                     Expires 2 May 2021                  [Page 73]
+Bishop                     Expires 7 May 2021                  [Page 73]

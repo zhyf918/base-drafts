@@ -5,10 +5,10 @@
 QUIC                                                           C. Krasic
 Internet-Draft                                                   Netflix
 Intended status: Standards Track                               M. Bishop
-Expires: 3 May 2021                                  Akamai Technologies
+Expires: 7 May 2021                                  Akamai Technologies
                                                         A. Frindell, Ed.
                                                                 Facebook
-                                                         30 October 2020
+                                                         3 November 2020
 
 
                   QPACK: Header Compression for HTTP/3
@@ -47,15 +47,15 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 3 May 2021.
+   This Internet-Draft will expire on 7 May 2021.
 
 
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 1]
+Krasic, et al.             Expires 7 May 2021                   [Page 1]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 Copyright Notice
@@ -109,9 +109,9 @@ Table of Contents
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 2]
+Krasic, et al.             Expires 7 May 2021                   [Page 2]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
      4.4.  Decoder Instructions  . . . . . . . . . . . . . . . . . .  19
@@ -165,9 +165,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 3]
+Krasic, et al.             Expires 7 May 2021                   [Page 3]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
      D.12. Since draft-ietf-quic-qpack-06  . . . . . . . . . . . . .  46
@@ -221,9 +221,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 4]
+Krasic, et al.             Expires 7 May 2021                   [Page 4]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
       all field line values with that field name in that section,
@@ -277,9 +277,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 5]
+Krasic, et al.             Expires 7 May 2021                   [Page 5]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    QPACK defines unidirectional streams for sending instructions from
@@ -333,9 +333,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 6]
+Krasic, et al.             Expires 7 May 2021                   [Page 6]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 2.1.1.1.  Avoiding Prohibited Insertions
@@ -389,9 +389,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 7]
+Krasic, et al.             Expires 7 May 2021                   [Page 7]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    When the decoder receives an encoded field section with a Required
@@ -445,9 +445,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 8]
+Krasic, et al.             Expires 7 May 2021                   [Page 8]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 2.1.4.  Known Received Count
@@ -501,9 +501,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                   [Page 9]
+Krasic, et al.             Expires 7 May 2021                   [Page 9]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    When processing encoded field sections, the decoder expects the
@@ -557,9 +557,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 10]
+Krasic, et al.             Expires 7 May 2021                  [Page 10]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 2.2.2.3.  New Table Entries
@@ -613,9 +613,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 11]
+Krasic, et al.             Expires 7 May 2021                  [Page 11]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    When the decoder encounters an invalid static table index in a field
@@ -669,9 +669,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 12]
+Krasic, et al.             Expires 7 May 2021                  [Page 12]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    A new entry can reference an entry in the dynamic table that will be
@@ -725,9 +725,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 13]
+Krasic, et al.             Expires 7 May 2021                  [Page 13]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 3.2.5.  Relative Indexing
@@ -781,9 +781,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 14]
+Krasic, et al.             Expires 7 May 2021                  [Page 14]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
         Figure 3: Example Dynamic Table Indexing - Relative Index in
@@ -837,9 +837,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 15]
+Krasic, et al.             Expires 7 May 2021                  [Page 15]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    HPACK defines string literals to begin on a byte boundary.  They
@@ -893,9 +893,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 16]
+Krasic, et al.             Expires 7 May 2021                  [Page 16]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    An endpoint MUST allow its peer to create an encoder stream and a
@@ -949,9 +949,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 17]
+Krasic, et al.             Expires 7 May 2021                  [Page 17]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 4.3.2.  Insert With Name Reference
@@ -1005,9 +1005,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 18]
+Krasic, et al.             Expires 7 May 2021                  [Page 18]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 4.3.4.  Duplicate
@@ -1061,9 +1061,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 19]
+Krasic, et al.             Expires 7 May 2021                  [Page 19]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    The Section Acknowledgement instruction might increase the Known
@@ -1117,9 +1117,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 20]
+Krasic, et al.             Expires 7 May 2021                  [Page 20]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Encoded field sections are carried in frames on streams defined by
@@ -1173,9 +1173,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 21]
+Krasic, et al.             Expires 7 May 2021                  [Page 21]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    The decoder can reconstruct the Required Insert Count using an
@@ -1229,9 +1229,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 22]
+Krasic, et al.             Expires 7 May 2021                  [Page 22]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Base.  A sign bit of 1 indicates that the Base is less than the
@@ -1285,9 +1285,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 23]
+Krasic, et al.             Expires 7 May 2021                  [Page 23]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    This representation starts with the '1' 1-bit pattern, followed by
@@ -1341,9 +1341,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 24]
+Krasic, et al.             Expires 7 May 2021                  [Page 24]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    field line that it received represented as a literal field line with
@@ -1397,9 +1397,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 25]
+Krasic, et al.             Expires 7 May 2021                  [Page 25]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
         0   1   2   3   4   5   6   7
@@ -1453,9 +1453,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 26]
+Krasic, et al.             Expires 7 May 2021                  [Page 26]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 7.  Security Considerations
@@ -1509,9 +1509,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 27]
+Krasic, et al.             Expires 7 May 2021                  [Page 27]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 7.2.  Applicability to QPACK and HTTP
@@ -1565,9 +1565,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 28]
+Krasic, et al.             Expires 7 May 2021                  [Page 28]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    To improve compression performance of this option, certain entries
@@ -1621,9 +1621,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 29]
+Krasic, et al.             Expires 7 May 2021                  [Page 29]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    An encoder might also choose not to index values for fields that are
@@ -1677,9 +1677,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 30]
+Krasic, et al.             Expires 7 May 2021                  [Page 30]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    A decoder can limit the amount of state memory used for blocked
@@ -1733,9 +1733,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 31]
+Krasic, et al.             Expires 7 May 2021                  [Page 31]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 8.  IANA Considerations
@@ -1789,9 +1789,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 32]
+Krasic, et al.             Expires 7 May 2021                  [Page 32]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    +============================+=======+=============+===============+
@@ -1819,13 +1819,13 @@ Internet-Draft                    QPACK                     October 2020
 
    [HTTP3]    Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http, 30 October 2020,
+              quic-http, 3 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-http>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 30 October
+              Internet-Draft, draft-ietf-quic-transport, 3 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -1845,9 +1845,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 33]
+Krasic, et al.             Expires 7 May 2021                  [Page 33]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
@@ -1901,9 +1901,9 @@ Appendix A.  Static Table
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 34]
+Krasic, et al.             Expires 7 May 2021                  [Page 34]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    +=======+==================================+=======================+
@@ -1957,9 +1957,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 35]
+Krasic, et al.             Expires 7 May 2021                  [Page 35]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2013,9 +2013,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 36]
+Krasic, et al.             Expires 7 May 2021                  [Page 36]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    | 45    | content-type                     | application/          |
@@ -2069,9 +2069,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 37]
+Krasic, et al.             Expires 7 May 2021                  [Page 37]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2125,9 +2125,9 @@ Internet-Draft                    QPACK                     October 2020
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 38]
+Krasic, et al.             Expires 7 May 2021                  [Page 38]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    +-------+----------------------------------+-----------------------+
@@ -2181,9 +2181,9 @@ B.1.  Literal Field Line With Name Reference
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 39]
+Krasic, et al.             Expires 7 May 2021                  [Page 39]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Data                | Interpretation
@@ -2237,9 +2237,9 @@ B.2.  Dynamic Table
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 40]
+Krasic, et al.             Expires 7 May 2021                  [Page 40]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Stream: Encoder
@@ -2293,9 +2293,9 @@ B.3.  Speculative Insert
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 41]
+Krasic, et al.             Expires 7 May 2021                  [Page 41]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Stream: Encoder
@@ -2349,9 +2349,9 @@ B.4.  Duplicate Instruction, Stream Cancellation
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 42]
+Krasic, et al.             Expires 7 May 2021                  [Page 42]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Stream: Encoder
@@ -2405,9 +2405,9 @@ B.5.  Dynamic Table Insert, Eviction
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 43]
+Krasic, et al.             Expires 7 May 2021                  [Page 43]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    Stream: Encoder
@@ -2461,9 +2461,9 @@ Appendix C.  Sample One Pass Encoding Algorithm
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 44]
+Krasic, et al.             Expires 7 May 2021                  [Page 44]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
          # Encodes a literal with a static name or literal name
@@ -2517,9 +2517,9 @@ D.4.  Since draft-ietf-quic-qpack-15
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 45]
+Krasic, et al.             Expires 7 May 2021                  [Page 45]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 D.5.  Since draft-ietf-quic-qpack-14
@@ -2573,9 +2573,9 @@ D.13.  Since draft-ietf-quic-qpack-05
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 46]
+Krasic, et al.             Expires 7 May 2021                  [Page 46]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
 D.14.  Since draft-ietf-quic-qpack-04
@@ -2629,9 +2629,9 @@ D.18.  Since draft-ietf-quic-qpack-00
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 47]
+Krasic, et al.             Expires 7 May 2021                  [Page 47]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    *  Removed framing from encoder stream (#1361,#1467)
@@ -2685,9 +2685,9 @@ Acknowledgments
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 48]
+Krasic, et al.             Expires 7 May 2021                  [Page 48]
 
-Internet-Draft                    QPACK                     October 2020
+Internet-Draft                    QPACK                    November 2020
 
 
    *  Biren Roy
@@ -2741,4 +2741,4 @@ Authors' Addresses
 
 
 
-Krasic, et al.             Expires 3 May 2021                  [Page 49]
+Krasic, et al.             Expires 7 May 2021                  [Page 49]

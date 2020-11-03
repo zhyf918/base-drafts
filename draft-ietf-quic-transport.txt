@@ -73,7 +73,7 @@ Table of Contents
      1.1.  Document Structure  . . . . . . . . . . . . . . . . . . .   8
      1.2.  Terms and Definitions . . . . . . . . . . . . . . . . . .   9
      1.3.  Notational Conventions  . . . . . . . . . . . . . . . . .  10
-   2.  Streams . . . . . . . . . . . . . . . . . . . . . . . . . . .  11
+   2.  Streams . . . . . . . . . . . . . . . . . . . . . . . . . . .  12
      2.1.  Stream Types and Identifiers  . . . . . . . . . . . . . .  12
      2.2.  Sending and Receiving Data  . . . . . . . . . . . . . . .  13
      2.3.  Stream Prioritization . . . . . . . . . . . . . . . . . .  14
@@ -532,6 +532,11 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    Application:  An entity that uses QUIC to send and receive data.
 
+   This document uses the terms "QUIC packets", "UDP datagrams", and "IP
+   packets" to refer to the units of the respective protocols.  That is,
+   one or more QUIC packets can be encapsulated in a UDP datagram, which
+   is in turn encapsulated in an IP packet.
+
 1.3.  Notational Conventions
 
    Packet and frame diagrams in this document use a custom format.  The
@@ -549,11 +554,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    x (A):  Indicates that x is A bits long
 
-   x (i):  Indicates that x uses the variable-length encoding in
-      Section 16
-
-   x (A..B):  Indicates that x can be any length from A to B; A can be
-
 
 
 
@@ -562,6 +562,10 @@ Iyengar & Thomson          Expires 7 May 2021                  [Page 10]
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
+   x (i):  Indicates that x uses the variable-length encoding in
+      Section 16
+
+   x (A..B):  Indicates that x can be any length from A to B; A can be
       omitted to indicate a minimum of zero bits and B can be omitted to
       indicate no set upper limit; values in this format always end on
       an octet boundary
@@ -605,11 +609,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    could be used to refer to the single-bit field in the most
    significant bit of the byte, such as One-bit Field in Figure 1.
 
-2.  Streams
 
-   Streams in QUIC provide a lightweight, ordered byte-stream
-   abstraction to an application.  Streams can be unidirectional or
-   bidirectional.
 
 
 
@@ -617,6 +617,12 @@ Iyengar & Thomson          Expires 7 May 2021                  [Page 11]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+2.  Streams
+
+   Streams in QUIC provide a lightweight, ordered byte-stream
+   abstraction to an application.  Streams can be unidirectional or
+   bidirectional.
 
    Streams can be created by sending data.  Other processes associated
    with stream management - ending, cancelling, and managing flow
@@ -659,12 +665,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    The two least significant bits from a stream ID therefore identify a
    stream as one of four types, as summarized in Table 1.
-
-
-
-
-
-
 
 
 

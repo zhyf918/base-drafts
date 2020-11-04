@@ -4488,7 +4488,7 @@ might also occur because the client's access network used a different NAT
 binding for the server's preferred address.<a href="#section-9.6.3-3" class="pilcrow">¶</a></p>
 <p id="section-9.6.3-4">Servers SHOULD initiate path validation to the client's new address upon
 receiving a probe packet from a different address.  Before the client address
-is validated, servers MUST limit data sent on the path to three times the
+is validated, servers MUST NOT send more data on the path than three times the
 number of bytes received on the path; see <a href="#address-validation" class="xref">Section 8</a>.<a href="#section-9.6.3-4" class="pilcrow">¶</a></p>
 <p id="section-9.6.3-5">A client that migrates to a new address SHOULD use a preferred address from the
 same address family for the server.<a href="#section-9.6.3-5" class="pilcrow">¶</a></p>
@@ -10581,8 +10581,8 @@ incurred.<a href="#section-a.4-8" class="pilcrow">¶</a></p>
       <h2 id="name-change-log">
 <a href="#section-appendix.b" class="section-number selfRef">Appendix B. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.b-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.b-1.1">
           <strong>RFC Editor's Note:</strong> Please remove this section prior to publication of a
 final version of this document.<a href="#section-appendix.b-1.1" class="pilcrow">¶</a>
 </li>

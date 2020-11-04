@@ -136,32 +136,32 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
      9.4.  Header Protection Analysis  . . . . . . . . . . . . . . .  44
      9.5.  Header Protection Timing Side-Channels  . . . . . . . . .  45
      9.6.  Key Diversity . . . . . . . . . . . . . . . . . . . . . .  46
+     9.7.  Randomness  . . . . . . . . . . . . . . . . . . . . . . .  46
    10. IANA Considerations . . . . . . . . . . . . . . . . . . . . .  46
-   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  46
-     11.1.  Normative References . . . . . . . . . . . . . . . . . .  46
+   11. References  . . . . . . . . . . . . . . . . . . . . . . . . .  47
+     11.1.  Normative References . . . . . . . . . . . . . . . . . .  47
      11.2.  Informative References . . . . . . . . . . . . . . . . .  48
    Appendix A.  Sample Packet Protection . . . . . . . . . . . . . .  49
-     A.1.  Keys  . . . . . . . . . . . . . . . . . . . . . . . . . .  49
-     A.2.  Client Initial  . . . . . . . . . . . . . . . . . . . . .  50
-     A.3.  Server Initial  . . . . . . . . . . . . . . . . . . . . .  52
-     A.4.  Retry . . . . . . . . . . . . . . . . . . . . . . . . . .  53
-     A.5.  ChaCha20-Poly1305 Short Header Packet . . . . . . . . . .  53
-   Appendix B.  AEAD Algorithm Analysis  . . . . . . . . . . . . . .  55
+     A.1.  Keys  . . . . . . . . . . . . . . . . . . . . . . . . . .  50
+     A.2.  Client Initial  . . . . . . . . . . . . . . . . . . . . .  51
+     A.3.  Server Initial  . . . . . . . . . . . . . . . . . . . . .  53
+     A.4.  Retry . . . . . . . . . . . . . . . . . . . . . . . . . .  54
+     A.5.  ChaCha20-Poly1305 Short Header Packet . . . . . . . . . .  54
+   Appendix B.  AEAD Algorithm Analysis  . . . . . . . . . . . . . .  56
      B.1.  Analysis of AEAD_AES_128_GCM and AEAD_AES_256_GCM Usage
-           Limits  . . . . . . . . . . . . . . . . . . . . . . . . .  56
-       B.1.1.  Confidentiality Limit . . . . . . . . . . . . . . . .  56
-       B.1.2.  Integrity Limit . . . . . . . . . . . . . . . . . . .  56
-     B.2.  Analysis of AEAD_AES_128_CCM Usage Limits . . . . . . . .  57
-   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  58
-     C.1.  Since draft-ietf-quic-tls-31  . . . . . . . . . . . . . .  58
-     C.2.  Since draft-ietf-quic-tls-30  . . . . . . . . . . . . . .  58
-     C.3.  Since draft-ietf-quic-tls-29  . . . . . . . . . . . . . .  58
-     C.4.  Since draft-ietf-quic-tls-28  . . . . . . . . . . . . . .  58
-     C.5.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  59
-     C.6.  Since draft-ietf-quic-tls-26  . . . . . . . . . . . . . .  59
-     C.7.  Since draft-ietf-quic-tls-25  . . . . . . . . . . . . . .  59
-     C.8.  Since draft-ietf-quic-tls-24  . . . . . . . . . . . . . .  59
-     C.9.  Since draft-ietf-quic-tls-23  . . . . . . . . . . . . . .  59
+           Limits  . . . . . . . . . . . . . . . . . . . . . . . . .  57
+       B.1.1.  Confidentiality Limit . . . . . . . . . . . . . . . .  57
+       B.1.2.  Integrity Limit . . . . . . . . . . . . . . . . . . .  57
+     B.2.  Analysis of AEAD_AES_128_CCM Usage Limits . . . . . . . .  58
+   Appendix C.  Change Log . . . . . . . . . . . . . . . . . . . . .  59
+     C.1.  Since draft-ietf-quic-tls-31  . . . . . . . . . . . . . .  59
+     C.2.  Since draft-ietf-quic-tls-30  . . . . . . . . . . . . . .  59
+     C.3.  Since draft-ietf-quic-tls-29  . . . . . . . . . . . . . .  59
+     C.4.  Since draft-ietf-quic-tls-28  . . . . . . . . . . . . . .  59
+     C.5.  Since draft-ietf-quic-tls-27  . . . . . . . . . . . . . .  60
+     C.6.  Since draft-ietf-quic-tls-26  . . . . . . . . . . . . . .  60
+     C.7.  Since draft-ietf-quic-tls-25  . . . . . . . . . . . . . .  60
+     C.8.  Since draft-ietf-quic-tls-24  . . . . . . . . . . . . . .  60
 
 
 
@@ -170,28 +170,29 @@ Thomson & Turner           Expires 8 May 2021                   [Page 3]
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
 
-     C.10. Since draft-ietf-quic-tls-22  . . . . . . . . . . . . . .  59
-     C.11. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  59
-     C.12. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  60
-     C.13. Since draft-ietf-quic-tls-18  . . . . . . . . . . . . . .  60
-     C.14. Since draft-ietf-quic-tls-17  . . . . . . . . . . . . . .  60
-     C.15. Since draft-ietf-quic-tls-14  . . . . . . . . . . . . . .  60
-     C.16. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  60
-     C.17. Since draft-ietf-quic-tls-12  . . . . . . . . . . . . . .  61
-     C.18. Since draft-ietf-quic-tls-11  . . . . . . . . . . . . . .  61
-     C.19. Since draft-ietf-quic-tls-10  . . . . . . . . . . . . . .  61
-     C.20. Since draft-ietf-quic-tls-09  . . . . . . . . . . . . . .  61
-     C.21. Since draft-ietf-quic-tls-08  . . . . . . . . . . . . . .  61
-     C.22. Since draft-ietf-quic-tls-07  . . . . . . . . . . . . . .  61
-     C.23. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  61
-     C.24. Since draft-ietf-quic-tls-04  . . . . . . . . . . . . . .  62
-     C.25. Since draft-ietf-quic-tls-03  . . . . . . . . . . . . . .  62
-     C.26. Since draft-ietf-quic-tls-02  . . . . . . . . . . . . . .  62
-     C.27. Since draft-ietf-quic-tls-01  . . . . . . . . . . . . . .  62
-     C.28. Since draft-ietf-quic-tls-00  . . . . . . . . . . . . . .  62
-     C.29. Since draft-thomson-quic-tls-01 . . . . . . . . . . . . .  63
-   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  63
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  64
+     C.9.  Since draft-ietf-quic-tls-23  . . . . . . . . . . . . . .  60
+     C.10. Since draft-ietf-quic-tls-22  . . . . . . . . . . . . . .  60
+     C.11. Since draft-ietf-quic-tls-21  . . . . . . . . . . . . . .  60
+     C.12. Since draft-ietf-quic-tls-20  . . . . . . . . . . . . . .  61
+     C.13. Since draft-ietf-quic-tls-18  . . . . . . . . . . . . . .  61
+     C.14. Since draft-ietf-quic-tls-17  . . . . . . . . . . . . . .  61
+     C.15. Since draft-ietf-quic-tls-14  . . . . . . . . . . . . . .  61
+     C.16. Since draft-ietf-quic-tls-13  . . . . . . . . . . . . . .  61
+     C.17. Since draft-ietf-quic-tls-12  . . . . . . . . . . . . . .  62
+     C.18. Since draft-ietf-quic-tls-11  . . . . . . . . . . . . . .  62
+     C.19. Since draft-ietf-quic-tls-10  . . . . . . . . . . . . . .  62
+     C.20. Since draft-ietf-quic-tls-09  . . . . . . . . . . . . . .  62
+     C.21. Since draft-ietf-quic-tls-08  . . . . . . . . . . . . . .  62
+     C.22. Since draft-ietf-quic-tls-07  . . . . . . . . . . . . . .  62
+     C.23. Since draft-ietf-quic-tls-05  . . . . . . . . . . . . . .  62
+     C.24. Since draft-ietf-quic-tls-04  . . . . . . . . . . . . . .  63
+     C.25. Since draft-ietf-quic-tls-03  . . . . . . . . . . . . . .  63
+     C.26. Since draft-ietf-quic-tls-02  . . . . . . . . . . . . . .  63
+     C.27. Since draft-ietf-quic-tls-01  . . . . . . . . . . . . . .  63
+     C.28. Since draft-ietf-quic-tls-00  . . . . . . . . . . . . . .  63
+     C.29. Since draft-thomson-quic-tls-01 . . . . . . . . . . . . .  64
+   Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . .  64
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  65
 
 1.  Introduction
 
@@ -216,7 +217,6 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
    capitals, as shown here.
 
    This document uses the terminology established in [QUIC-TRANSPORT].
-
 
 
 
@@ -2557,18 +2557,18 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
    version.  New QUIC versions SHOULD define a new salt value used in
    calculating initial secrets.
 
+9.7.  Randomness
+
+   QUIC depends on endpoints being able to generate secure random
+   numbers, both directly for protocol values such as the connection ID,
+   and transitively via TLS.  See [RFC4086] for guidance on secure
+   random number generation.
+
 10.  IANA Considerations
 
    This document registers the quic_transport_parameters extension found
    in Section 8.2 in the TLS ExtensionType Values Registry
    [TLS-REGISTRIES].
-
-   The Recommended column is to be marked Yes. The TLS 1.3 Column is to
-   include CH and EE.
-
-11.  References
-
-11.1.  Normative References
 
 
 
@@ -2577,6 +2577,13 @@ Thomson & Turner           Expires 8 May 2021                  [Page 46]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
+
+   The Recommended column is to be marked Yes. The TLS 1.3 Column is to
+   include CH and EE.
+
+11.  References
+
+11.1.  Normative References
 
    [AEAD]     McGrew, D., "An Interface and Algorithms for Authenticated
               Encryption", RFC 5116, DOI 10.17487/RFC5116, January 2008,
@@ -2619,13 +2626,6 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
               DOI 10.17487/RFC2119, March 1997,
               <https://www.rfc-editor.org/info/rfc2119>.
 
-   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
-              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
-              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
-
-
-
-
 
 
 
@@ -2633,6 +2633,15 @@ Thomson & Turner           Expires 8 May 2021                  [Page 47]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
+
+   [RFC4086]  Eastlake 3rd, D., Schiller, J., and S. Crocker,
+              "Randomness Requirements for Security", BCP 106, RFC 4086,
+              DOI 10.17487/RFC4086, June 2005,
+              <https://www.rfc-editor.org/info/rfc4086>.
+
+   [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
+              2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
+              May 2017, <https://www.rfc-editor.org/info/rfc8174>.
 
    [SHA]      Dang, Q., "Secure Hash Standard", National Institute of
               Standards and Technology report,
@@ -2673,6 +2682,14 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
    [GCM-MU]   Hoang, V., Tessaro, S., and A. Thiruvengadam, "The Multi-
               user Security of GCM, Revisited: Tight Bounds for Nonce
               Randomization", Proceedings of the 2018 ACM SIGSAC
+
+
+
+Thomson & Turner           Expires 8 May 2021                  [Page 48]
+
+Internet-Draft          Using TLS to Secure QUIC           November 2020
+
+
               Conference on Computer and Communications Security,
               DOI 10.1145/3243734.3243816, January 2018,
               <https://doi.org/10.1145/3243734.3243816>.
@@ -2681,14 +2698,6 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
               Benjamin, D., "Using TLS 1.3 with HTTP/2", RFC 8740,
               DOI 10.17487/RFC8740, February 2020,
               <https://www.rfc-editor.org/info/rfc8740>.
-
-
-
-
-Thomson & Turner           Expires 8 May 2021                  [Page 48]
-
-Internet-Draft          Using TLS to Secure QUIC           November 2020
-
 
    [IMC]      Katz, J. and Y. Lindell, "Introduction to Modern
               Cryptography, Second Edition", ISBN 978-1466570269, 6
@@ -2729,6 +2738,14 @@ Appendix A.  Sample Packet Protection
    of 0x8394c8f03e515708.  Some intermediate values are included.  All
    values are shown in hexadecimal.
 
+
+
+
+Thomson & Turner           Expires 8 May 2021                  [Page 49]
+
+Internet-Draft          Using TLS to Secure QUIC           November 2020
+
+
 A.1.  Keys
 
    The labels generated by the HKDF-Expand-Label function are:
@@ -2738,13 +2755,6 @@ A.1.  Keys
    server in:  00200f746c7331332073657276657220696e00
 
    quic key:  00100e746c7331332071756963206b657900
-
-
-
-Thomson & Turner           Expires 8 May 2021                  [Page 49]
-
-Internet-Draft          Using TLS to Secure QUIC           November 2020
-
 
    quic iv:  000c0d746c733133207175696320697600
 
@@ -2774,6 +2784,24 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
 
    The secrets for protecting server packets are:
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thomson & Turner           Expires 8 May 2021                  [Page 50]
+
+Internet-Draft          Using TLS to Secure QUIC           November 2020
+
+
    server_initial_secret
        = HKDF-Expand-Label(initial_secret, "server in", _, 32)
        = 006f881359244dd9ad1acf85f595bad6
@@ -2794,14 +2822,6 @@ A.2.  Client Initial
    packet contains the following CRYPTO frame, plus enough PADDING
    frames to make a 1162 byte payload:
 
-
-
-
-Thomson & Turner           Expires 8 May 2021                  [Page 50]
-
-Internet-Draft          Using TLS to Secure QUIC           November 2020
-
-
    060040f1010000ed0303ebf8fa56f129 39b9584a3896472ec40bb863cfd3e868
    04fe3a47f06a2b69484c000004130113 02010000c000000010000e00000b6578
    616d706c652e636f6dff01000100000a 00080006001d00170018001000070005
@@ -2820,6 +2840,23 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
    protection.  Because the header uses a 4-byte packet number encoding,
    the first 16 bytes of the protected payload is sampled, then applied
    to the header:
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thomson & Turner           Expires 8 May 2021                  [Page 51]
+
+Internet-Draft          Using TLS to Secure QUIC           November 2020
+
 
    sample = fb66bc6a93032b50dd8973972d149421
 
@@ -2853,7 +2890,26 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 51]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Thomson & Turner           Expires 8 May 2021                  [Page 52]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -2909,7 +2965,7 @@ A.3.  Server Initial
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 52]
+Thomson & Turner           Expires 8 May 2021                  [Page 53]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -2965,7 +3021,7 @@ A.5.  ChaCha20-Poly1305 Short Header Packet
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 53]
+Thomson & Turner           Expires 8 May 2021                  [Page 54]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3021,7 +3077,7 @@ Internet-Draft          Using TLS to Secure QUIC           November 2020
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 54]
+Thomson & Turner           Expires 8 May 2021                  [Page 55]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3077,7 +3133,7 @@ Appendix B.  AEAD Algorithm Analysis
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 55]
+Thomson & Turner           Expires 8 May 2021                  [Page 56]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3133,7 +3189,7 @@ B.1.2.  Integrity Limit
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 56]
+Thomson & Turner           Expires 8 May 2021                  [Page 57]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3189,7 +3245,7 @@ B.2.  Analysis of AEAD_AES_128_CCM Usage Limits
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 57]
+Thomson & Turner           Expires 8 May 2021                  [Page 58]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3245,7 +3301,7 @@ C.4.  Since draft-ietf-quic-tls-28
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 58]
+Thomson & Turner           Expires 8 May 2021                  [Page 59]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3301,7 +3357,7 @@ C.11.  Since draft-ietf-quic-tls-21
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 59]
+Thomson & Turner           Expires 8 May 2021                  [Page 60]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3357,7 +3413,7 @@ C.16.  Since draft-ietf-quic-tls-13
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 60]
+Thomson & Turner           Expires 8 May 2021                  [Page 61]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3413,7 +3469,7 @@ C.23.  Since draft-ietf-quic-tls-05
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 61]
+Thomson & Turner           Expires 8 May 2021                  [Page 62]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3469,7 +3525,7 @@ C.28.  Since draft-ietf-quic-tls-00
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 62]
+Thomson & Turner           Expires 8 May 2021                  [Page 63]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3525,7 +3581,7 @@ Contributors
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 63]
+Thomson & Turner           Expires 8 May 2021                  [Page 64]
 
 Internet-Draft          Using TLS to Secure QUIC           November 2020
 
@@ -3581,4 +3637,4 @@ Authors' Addresses
 
 
 
-Thomson & Turner           Expires 8 May 2021                  [Page 64]
+Thomson & Turner           Expires 8 May 2021                  [Page 65]

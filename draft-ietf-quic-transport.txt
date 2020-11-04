@@ -5,8 +5,8 @@
 QUIC                                                     J. Iyengar, Ed.
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                         M. Thomson, Ed.
-Expires: 7 May 2021                                              Mozilla
-                                                         3 November 2020
+Expires: 8 May 2021                                              Mozilla
+                                                         4 November 2020
 
 
            QUIC: A UDP-Based Multiplexed and Secure Transport
@@ -43,7 +43,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 7 May 2021.
+   This Internet-Draft will expire on 8 May 2021.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 1]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 1]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 2]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 2]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -165,7 +165,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 3]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 3]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -221,7 +221,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 4]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 4]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -277,7 +277,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 5]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 5]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -293,54 +293,55 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    23. References  . . . . . . . . . . . . . . . . . . . . . . . . . 173
      23.1.  Normative References . . . . . . . . . . . . . . . . . . 173
      23.2.  Informative References . . . . . . . . . . . . . . . . . 174
-   Appendix A.  Sample Packet Number Encoding Algorithm  . . . . . . 177
-   Appendix B.  Sample Packet Number Decoding Algorithm  . . . . . . 178
-   Appendix C.  Sample ECN Validation Algorithm  . . . . . . . . . . 179
-   Appendix D.  Sample Variable-Length Integer Decoding  . . . . . . 180
-   Appendix E.  Change Log . . . . . . . . . . . . . . . . . . . . . 181
-     E.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 181
-     E.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 181
-     E.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 181
-     E.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 182
-     E.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 182
-     E.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 184
-     E.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 184
-     E.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 184
-     E.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 185
-     E.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 186
-     E.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 187
-     E.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 187
-     E.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 188
-     E.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 188
-     E.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 189
-     E.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 190
-     E.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 191
-     E.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 191
-     E.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 191
-     E.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 192
-     E.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 193
-     E.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 193
-     E.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 194
-     E.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 195
-     E.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 195
-     E.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 196
-     E.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 196
-     E.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 197
-     E.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 197
-     E.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 198
-     E.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 198
-     E.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 200
+   Appendix A.  Pseudocode . . . . . . . . . . . . . . . . . . . . . 177
+     A.1.  Sample Variable-Length Integer Decoding . . . . . . . . . 178
+     A.2.  Sample Packet Number Encoding Algorithm . . . . . . . . . 178
+     A.3.  Sample Packet Number Decoding Algorithm . . . . . . . . . 179
+     A.4.  Sample ECN Validation Algorithm . . . . . . . . . . . . . 180
+   Appendix B.  Change Log . . . . . . . . . . . . . . . . . . . . . 181
+     B.1.  Since draft-ietf-quic-transport-31  . . . . . . . . . . . 181
+     B.2.  Since draft-ietf-quic-transport-30  . . . . . . . . . . . 182
+     B.3.  Since draft-ietf-quic-transport-29  . . . . . . . . . . . 182
+     B.4.  Since draft-ietf-quic-transport-28  . . . . . . . . . . . 183
+     B.5.  Since draft-ietf-quic-transport-27  . . . . . . . . . . . 183
+     B.6.  Since draft-ietf-quic-transport-26  . . . . . . . . . . . 184
+     B.7.  Since draft-ietf-quic-transport-25  . . . . . . . . . . . 184
+     B.8.  Since draft-ietf-quic-transport-24  . . . . . . . . . . . 184
+     B.9.  Since draft-ietf-quic-transport-23  . . . . . . . . . . . 185
+     B.10. Since draft-ietf-quic-transport-22  . . . . . . . . . . . 186
+     B.11. Since draft-ietf-quic-transport-21  . . . . . . . . . . . 187
+     B.12. Since draft-ietf-quic-transport-20  . . . . . . . . . . . 187
+     B.13. Since draft-ietf-quic-transport-19  . . . . . . . . . . . 188
+     B.14. Since draft-ietf-quic-transport-18  . . . . . . . . . . . 189
+     B.15. Since draft-ietf-quic-transport-17  . . . . . . . . . . . 189
+     B.16. Since draft-ietf-quic-transport-16  . . . . . . . . . . . 190
+     B.17. Since draft-ietf-quic-transport-15  . . . . . . . . . . . 191
+     B.18. Since draft-ietf-quic-transport-14  . . . . . . . . . . . 191
+     B.19. Since draft-ietf-quic-transport-13  . . . . . . . . . . . 192
+     B.20. Since draft-ietf-quic-transport-12  . . . . . . . . . . . 192
+     B.21. Since draft-ietf-quic-transport-11  . . . . . . . . . . . 193
+     B.22. Since draft-ietf-quic-transport-10  . . . . . . . . . . . 193
+     B.23. Since draft-ietf-quic-transport-09  . . . . . . . . . . . 194
+     B.24. Since draft-ietf-quic-transport-08  . . . . . . . . . . . 195
+     B.25. Since draft-ietf-quic-transport-07  . . . . . . . . . . . 195
+     B.26. Since draft-ietf-quic-transport-06  . . . . . . . . . . . 196
+     B.27. Since draft-ietf-quic-transport-05  . . . . . . . . . . . 197
+     B.28. Since draft-ietf-quic-transport-04  . . . . . . . . . . . 197
+     B.29. Since draft-ietf-quic-transport-03  . . . . . . . . . . . 198
+     B.30. Since draft-ietf-quic-transport-02  . . . . . . . . . . . 198
+     B.31. Since draft-ietf-quic-transport-01  . . . . . . . . . . . 199
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 6]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 6]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-     E.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 201
+     B.32. Since draft-ietf-quic-transport-00  . . . . . . . . . . . 201
+     B.33. Since draft-hamilton-quic-transport-protocol-01 . . . . . 201
    Contributors  . . . . . . . . . . . . . . . . . . . . . . . . . . 201
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 202
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . . 203
 
 1.  Overview
 
@@ -388,8 +389,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-
-Iyengar & Thomson          Expires 7 May 2021                   [Page 7]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 7]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -445,7 +445,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 8]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 8]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -501,7 +501,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                   [Page 9]
+Iyengar & Thomson          Expires 8 May 2021                   [Page 9]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -557,7 +557,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 10]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 10]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -613,7 +613,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 11]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 11]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -669,7 +669,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 12]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 12]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -725,7 +725,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 13]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 13]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -781,7 +781,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 14]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 14]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -837,7 +837,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 15]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 15]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -893,7 +893,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 16]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 16]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -949,7 +949,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 17]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 17]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1005,7 +1005,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 18]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 18]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1061,7 +1061,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 19]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 19]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1117,7 +1117,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 20]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 20]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1173,7 +1173,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 21]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 21]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1229,7 +1229,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 22]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 22]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1285,7 +1285,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 23]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 23]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1341,7 +1341,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 24]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 24]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1397,7 +1397,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 25]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 25]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1453,7 +1453,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 26]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 26]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1509,7 +1509,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 27]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 27]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1565,7 +1565,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 28]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 28]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1621,7 +1621,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 29]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 29]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1677,7 +1677,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 30]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 30]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1733,7 +1733,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 31]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 31]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1789,7 +1789,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 32]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 32]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1845,7 +1845,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 33]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 33]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1901,7 +1901,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 34]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 34]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -1957,7 +1957,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 35]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 35]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2013,7 +2013,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 36]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 36]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2069,7 +2069,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 37]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 37]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2125,7 +2125,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 38]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 38]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2181,7 +2181,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 39]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 39]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2237,7 +2237,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 40]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 40]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2293,7 +2293,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 41]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 41]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2349,7 +2349,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 42]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 42]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2405,7 +2405,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 43]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 43]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2461,7 +2461,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 44]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 44]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2517,7 +2517,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 45]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 45]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2573,7 +2573,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 46]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 46]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2629,7 +2629,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 47]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 47]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2685,7 +2685,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 48]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 48]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2741,7 +2741,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 49]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 49]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2797,7 +2797,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 50]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 50]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2853,7 +2853,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 51]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 51]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2909,7 +2909,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 52]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 52]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -2965,7 +2965,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 53]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 53]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3021,7 +3021,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 54]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 54]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3077,7 +3077,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 55]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 55]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3133,7 +3133,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 56]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 56]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3189,7 +3189,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 57]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 57]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3245,7 +3245,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 58]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 58]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3301,7 +3301,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 59]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 59]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3357,7 +3357,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 60]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 60]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3413,7 +3413,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 61]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 61]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3469,7 +3469,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 62]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 62]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3525,7 +3525,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 63]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 63]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3581,7 +3581,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 64]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 64]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3637,7 +3637,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 65]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 65]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3693,7 +3693,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 66]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 66]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3749,7 +3749,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 67]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 67]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3805,7 +3805,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 68]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 68]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3861,7 +3861,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 69]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 69]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3917,7 +3917,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 70]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 70]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -3973,7 +3973,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 71]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 71]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4029,7 +4029,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 72]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 72]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4085,7 +4085,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 73]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 73]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4141,7 +4141,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 74]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 74]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4197,7 +4197,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 75]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 75]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4253,7 +4253,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 76]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 76]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4309,7 +4309,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 77]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 77]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4365,7 +4365,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 78]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 78]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4421,7 +4421,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 79]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 79]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4477,7 +4477,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 80]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 80]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4533,7 +4533,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 81]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 81]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4589,7 +4589,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 82]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 82]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4645,7 +4645,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 83]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 83]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4701,7 +4701,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 84]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 84]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4757,7 +4757,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 85]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 85]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4813,7 +4813,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 86]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 86]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4869,7 +4869,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 87]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 87]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4925,7 +4925,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 88]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 88]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -4981,7 +4981,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 89]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 89]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5037,7 +5037,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 90]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 90]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5093,7 +5093,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 91]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 91]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5149,7 +5149,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 92]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 92]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5205,7 +5205,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 93]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 93]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5261,7 +5261,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 94]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 94]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5317,7 +5317,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 95]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 95]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5373,7 +5373,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 96]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 96]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5429,7 +5429,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 97]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 97]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5485,7 +5485,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 98]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 98]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5504,8 +5504,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    An endpoint thus attempts to use ECN and validates this for each new
    connection, when switching to a server's preferred address, and on
-   active connection migration to a new path.  Appendix C describes one
-   possible algorithm.
+   active connection migration to a new path.  Appendix A.4 describes
+   one possible algorithm.
 
    Other methods of probing paths for ECN support are possible, as are
    different marking strategies.  Implementations MAY use other methods
@@ -5541,7 +5541,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                  [Page 99]
+Iyengar & Thomson          Expires 8 May 2021                  [Page 99]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5597,7 +5597,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 100]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 100]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5653,7 +5653,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 101]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 101]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5709,7 +5709,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 102]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 102]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5765,7 +5765,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 103]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 103]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5821,7 +5821,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 104]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 104]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5877,7 +5877,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 105]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 105]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5933,7 +5933,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 106]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 106]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -5952,7 +5952,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
                    Table 4: Summary of Integer Encodings
 
-   Examples and a sample decoding algorithm are shown in Appendix D.
+   Examples and a sample decoding algorithm are shown in Appendix A.1.
 
    Versions (Section 15) and packet numbers sent in the header
    (Section 17.1) are described using integers, but do not use this
@@ -5989,7 +5989,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 107]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 107]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6000,8 +6000,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    As a result, the size of the packet number encoding is at least one
    bit more than the base-2 logarithm of the number of contiguous
-   unacknowledged packet numbers, including the new packet.  Pseudo-code
-   and examples for packet number encoding can be found in Appendix A.
+   unacknowledged packet numbers, including the new packet.  Pseudocode
+   and examples for packet number encoding can be found in Appendix A.2.
 
    At a receiver, protection of the packet number is removed prior to
    recovering the full packet number.  The full packet number is then
@@ -6013,8 +6013,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Once header protection is removed, the packet number is decoded by
    finding the packet number value that is closest to the next expected
    packet.  The next expected packet is the highest received packet
-   number plus one.  Pseudo-code and an example for packet number
-   decoding can be found in Appendix B.
+   number plus one.  Pseudocode and an example for packet number
+   decoding can be found in Appendix A.3.
 
 17.2.  Long Header Packets
 
@@ -6045,7 +6045,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 108]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 108]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6101,7 +6101,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 109]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 109]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6157,7 +6157,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 110]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 110]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6213,7 +6213,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 111]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 111]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6269,7 +6269,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 112]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 112]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6325,7 +6325,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 113]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 113]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6381,7 +6381,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 114]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 114]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6437,7 +6437,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 115]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 115]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6493,7 +6493,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 116]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 116]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6549,7 +6549,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 117]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 117]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6605,7 +6605,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 118]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 118]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6661,7 +6661,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 119]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 119]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6717,7 +6717,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 120]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 120]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6773,7 +6773,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 121]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 121]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6829,7 +6829,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 122]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 122]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6885,7 +6885,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 123]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 123]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6941,7 +6941,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 124]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 124]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -6997,7 +6997,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 125]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 125]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7053,7 +7053,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 126]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 126]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7109,7 +7109,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 127]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 127]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7165,7 +7165,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 128]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 128]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7221,7 +7221,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 129]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 129]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7277,7 +7277,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 130]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 130]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7333,7 +7333,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 131]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 131]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7389,7 +7389,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 132]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 132]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7445,7 +7445,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 133]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 133]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7501,7 +7501,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 134]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 134]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7557,7 +7557,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 135]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 135]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7613,7 +7613,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 136]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 136]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7669,7 +7669,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 137]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 137]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7725,7 +7725,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 138]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 138]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7781,7 +7781,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 139]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 139]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7837,7 +7837,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 140]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 140]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7893,7 +7893,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 141]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 141]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -7949,7 +7949,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 142]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 142]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8005,7 +8005,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 143]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 143]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8061,7 +8061,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 144]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 144]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8117,7 +8117,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 145]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 145]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8173,7 +8173,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 146]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 146]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8229,7 +8229,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 147]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 147]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8285,7 +8285,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 148]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 148]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8341,7 +8341,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 149]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 149]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8397,7 +8397,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 150]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 150]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8453,7 +8453,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 151]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 151]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8509,7 +8509,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 152]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 152]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8565,7 +8565,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 153]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 153]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8621,7 +8621,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 154]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 154]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8677,7 +8677,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 155]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 155]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8733,7 +8733,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 156]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 156]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8789,7 +8789,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 157]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 157]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8845,7 +8845,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 158]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 158]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8901,7 +8901,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 159]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 159]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -8957,7 +8957,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 160]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 160]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9013,7 +9013,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 161]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 161]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9069,7 +9069,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 162]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 162]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9125,7 +9125,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 163]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 163]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9181,7 +9181,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 164]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 164]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9237,7 +9237,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 165]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 165]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9293,7 +9293,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 166]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 166]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9349,7 +9349,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 167]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 167]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9405,7 +9405,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 168]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 168]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9461,7 +9461,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 169]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 169]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9517,7 +9517,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 170]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 170]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9573,7 +9573,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 171]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 171]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9629,7 +9629,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 172]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 172]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9661,12 +9661,12 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    [QUIC-RECOVERY]
               Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
               and Congestion Control", Work in Progress, Internet-Draft,
-              draft-ietf-quic-recovery, 3 November 2020,
+              draft-ietf-quic-recovery, 4 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-recovery>.
 
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using Transport
               Layer Security (TLS) to Secure QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-tls, 3 November 2020,
+              Internet-Draft, draft-ietf-quic-tls, 4 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls>.
 
    [RFC1191]  Mogul, J. and S. Deering, "Path MTU discovery", RFC 1191,
@@ -9685,7 +9685,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 173]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 173]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9741,7 +9741,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 174]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 174]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9797,7 +9797,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 175]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 175]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9805,7 +9805,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    [QUIC-INVARIANTS]
               Thomson, M., "Version-Independent Properties of QUIC",
               Work in Progress, Internet-Draft, draft-ietf-quic-
-              invariants, 3 November 2020,
+              invariants, 4 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-invariants>.
 
    [QUIC-MANAGEABILITY]
@@ -9853,7 +9853,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 176]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 176]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9897,26 +9897,78 @@ Internet-Draft           QUIC Transport Protocol           November 2020
               3", BCP 9, RFC 2026, DOI 10.17487/RFC2026, October 1996,
               <https://www.rfc-editor.org/info/rfc2026>.
 
-Appendix A.  Sample Packet Number Encoding Algorithm
+Appendix A.  Pseudocode
 
-   The pseudo-code in Figure 45 shows how an implementation can select
-   an appropriate size for packet number encodings.
+   The pseudocode in this section describes sample algorithms.  These
+   algorithms are intended to be correct and clear, rather than being
+   optimally performant.
+
+   The pseudocode segments in this section are licensed as Code
+   Components; see the copyright notice.
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 177]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+A.1.  Sample Variable-Length Integer Decoding
+
+   The pseudocode in Figure 45 shows how a variable-length integer can
+   be read from a stream of bytes.  The function ReadVarint takes a
+   single argument, a sequence of bytes which can be read in network
+   byte order.
+
+   ReadVarint(data):
+     // The length of variable-length integers is encoded in the
+     // first two bits of the first byte.
+     v = data.next_byte()
+     prefix = v >> 6
+     length = 1 << prefix
+
+     // Once the length is known, remove these bits and read any
+     // remaining bytes.
+     v = v & 0x3f
+     repeat length-1 times:
+       v = (v << 8) + data.next_byte()
+     return v
+
+        Figure 45: Sample Variable-Length Integer Decoding Algorithm
+
+   For example, the eight-byte sequence 0xc2197c5eff14e88c decodes to
+   the decimal value 151,288,809,941,952,652; the four-byte sequence
+   0x9d7f3e7d decodes to 494,878,333; the two-byte sequence 0x7bbd
+   decodes to 15,293; and the single byte 0x25 decodes to 37 (as does
+   the two-byte sequence 0x4025).
+
+A.2.  Sample Packet Number Encoding Algorithm
+
+   The pseudocode in Figure 46 shows how an implementation can select an
+   appropriate size for packet number encodings.
 
    The EncodePacketNumber function takes two arguments:
 
    *  full_pn is the full packet number of the packet being sent.
 
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 177]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
    *  largest_acked is the largest packet number which has been
       acknowledged by the peer in the current packet number space, if
       any.
+
+
+
+
+
+
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 178]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    EncodePacketNumber(full_pn, largest_acked):
 
@@ -9935,7 +9987,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      // the num_bytes least-significant bytes.
      return encode(full_pn, num_bytes)
 
-             Figure 45: Sample Packet Number Encoding Algorithm
+             Figure 46: Sample Packet Number Encoding Algorithm
 
    For example, if an endpoint has received an acknowledgment for packet
    0xabe8bc and is sending a packet with a number of 0xac5c02, there are
@@ -9946,9 +9998,9 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    the 24-bit encoding, because at least 18 bits are required to
    represent twice the range (131,182 packets, or 0x2006e).
 
-Appendix B.  Sample Packet Number Decoding Algorithm
+A.3.  Sample Packet Number Decoding Algorithm
 
-   The pseudo-code in Figure 46 includes an example algorithm for
+   The pseudocode in Figure 47 includes an example algorithm for
    decoding packet numbers after header protection has been removed.
 
    The DecodePacketNumber function takes three arguments:
@@ -9965,7 +10017,11 @@ Appendix B.  Sample Packet Number Decoding Algorithm
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 178]
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 179]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -9995,13 +10051,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
          return candidate_pn - pn_win
       return candidate_pn
 
-             Figure 46: Sample Packet Number Decoding Algorithm
+             Figure 47: Sample Packet Number Decoding Algorithm
 
    For example, if the highest successfully authenticated packet had a
    packet number of 0xa82f30ea, then a packet containing a 16-bit value
    of 0x9b32 will be decoded as 0xa82f9b32.
 
-Appendix C.  Sample ECN Validation Algorithm
+A.4.  Sample ECN Validation Algorithm
 
    Each time an endpoint commences sending on a new network path, it
    determines whether the path supports ECN; see Section 13.4.  If the
@@ -10021,7 +10077,7 @@ Appendix C.  Sample ECN Validation Algorithm
 
 
 
-Iyengar & Thomson          Expires 7 May 2021                 [Page 179]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 180]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
@@ -10053,51 +10109,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    marked packets are discarded by the path, the short duration of the
    testing period limits the number of losses incurred.
 
-Appendix D.  Sample Variable-Length Integer Decoding
-
-   The pseudo-code in Figure 47 shows how a variable-length integer can
-   be read from a stream of bytes.  The function ReadVarint takes a
-   single argument, a sequence of bytes which can be read in network
-   byte order.
-
-   ReadVarint(data):
-     // The length of variable-length integers is encoded in the
-     // first two bits of the first byte.
-     v = data.next_byte()
-     prefix = v >> 6
-     length = 1 << prefix
-
-     // Once the length is known, remove these bits and read any
-     // remaining bytes.
-     v = v & 0x3f
-     repeat length-1 times:
-       v = (v << 8) + data.next_byte()
-     return v
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 180]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-        Figure 47: Sample Variable-Length Integer Decoding Algorithm
-
-   For example, the eight-byte sequence 0xc2197c5eff14e88c decodes to
-   the decimal value 151,288,809,941,952,652; the four-byte sequence
-   0x9d7f3e7d decodes to 494,878,333; the two-byte sequence 0x7bbd
-   decodes to 15,293; and the single byte 0x25 decodes to 37 (as does
-   the two-byte sequence 0x4025).
-
-Appendix E.  Change Log
+Appendix B.  Change Log
 
       *RFC Editor's Note:* Please remove this section prior to
       publication of a final version of this document.
 
    Issue and pull request numbers are listed with a leading octothorp.
 
-E.1.  Since draft-ietf-quic-transport-31
+B.1.  Since draft-ietf-quic-transport-31
 
    *  Require expansion of datagrams to ensure that a path supports at
       least 1200 bytes in both directions:
@@ -10112,10 +10131,17 @@ E.1.  Since draft-ietf-quic-transport-31
    *  Though senders need to expand datagrams in some cases, receivers
       cannot enforce this requirement (#4253, #4254)
 
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 181]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Split contact into contact and change controller for IANA
       registrations (#4230, #4239)
 
-E.2.  Since draft-ietf-quic-transport-30
+B.2.  Since draft-ietf-quic-transport-30
 
    *  Use TRANSPORT_PARAMETER_ERROR for an invalid transport parameter
       (#4099, #4100)
@@ -10126,17 +10152,9 @@ E.2.  Since draft-ietf-quic-transport-30
    *  Allow use of address validation token when server address changes
       (#4076, #4089)
 
-E.3.  Since draft-ietf-quic-transport-29
+B.3.  Since draft-ietf-quic-transport-29
 
    *  Require the same connection ID on coalesced packets (#3800, #3930)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 181]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Allow caching of packets that can't be decrypted, by allowing the
       reported acknowledgment delay to exceed max_ack_delay prior to
@@ -10167,7 +10185,16 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Limit recommendation for immediate acknowledgment to when ack-
       eliciting packets are reordered (#4001, #4000)
 
-E.4.  Since draft-ietf-quic-transport-28
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 182]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+B.4.  Since draft-ietf-quic-transport-28
 
    *  Made SERVER_BUSY error (0x2) more generic, now CONNECTION_REFUSED
       (#3709, #3690, #3694)
@@ -10181,18 +10208,7 @@ E.4.  Since draft-ietf-quic-transport-28
    *  disable_active_migration does not apply to the addresses offered
       in server_preferred_address (#3608, #3670)
 
-E.5.  Since draft-ietf-quic-transport-27
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 182]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
+B.5.  Since draft-ietf-quic-transport-27
 
    *  Allowed CONNECTION_CLOSE in any packet number space, with a
       requirement to use a new transport-level error for application-
@@ -10225,6 +10241,15 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Redefined max_packet_size to max_udp_datagram_size (#3471, #3473)
 
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 183]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Guidance on limiting outstanding attempts to retire connection IDs
       (#3489, #3509, #3557, #3547)
 
@@ -10241,21 +10266,12 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Opening a stream in the wrong direction is an error (#3527)
 
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 183]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-E.6.  Since draft-ietf-quic-transport-26
+B.6.  Since draft-ietf-quic-transport-26
 
    *  Change format of transport parameters to use varints (#3294,
       #3169)
 
-E.7.  Since draft-ietf-quic-transport-25
+B.7.  Since draft-ietf-quic-transport-25
 
    *  Define the use of CONNECTION_CLOSE prior to establishing
       connection state (#3269, #3297, #3292)
@@ -10265,7 +10281,7 @@ E.7.  Since draft-ietf-quic-transport-25
 
    *  Define the timer for address validation (#2910, #3339)
 
-E.8.  Since draft-ietf-quic-transport-24
+B.8.  Since draft-ietf-quic-transport-24
 
    *  Added HANDSHAKE_DONE to signal handshake confirmation (#2863,
       #3142, #3145)
@@ -10283,6 +10299,13 @@ E.8.  Since draft-ietf-quic-transport-24
 
    *  Correct overflow in packet number decode algorithm (#3187, #3188)
 
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 184]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Allow use of CRYPTO_BUFFER_EXCEEDED for CRYPTO frame errors
       (#3258, #3186)
 
@@ -10296,15 +10319,6 @@ E.8.  Since draft-ietf-quic-transport-24
 
    *  Treat an invalid CONNECTION_CLOSE as an invalid frame (#2475,
       #3230, #3231)
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 184]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Throttle when sending CONNECTION_CLOSE after discarding state
       (#3095, #3157)
@@ -10326,7 +10340,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Packets on one path must not adjust values for a different path
       (#2909, #3139)
 
-E.9.  Since draft-ietf-quic-transport-23
+B.9.  Since draft-ietf-quic-transport-23
 
    *  Allow ClientHello to span multiple packets (#2928, #3045)
 
@@ -10340,6 +10354,13 @@ E.9.  Since draft-ietf-quic-transport-23
       -  detection uses UDP datagrams, not packets
 
       -  tokens cannot be reused (#2785, #2968)
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 185]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    *  Clearer rules for sharing of UDP ports and use of connection IDs
       when doing so (#2844, #2851)
@@ -10355,13 +10376,6 @@ E.9.  Since draft-ietf-quic-transport-23
 
    *  CONNECTION_CLOSE is not ack-eliciting (#3097, #3098)
 
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 185]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
    *  Frame encoding error conditions updated (#3027, #3042)
 
    *  Non-ack-eliciting packets cannot be sent in response to non-ack-
@@ -10369,7 +10383,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Servers have to change connection IDs in Retry (#2837, #3147)
 
-E.10.  Since draft-ietf-quic-transport-22
+B.10.  Since draft-ietf-quic-transport-22
 
    *  Rules for preventing correlation by connection ID tightened
       (#2084, #2929)
@@ -10396,6 +10410,14 @@ E.10.  Since draft-ietf-quic-transport-22
    *  A maximum ACK delay of 0 is used for handshake packet number
       spaces (#2646, #2638)
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 186]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Improved rules for use of congestion control state on new paths
       (#2685, #2918)
 
@@ -10408,15 +10430,6 @@ E.10.  Since draft-ietf-quic-transport-22
 
    *  Provide guidance around the interface to QUIC as used by
       application protocols (#2805, #2857)
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 186]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Frames other than STREAM can cause STREAM_LIMIT_ERROR (#2825,
       #2826)
@@ -10432,12 +10445,12 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Moved ACK generation guidance from recovery draft to transport
       draft (#1860, #2916).
 
-E.11.  Since draft-ietf-quic-transport-21
+B.11.  Since draft-ietf-quic-transport-21
 
    *  Connection ID lengths are now one octet, but limited in version 1
       to 20 octets of length (#2736, #2749)
 
-E.12.  Since draft-ietf-quic-transport-20
+B.12.  Since draft-ietf-quic-transport-20
 
    *  Error codes are encoded as variable-length integers (#2672, #2680)
 
@@ -10453,6 +10466,14 @@ E.12.  Since draft-ietf-quic-transport-20
    *  More normative language about use of stateless reset (#2471,
       #2574)
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 187]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Allow reuse of stateless reset tokens (#2732, #2733)
 
    *  Allow, but not require, enforcing non-duplicate transport
@@ -10465,14 +10486,6 @@ E.12.  Since draft-ietf-quic-transport-20
 
    *  When sending 0-RTT, only remembered transport parameters apply
       (#2458, #2360, #2466, #2461)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 187]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Define handshake completion and confirmation; define clearer rules
       when it encryption keys should be discarded (#2214, #2267, #2673)
@@ -10489,7 +10502,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Document hack for enabling routing of ICMP when doing PMTU probing
       (#1243, #2402)
 
-E.13.  Since draft-ietf-quic-transport-19
+B.13.  Since draft-ietf-quic-transport-19
 
    *  Refine discussion of 0-RTT transport parameters (#2467, #2464)
 
@@ -10508,6 +10521,15 @@ E.13.  Since draft-ietf-quic-transport-19
 
    *  The "QUIC bit" is ignored in Version Negotiation (#2400, #2561)
 
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 188]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Initial packets from clients need to be padded to 1200 unless a
       Handshake packet is sent as well (#2522, #2523)
 
@@ -10516,19 +10538,11 @@ E.13.  Since draft-ietf-quic-transport-19
 
    *  Stateless reset uses a short header packet (#2599, #2600)
 
-E.14.  Since draft-ietf-quic-transport-18
+B.14.  Since draft-ietf-quic-transport-18
 
    *  Removed version negotiation; version negotiation, including
       authentication of the result, will be addressed in the next
       version of QUIC (#1773, #2313)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 188]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Added discussion of the use of IPv6 flow labels (#2348, #2399)
 
@@ -10543,7 +10557,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Increased the set of permissible frames in 0-RTT (#2344, #2355)
 
-E.15.  Since draft-ietf-quic-transport-17
+B.15.  Since draft-ietf-quic-transport-17
 
    *  Stream-related errors now use STREAM_STATE_ERROR (#2305)
 
@@ -10564,6 +10578,14 @@ E.15.  Since draft-ietf-quic-transport-17
    *  Disable ECN count verification for packets that arrive out of
       order (#2198, #2215)
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 189]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Use Probe Timeout (PTO) instead of RTO (#2206, #2238)
 
    *  Loosen constraints on retransmission of ACK ranges (#2199, #2245)
@@ -10577,21 +10599,12 @@ E.15.  Since draft-ietf-quic-transport-17
    *  Allow server preferred address for both IPv4 and IPv6 (#2122,
       #2296)
 
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 189]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
    *  Corrected requirements for migration to a preferred address
       (#2146, #2349)
 
    *  ACK of non-existent packet is illegal (#2298, #2302)
 
-E.16.  Since draft-ietf-quic-transport-16
+B.16.  Since draft-ietf-quic-transport-16
 
    *  Stream limits are defined as counts, not maximums (#1850, #1906)
 
@@ -10621,6 +10634,14 @@ E.16.  Since draft-ietf-quic-transport-16
 
       -  Move packet number length to first byte
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 190]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
       -  Move ODCIL to first byte of retry packets
 
       -  Simplify packet number protection (#1575)
@@ -10635,13 +10656,6 @@ E.16.  Since draft-ietf-quic-transport-16
 
    *  Require peers to replace retired connection IDs (#2085)
 
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 190]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
    *  Servers are required to ignore Version Negotiation packets (#2088)
 
    *  Tokens are repeated in all Initial packets (#2089)
@@ -10653,11 +10667,11 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  ICMP PTB validation clarifications (#2161, #2109, #2108)
 
-E.17.  Since draft-ietf-quic-transport-15
+B.17.  Since draft-ietf-quic-transport-15
 
    Substantial editorial reorganization; no technical changes.
 
-E.18.  Since draft-ietf-quic-transport-14
+B.18.  Since draft-ietf-quic-transport-14
 
    *  Merge ACK and ACK_ECN (#1778, #1801)
 
@@ -10676,7 +10690,15 @@ E.18.  Since draft-ietf-quic-transport-14
 
    *  Prevent handshake deadlock (#1764, #1824)
 
-E.19.  Since draft-ietf-quic-transport-13
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 191]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
+B.19.  Since draft-ietf-quic-transport-13
 
    *  Streams open when higher-numbered streams of the same type open
       (#1342, #1549)
@@ -10689,14 +10711,6 @@ E.19.  Since draft-ietf-quic-transport-13
    *  Removed UNSOLICITED_PATH_RESPONSE error code (#1265, #1539)
 
    *  Permit stateless reset in response to any packet (#1348, #1553)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 191]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Recommended defense against stateless reset spoofing (#1386,
       #1554)
@@ -10722,7 +10736,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Remove frame type field from APPLICATION_CLOSE (#1508, #1528)
 
-E.20.  Since draft-ietf-quic-transport-12
+B.20.  Since draft-ietf-quic-transport-12
 
    *  Changes to integration of the TLS handshake (#829, #1018, #1094,
       #1165, #1190, #1233, #1242, #1252, #1450, #1458)
@@ -10731,6 +10745,14 @@ E.20.  Since draft-ietf-quic-transport-12
 
       -  QUIC packet protection is used in place of TLS record
          protection
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 192]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
       -  Separate QUIC packet number spaces are used for the handshake
 
@@ -10746,13 +10768,6 @@ E.20.  Since draft-ietf-quic-transport-12
 
    *  Added ECN feedback mechanisms and handling; new ACK_ECN frame
       (#804, #805, #1372)
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 192]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Changed rules and recommendations for use of new connection IDs
       (#1258, #1264, #1276, #1280, #1419, #1452, #1453, #1465)
@@ -10772,7 +10787,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Added frame type extension mechanism (#58, #1473)
 
-E.21.  Since draft-ietf-quic-transport-11
+B.21.  Since draft-ietf-quic-transport-11
 
    *  Enable server to transition connections to a preferred address
       (#560, #1251)
@@ -10784,7 +10799,16 @@ E.21.  Since draft-ietf-quic-transport-11
 
    *  STREAM frames can now be empty (#1350)
 
-E.22.  Since draft-ietf-quic-transport-10
+B.22.  Since draft-ietf-quic-transport-10
+
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 193]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    *  Swap payload length and packed number fields in long header
       (#1294)
@@ -10801,14 +10825,6 @@ E.22.  Since draft-ietf-quic-transport-10
    *  Refine opportunistic ACK defense text (#305, #1030, #1185)
 
    *  A Stateless Reset Token isn't mandatory (#818, #1191)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 193]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Removed implicit stream opening (#896, #1193)
 
@@ -10828,7 +10844,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Remove implication that Version Negotiation is sent when a packet
       of the wrong version is received (#1197)
 
-E.23.  Since draft-ietf-quic-transport-09
+B.23.  Since draft-ietf-quic-transport-09
 
    *  Added PATH_CHALLENGE and PATH_RESPONSE frames to replace PING with
       Data and PONG frame.  Changed ACK frame type from 0x0e to 0x0d.
@@ -10841,6 +10857,14 @@ E.23.  Since draft-ietf-quic-transport-09
       (#252, #1070)
 
    *  Rework of packet handling and version negotiation (#1038)
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 194]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    *  Stream 0 is now exempt from flow control until the handshake
       completes (#1074, #725, #825, #1082)
@@ -10855,18 +10879,7 @@ E.23.  Since draft-ietf-quic-transport-09
       omit_connection_id transport parameter and the corresponding short
       header flag. (#1089, #1052, #1146, #821, #745, #821, #1166, #1151)
 
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 194]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-E.24.  Since draft-ietf-quic-transport-08
+B.24.  Since draft-ietf-quic-transport-08
 
    *  Clarified requirements for BLOCKED usage (#65, #924)
 
@@ -10894,11 +10907,20 @@ E.24.  Since draft-ietf-quic-transport-08
 
    *  Removed transport parameters from NewSessionTicket (#1015)
 
-E.25.  Since draft-ietf-quic-transport-07
+B.25.  Since draft-ietf-quic-transport-07
 
    *  The long header now has version before packet number (#926, #939)
 
    *  Rename and consolidate packet types (#846, #822, #847)
+
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 195]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
 
    *  Packet types are assigned new codepoints and the Connection ID
       Flag is inverted (#426, #956)
@@ -10914,13 +10936,6 @@ E.25.  Since draft-ietf-quic-transport-07
 
       -  Stream limit transport parameters are now optional and default
          to 0 (#970, #971)
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 195]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  The stream state machine has been split into read and write (#634,
       #894)
@@ -10945,7 +10960,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Increased the range over which packet numbers are randomized
       (#864, #850, #964)
 
-E.26.  Since draft-ietf-quic-transport-06
+B.26.  Since draft-ietf-quic-transport-06
 
    *  Replaced FNV-1a with AES-GCM for all "Cleartext" packets (#554)
 
@@ -10955,6 +10970,14 @@ E.26.  Since draft-ietf-quic-transport-06
 
    *  1-RTT-protected long header types removed (#848)
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 196]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  No acknowledgments during draining period (#852)
 
    *  Remove "application close" as a separate close type (#854)
@@ -10963,20 +10986,12 @@ E.26.  Since draft-ietf-quic-transport-06
 
    *  Require transport parameters to only appear once (#792)
 
-E.27.  Since draft-ietf-quic-transport-05
+B.27.  Since draft-ietf-quic-transport-05
 
    *  Stateless token is server-only (#726)
 
    *  Refactor section on connection termination (#733, #748, #328,
       #177)
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 196]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Limit size of Version Negotiation packet (#585)
 
@@ -10986,7 +11001,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Clarify Keep-alive requirements (#729)
 
-E.28.  Since draft-ietf-quic-transport-04
+B.28.  Since draft-ietf-quic-transport-04
 
    *  Introduce STOP_SENDING frame, RESET_STREAM only resets in one
       direction (#165)
@@ -11010,6 +11025,15 @@ E.28.  Since draft-ietf-quic-transport-04
 
    *  Clarifications to the stream state machine (#572, #571)
 
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 197]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Increased the maximum length of the Largest Acknowledged field in
       ACK frames to 64 bits (#629)
 
@@ -11020,21 +11044,13 @@ E.28.  Since draft-ietf-quic-transport-04
 
    *  Update labels used in HKDF-Expand-Label to match TLS 1.3 (#642)
 
-E.29.  Since draft-ietf-quic-transport-03
+B.29.  Since draft-ietf-quic-transport-03
 
    *  Change STREAM and RESET_STREAM layout
 
    *  Add MAX_STREAM_ID settings
 
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 197]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
-
-E.30.  Since draft-ietf-quic-transport-02
+B.30.  Since draft-ietf-quic-transport-02
 
    *  The size of the initial packet payload has a fixed minimum (#267,
       #472)
@@ -11067,6 +11083,13 @@ E.30.  Since draft-ietf-quic-transport-02
 
       -  BLOCKED split to match WINDOW_UPDATE split (#454)
 
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 198]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
       -  Define STREAM_ID_NEEDED frame (#455)
 
    *  A NEW_CONNECTION_ID frame supports connection migration without
@@ -11080,15 +11103,7 @@ E.30.  Since draft-ietf-quic-transport-02
 
    *  Expanded security considerations (#440, #444, #445, #448)
 
-E.31.  Since draft-ietf-quic-transport-01
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 198]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
+B.31.  Since draft-ietf-quic-transport-01
 
    *  Defined short and long packet headers (#40, #148, #361)
 
@@ -11122,6 +11137,15 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Path MTU Discovery (#64, #106)
 
+
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 199]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  The initial handshake packet from the client needs to fit in a
       single packet (#338)
 
@@ -11138,13 +11162,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Clarified that frames are not retransmitted, but the information
       in them can be (#157, #298)
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 199]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Error handling definitions (#335)
 
@@ -11178,6 +11195,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Moved length-determining fields to the start of STREAM and ACK
       (#168, #277)
 
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 200]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Added the ability to pad between frames (#158, #276)
 
    *  Remove error code and reason phrase from GOAWAY (#352, #355)
@@ -11190,17 +11214,9 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Defined priority as the responsibility of the application protocol
       (#104, #303)
 
-E.32.  Since draft-ietf-quic-transport-00
+B.32.  Since draft-ietf-quic-transport-00
 
    *  Replaced DIVERSIFICATION_NONCE flag with KEY_PHASE flag
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 200]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Defined versioning
 
@@ -11210,7 +11226,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Use big endian for all numeric values
 
-E.33.  Since draft-hamilton-quic-transport-protocol-01
+B.33.  Since draft-hamilton-quic-transport-protocol-01
 
    *  Adopted as base for draft-ietf-quic-tls
 
@@ -11235,6 +11251,13 @@ Contributors
 
    *  Antoine Delignat-Lavaud
 
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 201]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Brian Trammell
 
    *  Christian Huitema
@@ -11250,13 +11273,6 @@ Contributors
    *  Eric Rescorla
 
    *  Gorry Fairhurst
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 201]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
-
 
    *  Ian Swett
 
@@ -11290,6 +11306,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    *  Ryan Hamilton
 
+
+
+
+Iyengar & Thomson          Expires 8 May 2021                 [Page 202]
+
+Internet-Draft           QUIC Transport Protocol           November 2020
+
+
    *  Subodh Iyengar
 
    *  Tatsuhiro Tsujikawa
@@ -11306,12 +11330,6 @@ Authors' Addresses
    Fastly
 
    Email: jri.ietf@gmail.com
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 202]
-
-Internet-Draft           QUIC Transport Protocol           November 2020
 
 
    Martin Thomson (editor)
@@ -11347,22 +11365,4 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Iyengar & Thomson          Expires 7 May 2021                 [Page 203]
+Iyengar & Thomson          Expires 8 May 2021                 [Page 203]

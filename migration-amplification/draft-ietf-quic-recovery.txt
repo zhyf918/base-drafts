@@ -875,13 +875,28 @@ Internet-Draft             QUIC Loss Detection             November 2020
    Resumed connections over the same network MAY use the previous
    connection's final smoothed RTT value as the resumed connection's
    initial RTT.  When no previous RTT is available, the initial RTT
-   SHOULD be set to 333ms, resulting in a 1 second initial timeout, as
-   recommended in [RFC6298].
+   SHOULD be set to 333ms.  This results in handshakes starting with a
+   PTO of 1 second, as recommended for TCP's initial retransmission
+   timeout; see Section 2 of [RFC6298].
 
    A connection MAY use the delay between sending a PATH_CHALLENGE and
    receiving a PATH_RESPONSE to set the initial RTT (see kInitialRtt in
    Appendix A.2) for a new path, but the delay SHOULD NOT be considered
    an RTT sample.
+
+
+
+
+
+
+
+
+
+
+Iyengar & Swett            Expires 8 May 2021                  [Page 16]
+
+Internet-Draft             QUIC Loss Detection             November 2020
+
 
    Initial packets and Handshake packets could be never acknowledged,
    but they are removed from bytes in flight when the Initial and
@@ -890,13 +905,6 @@ Internet-Draft             QUIC Loss Detection             November 2020
    detection timers MUST be reset, because discarding keys indicates
    forward progress and the loss detection timer might have been set for
    a now discarded packet number space.
-
-
-
-Iyengar & Swett            Expires 8 May 2021                  [Page 16]
-
-Internet-Draft             QUIC Loss Detection             November 2020
-
 
 6.2.2.1.  Before Address Validation
 
@@ -939,20 +947,19 @@ Internet-Draft             QUIC Loss Detection             November 2020
    that do not cease retransmitting packets in response to
    unauthenticated data risk creating an infinite exchange of packets.
 
-   Endpoints can also use coalesced packets (see Section 12.2 of
-   [QUIC-TRANSPORT]) to ensure that each datagram elicits at least one
-   acknowledgement.  For example, a client can coalesce an Initial
-   packet containing PING and PADDING frames with a 0-RTT data packet
-   and a server can coalesce an Initial packet containing a PING frame
-   with one or more packets in its first flight.
-
-
 
 
 Iyengar & Swett            Expires 8 May 2021                  [Page 17]
 
 Internet-Draft             QUIC Loss Detection             November 2020
 
+
+   Endpoints can also use coalesced packets (see Section 12.2 of
+   [QUIC-TRANSPORT]) to ensure that each datagram elicits at least one
+   acknowledgement.  For example, a client can coalesce an Initial
+   packet containing PING and PADDING frames with a 0-RTT data packet
+   and a server can coalesce an Initial packet containing a PING frame
+   with one or more packets in its first flight.
 
 6.2.4.  Sending Probe Packets
 
@@ -995,13 +1002,6 @@ Internet-Draft             QUIC Loss Detection             November 2020
    declared too aggressively, resulting in an unnecessary rate reduction
    by the congestion controller.
 
-   Consecutive PTO periods increase exponentially, and as a result,
-   connection recovery latency increases exponentially as packets
-   continue to be dropped in the network.  Sending two packets on PTO
-   expiration increases resilience to packet drops, thus reducing the
-   probability of consecutive PTO events.
-
-
 
 
 
@@ -1009,6 +1009,12 @@ Iyengar & Swett            Expires 8 May 2021                  [Page 18]
 
 Internet-Draft             QUIC Loss Detection             November 2020
 
+
+   Consecutive PTO periods increase exponentially, and as a result,
+   connection recovery latency increases exponentially as packets
+   continue to be dropped in the network.  Sending two packets on PTO
+   expiration increases resilience to packet drops, thus reducing the
+   probability of consecutive PTO events.
 
    When the PTO timer expires multiple times and new data cannot be
    sent, implementations must choose between sending the same payload
@@ -1051,12 +1057,6 @@ Internet-Draft             QUIC Loss Detection             November 2020
    When 0-RTT is rejected, recovery state for all in-flight 0-RTT
    packets is discarded.
 
-   If a server accepts 0-RTT, but does not buffer 0-RTT packets that
-   arrive before Initial packets, early 0-RTT packets will be declared
-   lost, but that is expected to be infrequent.
-
-
-
 
 
 
@@ -1065,6 +1065,10 @@ Iyengar & Swett            Expires 8 May 2021                  [Page 19]
 
 Internet-Draft             QUIC Loss Detection             November 2020
 
+
+   If a server accepts 0-RTT, but does not buffer 0-RTT packets that
+   arrive before Initial packets, early 0-RTT packets will be declared
+   lost, but that is expected to be infrequent.
 
    It is expected that keys are discarded after packets encrypted with
    them would be acknowledged or declared lost.  However, Initial
@@ -1107,10 +1111,6 @@ Internet-Draft             QUIC Loss Detection             November 2020
    as a signal of congestion.  This document specifies an endpoint's
    response when the peer-reported ECN-CE count increases; see
    Section 13.4.2 of [QUIC-TRANSPORT].
-
-
-
-
 
 
 

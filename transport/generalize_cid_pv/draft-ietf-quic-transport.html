@@ -3726,9 +3726,9 @@ validation is performed both during connection establishment (see
         </h3>
 <p id="section-8.1-1">Connection establishment implicitly provides address validation for both
 endpoints.  In particular, receipt of a packet protected with Handshake keys
-confirms that the client received the Initial packet from the server.  Once the
-server has successfully processed a Handshake packet from the client, it can
-consider the client address to have been validated.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
+confirms that the peer received an endpoint's Initial packet.  Once an endpoint
+has successfully processed a Handshake packet from the peer, it can consider the
+peer's address to have been validated.<a href="#section-8.1-1" class="pilcrow">¶</a></p>
 <p id="section-8.1-2">Additionally, an endpoint MAY consider the peer address validated if the peer
 uses a connection ID chosen by the endpoint and the connection ID contains at
 least 64 bits of entropy.  This means that any valid packet received by the

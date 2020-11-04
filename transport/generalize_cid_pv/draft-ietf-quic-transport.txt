@@ -2730,10 +2730,10 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    Connection establishment implicitly provides address validation for
    both endpoints.  In particular, receipt of a packet protected with
-   Handshake keys confirms that the client received the Initial packet
-   from the server.  Once the server has successfully processed a
-   Handshake packet from the client, it can consider the client address
-   to have been validated.
+   Handshake keys confirms that the peer received an endpoint's Initial
+   packet.  Once an endpoint has successfully processed a Handshake
+   packet from the peer, it can consider the peer's address to have been
+   validated.
 
 
 

@@ -3240,8 +3240,8 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    a new path to become available or close the connection.  An endpoint
    that has no valid network path to its peer MAY signal this using the
    NO_VIABLE_PATH connection error, noting that this is only possible if
-   the network has a limited MTU.
-
+   the network path exists but does not support the required MTU
+   Section 14.
 
 
 

@@ -174,7 +174,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      12.1.  Protected Packets  . . . . . . . . . . . . . . . . . . .  81
      12.2.  Coalescing Packets . . . . . . . . . . . . . . . . . . .  82
      12.3.  Packet Numbers . . . . . . . . . . . . . . . . . . . . .  83
-     12.4.  Frames and Frame Types . . . . . . . . . . . . . . . . .  84
+     12.4.  Frames and Frame Types . . . . . . . . . . . . . . . . .  85
      12.5.  Frames and Number Spaces . . . . . . . . . . . . . . . .  88
    13. Packetization and Reliability . . . . . . . . . . . . . . . .  89
      13.1.  Packet Processing  . . . . . . . . . . . . . . . . . . .  89
@@ -4522,14 +4522,14 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Retry packets use an authenticated encryption with associated data
    function (AEAD; [AEAD]) to protect against accidental modification.
 
-   Initial packets use an AEAD, the keys for which are derived using a
-   value that is visible on the wire.  Initial packets therefore do not
-   have effective confidentiality protection.  Initial protection exists
-   to ensure that the sender of the packet is on the network path.  Any
-   entity that receives an Initial packet from a client can recover the
-   keys that will allow them to both read the contents of the packet and
-   generate Initial packets that will be successfully authenticated at
-   either endpoint.
+
+
+
+
+
+
+
+
 
 
 
@@ -4537,6 +4537,16 @@ Iyengar & Thomson          Expires 11 May 2021                 [Page 81]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+   Initial packets use an AEAD, the keys for which are derived using a
+   value that is visible on the wire.  Initial packets therefore do not
+   have effective confidentiality protection.  Initial protection exists
+   to ensure that the sender of the packet is on the network path.  Any
+   entity that receives an Initial packet from a client can recover the
+   keys that will allow them to both read the contents of the packet and
+   generate Initial packets that will be successfully authenticated at
+   either endpoint.  The AEAD also protects Initial packets against
+   accidental modification.
 
    All other packets are protected with keys derived from the
    cryptographic handshake.  The cryptographic handshake ensures that
@@ -4574,16 +4584,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    are to be sent at the same encryption level, instead of coalescing
    multiple packets at the same encryption level.
 
-   Receivers MAY route based on the information in the first packet
-   contained in a UDP datagram.  Senders MUST NOT coalesce QUIC packets
-   with different connection IDs into a single UDP datagram.  Receivers
-   SHOULD ignore any subsequent packets with a different Destination
-   Connection ID than the first packet in the datagram.
-
-
-
-
-
 
 
 
@@ -4593,6 +4593,12 @@ Iyengar & Thomson          Expires 11 May 2021                 [Page 82]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+   Receivers MAY route based on the information in the first packet
+   contained in a UDP datagram.  Senders MUST NOT coalesce QUIC packets
+   with different connection IDs into a single UDP datagram.  Receivers
+   SHOULD ignore any subsequent packets with a different Destination
+   Connection ID than the first packet in the datagram.
 
    Every QUIC packet that is coalesced into a single UDP datagram is
    separate and complete.  The receiver of coalesced QUIC packets MUST
@@ -4637,18 +4643,15 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    *  Application data space: All 0-RTT (Section 17.2.3) and 1-RTT
       (Section 17.3) encrypted packets are in this space.
 
-   As described in [QUIC-TLS], each packet type uses different
-   protection keys.
-
-
-
-
 
 
 Iyengar & Thomson          Expires 11 May 2021                 [Page 83]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+   As described in [QUIC-TLS], each packet type uses different
+   protection keys.
 
    Conceptually, a packet number space is the context in which a packet
    can be processed and acknowledged.  Initial packets can only be sent
@@ -4691,12 +4694,9 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Packet number encoding at a sender and decoding at a receiver are
    described in Section 17.1.
 
-12.4.  Frames and Frame Types
 
-   The payload of QUIC packets, after removing packet protection,
-   consists of a sequence of complete frames, as shown in Figure 11.
-   Version Negotiation, Stateless Reset, and Retry packets do not
-   contain frames.
+
+
 
 
 
@@ -4705,6 +4705,13 @@ Iyengar & Thomson          Expires 11 May 2021                 [Page 84]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+12.4.  Frames and Frame Types
+
+   The payload of QUIC packets, after removing packet protection,
+   consists of a sequence of complete frames, as shown in Figure 11.
+   Version Negotiation, Stateless Reset, and Retry packets do not
+   contain frames.
 
    Packet Payload {
      Frame (8..) ...,
@@ -4730,13 +4737,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    Table 3 lists and summarizes information about each frame type that
    is defined in this specification.  A description of this summary is
    included after the table.
-
-
-
-
-
-
-
 
 
 

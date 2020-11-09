@@ -5628,7 +5628,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    fragmentation on the path.
 
    QUIC sometimes requires datagrams to be no smaller than a certain
-   size; see Section 6 as an example.  However, the size of a datagram
+   size; see Section 8.1 as an example.  However, the size of a datagram
    is not authenticated.  That is, if an endpoint receives a datagram of
    a certain size, it cannot know that the sender sent the datagram at
    the same size.  Therefore, an endpoint MUST NOT close a connection

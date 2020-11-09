@@ -2737,7 +2737,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    Additionally, an endpoint MAY consider the peer address validated if
    the peer uses a connection ID chosen by the endpoint and the
-   connection ID contains at least 64 bits of entropy.  A client can
+   connection ID contains at least 64 bits of entropy.
 
 
 
@@ -2746,10 +2746,12 @@ Iyengar & Thomson          Expires 13 May 2021                 [Page 49]
 Internet-Draft           QUIC Transport Protocol           November 2020
 
 
-   consider the server address validated on successfully processing any
-   packet received from the server, since for encrypting its Initial
-   packets, the server uses the Destination Connection ID field from the
-   client's first Initial packet; see Section 5.2 of [QUIC-TLS].
+   For the client, the value of the Destination Connection ID field in
+   its first Initial packet allows it to validate the server address as
+   a part of successfully processing any packet.  Initial packets from
+   the server are protected with keys that are derived from this value
+   (see Section 5.2 of [QUIC-TLS]).  Alternatively, the value is echoed
+   by the server in Retry and Version Negotiation packets.
 
    Prior to validating the client address, servers MUST NOT send more
    than three times as many bytes as the number of bytes they have
@@ -2790,8 +2792,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    servers are also constrained in what they can send by the limits set
    by the congestion controller.  Clients are only constrained by the
    congestion controller.
-
-
 
 
 

@@ -1012,7 +1012,7 @@ Internet-Draft                   HTTP/3                    November 2020
 
    *  the inclusion of uppercase field names, or
 
-   *  the inclusion of invalid characters in field names or values
+   *  the inclusion of invalid characters in field names or values.
 
    A request or response that includes a payload body can include a
    Content-Length header field.  A request or response is also malformed
@@ -3420,7 +3420,7 @@ Internet-Draft                   HTTP/3                    November 2020
 
    PROTOCOL_ERROR (0x1):  This is mapped to H3_GENERAL_PROTOCOL_ERROR
       except in cases where more specific error codes have been defined.
-      Such cases include H3_FRAME_UNEXPECTED and
+      Such cases include H3_FRAME_UNEXPECTED, H3_MESSAGE_ERROR, and
       H3_CLOSED_CRITICAL_STREAM defined in Section 8.1.
 
    INTERNAL_ERROR (0x2):  H3_INTERNAL_ERROR in Section 8.1.

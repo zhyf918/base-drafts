@@ -15,11 +15,13 @@ Expires: 14 May 2021                                             Mozilla
 Abstract
 
    This document defines the core of the QUIC transport protocol.  QUIC
-   provides streams for structuring application data, flow control, low-
-   latency connection establishment, network path migration, and uses
-   authenticated encryption for most protocol data.  Accompanying
-   documents describe the integration of TLS for key negotiation, loss
-   detection, and an exemplary congestion control algorithm.
+   provides applications with flow-controlled streams for structured
+   communication, low-latency connection establishment, and network path
+   migration.  QUIC includes security measures that ensure
+   confidentiality, integrity, and availability in a range of deployment
+   circumstances.  Accompanying documents describe the integration of
+   TLS for key negotiation, loss detection, and an exemplary congestion
+   control algorithm.
 
 Note to Readers
 
@@ -47,8 +49,6 @@ Status of This Memo
    material or to cite them other than as "work in progress."
 
    This Internet-Draft will expire on 14 May 2021.
-
-
 
 
 

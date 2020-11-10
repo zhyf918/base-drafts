@@ -128,7 +128,7 @@ Internet-Draft           QUIC Transport Protocol           November 2020
      7.5.  Cryptographic Message Buffering . . . . . . . . . . . . .  48
    8.  Address Validation  . . . . . . . . . . . . . . . . . . . . .  49
      8.1.  Address Validation During Connection Establishment  . . .  49
-       8.1.1.  Token Construction  . . . . . . . . . . . . . . . . .  50
+       8.1.1.  Token Construction  . . . . . . . . . . . . . . . . .  51
        8.1.2.  Address Validation using Retry Packets  . . . . . . .  51
        8.1.3.  Address Validation for Future Connections . . . . . .  52
        8.1.4.  Address Validation Token Integrity  . . . . . . . . .  54
@@ -2730,13 +2730,13 @@ Internet-Draft           QUIC Transport Protocol           November 2020
 
    Connection establishment implicitly provides address validation for
    both endpoints.  In particular, receipt of a packet protected with
-   Handshake keys confirms that the client received the Initial packet
-   from the server.  Once the server has successfully processed a
-   Handshake packet from the client, it can consider the client address
-   to have been validated.
+   Handshake keys confirms that the peer successfully processed an
+   Initial packet.  Once an endpoint has successfully processed a
+   Handshake packet from the peer, it can consider the peer address to
+   have been validated.
 
-   Additionally, a server MAY consider the client address validated if
-   the client uses a connection ID chosen by the server and the
+   Additionally, an endpoint MAY consider the peer address validated if
+   the peer uses a connection ID chosen by the endpoint and the
    connection ID contains at least 64 bits of entropy.
 
 
@@ -2745,6 +2745,14 @@ Iyengar & Thomson          Expires 14 May 2021                 [Page 49]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+   For the client, the value of the Destination Connection ID field in
+   its first Initial packet allows it to validate the server address as
+   a part of successfully processing any packet.  Initial packets from
+   the server are protected with keys that are derived from this value
+   (see Section 5.2 of [QUIC-TLS]).  Alternatively, the value is echoed
+   by the server in Version Negotiation packets (Section 6) or included
+   in the Integrity Tag in Retry packets (Section 5.8 of [QUIC-TLS]).
 
    Prior to validating the client address, servers MUST NOT send more
    than three times as many bytes as the number of bytes they have
@@ -2786,14 +2794,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    by the congestion controller.  Clients are only constrained by the
    congestion controller.
 
-8.1.1.  Token Construction
-
-   A token sent in a NEW_TOKEN frames or a Retry packet MUST be
-   constructed in a way that allows the server to identify how it was
-   provided to a client.  These tokens are carried in the same field,
-   but require different handling from servers.
-
-
 
 
 
@@ -2801,6 +2801,13 @@ Iyengar & Thomson          Expires 14 May 2021                 [Page 50]
 
 Internet-Draft           QUIC Transport Protocol           November 2020
 
+
+8.1.1.  Token Construction
+
+   A token sent in a NEW_TOKEN frames or a Retry packet MUST be
+   constructed in a way that allows the server to identify how it was
+   provided to a client.  These tokens are carried in the same field,
+   but require different handling from servers.
 
 8.1.2.  Address Validation using Retry Packets
 
@@ -2840,13 +2847,6 @@ Internet-Draft           QUIC Transport Protocol           November 2020
    closing period.
 
    A flow showing the use of a Retry packet is shown in Figure 9.
-
-
-
-
-
-
-
 
 
 

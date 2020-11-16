@@ -1418,13 +1418,13 @@ not available.<a href="#section-4.2-3" class="pilcrow">¶</a></p>
         <h3 id="name-clearer-loss-epoch">
 <a href="#section-4.3" class="section-number selfRef">4.3. </a><a href="#name-clearer-loss-epoch" class="section-name selfRef">Clearer Loss Epoch</a>
         </h3>
-<p id="section-4.3-1">QUIC starts a loss epoch when a packet is lost and ends one when any packet
-sent after the epoch starts is acknowledged.  TCP waits for the gap in the
-sequence number space to be filled, and so if a segment is lost multiple times
-in a row, the loss epoch may not end for several round trips. Because both
-should reduce their congestion windows only once per epoch, QUIC will do it
-once for every round trip that experiences loss, while TCP may only do it
-once across multiple round trips.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
+<p id="section-4.3-1">QUIC starts a loss epoch when a packet is lost. The loss epoch ends when any
+packet sent after the start of the epoch is acknowledged.  TCP waits for the gap
+in the sequence number space to be filled, and so if a segment is lost multiple
+times in a row, the loss epoch may not end for several round trips. Because both
+should reduce their congestion windows only once per epoch, QUIC will do it once
+for every round trip that experiences loss, while TCP may only do it once across
+multiple round trips.<a href="#section-4.3-1" class="pilcrow">¶</a></p>
 </section>
 </div>
 <div id="no-reneging">
@@ -3107,7 +3107,7 @@ detected as lost.<a href="#section-a.10-1" class="pilcrow">¶</a></p>
 DetectAndRemoveLostPackets(pn_space):
   assert(largest_acked_packet[pn_space] != infinite)
   loss_time[pn_space] = 0
-  lost_packets = {}
+  lost_packets = []
   loss_delay = kTimeThreshold * max(latest_rtt, smoothed_rtt)
 
   // Minimum time of kGranularity before packets are deemed lost.
@@ -3403,7 +3403,7 @@ OnPacketsLost(lost_packets):
   // Only consider packets sent after getting an RTT sample.
   if (first_rtt_sample == 0):
     return
-  pc_lost = {}
+  pc_lost = []
   for lost in lost_packets:
     if lost.time_sent &gt; first_rtt_sample:
       pc_lost.insert(lost)
@@ -3440,8 +3440,8 @@ RemoveFromBytesInFlight(discarded_packets):
       <h2 id="name-change-log">
 <a href="#section-appendix.c" class="section-number selfRef">Appendix C. </a><a href="#name-change-log" class="section-name selfRef">Change Log</a>
       </h2>
-<ul class="normal ulEmpty">
-<li class="normal ulEmpty" id="section-appendix.c-1.1">
+<ul class="ulEmpty normal">
+<li class="ulEmpty normal" id="section-appendix.c-1.1">
           <strong>RFC Editor's Note:</strong>  Please remove this section prior to
 publication of a final version of this document.<a href="#section-appendix.c-1.1" class="pilcrow">¶</a>
 </li>

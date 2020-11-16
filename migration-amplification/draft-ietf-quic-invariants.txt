@@ -4,8 +4,8 @@
 
 QUIC                                                          M. Thomson
 Internet-Draft                                                   Mozilla
-Intended status: Standards Track                         6 November 2020
-Expires: 10 May 2021
+Intended status: Standards Track                        16 November 2020
+Expires: 20 May 2021
 
 
                  Version-Independent Properties of QUIC
@@ -43,20 +43,12 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 10 May 2021.
+   This Internet-Draft will expire on 20 May 2021.
 
 Copyright Notice
 
    Copyright (c) 2020 IETF Trust and the persons identified as the
    document authors.  All rights reserved.
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 1]
-
-Internet-Draft               QUIC Invariants               November 2020
-
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents (https://trustee.ietf.org/
@@ -69,23 +61,23 @@ Internet-Draft               QUIC Invariants               November 2020
 
 Table of Contents
 
-   1.  An Extremely Abstract Description of QUIC . . . . . . . . . .   2
-   2.  Fixed Properties of All QUIC Versions . . . . . . . . . . . .   2
-   3.  Conventions and Definitions . . . . . . . . . . . . . . . . .   3
-   4.  Notational Conventions  . . . . . . . . . . . . . . . . . . .   3
-   5.  QUIC Packets  . . . . . . . . . . . . . . . . . . . . . . . .   4
-     5.1.  Long Header . . . . . . . . . . . . . . . . . . . . . . .   4
-     5.2.  Short Header  . . . . . . . . . . . . . . . . . . . . . .   5
-     5.3.  Connection ID . . . . . . . . . . . . . . . . . . . . . .   6
-     5.4.  Version . . . . . . . . . . . . . . . . . . . . . . . . .   6
-   6.  Version Negotiation . . . . . . . . . . . . . . . . . . . . .   6
-   7.  Security and Privacy Considerations . . . . . . . . . . . . .   8
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .   8
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .   8
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .   8
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .   8
-   Appendix A.  Incorrect Assumptions  . . . . . . . . . . . . . . .   9
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  10
+   1.  An Extremely Abstract Description of QUIC
+   2.  Fixed Properties of All QUIC Versions
+   3.  Conventions and Definitions
+   4.  Notational Conventions
+   5.  QUIC Packets
+     5.1.  Long Header
+     5.2.  Short Header
+     5.3.  Connection ID
+     5.4.  Version
+   6.  Version Negotiation
+   7.  Security and Privacy Considerations
+   8.  IANA Considerations
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
+   Appendix A.  Incorrect Assumptions
+   Author's Address
 
 1.  An Extremely Abstract Description of QUIC
 
@@ -105,14 +97,6 @@ Table of Contents
    This document describes the subset of QUIC that is intended to remain
    stable as new versions are developed and deployed.  All of these
    invariants are IP-version-independent.
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 2]
-
-Internet-Draft               QUIC Invariants               November 2020
-
 
    The primary goal of this document is to ensure that it is possible to
    deploy new versions of QUIC.  By documenting the properties that
@@ -163,13 +147,6 @@ Internet-Draft               QUIC Invariants               November 2020
 
    x (?) = C:  Indicates that x has a fixed value of C
 
-
-
-Thomson                    Expires 10 May 2021                  [Page 3]
-
-Internet-Draft               QUIC Invariants               November 2020
-
-
    x (E) ...:  Indicates that x is repeated zero or more times (and that
       each instance is length E)
 
@@ -211,20 +188,6 @@ Internet-Draft               QUIC Invariants               November 2020
 5.1.  Long Header
 
    Long headers take the form described in Figure 2.
-
-
-
-
-
-
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 4]
-
-Internet-Draft               QUIC Invariants               November 2020
-
 
    Long Header Packet {
      Header Form (1) = 1,
@@ -274,14 +237,6 @@ Internet-Draft               QUIC Invariants               November 2020
    A QUIC packet with a short header has the high bit of the first byte
    set to 0.
 
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 5]
-
-Internet-Draft               QUIC Invariants               November 2020
-
-
    A QUIC packet with a short header includes a Destination Connection
    ID immediately following the first byte.  The short header does not
    include the Connection ID Lengths, Source Connection ID, or Version
@@ -327,16 +282,6 @@ Internet-Draft               QUIC Invariants               November 2020
    version it either does not understand or does not support might send
    a Version Negotiation packet in response.  Packets with a short
    header do not trigger version negotiation.
-
-
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 6]
-
-Internet-Draft               QUIC Invariants               November 2020
-
 
    A Version Negotiation packet sets the high bit of the first byte, and
    thus it conforms with the format of a packet with a long header as
@@ -387,13 +332,6 @@ Internet-Draft               QUIC Invariants               November 2020
    conditions under which an endpoint changes QUIC version will depend
    on the version of QUIC that it chooses.
 
-
-
-Thomson                    Expires 10 May 2021                  [Page 7]
-
-Internet-Draft               QUIC Invariants               November 2020
-
-
    See [QUIC-TRANSPORT] for a more thorough description of how an
    endpoint that supports QUIC version 1 generates and consumes a
    Version Negotiation packet.
@@ -439,26 +377,15 @@ Internet-Draft               QUIC Invariants               November 2020
 
 9.2.  Informative References
 
-
-
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 8]
-
-Internet-Draft               QUIC Invariants               November 2020
-
-
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using Transport
               Layer Security (TLS) to Secure QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-tls, 6 November 2020,
+              Internet-Draft, draft-ietf-quic-tls, 16 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 6 November
+              Internet-Draft, draft-ietf-quic-transport, 16 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -497,15 +424,6 @@ Appendix A.  Incorrect Assumptions
    *  QUIC uses an AEAD (AEAD_AES_128_GCM [RFC5116]) to protect the
       packets it exchanges during connection establishment
 
-
-
-
-
-Thomson                    Expires 10 May 2021                  [Page 9]
-
-Internet-Draft               QUIC Invariants               November 2020
-
-
    *  QUIC packet numbers are encrypted and appear as the first
       encrypted bytes
 
@@ -541,20 +459,3 @@ Author's Address
    Mozilla
 
    Email: mt@lowentropy.net
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Thomson                    Expires 10 May 2021                 [Page 10]

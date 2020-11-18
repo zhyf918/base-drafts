@@ -5,8 +5,8 @@
 QUIC                                                     J. Iyengar, Ed.
 Internet-Draft                                                    Fastly
 Intended status: Standards Track                         M. Thomson, Ed.
-Expires: 20 May 2021                                             Mozilla
-                                                        16 November 2020
+Expires: 22 May 2021                                             Mozilla
+                                                        18 November 2020
 
 
            QUIC: A UDP-Based Multiplexed and Secure Transport
@@ -48,7 +48,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 20 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -3723,9 +3723,12 @@ Table of Contents
 
    As the AEAD on Initial packets does not provide strong
    authentication, an endpoint MAY discard an invalid Initial packet.
-   This is only possible if the endpoint does not process the frames in
-   the packet or reverts the effects of any processing.  This might be
-   used to reduce exposure to denial of service; see Section 21.2.
+   Discarding an Initial packet is permitted even where this
+   specification otherwise mandates a connection error.  An endpoint can
+   only discard a packet if it does not process the frames in the packet
+   or reverts the effects of any processing.  Discarding invalid Initial
+   packets might be used to reduce exposure to denial of service; see
+   Section 21.2.
 
    All other packets are protected with keys derived from the
    cryptographic handshake.  The cryptographic handshake ensures that
@@ -7962,12 +7965,12 @@ Table of Contents
    [QUIC-RECOVERY]
               Iyengar, J., Ed. and I. Swett, Ed., "QUIC Loss Detection
               and Congestion Control", Work in Progress, Internet-Draft,
-              draft-ietf-quic-recovery, 16 November 2020,
+              draft-ietf-quic-recovery, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-recovery>.
 
    [QUIC-TLS] Thomson, M., Ed. and S. Turner, Ed., "Using Transport
               Layer Security (TLS) to Secure QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-tls, 16 November 2020,
+              Internet-Draft, draft-ietf-quic-tls, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-tls>.
 
    [RFC1191]  Mogul, J. and S. Deering, "Path MTU discovery", RFC 1191,
@@ -8083,7 +8086,7 @@ Table of Contents
    [QUIC-INVARIANTS]
               Thomson, M., "Version-Independent Properties of QUIC",
               Work in Progress, Internet-Draft, draft-ietf-quic-
-              invariants, 16 November 2020,
+              invariants, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-invariants>.
 
    [QUIC-MANAGEABILITY]

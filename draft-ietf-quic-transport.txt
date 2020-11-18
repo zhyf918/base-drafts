@@ -3865,8 +3865,9 @@ Table of Contents
 
    The payload of a packet that contains frames MUST contain at least
    one frame, and MAY contain multiple frames and multiple frame types.
-   Frames always fit within a single QUIC packet and cannot span
-   multiple packets.
+   An endpoint MUST treat receipt of a packet containing no frames as a
+   connection error of type PROTOCOL_VIOLATION.  Frames always fit
+   within a single QUIC packet and cannot span multiple packets.
 
    Each frame begins with a Frame Type, indicating its type, followed by
    additional type-dependent fields:
@@ -5150,7 +5151,7 @@ Table of Contents
      Token (..),
      Length (i),
      Packet Number (8..32),
-     Packet Payload (..),
+     Packet Payload (8..),
    }
 
                          Figure 15: Initial Packet
@@ -5248,7 +5249,7 @@ Table of Contents
      Source Connection ID (0..160),
      Length (i),
      Packet Number (8..32),
-     Packet Payload (..),
+     Packet Payload (8..),
    }
 
                           Figure 16: 0-RTT Packet
@@ -5298,7 +5299,7 @@ Table of Contents
      Source Connection ID (0..160),
      Length (i),
      Packet Number (8..32),
-     Packet Payload (..),
+     Packet Payload (8..),
    }
 
                    Figure 17: Handshake Protected Packet
@@ -5462,7 +5463,7 @@ Table of Contents
      Packet Number Length (2),
      Destination Connection ID (0..160),
      Packet Number (8..32),
-     Packet Payload (..),
+     Packet Payload (8..),
    }
 
                    Figure 19: Short Header Packet Format

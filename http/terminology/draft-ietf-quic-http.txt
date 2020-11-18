@@ -4,8 +4,8 @@
 
 QUIC                                                      M. Bishop, Ed.
 Internet-Draft                                                    Akamai
-Intended status: Standards Track                        17 November 2020
-Expires: 21 May 2021
+Intended status: Standards Track                        18 November 2020
+Expires: 22 May 2021
 
 
              Hypertext Transfer Protocol Version 3 (HTTP/3)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -794,8 +794,8 @@ Table of Contents
    has received this parameter SHOULD NOT send an HTTP message header
    that exceeds the indicated size, as the peer will likely refuse to
    process it.  However, an HTTP message can traverse one or more
-   intermediaries (see Section 3.7 of [SEMANTICS]) before reaching the
-   origin server.  Because this limit is applied separately by each
+   intermediaries before reaching the origin server; see Section 3.7 of
+   [SEMANTICS].  Because this limit is applied separately by each
    implementation which processes the message, messages below this limit
    are not guaranteed to be accepted.
 
@@ -837,13 +837,13 @@ Table of Contents
    If a stream is canceled after receiving a complete response, the
    client MAY ignore the cancellation and use the response.  However, if
    a stream is cancelled after receiving a partial response, the
-   response SHOULD NOT be used.  Only idempotent actions (such as GET,
-   PUT, or DELETE) can be safely retried; a client SHOULD NOT
+   response SHOULD NOT be used.  Only idempotent actions such as GET,
+   PUT, or DELETE can be safely retried; a client SHOULD NOT
    automatically retry a request with a non-idempotent method unless it
-   has some means to know that the request semantics are actually
-   idempotent, regardless of the method, or some means to detect that
-   the original request was never applied.  See Section 8.2.2 of
-   [SEMANTICS] for more details.
+   has some means to know that the request semantics are idempotent
+   independent of the method or some means to detect that the original
+   request was never applied.  See Section 8.2.2 of [SEMANTICS] for more
+   details.
 
 4.1.3.  Malformed Requests and Responses
 
@@ -2514,13 +2514,13 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 17 November 2020,
+              Internet-Draft, draft-ietf-quic-qpack, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 17 November
+              Internet-Draft, draft-ietf-quic-transport, 18 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 

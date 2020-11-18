@@ -5,10 +5,10 @@
 QUIC                                                           C. Krasic
 Internet-Draft                                                   Netflix
 Intended status: Standards Track                               M. Bishop
-Expires: 14 May 2021                                 Akamai Technologies
+Expires: 22 May 2021                                 Akamai Technologies
                                                         A. Frindell, Ed.
                                                                 Facebook
-                                                        10 November 2020
+                                                        18 November 2020
 
 
                   QPACK: Header Compression for HTTP/3
@@ -47,16 +47,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 14 May 2021.
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 1]
-
-Internet-Draft                    QPACK                    November 2020
-
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -74,112 +65,96 @@ Copyright Notice
 
 Table of Contents
 
-   1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   4
-     1.1.  Conventions and Definitions . . . . . . . . . . . . . . .   4
-     1.2.  Notational Conventions  . . . . . . . . . . . . . . . . .   5
-   2.  Compression Process Overview  . . . . . . . . . . . . . . . .   5
-     2.1.  Encoder . . . . . . . . . . . . . . . . . . . . . . . . .   6
-       2.1.1.  Limits on Dynamic Table Insertions  . . . . . . . . .   6
-       2.1.2.  Blocked Streams . . . . . . . . . . . . . . . . . . .   7
-       2.1.3.  Avoiding Flow Control Deadlocks . . . . . . . . . . .   8
-       2.1.4.  Known Received Count  . . . . . . . . . . . . . . . .   9
-     2.2.  Decoder . . . . . . . . . . . . . . . . . . . . . . . . .   9
-       2.2.1.  Blocked Decoding  . . . . . . . . . . . . . . . . . .   9
-       2.2.2.  State Synchronization . . . . . . . . . . . . . . . .  10
-       2.2.3.  Invalid References  . . . . . . . . . . . . . . . . .  11
-   3.  Reference Tables  . . . . . . . . . . . . . . . . . . . . . .  11
-     3.1.  Static Table  . . . . . . . . . . . . . . . . . . . . . .  11
-     3.2.  Dynamic Table . . . . . . . . . . . . . . . . . . . . . .  12
-       3.2.1.  Dynamic Table Size  . . . . . . . . . . . . . . . . .  12
-       3.2.2.  Dynamic Table Capacity and Eviction . . . . . . . . .  12
-       3.2.3.  Maximum Dynamic Table Capacity  . . . . . . . . . . .  13
-       3.2.4.  Absolute Indexing . . . . . . . . . . . . . . . . . .  13
-       3.2.5.  Relative Indexing . . . . . . . . . . . . . . . . . .  14
-       3.2.6.  Post-Base Indexing  . . . . . . . . . . . . . . . . .  15
-   4.  Wire Format . . . . . . . . . . . . . . . . . . . . . . . . .  15
-     4.1.  Primitives  . . . . . . . . . . . . . . . . . . . . . . .  15
-       4.1.1.  Prefixed Integers . . . . . . . . . . . . . . . . . .  15
-       4.1.2.  String Literals . . . . . . . . . . . . . . . . . . .  15
-     4.2.  Encoder and Decoder Streams . . . . . . . . . . . . . . .  16
-     4.3.  Encoder Instructions  . . . . . . . . . . . . . . . . . .  17
-       4.3.1.  Set Dynamic Table Capacity  . . . . . . . . . . . . .  17
-       4.3.2.  Insert With Name Reference  . . . . . . . . . . . . .  18
-       4.3.3.  Insert With Literal Name  . . . . . . . . . . . . . .  18
-       4.3.4.  Duplicate . . . . . . . . . . . . . . . . . . . . . .  19
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 2]
-
-Internet-Draft                    QPACK                    November 2020
-
-
-     4.4.  Decoder Instructions  . . . . . . . . . . . . . . . . . .  19
-       4.4.1.  Section Acknowledgement . . . . . . . . . . . . . . .  19
-       4.4.2.  Stream Cancellation . . . . . . . . . . . . . . . . .  20
-       4.4.3.  Insert Count Increment  . . . . . . . . . . . . . . .  20
-     4.5.  Field Line Representations  . . . . . . . . . . . . . . .  20
-       4.5.1.  Encoded Field Section Prefix  . . . . . . . . . . . .  21
-       4.5.2.  Indexed Field Line  . . . . . . . . . . . . . . . . .  23
-       4.5.3.  Indexed Field Line With Post-Base Index . . . . . . .  24
-       4.5.4.  Literal Field Line With Name Reference  . . . . . . .  24
-       4.5.5.  Literal Field Line With Post-Base Name Reference  . .  25
-       4.5.6.  Literal Field Line With Literal Name  . . . . . . . .  25
-   5.  Configuration . . . . . . . . . . . . . . . . . . . . . . . .  26
-   6.  Error Handling  . . . . . . . . . . . . . . . . . . . . . . .  26
-   7.  Security Considerations . . . . . . . . . . . . . . . . . . .  27
-     7.1.  Probing Dynamic Table State . . . . . . . . . . . . . . .  27
-     7.2.  Applicability to QPACK and HTTP . . . . . . . . . . . . .  28
-     7.3.  Mitigation  . . . . . . . . . . . . . . . . . . . . . . .  28
-     7.4.  Never-Indexed Literals  . . . . . . . . . . . . . . . . .  29
-     7.5.  Static Huffman Encoding . . . . . . . . . . . . . . . . .  30
-     7.6.  Memory Consumption  . . . . . . . . . . . . . . . . . . .  30
-     7.7.  Implementation Limits . . . . . . . . . . . . . . . . . .  31
-   8.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  32
-     8.1.  Settings Registration . . . . . . . . . . . . . . . . . .  32
-     8.2.  Stream Type Registration  . . . . . . . . . . . . . . . .  32
-     8.3.  Error Code Registration . . . . . . . . . . . . . . . . .  32
-   9.  References  . . . . . . . . . . . . . . . . . . . . . . . . .  33
-     9.1.  Normative References  . . . . . . . . . . . . . . . . . .  33
-     9.2.  Informative References  . . . . . . . . . . . . . . . . .  34
-   Appendix A.  Static Table . . . . . . . . . . . . . . . . . . . .  34
-   Appendix B.  Encoding and Decoding Examples . . . . . . . . . . .  39
-     B.1.  Literal Field Line With Name Reference  . . . . . . . . .  39
-     B.2.  Dynamic Table . . . . . . . . . . . . . . . . . . . . . .  40
-     B.3.  Speculative Insert  . . . . . . . . . . . . . . . . . . .  41
-     B.4.  Duplicate Instruction, Stream Cancellation  . . . . . . .  42
-     B.5.  Dynamic Table Insert, Eviction  . . . . . . . . . . . . .  43
-   Appendix C.  Sample One Pass Encoding Algorithm . . . . . . . . .  44
-   Appendix D.  Change Log . . . . . . . . . . . . . . . . . . . . .  45
-     D.1.  Since draft-ietf-quic-qpack-18  . . . . . . . . . . . . .  45
-     D.2.  Since draft-ietf-quic-qpack-17  . . . . . . . . . . . . .  45
-     D.3.  Since draft-ietf-quic-qpack-16  . . . . . . . . . . . . .  45
-     D.4.  Since draft-ietf-quic-qpack-15  . . . . . . . . . . . . .  45
-     D.5.  Since draft-ietf-quic-qpack-14  . . . . . . . . . . . . .  46
-     D.6.  Since draft-ietf-quic-qpack-13  . . . . . . . . . . . . .  46
-     D.7.  Since draft-ietf-quic-qpack-12  . . . . . . . . . . . . .  46
-     D.8.  Since draft-ietf-quic-qpack-11  . . . . . . . . . . . . .  46
-     D.9.  Since draft-ietf-quic-qpack-10  . . . . . . . . . . . . .  46
-     D.10. Since draft-ietf-quic-qpack-09  . . . . . . . . . . . . .  46
-     D.11. Since draft-ietf-quic-qpack-08  . . . . . . . . . . . . .  46
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 3]
-
-Internet-Draft                    QPACK                    November 2020
-
-
-     D.12. Since draft-ietf-quic-qpack-06  . . . . . . . . . . . . .  46
-     D.13. Since draft-ietf-quic-qpack-05  . . . . . . . . . . . . .  46
-     D.14. Since draft-ietf-quic-qpack-04  . . . . . . . . . . . . .  47
-     D.15. Since draft-ietf-quic-qpack-03  . . . . . . . . . . . . .  47
-     D.16. Since draft-ietf-quic-qpack-02  . . . . . . . . . . . . .  47
-     D.17. Since draft-ietf-quic-qpack-01  . . . . . . . . . . . . .  47
-     D.18. Since draft-ietf-quic-qpack-00  . . . . . . . . . . . . .  47
-     D.19. Since draft-ietf-quic-qcram-00  . . . . . . . . . . . . .  48
-   Acknowledgments . . . . . . . . . . . . . . . . . . . . . . . . .  48
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  49
+   1.  Introduction
+     1.1.  Conventions and Definitions
+     1.2.  Notational Conventions
+   2.  Compression Process Overview
+     2.1.  Encoder
+       2.1.1.  Limits on Dynamic Table Insertions
+       2.1.2.  Blocked Streams
+       2.1.3.  Avoiding Flow Control Deadlocks
+       2.1.4.  Known Received Count
+     2.2.  Decoder
+       2.2.1.  Blocked Decoding
+       2.2.2.  State Synchronization
+       2.2.3.  Invalid References
+   3.  Reference Tables
+     3.1.  Static Table
+     3.2.  Dynamic Table
+       3.2.1.  Dynamic Table Size
+       3.2.2.  Dynamic Table Capacity and Eviction
+       3.2.3.  Maximum Dynamic Table Capacity
+       3.2.4.  Absolute Indexing
+       3.2.5.  Relative Indexing
+       3.2.6.  Post-Base Indexing
+   4.  Wire Format
+     4.1.  Primitives
+       4.1.1.  Prefixed Integers
+       4.1.2.  String Literals
+     4.2.  Encoder and Decoder Streams
+     4.3.  Encoder Instructions
+       4.3.1.  Set Dynamic Table Capacity
+       4.3.2.  Insert With Name Reference
+       4.3.3.  Insert With Literal Name
+       4.3.4.  Duplicate
+     4.4.  Decoder Instructions
+       4.4.1.  Section Acknowledgement
+       4.4.2.  Stream Cancellation
+       4.4.3.  Insert Count Increment
+     4.5.  Field Line Representations
+       4.5.1.  Encoded Field Section Prefix
+       4.5.2.  Indexed Field Line
+       4.5.3.  Indexed Field Line With Post-Base Index
+       4.5.4.  Literal Field Line With Name Reference
+       4.5.5.  Literal Field Line With Post-Base Name Reference
+       4.5.6.  Literal Field Line With Literal Name
+   5.  Configuration
+   6.  Error Handling
+   7.  Security Considerations
+     7.1.  Probing Dynamic Table State
+     7.2.  Applicability to QPACK and HTTP
+     7.3.  Mitigation
+     7.4.  Never-Indexed Literals
+     7.5.  Static Huffman Encoding
+     7.6.  Memory Consumption
+     7.7.  Implementation Limits
+   8.  IANA Considerations
+     8.1.  Settings Registration
+     8.2.  Stream Type Registration
+     8.3.  Error Code Registration
+   9.  References
+     9.1.  Normative References
+     9.2.  Informative References
+   Appendix A.  Static Table
+   Appendix B.  Encoding and Decoding Examples
+     B.1.  Literal Field Line With Name Reference
+     B.2.  Dynamic Table
+     B.3.  Speculative Insert
+     B.4.  Duplicate Instruction, Stream Cancellation
+     B.5.  Dynamic Table Insert, Eviction
+   Appendix C.  Sample One Pass Encoding Algorithm
+   Appendix D.  Change Log
+     D.1.  Since draft-ietf-quic-qpack-18
+     D.2.  Since draft-ietf-quic-qpack-17
+     D.3.  Since draft-ietf-quic-qpack-16
+     D.4.  Since draft-ietf-quic-qpack-15
+     D.5.  Since draft-ietf-quic-qpack-14
+     D.6.  Since draft-ietf-quic-qpack-13
+     D.7.  Since draft-ietf-quic-qpack-12
+     D.8.  Since draft-ietf-quic-qpack-11
+     D.9.  Since draft-ietf-quic-qpack-10
+     D.10. Since draft-ietf-quic-qpack-09
+     D.11. Since draft-ietf-quic-qpack-08
+     D.12. Since draft-ietf-quic-qpack-06
+     D.13. Since draft-ietf-quic-qpack-05
+     D.14. Since draft-ietf-quic-qpack-04
+     D.15. Since draft-ietf-quic-qpack-03
+     D.16. Since draft-ietf-quic-qpack-02
+     D.17. Since draft-ietf-quic-qpack-01
+     D.18. Since draft-ietf-quic-qpack-00
+     D.19. Since draft-ietf-quic-qcram-00
+   Acknowledgments
+   Authors' Addresses
 
 1.  Introduction
 
@@ -218,14 +193,6 @@ Internet-Draft                    QPACK                    November 2020
       section.  See Section 5.4 and Section 5.6 of [SEMANTICS].
 
    HTTP field value:  Data associated with a field name, composed from
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 4]
-
-Internet-Draft                    QPACK                    November 2020
-
-
       all field line values with that field name in that section,
       concatenated together and separated with commas.
 
@@ -274,13 +241,6 @@ Internet-Draft                    QPACK                    November 2020
    value).  The dynamic table (Section 3.2) is built up over the course
    of the connection and can be used by the encoder to index both header
    and trailer field lines in the encoded field sections.
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 5]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    QPACK defines unidirectional streams for sending instructions from
    encoder to decoder and vice versa.
@@ -331,13 +291,6 @@ Internet-Draft                    QPACK                    November 2020
    until those representations are acknowledged by the decoder; see
    Section 4.4.1.
 
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 6]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 2.1.1.1.  Avoiding Prohibited Insertions
 
    To ensure that the encoder is not prevented from adding new entries,
@@ -382,17 +335,6 @@ Internet-Draft                    QPACK                    November 2020
    one larger than the largest absolute index of all referenced dynamic
    table entries.  For a field section encoded with no references to the
    dynamic table, the Required Insert Count is zero.
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 7]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    When the decoder receives an encoded field section with a Required
    Insert Count greater than its own Insert Count, the stream cannot be
@@ -441,15 +383,6 @@ Internet-Draft                    QPACK                    November 2020
    instruction unless sufficient stream and connection flow control
    credit is available for the entire instruction.
 
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 8]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 2.1.4.  Known Received Count
 
    The Known Received Count is the total number of dynamic table
@@ -497,15 +430,6 @@ Internet-Draft                    QPACK                    November 2020
    Insert Count for all encoded field sections the decoder has started
    reading from the stream.
 
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                  [Page 9]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    When processing encoded field sections, the decoder expects the
    Required Insert Count to equal the lowest possible value for the
    Insert Count with which the field section can be decoded, as
@@ -549,18 +473,6 @@ Internet-Draft                    QPACK                    November 2020
    table.  When an entry with absolute index lower than the Known
    Received Count has zero references, then it is considered evictable;
    see Section 2.1.1.
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 10]
-
-Internet-Draft                    QPACK                    November 2020
-
 
 2.2.2.3.  New Table Entries
 
@@ -607,17 +519,6 @@ Internet-Draft                    QPACK                    November 2020
    Note that the QPACK static table is indexed from 0, whereas the HPACK
    static table is indexed from 1.
 
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 11]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    When the decoder encounters an invalid static table index in a field
    line representation it MUST treat this as a connection error of type
    QPACK_DECOMPRESSION_FAILED.  If this index is received on the encoder
@@ -663,16 +564,6 @@ Internet-Draft                    QPACK                    November 2020
    entry that is larger than the dynamic table capacity; the decoder
    MUST treat this as a connection error of type
    QPACK_ENCODER_STREAM_ERROR.
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 12]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    A new entry can reference an entry in the dynamic table that will be
    evicted when adding this new entry into the dynamic table.
@@ -722,14 +613,6 @@ Internet-Draft                    QPACK                    November 2020
    of that entry.  The first entry inserted has an absolute index of
    "0"; indices increase by one with each insertion.
 
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 13]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 3.2.5.  Relative Indexing
 
    Relative indices begin at zero and increase in the opposite direction
@@ -776,15 +659,6 @@ Internet-Draft                    QPACK                    November 2020
    n = count of entries inserted
    d = count of entries dropped
    In this example, Base = n - 2
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 14]
-
-Internet-Draft                    QPACK                    November 2020
-
 
         Figure 3: Example Dynamic Table Indexing - Relative Index in
                                Representation
@@ -835,13 +709,6 @@ Internet-Draft                    QPACK                    November 2020
    The string literal defined by Section 5.2 of [RFC7541] is also used
    throughout.  This string format includes optional Huffman encoding.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 15]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    HPACK defines string literals to begin on a byte boundary.  They
    begin with a single bit flag, denoted as 'H' in this document
    (indicating whether the string is Huffman-coded), followed by the
@@ -890,14 +757,6 @@ Internet-Draft                    QPACK                    November 2020
    An endpoint MAY avoid creating a decoder stream if its decoder sets
    the maximum capacity of the dynamic table to zero.
 
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 16]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    An endpoint MUST allow its peer to create an encoder stream and a
    decoder stream even if the connection's settings prevent their use.
 
@@ -938,21 +797,6 @@ Internet-Draft                    QPACK                    November 2020
    are not evictable; see Section 2.1.1.  Changing the capacity of the
    dynamic table is not acknowledged as this instruction does not insert
    an entry.
-
-
-
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 17]
-
-Internet-Draft                    QPACK                    November 2020
-
 
 4.3.2.  Insert With Name Reference
 
@@ -1003,13 +847,6 @@ Internet-Draft                    QPACK                    November 2020
 
                   Figure 7: Insert Field Line -- New Name
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 18]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 4.3.4.  Duplicate
 
    An encoder duplicates an existing entry in the dynamic table using an
@@ -1059,13 +896,6 @@ Internet-Draft                    QPACK                    November 2020
    MUST be treated as a connection error of type
    QPACK_DECODER_STREAM_ERROR.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 19]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    The Section Acknowledgement instruction might increase the Known
    Received Count; see Section 2.1.4.
 
@@ -1113,14 +943,6 @@ Internet-Draft                    QPACK                    November 2020
    representation corresponds to a single field line.  These
    representations reference the static table or the dynamic table in a
    particular state, but do not modify that state.
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 20]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    Encoded field sections are carried in frames on streams defined by
    the enclosing protocol.
@@ -1171,13 +993,6 @@ Internet-Draft                    QPACK                    November 2020
    This encoding limits the length of the prefix on long-lived
    connections.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 21]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    The decoder can reconstruct the Required Insert Count using an
    algorithm such as the following.  If the decoder encounters a value
    of EncodedInsertCount that could not have been produced by a
@@ -1226,14 +1041,6 @@ Internet-Draft                    QPACK                    November 2020
    bit of 0 indicates that the Base is greater than or equal to the
    value of the Required Insert Count; the decoder adds the value of
    Delta Base to the Required Insert Count to determine the value of the
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 22]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    Base.  A sign bit of 1 indicates that the Base is less than the
    Required Insert Count; the decoder subtracts the value of Delta Base
    from the Required Insert Count and also subtracts one to determine
@@ -1280,15 +1087,6 @@ Internet-Draft                    QPACK                    November 2020
    +---+---+-----------------------+
 
                        Figure 13: Indexed Field Line
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 23]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    This representation starts with the '1' 1-bit pattern, followed by
    the 'T' bit indicating whether the reference is into the static or
@@ -1338,14 +1136,6 @@ Internet-Draft                    QPACK                    November 2020
    add this field line to the dynamic table on subsequent hops.  When
    the 'N' bit is set, the encoded field line MUST always be encoded
    with a literal representation.  In particular, when a peer sends a
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 24]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    field line that it received represented as a literal field line with
    the 'N' bit set, it MUST use a literal representation to forward this
    field line.  This bit is intended for protecting field values that
@@ -1395,13 +1185,6 @@ Internet-Draft                    QPACK                    November 2020
    The literal field line with literal name representation encodes a
    field name and a field value as string literals.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 25]
-
-Internet-Draft                    QPACK                    November 2020
-
-
         0   1   2   3   4   5   6   7
       +---+---+---+---+---+---+---+---+
       | 0 | 0 | 1 | N | H |NameLen(3+)|
@@ -1447,17 +1230,6 @@ Internet-Draft                    QPACK                    November 2020
    QPACK_DECODER_STREAM_ERROR (0x202):  The encoder failed to interpret
       a decoder instruction received on the decoder stream.
 
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 26]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 7.  Security Considerations
 
    This section describes potential areas of security concern with
@@ -1502,17 +1274,6 @@ Internet-Draft                    QPACK                    November 2020
    matching.  This permitted the attacker to confirm guesses a character
    at a time, reducing an exponential-time attack into a linear-time
    attack.
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 27]
-
-Internet-Draft                    QPACK                    November 2020
-
 
 7.2.  Applicability to QPACK and HTTP
 
@@ -1563,13 +1324,6 @@ Internet-Draft                    QPACK                    November 2020
    to the table are attributed to an entity, and only the entity that
    created a particular value can extract that value.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 28]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    To improve compression performance of this option, certain entries
    might be tagged as being public.  For example, a web browser might
    make the values of the Accept-Encoding header field available in all
@@ -1619,13 +1373,6 @@ Internet-Draft                    QPACK                    November 2020
    recovered by an adversary.  Therefore, an encoder might choose not to
    index values with low entropy.
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 29]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    An encoder might also choose not to index values for fields that are
    considered to be highly valuable or sensitive to recovery, such as
    the Cookie or Authorization header fields.
@@ -1673,15 +1420,6 @@ Internet-Draft                    QPACK                    November 2020
    encoder can limit the amount of state memory it uses by signaling a
    lower dynamic table size than the decoder allows (see Section 3.2.2).
 
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 30]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    A decoder can limit the amount of state memory used for blocked
    streams by setting an appropriate value for the maximum number of
    blocked streams.  In HTTP/3, this is realized by setting an
@@ -1727,17 +1465,6 @@ Internet-Draft                    QPACK                    November 2020
    the same way, it has to set a limit to the length it accepts for
    string literals; see Section 4.1.2.
 
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 31]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 8.  IANA Considerations
 
 8.1.  Settings Registration
@@ -1778,22 +1505,6 @@ Internet-Draft                    QPACK                    November 2020
    following table are registered in the "HTTP/3 Error Code" registry
    established in [HTTP3].
 
-
-
-
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 32]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    +============================+=======+=============+===============+
    | Name                       | Code  | Description | Specification |
    +============================+=======+=============+===============+
@@ -1819,13 +1530,13 @@ Internet-Draft                    QPACK                    November 2020
 
    [HTTP3]    Bishop, M., Ed., "Hypertext Transfer Protocol Version 3
               (HTTP/3)", Work in Progress, Internet-Draft, draft-ietf-
-              quic-http, 10 November 2020,
+              quic-http, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-http>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 10 November
+              Internet-Draft, draft-ietf-quic-transport, 18 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
@@ -1841,14 +1552,6 @@ Internet-Draft                    QPACK                    November 2020
    [RFC7541]  Peon, R. and H. Ruellan, "HPACK: Header Compression for
               HTTP/2", RFC 7541, DOI 10.17487/RFC7541, May 2015,
               <https://www.rfc-editor.org/info/rfc7541>.
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 33]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    [RFC8174]  Leiba, B., "Ambiguity of Uppercase vs Lowercase in RFC
               2119 Key Words", BCP 14, RFC 8174, DOI 10.17487/RFC8174,
@@ -1898,14 +1601,6 @@ Appendix A.  Static Table
    optimized to encode the most common header fields with the smallest
    number of bytes.
 
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 34]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    +=======+==================================+=======================+
    | Index | Name                             | Value                 |
    +=======+==================================+=======================+
@@ -1954,14 +1649,6 @@ Internet-Draft                    QPACK                    November 2020
    | 21    | :method                          | PUT                   |
    +-------+----------------------------------+-----------------------+
    | 22    | :scheme                          | http                  |
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 35]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    +-------+----------------------------------+-----------------------+
    | 23    | :scheme                          | https                 |
    +-------+----------------------------------+-----------------------+
@@ -2010,14 +1697,6 @@ Internet-Draft                    QPACK                    November 2020
    | 44    | content-type                     | application/dns-      |
    |       |                                  | message               |
    +-------+----------------------------------+-----------------------+
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 36]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    | 45    | content-type                     | application/          |
    |       |                                  | javascript            |
    +-------+----------------------------------+-----------------------+
@@ -2066,14 +1745,6 @@ Internet-Draft                    QPACK                    November 2020
    | 64    | :status                          | 204                   |
    +-------+----------------------------------+-----------------------+
    | 65    | :status                          | 206                   |
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 37]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    +-------+----------------------------------+-----------------------+
    | 66    | :status                          | 302                   |
    +-------+----------------------------------+-----------------------+
@@ -2122,14 +1793,6 @@ Internet-Draft                    QPACK                    November 2020
    | 87    | expect-ct                        |                       |
    +-------+----------------------------------+-----------------------+
    | 88    | forwarded                        |                       |
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 38]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    +-------+----------------------------------+-----------------------+
    | 89    | if-range                         |                       |
    +-------+----------------------------------+-----------------------+
@@ -2175,17 +1838,6 @@ B.1.  Literal Field Line With Name Reference
    The encoder sends an encoded field section containing a literal
    representation of a field with a static name reference.
 
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 39]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    Data                | Interpretation
                                 | Encoder's Dynamic Table
 
@@ -2206,41 +1858,6 @@ B.2.  Dynamic Table
    field section referencing this new entry.  The decoder acknowledges
    processing the encoded field section, which implicitly acknowledges
    all dynamic table insertions up to the Required Insert Count.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 40]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    Stream: Encoder
    3fbd01              | Set Dynamic Table Capacity=220
@@ -2287,17 +1904,6 @@ B.3.  Speculative Insert
    name.  The decoder acknowledges receipt of the entry.  The encoder
    does not send any encoded field sections.
 
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 41]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    Stream: Encoder
    4a63 7573 746f 6d2d | Insert With Literal Name
    6b65 790c 6375 7374 |  (custom-key=custom-value)
@@ -2328,31 +1934,6 @@ B.4.  Duplicate Instruction, Stream Cancellation
    stream data is delayed.  Before the packet arrives, the decoder
    cancels the stream and notifies the encoder that the encoded field
    section was not processed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 42]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    Stream: Encoder
    02                  | Duplicate (Relative Index=2)
@@ -2400,15 +1981,6 @@ B.5.  Dynamic Table Insert, Eviction
    The encoder inserts another header into the dynamic table, which
    evicts the oldest entry.  The encoder does not send any encoded field
    sections.
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 43]
-
-Internet-Draft                    QPACK                    November 2020
-
 
    Stream: Encoder
    810d 6375 7374 6f6d | Insert With Name Reference
@@ -2458,14 +2030,6 @@ Appendix C.  Sample One Pass Encoding Algorithm
          requiredInsertCount = max(requiredInsertCount,
                                    dynamicNameIndex)
        else:
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 44]
-
-Internet-Draft                    QPACK                    November 2020
-
-
          # Encodes a literal with a static name or literal name
          encodeLiteral(streamBuffer, staticNameIndex, line)
      else:
@@ -2514,14 +2078,6 @@ D.4.  Since draft-ietf-quic-qpack-15
 
    No changes
 
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 45]
-
-Internet-Draft                    QPACK                    November 2020
-
-
 D.5.  Since draft-ietf-quic-qpack-14
 
    Added security considerations
@@ -2569,14 +2125,6 @@ D.13.  Since draft-ietf-quic-qpack-05
 
    *  Renamed SETTINGS_HEADER_TABLE_SIZE to
       SETTINGS_QPACK_MAX_TABLE_CAPACITY.
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 46]
-
-Internet-Draft                    QPACK                    November 2020
-
 
 D.14.  Since draft-ietf-quic-qpack-04
 
@@ -2627,13 +2175,6 @@ D.18.  Since draft-ietf-quic-qpack-00
 
    *  Added an acknowledgment for unread streams (#1371, #1400)
 
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 47]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    *  Removed framing from encoder stream (#1361,#1467)
 
    *  Control streams use typed unidirectional streams rather than fixed
@@ -2682,14 +2223,6 @@ Acknowledgments
 
    *  Lucas Pardue
 
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 48]
-
-Internet-Draft                    QPACK                    November 2020
-
-
    *  Biren Roy
 
    *  Ian Swett
@@ -2721,24 +2254,3 @@ Authors' Addresses
    Facebook
 
    Email: afrind@fb.com
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Krasic, et al.             Expires 14 May 2021                 [Page 49]

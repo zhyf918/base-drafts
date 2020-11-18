@@ -4,8 +4,8 @@
 
 QUIC                                                      M. Bishop, Ed.
 Internet-Draft                                                    Akamai
-Intended status: Standards Track                        17 November 2020
-Expires: 21 May 2021
+Intended status: Standards Track                        18 November 2020
+Expires: 22 May 2021
 
 
              Hypertext Transfer Protocol Version 3 (HTTP/3)
@@ -45,7 +45,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on 21 May 2021.
+   This Internet-Draft will expire on 22 May 2021.
 
 Copyright Notice
 
@@ -612,7 +612,7 @@ Table of Contents
    message has been received to make progress.  If a client-initiated
    stream terminates without enough of the HTTP message to provide a
    complete response, the server SHOULD abort its response with the
-   error code H3_REQUEST_INCOMPLETE.
+   error code H3_REQUEST_INCOMPLETE; see Section 8.
 
    A server can send a complete response prior to the client sending an
    entire request if the response does not depend on any portion of the
@@ -1831,21 +1831,25 @@ Table of Contents
    When a stream cannot be completed successfully, QUIC allows the
    application to abruptly terminate (reset) that stream and communicate
    a reason; see Section 2.4 of [QUIC-TRANSPORT].  This is referred to
-   as a "stream error."  Stream errors are distinct from HTTP status
-   codes which indicate error conditions.  Stream errors indicate that
-   the sender did not transfer the full request or response, while HTTP
-   status codes indicate the result of a request that was successfully
-   received.
+   as a "stream error."  An HTTP/3 implementation can decide to close a
+   QUIC stream and communicate the type of error.  Wire encodings of
+   error codes are defined in Section 8.1.  Stream errors are distinct
+   from HTTP status codes which indicate error conditions.  Stream
+   errors indicate that the sender did not transfer or consume the full
+   request or response, while HTTP status codes indicate the result of a
+   request that was successfully received.
 
    If an entire connection needs to be terminated, QUIC similarly
    provides mechanisms to communicate a reason; see Section 5.3 of
    [QUIC-TRANSPORT].  This is referred to as a "connection error."
+   Similar to stream errors, an HTTP/3 implementation can terminate a
+   QUIC connection and communicate the reason using an error code from
+   Section 8.1.
 
-   Both stream errors and connection errors have associated error codes;
-   see Section 11 of [QUIC-TRANSPORT].  However, they do not necessarily
-   indicate a problem with the connection or either implementation.  For
-   example, a stream can be reset if the requested resource is no longer
-   needed.
+   Although the reasons for closing streams and connections are called
+   "errors," these actions do not necessarily indicate a problem with
+   the connection or either implementation.  For example, a stream can
+   be reset if the requested resource is no longer needed.
 
    An endpoint MAY choose to treat a stream error as a connection error
    under certain circumstances, closing the entire connection in
@@ -1858,9 +1862,6 @@ Table of Contents
    of an unknown error code MUST be treated as equivalent to
    H3_NO_ERROR.  However, closing a stream can have other effects
    regardless of the error code; for example, see Section 4.1.
-
-   This section describes HTTP/3-specific error codes that can be used
-   to express the cause of a connection or stream error.
 
 8.1.  HTTP/3 Error Codes
 
@@ -2516,13 +2517,13 @@ Table of Contents
 
    [QPACK]    Krasic, C., Bishop, M., and A. Frindell, Ed., "QPACK:
               Header Compression for HTTP over QUIC", Work in Progress,
-              Internet-Draft, draft-ietf-quic-qpack, 17 November 2020,
+              Internet-Draft, draft-ietf-quic-qpack, 18 November 2020,
               <https://tools.ietf.org/html/draft-ietf-quic-qpack>.
 
    [QUIC-TRANSPORT]
               Iyengar, J., Ed. and M. Thomson, Ed., "QUIC: A UDP-Based
               Multiplexed and Secure Transport", Work in Progress,
-              Internet-Draft, draft-ietf-quic-transport, 17 November
+              Internet-Draft, draft-ietf-quic-transport, 18 November
               2020,
               <https://tools.ietf.org/html/draft-ietf-quic-transport>.
 
